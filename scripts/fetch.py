@@ -39,15 +39,37 @@ PURE_ROBOT_ENTITIES = {
     '1x technologies', 'agility robotics', 'sanctuary ai', 'apptronik',
     'unitree', '유니트리', 'agibot', '아지봇', 'fourier intelligence',
     'skild ai', 'dextrous robotics', 'neura robotics', 'kepler robotics',
-    'ubtech', 'englineai', 'galbot', 'mentee robotics', 'clone robotics',
+    'ubtech', 'galbot', 'mentee robotics', 'clone robotics',
     'irobot', 'softbank robotics', 'realman robotics',
 }
 
+# 비-로봇 주제 제외 키워드 (제목에 있으면 바로 제외)
+NEGATIVE_TITLE_KWS = [
+    # 금융/주식
+    'etf', '주가', '수익률', '레버리지', '주식', 'ipo', 'earnings', 'stock price',
+    'share price', 'quarterly results', '배당', '증시', '코스피', '나스닥',
+    # 비-로봇 AI
+    'llm', 'large language model', 'coding model', 'text model', 'chatbot',
+    'gpt-', 'claude-', 'gemini-',
+    # 게임/엔터
+    'game', 'gaming', 'esports', 'movie', 'film', 'music',
+    # 자동차 (Tesla 자동차 기사)
+    'electric vehicle', 'ev sales', 'autopilot crash', 'self-driving car',
+    'cybertruck', 'model 3', 'model y',
+    # 암호화폐
+    'bitcoin', 'crypto', 'blockchain', 'nft',
+]
+
 def is_robot_related(title, summary):
-    """로봇 관련 기사인지 판단 - 단순 기업명 매칭 방지"""
+    """로봇 관련 기사인지 판단"""
+    title_lower = title.lower()
     text = f"{title} {summary}".lower()
 
-    # 1) 핵심 로봇 키워드가 있으면 무조건 통과
+    # 0) 명백한 비-로봇 주제는 제목에서 바로 제외
+    if any(neg in title_lower for neg in NEGATIVE_TITLE_KWS):
+        return False
+
+    # 1) 핵심 로봇 키워드가 있으면 통과
     core_kws = [k.lower() for k in CONFIG['keywords']['core']]
     if any(kw in text for kw in core_kws):
         return True
@@ -57,14 +79,12 @@ def is_robot_related(title, summary):
         return True
 
     # 3) 로봇 맥락 단어 존재 여부
-    robot_context = ['robot', '로봇', 'humanoid', '휴머노이드', 'autonomous', 'cobot',
-                     'actuator', 'gripper', 'exoskeleton', 'quadruped', 'locomotion']
-    has_robot = any(rt in text for rt in robot_context)
-    if not has_robot:
-        return False
+    robot_context = ['robot', '로봇', 'humanoid', '휴머노이드', 'autonomous robot',
+                     'cobot', 'actuator', 'gripper', 'exoskeleton', 'quadruped', 'locomotion']
+    if any(rt in text for rt in robot_context):
+        return True
 
-    # 4) 로봇 단어 있으면 충분 (ETF/주식 기사는 robot/로봇 단어 없음)
-    return True
+    return False
 
 def get_tier(title, summary):
     """기사 티어 판단"""
