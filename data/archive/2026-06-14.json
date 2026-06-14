@@ -1,38 +1,14 @@
 {
   "date": "2026-06-14",
-  "generated_at": "2026-06-14T13:10:24.432059+00:00",
+  "generated_at": "2026-06-14T13:31:07.334054+00:00",
   "stats": {
     "total_scanned": 15,
     "action_count": 1,
-    "watch_count": 5,
+    "watch_count": 2,
     "weak_signal_count": 6,
-    "top_score": 3.6
+    "top_score": 3.5
   },
   "global_top10": [
-    {
-      "id": "9811ef5f09cd",
-      "title": "“국장 장투할거야? 난 치고 빠질래”…삼전닉스 대신 2배 ETF 갔다",
-      "summary": "내년까지 수주증가 기대 커져 구성종목 절반이 소부장 기업 일주일 수익률 6% 안팎 순항단일 종목 레버리지 상장지수펀드(ETF)가 출시된 이후 삼성전자와 SK하이닉스의 수급 지형이 ..",
-      "url": "https://www.mk.co.kr/news/stock/12073923",
-      "source": "매일경제 IT",
-      "region": "KR",
-      "pub_date": "Sun, 14 Jun 2026 21:41:14 +09:00",
-      "pub_ts": 1781473274.0,
-      "tier": "T2",
-      "raw_score": 3.33,
-      "entity": "삼성",
-      "domain": "www.mk.co.kr",
-      "summary_ko": "삼성전자·SK하이닉스 단일 종목 레버리지 ETF 출시 이후 개인 투자자들이 장기 보유 대신 단기 매매 전략으로 전환하는 추세가 나타나고 있다. 소부장 기업 비중이 높은 관련 ETF가 일주일 수익률 6% 안팎을 기록하며 반도체 섹터 내 수급 지형 변화가 감지되고 있다.",
-      "signal": "Watch",
-      "signal_reason": "반도체 투자 심리 및 수급 지형 변화는 LG전자의 전장·가전 부품 공급망과 연계된 소부장 기업 밸류에이션에 중기적 영향을 미칠 수 있다.",
-      "lg_implication": "소부장 기업 중심의 반도체 ETF 자금 유입 확대는 LG전자 전장 및 OLED 부품 협력사들의 투자 여력 증가로 이어질 수 있어 공급망 협력 환경 변화를 모니터링할 필요가 있다.",
-      "keywords": [
-        "레버리지ETF",
-        "소부장",
-        "반도체수급"
-      ],
-      "score": 3.6
-    },
     {
       "id": "9ac0b9e97f1f",
       "title": "NVIDIA Denies Allegations of Restricted Chips Flowing Into China Through Latin America",
@@ -46,64 +22,60 @@
       "raw_score": 3.25,
       "entity": "nvidia",
       "domain": "pandaily.com",
-      "summary_ko": "NVIDIA 라틴아메리카 총괄은 중국으로의 반도체 우회 수출 채널로 라틴아메리카가 활용되고 있다는 Anthropic의 주장을 부인했다. 동시에 미국의 AI 칩 수출 통제 강화에 대한 불만도 표명했다.",
+      "summary_ko": "NVIDIA 라틴아메리카 책임자는 해당 지역이 중국으로의 제한된 AI 칩 우회 경로가 되고 있다는 Anthropic의 주장을 부인했다. 동시에 미국의 수출 통제 정책에 대한 불만을 표명하며 규제의 실효성에 의문을 제기했다.",
       "signal": "Watch",
-      "signal_reason": "AI 반도체 수출 통제 및 우회 경로 논쟁은 글로벌 공급망 리스크와 직결되어 LG전자의 AI 칩 조달 전략에 중기적 영향을 미칠 수 있음.",
-      "lg_implication": "LG전자는 AI 가전 및 로봇 사업에 필요한 고성능 AI 칩의 안정적 확보를 위해 미-중 반도체 수출 규제 동향과 우회 수출 단속 강화 추이를 지속 모니터링해야 함.",
+      "signal_reason": "AI 반도체 수출 통제 우회 논란은 글로벌 공급망 재편 및 규제 강화로 이어질 수 있어 LG의 AI 인프라 조달 전략에 중기적 영향을 미칠 수 있다.",
+      "lg_implication": "LG전자가 AI 가전·로봇 개발에 필요한 고성능 AI 칩 확보 전략 수립 시, 미·중 반도체 규제 리스크와 우회 공급망 논란을 고려한 안정적 조달 경로 다각화가 필요하다.",
       "keywords": [
         "AI칩수출통제",
         "NVIDIA",
-        "반도체우회수출"
+        "공급망우회"
       ],
       "score": 3.5
     },
     {
-      "id": "d9d5e11d25f9",
-      "title": "Open-Source Software Is Starting to Help Robots Think",
-      "summary": "When a group of academics started making open-source robotics hardware, a generation of roboticists got years of their lives back. Now, the bigger challenge is getting robots to think—and that’s starting to be open sourced too.The shift is still early, but companies including Hugging Face, Nvidia, and Alibaba have all made significant bets on open-source robotics in the last two years, releasing tools and models aimed at the higher-level work of getting robots to reason, decide, and act. The ope",
-      "url": "https://spectrum.ieee.org/open-source-robot-ai-platforms",
-      "source": "IEEE Spectrum Robotics",
+      "id": "9811ef5f09cd",
+      "title": "“국장 장투할거야? 난 치고 빠질래”…삼전닉스 대신 2배 ETF 갔다",
+      "summary": "내년까지 수주증가 기대 커져 구성종목 절반이 소부장 기업 일주일 수익률 6% 안팎 순항단일 종목 레버리지 상장지수펀드(ETF)가 출시된 이후 삼성전자와 SK하이닉스의 수급 지형이 ..",
+      "url": "https://www.mk.co.kr/news/stock/12073923",
+      "source": "매일경제 IT",
+      "region": "KR",
+      "pub_date": "Sun, 14 Jun 2026 21:41:14 +09:00",
+      "pub_ts": 1781473274.0,
+      "tier": "T2",
+      "raw_score": 3.33,
+      "entity": "삼성",
+      "domain": "www.mk.co.kr",
+      "summary_ko": "내년까지 수주증가 기대 커져 구성종목 절반이 소부장 기업 일주일 수익률 6% 안팎 순항단일 종목 레버리지 상장지수펀드(ETF)가 출시된 이후 삼성전자와 SK하이닉스의 수급 지형이 ",
+      "signal": "FYI",
+      "signal_reason": "자동 분석 실패",
+      "lg_implication": "",
+      "keywords": [],
+      "score": 3.3
+    },
+    {
+      "id": "c607923e2004",
+      "title": "SoftBank bulks up its robotics portfolio with ABB Group’s robotics unit",
+      "summary": "SoftBank says this acquisition will help it dive deeper into robotics as it considers physical AI to be the next frontier.",
+      "url": "https://techcrunch.com/2025/10/08/softbank-bulks-up-its-robotics-portfolio-with-abb-groups-robotics-unit/",
+      "source": "TechCrunch Robotics",
       "region": "global",
-      "pub_date": "Thu, 21 May 2026 14:00:02 +0000",
-      "pub_ts": 1779372002.0,
-      "tier": "T1",
-      "raw_score": 2.5,
-      "entity": "nvidia",
-      "domain": "spectrum.ieee.org",
-      "summary_ko": "Hugging Face, Nvidia, Alibaba 등 주요 기업들이 로봇의 추론·판단·행동을 위한 오픈소스 AI 모델과 툴을 공개하며 로보틱스 소프트웨어의 오픈소스화가 본격화되고 있다. 이러한 흐름은 로봇 개발의 진입 장벽을 낮추고 혁신 속도를 가속화할 것으로 전망된다.",
+      "pub_date": "Wed, 08 Oct 2025 14:10:18 +0000",
+      "pub_ts": 1759932618.0,
+      "tier": "T2",
+      "raw_score": 2.0,
+      "entity": "abb",
+      "domain": "techcrunch.com",
+      "summary_ko": "소프트뱅크가 ABB그룹의 로보틱스 사업부를 인수하며 로보틱스 포트폴리오를 대폭 강화했다. 소프트뱅크는 피지컬 AI를 차세대 핵심 사업으로 규정하고 이번 인수를 통해 해당 분야에 더욱 깊이 진출할 계획이다.",
       "signal": "Action",
-      "signal_reason": "오픈소스 로봇 AI 생태계가 빠르게 형성되고 있어 LG전자가 이를 활용한 로봇 지능화 전략을 조기에 수립하지 않으면 경쟁력 격차가 발생할 수 있다.",
-      "lg_implication": "LG전자는 가정용·산업용 로봇(CLOi 등) 개발 시 오픈소스 로봇 AI 모델을 적극 활용하거나 생태계에 기여함으로써 개발 속도와 기술 역량을 동시에 강화할 수 있다.",
+      "signal_reason": "글로벌 빅테크·투자사들이 피지컬 AI와 산업용 로보틱스 분야에 대규모 M&A로 생태계를 빠르게 재편하고 있어 LG전자의 로봇 사업 전략 재검토가 시급하다.",
+      "lg_implication": "소프트뱅크-ABB 연합이 산업용·서비스용 로봇 시장의 주요 플레이어로 급부상함에 따라, LG전자는 자사 로봇 사업(클로이 등)의 차별화 포지셔닝과 파트너십 전략을 조속히 재정비할 필요가 있다.",
       "keywords": [
-        "오픈소스 로보틱스",
-        "로봇 AI",
-        "Hugging Face"
+        "피지컬AI",
+        "소프트뱅크",
+        "ABB로보틱스"
       ],
-      "score": 3.5
-    },
-    {
-      "id": "fea4928d0715",
-      "title": "​Boston Dynamics and Google DeepMind Teach Spot to Reason​",
-      "summary": "The amazing and frustrating thing about robots is that they can do almost anything you want them to do, as long as you know how to ask properly. In the not-so-distant past, asking properly meant writing code, and while we’ve thankfully moved beyond that brittle constraint, there’s still an irritatingly inverse correlation between ease of use and complexity of task. AI has promised to change that. The idea is that when AI is embodied within robots—giving AI software a physical presence in the wor",
-      "url": "https://spectrum.ieee.org/boston-dynamics-spot-google-deepmind",
-      "source": "IEEE Spectrum Robotics",
-      "region": "global",
-      "pub_date": "Tue, 14 Apr 2026 19:45:01 +0000",
-      "pub_ts": 1776195901.0,
-      "tier": "T1",
-      "raw_score": 2.5,
-      "entity": "boston dynamics",
-      "domain": "spectrum.ieee.org",
-      "summary_ko": "Boston Dynamics와 Google DeepMind가 협력하여 로봇 Spot에 자연어 기반 추론 능력을 부여하는 AI 통합 기술을 개발했다. 이는 복잡한 코딩 없이도 사용자가 자연스럽게 로봇에게 복잡한 작업을 지시할 수 있게 하는 구현 AI(Embodied AI)의 실질적 진전을 의미한다.",
-      "signal": "Watch",
-      "signal_reason": "산업용·가정용 로봇의 자연어 제어 패러다임 전환이 가시화되고 있어 LG의 로봇 사업 방향성에 중기적 영향을 줄 수 있는 기술 동향이다.",
-      "lg_implication": "LG전자가 개발 중인 가정용·서비스용 로봇에 Embodied AI 기반 자연어 추론 기능을 내재화하기 위해 Google DeepMind 등 AI 선도 기업과의 기술 협력 또는 자체 LLM 통합 전략을 조속히 검토할 필요가 있다.",
-      "keywords": [
-        "Embodied AI",
-        "자연어 로봇 제어",
-        "Boston Dynamics"
-      ],
-      "score": 2.8
+      "score": 3.0
     },
     {
       "id": "a01dfaa3da87",
@@ -118,16 +90,56 @@
       "raw_score": 2.5,
       "entity": "nvidia",
       "domain": "techcrunch.com",
-      "summary_ko": "전직 OpenAI·DeepMind 연구진이 설립한 Periodic Labs가 과학 연구 자동화를 목표로 3억 달러의 시드 투자를 유치했다. Andreessen Horowitz, Nvidia, 제프 베이조스, 에릭 슈미트 등 기술 업계 거물들이 투자에 참여했다.",
+      "summary_ko": "전직 OpenAI·DeepMind 연구원들이 설립한 Periodic Labs가 과학 연구 자동화를 목표로 3억 달러의 시드 투자를 유치했다. Andreessen Horowitz, Nvidia, 제프 베이조스, 에릭 슈미트 등 빅테크 업계 거물들이 투자에 참여했다.",
       "signal": "Watch",
-      "signal_reason": "AI 기반 과학 자동화는 소재·화학 R&D에 직접 영향을 미칠 수 있어 LG전자의 제품 소재 개발 및 연구 프로세스 중기적 변화를 초래할 수 있음.",
-      "lg_implication": "AI 기반 과학 자동화 기술이 성숙할 경우, LG전자 가전·디스플레이 소재 및 배터리 관련 R&D 사이클을 획기적으로 단축시킬 파트너십 또는 기술 도입 기회로 활용 가능.",
+      "signal_reason": "AI 기반 과학 자동화 플랫폼은 LG전자의 소재·부품 R&D 및 제품 개발 사이클에 중기적으로 영향을 미칠 수 있는 기술 트렌드다.",
+      "lg_implication": "AI가 과학 실험과 연구를 자동화하는 방향으로 발전할 경우, LG전자는 가전·에너지·소재 분야 R&D에 이 같은 플랫폼을 조기 도입해 개발 속도와 혁신 역량을 제고할 수 있다.",
       "keywords": [
         "AI과학자동화",
         "Periodic Labs",
-        "대규모시드투자"
+        "거대시드투자"
       ],
       "score": 2.8
+    },
+    {
+      "id": "d9d5e11d25f9",
+      "title": "Open-Source Software Is Starting to Help Robots Think",
+      "summary": "When a group of academics started making open-source robotics hardware, a generation of roboticists got years of their lives back. Now, the bigger challenge is getting robots to think—and that’s starting to be open sourced too.The shift is still early, but companies including Hugging Face, Nvidia, and Alibaba have all made significant bets on open-source robotics in the last two years, releasing tools and models aimed at the higher-level work of getting robots to reason, decide, and act. The ope",
+      "url": "https://spectrum.ieee.org/open-source-robot-ai-platforms",
+      "source": "IEEE Spectrum Robotics",
+      "region": "global",
+      "pub_date": "Thu, 21 May 2026 14:00:02 +0000",
+      "pub_ts": 1779372002.0,
+      "tier": "T1",
+      "raw_score": 2.5,
+      "entity": "nvidia",
+      "domain": "spectrum.ieee.org",
+      "summary_ko": "When a group of academics started making open-source robotics hardware, a generation of roboticists ",
+      "signal": "FYI",
+      "signal_reason": "자동 분석 실패",
+      "lg_implication": "",
+      "keywords": [],
+      "score": 2.5
+    },
+    {
+      "id": "fea4928d0715",
+      "title": "​Boston Dynamics and Google DeepMind Teach Spot to Reason​",
+      "summary": "The amazing and frustrating thing about robots is that they can do almost anything you want them to do, as long as you know how to ask properly. In the not-so-distant past, asking properly meant writing code, and while we’ve thankfully moved beyond that brittle constraint, there’s still an irritatingly inverse correlation between ease of use and complexity of task. AI has promised to change that. The idea is that when AI is embodied within robots—giving AI software a physical presence in the wor",
+      "url": "https://spectrum.ieee.org/boston-dynamics-spot-google-deepmind",
+      "source": "IEEE Spectrum Robotics",
+      "region": "global",
+      "pub_date": "Tue, 14 Apr 2026 19:45:01 +0000",
+      "pub_ts": 1776195901.0,
+      "tier": "T1",
+      "raw_score": 2.5,
+      "entity": "boston dynamics",
+      "domain": "spectrum.ieee.org",
+      "summary_ko": "The amazing and frustrating thing about robots is that they can do almost anything you want them to ",
+      "signal": "FYI",
+      "signal_reason": "자동 분석 실패",
+      "lg_implication": "",
+      "keywords": [],
+      "score": 2.5
     },
     {
       "id": "74166c3f17c1",
@@ -148,26 +160,6 @@
       "lg_implication": "",
       "keywords": [],
       "score": 2.5
-    },
-    {
-      "id": "c607923e2004",
-      "title": "SoftBank bulks up its robotics portfolio with ABB Group’s robotics unit",
-      "summary": "SoftBank says this acquisition will help it dive deeper into robotics as it considers physical AI to be the next frontier.",
-      "url": "https://techcrunch.com/2025/10/08/softbank-bulks-up-its-robotics-portfolio-with-abb-groups-robotics-unit/",
-      "source": "TechCrunch Robotics",
-      "region": "global",
-      "pub_date": "Wed, 08 Oct 2025 14:10:18 +0000",
-      "pub_ts": 1759932618.0,
-      "tier": "T2",
-      "raw_score": 2.0,
-      "entity": "abb",
-      "domain": "techcrunch.com",
-      "summary_ko": "SoftBank says this acquisition will help it dive deeper into robotics as it considers physical AI to",
-      "signal": "FYI",
-      "signal_reason": "자동 분석 실패",
-      "lg_implication": "",
-      "keywords": [],
-      "score": 2.0
     },
     {
       "id": "08412bcd4b2a",
@@ -210,28 +202,24 @@
       "score": 1.8
     },
     {
-      "id": "5a847b78ab25",
-      "title": "NEURA Robotics to raise up to $1.4B in Series C funding for physical AI",
-      "summary": "NEURA Robotics plans to expand its platforms for robot learning and global production of humanoids and other systems. The post NEURA Robotics to raise up to $1.4B in Series C funding for physical AI appeared first on The Robot Report.",
-      "url": "https://www.therobotreport.com/neura-robotics-raise-up-1-4b-in-series-c-funding-physical-ai/",
-      "source": "The Robot Report",
-      "region": "global",
-      "pub_date": "Wed, 10 Jun 2026 16:06:09 +0000",
-      "pub_ts": 1781107569.0,
-      "tier": "T3",
-      "raw_score": 1.5,
-      "entity": "neura robotics",
-      "domain": "www.therobotreport.com",
-      "summary_ko": "NEURA Robotics가 피지컬 AI 분야 확장을 위해 최대 14억 달러 규모의 시리즈 C 투자 유치를 추진한다. 이번 자금은 로봇 학습 플랫폼 확대 및 휴머노이드 로봇의 글로벌 양산 체계 구축에 활용될 예정이다.",
-      "signal": "Watch",
-      "signal_reason": "NEURA Robotics의 대규모 투자 유치는 휴머노이드 로봇 및 피지컬 AI 시장의 경쟁이 급격히 심화되고 있음을 示示하며, LG전자의 로봇 사업 전략 재점검이 필요한 중기 동향이다.",
-      "lg_implication": "LG전자는 NEURA Robotics의 글로벌 양산 및 로봇 학습 플랫폼 전략을 벤치마킹하여 자사 클로이(CLOi) 로봇 라인업의 피지컬 AI 역량 강화 및 투자 확대 방향성을 검토해야 한다.",
-      "keywords": [
-        "피지컬AI",
-        "휴머노이드로봇",
-        "대규모투자"
-      ],
-      "score": 1.8
+      "id": "d0260a72cfdd",
+      "title": "8월 베이징 개최 세계 휴머노이드 체육대회, 50개 종목 겨룬다",
+      "summary": "휴머노이드 로봇들이 운동 성능을 겨루는 중국의 국가적 체육대회 개최를 앞두고 상세 일정과 종목이 공개됐다.13일 중국 관영 통신 신화사에 따르면 오는 8월 22일부터 26일까지 중국 국립스피드스케이트경기장에서 개최되는 '제2회 세계 휴머노이드 로봇 체육대회(World Humanoid robot games)'에서 열릴 전체 50개 종목의 경기 일정이 확정됐다. 3개의 신규 경쟁 종목, 그리고 일상생활과 관련된 21개의 응용 종목이 포함된다는 점이 특징이다.이 대회는 중국 베이징시 정부와 관영 CCTV 등이 공동으로 주최해 열리는 대규",
+      "url": "https://www.irobotnews.com/news/articleView.html?idxno=46884",
+      "source": "로봇신문",
+      "region": "KR",
+      "pub_date": "2026-06-14 20:11:49",
+      "pub_ts": 0,
+      "tier": "T5",
+      "raw_score": 1.63,
+      "entity": null,
+      "domain": "www.irobotnews.com",
+      "summary_ko": "휴머노이드 로봇들이 운동 성능을 겨루는 중국의 국가적 체육대회 개최를 앞두고 상세 일정과 종목이 공개됐다.13일 중국 관영 통신 신화사에 따르면 오는 8월 22일부터 26일까지 중",
+      "signal": "FYI",
+      "signal_reason": "자동 분석 실패",
+      "lg_implication": "",
+      "keywords": [],
+      "score": 1.6
     }
   ],
   "regional": {
@@ -249,16 +237,12 @@
         "raw_score": 3.33,
         "entity": "삼성",
         "domain": "www.mk.co.kr",
-        "summary_ko": "삼성전자·SK하이닉스 단일 종목 레버리지 ETF 출시 이후 개인 투자자들이 장기 보유 대신 단기 매매 전략으로 전환하는 추세가 나타나고 있다. 소부장 기업 비중이 높은 관련 ETF가 일주일 수익률 6% 안팎을 기록하며 반도체 섹터 내 수급 지형 변화가 감지되고 있다.",
-        "signal": "Watch",
-        "signal_reason": "반도체 투자 심리 및 수급 지형 변화는 LG전자의 전장·가전 부품 공급망과 연계된 소부장 기업 밸류에이션에 중기적 영향을 미칠 수 있다.",
-        "lg_implication": "소부장 기업 중심의 반도체 ETF 자금 유입 확대는 LG전자 전장 및 OLED 부품 협력사들의 투자 여력 증가로 이어질 수 있어 공급망 협력 환경 변화를 모니터링할 필요가 있다.",
-        "keywords": [
-          "레버리지ETF",
-          "소부장",
-          "반도체수급"
-        ],
-        "score": 3.6
+        "summary_ko": "내년까지 수주증가 기대 커져 구성종목 절반이 소부장 기업 일주일 수익률 6% 안팎 순항단일 종목 레버리지 상장지수펀드(ETF)가 출시된 이후 삼성전자와 SK하이닉스의 수급 지형이 ",
+        "signal": "FYI",
+        "signal_reason": "자동 분석 실패",
+        "lg_implication": "",
+        "keywords": [],
+        "score": 3.3
       },
       {
         "id": "cb70111b30df",
@@ -413,16 +397,12 @@
         "raw_score": 1.4,
         "entity": null,
         "domain": "www.irobotnews.com",
-        "summary_ko": "김민석 국무총리가 한국로봇산업진흥원을 방문해 AI 로봇을 차세대 국가 성장동력으로 육성하기 위한 방안을 논의했다. 핵심부품 국산화율이 40%대에 머물고 있으며 휴머노이드 분야에서 중국산 대응 필요성이 강조됐다.",
-        "signal": "Watch",
-        "signal_reason": "정부 차원의 AI 로봇 산업 육성 의지와 핵심부품 국산화 정책 방향이 구체화되고 있어 중기적 사업 환경 변화 모니터링이 필요하다.",
-        "lg_implication": "정부의 핵심부품 국산화 및 휴머노이드 육성 정책 기조에 맞춰 LG전자는 액추에이터 등 핵심부품 내재화 전략과 정부 R&D 협력 기회를 선제적으로 검토할 필요가 있다.",
-        "keywords": [
-          "휴머노이드",
-          "핵심부품 국산화",
-          "AI 로봇 육성정책"
-        ],
-        "score": 1.7
+        "summary_ko": "김민석 국무총리는 11일 오후 대구시 한국로봇산업진흥원을 방문해 로봇산업 현장을 점검하고 관계자들을 격려했다.이번 방문은 로봇산업 현장의 애로사항을 청취하고, AI 로봇을 차세대 ",
+        "signal": "FYI",
+        "signal_reason": "자동 분석 실패",
+        "lg_implication": "",
+        "keywords": [],
+        "score": 1.4
       },
       {
         "id": "13cbc62074a5",
@@ -459,14 +439,14 @@
         "raw_score": 1.3,
         "entity": null,
         "domain": "www.bloomberg.com",
-        "summary_ko": "러시아 푸틴 대통령이 자국산 위성 군집을 확대하여 스타링크의 대항마를 구축하겠다고 선언했다. 이는 우크라이나 인프라에 대한 공격 강화를 목적으로 한 군사·우주 전략의 일환이다.",
+        "summary_ko": "러시아 푸틴 대통령이 스타링크에 대응하는 자국산 위성 군집을 확대하겠다고 선언하며 우크라이나 인프라 공격 강화 의지를 천명했다. 이는 러시아가 독자적인 위성통신 체계 구축을 통해 군사·민간 분야에서의 기술 자립을 추진하고 있음을 보여준다.",
         "signal": "Watch",
-        "signal_reason": "위성 통신 및 우주 인프라 경쟁이 심화되면서 글로벌 통신·가전 공급망과 위성 기반 서비스 시장에 중기적 영향을 미칠 수 있다.",
-        "lg_implication": "러시아의 독자 위성 생태계 구축과 지정학적 긴장 고조는 LG전자의 동유럽 시장 사업 환경 및 위성 연계 스마트 디바이스 전략에 리스크 요인으로 작용할 수 있다.",
+        "signal_reason": "우주·위성통신 분야의 지정학적 경쟁 심화는 중기적으로 글로벌 위성통신 시장 재편 및 관련 부품·솔루션 수요에 영향을 미칠 수 있어 모니터링이 필요하다.",
+        "lg_implication": "위성통신 기술 경쟁 가속화 및 지정학적 리스크 고조로 인해 LG전자의 위성 연결 기반 스마트홈·로봇 솔루션의 공급망 및 시장 전략에 불확실성이 증가할 수 있다.",
         "keywords": [
           "위성통신",
           "지정학적리스크",
-          "우주인프라"
+          "우주기술경쟁"
         ],
         "score": 1.6
       }
@@ -485,14 +465,14 @@
         "raw_score": 3.25,
         "entity": "nvidia",
         "domain": "pandaily.com",
-        "summary_ko": "NVIDIA 라틴아메리카 총괄은 중국으로의 반도체 우회 수출 채널로 라틴아메리카가 활용되고 있다는 Anthropic의 주장을 부인했다. 동시에 미국의 AI 칩 수출 통제 강화에 대한 불만도 표명했다.",
+        "summary_ko": "NVIDIA 라틴아메리카 책임자는 해당 지역이 중국으로의 제한된 AI 칩 우회 경로가 되고 있다는 Anthropic의 주장을 부인했다. 동시에 미국의 수출 통제 정책에 대한 불만을 표명하며 규제의 실효성에 의문을 제기했다.",
         "signal": "Watch",
-        "signal_reason": "AI 반도체 수출 통제 및 우회 경로 논쟁은 글로벌 공급망 리스크와 직결되어 LG전자의 AI 칩 조달 전략에 중기적 영향을 미칠 수 있음.",
-        "lg_implication": "LG전자는 AI 가전 및 로봇 사업에 필요한 고성능 AI 칩의 안정적 확보를 위해 미-중 반도체 수출 규제 동향과 우회 수출 단속 강화 추이를 지속 모니터링해야 함.",
+        "signal_reason": "AI 반도체 수출 통제 우회 논란은 글로벌 공급망 재편 및 규제 강화로 이어질 수 있어 LG의 AI 인프라 조달 전략에 중기적 영향을 미칠 수 있다.",
+        "lg_implication": "LG전자가 AI 가전·로봇 개발에 필요한 고성능 AI 칩 확보 전략 수립 시, 미·중 반도체 규제 리스크와 우회 공급망 논란을 고려한 안정적 조달 경로 다각화가 필요하다.",
         "keywords": [
           "AI칩수출통제",
           "NVIDIA",
-          "반도체우회수출"
+          "공급망우회"
         ],
         "score": 3.5
       },
@@ -529,12 +509,16 @@
         "raw_score": 1.25,
         "entity": "unitree",
         "domain": "technode.com",
-        "summary_ko": "On Monday, Unitree Robotics has cleared the listing committee review for its initial public offering",
-        "signal": "FYI",
-        "signal_reason": "자동 분석 실패",
-        "lg_implication": "",
-        "keywords": [],
-        "score": 1.2
+        "summary_ko": "유니트리 로보틱스가 중국 STAR 마켓 IPO 상장심사를 통과하며 73일이라는 최단 기간 심사 기록을 세웠다. 메이투안이 지원하는 그룹이 최대 주주로 부상하며 중국 로보틱스 산업에 대한 대형 자본의 유입이 가속화되고 있다.",
+        "signal": "Watch",
+        "signal_reason": "유니트리의 IPO 성공은 중국 휴머노이드/4족 보행 로봇 기업의 자금 조달 역량을 대폭 강화시켜 중기적으로 글로벌 로봇 경쟁 구도에 영향을 미칠 수 있다.",
+        "lg_implication": "유니트리의 대규모 공개 자금 조달로 중국 로봇 경쟁사의 R&D 및 양산 역량이 빠르게 확대될 수 있어, LG전자의 로봇 사업 포트폴리오 및 협력/경쟁 전략 재점검이 필요하다.",
+        "keywords": [
+          "유니트리",
+          "중국로봇IPO",
+          "STAR마켓"
+        ],
+        "score": 1.6
       },
       {
         "id": "78a603632fe9",
@@ -559,10 +543,10 @@
     ]
   },
   "regional_delta": {
-    "topic": "해당 뉴스는 로봇/Physical AI 관련 이슈가 아닌 국내 ETF 투자 트렌드(레버리지 ETF 선호) 기사로, 오늘 분석 가능한 주요 로봇 뉴스로 대체 분석 불가",
-    "kr_angle": "입력된 뉴스('삼전닉스 대신 2배 ETF')는 로봇·Physical AI 전략과 무관한 주식/ETF 투자 행태 기사로, LG Electronics 로봇 전략팀 관점의 미디어 시각 분석 대상이 아닙니다.",
-    "us_angle": "로봇 관련 뉴스가 제공되지 않아 US 미디어 시각 분석을 수행할 수 없습니다. 분석을 원하시면 로봇·AI·자동화 관련 뉴스를 입력해 주세요.",
-    "cn_angle": "로봇 관련 뉴스가 제공되지 않아 CN 미디어 시각 분석을 수행할 수 없습니다. Humanoid Robot, 산업용 로봇, Physical AI 관련 기사를 입력해 주세요."
+    "topic": "",
+    "kr_angle": "",
+    "us_angle": "",
+    "cn_angle": ""
   },
   "weak_signals": [
     {
