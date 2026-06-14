@@ -22,6 +22,7 @@ def analyze(title, summary, region):
 
 다음 JSON만 반환 (다른 텍스트 없이):
 {{
+  "title_ko": "한국어 제목 번역 (영어/중국어인 경우만, 한국어면 원문 그대로)",
   "summary_ko": "한국어 2문장 핵심 요약",
   "signal": "Action 또는 Watch 또는 FYI",
   "signal_reason": "분류 이유 1문장",
@@ -37,21 +38,25 @@ signal 기준:
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=400,
+            max_tokens=500,
             messages=[
                 {"role": "user", "content": prompt}
             ],
             system=SYSTEM
         )
         text = msg.content[0].text.strip()
-        # JSON만 추출
         start = text.find('{')
         end = text.rfind('}') + 1
-        return json.loads(text[start:end])
+        result = json.loads(text[start:end])
+        # title_ko가 없으면 원제목 사용
+        if not result.get('title_ko'):
+            result['title_ko'] = title
+        return result
     except Exception as e:
         print(f"    ⚠ analyze error: {e}")
         return {
-            "summary_ko": summary[:100] if summary else title,
+            "title_ko": title,
+            "summary_ko": summary[:150] if summary else title,
             "signal": "FYI",
             "signal_reason": "자동 분석 실패",
             "lg_implication": "",
@@ -62,16 +67,28 @@ def generate_brief(articles):
     """Intelligence Brief 자동 생성"""
     action_items = [a for a in articles if a.get('signal') == 'Action']
     watch_items = [a for a in articles if a.get('signal') == 'Watch'][:3]
+    fyi_items = [a for a in articles if a.get('signal') == 'FYI'][:2]
+
+    # Action/Watch 없으면 상위 FYI 기사로 브리프 생성
+    brief_items = (action_items + watch_items)[:8] or fyi_items[:5] or articles[:5]
 
     items_text = "\n".join([
-        f"- [{a['signal']}] {a['title']}: {a.get('summary_ko','')}"
-        for a in (action_items + watch_items)[:8]
+        f"- [{a.get('signal','FYI')}] {a['title']}: {a.get('summary_ko', a.get('summary',''))}"
+        for a in brief_items
     ])
+
+    if not items_text:
+        return {
+            "action_required": ["오늘 분석 기사 수가 부족합니다"],
+            "regional_delta": {"KR": "데이터 없음", "US": "데이터 없음", "CN": "데이터 없음"},
+            "cvc_insight": [],
+            "bottom_line": "오늘 수집된 기사가 부족합니다. 내일 다시 확인해주세요."
+        }
 
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=600,
+            max_tokens=800,
             messages=[{"role": "user", "content": f"""오늘 로봇 업계 뉴스 기반으로 LG전자 전략팀을 위한 Intelligence Brief를 작성하세요.
 
 주요 기사:
@@ -79,13 +96,13 @@ def generate_brief(articles):
 
 다음 JSON만 반환:
 {{
-  "action_required": ["즉각 대응 필요 사항 1", "즉각 대응 필요 사항 2"],
+  "action_required": ["즉각 대응 필요 사항 1문장", "즉각 대응 필요 사항 2문장"],
   "regional_delta": {{
     "KR": "한국 업계 핵심 동향 1문장",
     "US": "미국 업계 핵심 동향 1문장",
     "CN": "중국 업계 핵심 동향 1문장"
   }},
-  "cvc_insight": ["CVC/파트너십 관점 인사이트 1", "CVC/파트너십 관점 인사이트 2"],
+  "cvc_insight": ["CVC/파트너십 관점 인사이트 1문장", "CVC/파트너십 관점 인사이트 2문장"],
   "bottom_line": "오늘 가장 중요한 전략적 메시지 1~2문장"
 }}"""}],
             system=SYSTEM
@@ -93,14 +110,29 @@ def generate_brief(articles):
         text = msg.content[0].text.strip()
         start = text.find('{')
         end = text.rfind('}') + 1
-        return json.loads(text[start:end])
+        result = json.loads(text[start:end])
+        # 빈 배열/문자열 fallback 처리
+        if not result.get('action_required'):
+            result['action_required'] = [f"주목 기사: {brief_items[0]['title'][:60]}"] if brief_items else []
+        if not result.get('bottom_line'):
+            result['bottom_line'] = brief_items[0].get('summary_ko', '') if brief_items else ''
+        return result
     except Exception as e:
         print(f"  ⚠ brief error: {e}")
+        # API 실패 시 기사 데이터로 기본 brief 생성
+        top = articles[:3]
         return {
-            "action_required": [],
-            "regional_delta": {"KR": "", "US": "", "CN": ""},
+            "action_required": [
+                f"{top[0]['title'][:80]}" if top else "기사 없음",
+                f"{top[1]['title'][:80]}" if len(top) > 1 else ""
+            ],
+            "regional_delta": {
+                "KR": next((a.get('summary_ko','')[:80] for a in articles if a.get('region')=='KR'), "KR 데이터 없음"),
+                "US": next((a.get('summary_ko','')[:80] for a in articles if a.get('region')=='US'), "US 데이터 없음"),
+                "CN": next((a.get('summary_ko','')[:80] for a in articles if a.get('region')=='CN'), "CN 데이터 없음"),
+            },
             "cvc_insight": [],
-            "bottom_line": ""
+            "bottom_line": top[0].get('summary_ko', top[0].get('summary',''))[:120] if top else ""
         }
 
 def detect_weak_signals(history_path, today_articles):
@@ -172,14 +204,13 @@ if __name__ == '__main__':
         article.update(result)
         article['score'] = score_final(article)
         analyzed.append(article)
-        time.sleep(0.5)  # Rate limit 방지
+        time.sleep(0.5)
 
     # 지역별도 분석
     regional_analyzed = {}
     for region, arts in raw['regional'].items():
         regional_analyzed[region] = []
         for article in arts:
-            # 이미 분석된 것은 재사용
             existing = next((a for a in analyzed if a['id'] == article['id']), None)
             if existing:
                 regional_analyzed[region].append(existing)
@@ -188,9 +219,10 @@ if __name__ == '__main__':
                 article.update(result)
                 article['score'] = score_final(article)
                 regional_analyzed[region].append(article)
+                analyzed.append(article)
                 time.sleep(0.3)
 
-    # Signal 기준 재정렬
+    # Signal 기준 재정렬, 전체에서 Top 10
     global_top10 = sorted(analyzed, key=lambda x: x['score'], reverse=True)[:10]
 
     # Weak Signal 탐지
