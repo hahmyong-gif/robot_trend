@@ -4,13 +4,20 @@ tiers:
     entities:
       - NVIDIA
       - Figure AI
+      - Figure
       - Boston Dynamics
       - Physical Intelligence
       - 1X Technologies
       - Apptronik
       - Agility Robotics
       - Tesla Optimus
+      - Tesla
       - Sanctuary AI
+      - OpenAI
+      - Google DeepMind
+      - DeepMind
+      - Softbank Robotics
+      - SoftBank
 
   T2:
     weight: 2.0
@@ -18,19 +25,24 @@ tiers:
       - LG Electronics
       - LG전자
       - Samsung
-      - 삼성
+      - 삼성전자
       - Hyundai
-      - 현대
+      - 현대자동차
+      - ABB Robotics
       - ABB
       - Fanuc
       - KUKA
       - Yaskawa
+      - Universal Robots
+      - Kawasaki Robotics
 
   T3:
     weight: 1.5
     entities:
       - Agibot
+      - 아지봇
       - Unitree
+      - 유니트리
       - Fourier Intelligence
       - Skild AI
       - Covariant
@@ -38,6 +50,20 @@ tiers:
       - Dextrous Robotics
       - NEURA Robotics
       - Kepler Robotics
+      - UBTECH
+      - Xiaomi Robot
+      - Bright Machines
+      - Machina Labs
+      - Veo Robotics
+      - Realman Robotics
+      - DOBOT
+      - Rokid
+      - EngineAI
+      - RobotEra
+      - Galbot
+      - Mentee Robotics
+      - Clone Robotics
+      - Apptronik
 
   T4:
     weight: 1.2
@@ -45,23 +71,32 @@ tiers:
       - MIT CSAIL
       - Stanford AI Lab
       - KAIST
+      - 카이스트
       - KIST
+      - 한국과학기술연구원
       - CMU Robotics
       - ETH Zurich
-      - 카이스트
-      - 한국과학기술연구원
+      - UC Berkeley
+      - Oxford Robotics
+      - Carnegie Mellon
 
   T5:
     weight: 1.0
     entities:
-      - home appliance
+      - Spot
+      - Atlas
+      - Optimus
+      - Digit
 
 
 keywords:
   core:
     - humanoid robot
+    - 휴머노이드 로봇
     - 휴머노이드
     - Physical AI
+    - embodied AI
+    - embodied intelligence
     - robot foundation model
     - sim-to-real
     - data factory
@@ -72,16 +107,45 @@ keywords:
     - robot manipulation
     - bipedal robot
     - 이족보행
+    - autonomous robot
+    - collaborative robot
+    - cobot
+    - 협동 로봇
+    - robot arm
+    - 로봇 팔
+    - mobile robot
+    - 서비스 로봇
+    - 물류 로봇
+    - industrial robot
+    - 산업용 로봇
+    - robot gripper
+    - dexterous manipulation
+    - robot locomotion
+    - legged robot
+    - 4족 보행
+    - quadruped
+    - imitation learning robot
+    - robot learning
+    - robot AI
+    - 로봇 인공지능
+    - robot operating system
+    - ROS2
+    - 로봇 공학
 
   market:
     - robot investment
     - robot funding
-    - Series A
-    - Series B
-    - Series C
+    - robot Series A
+    - robot Series B
+    - robot Series C
     - 로봇 투자
+    - 로봇 펀딩
     - robot partnership
     - robot acquisition
+    - robot startup
+    - humanoid startup
+    - 휴머노이드 스타트업
+    - 로봇 기업
 
   policy:
     - robot regulation
@@ -90,6 +154,11 @@ keywords:
     - K-휴머노이드
     - robot standard
     - robot subsidy
+    - 로봇 산업
+    - 로봇 법
+    - 로봇 육성
+    - 로봇 전략
+    - AI Act robot
 
 sources:
   global:
@@ -113,8 +182,40 @@ sources:
       url: https://www.wired.com/feed/tag/robots/rss
       region: global
       tier_bias: T1
-    - name: Google News
-      url: https://news.google.com/home?hl=en-US&gl=US&ceid=US:en
+    - name: New Atlas Robotics
+      url: https://newatlas.com/robots/rss/
+      region: global
+      tier_bias: T2
+    - name: Ars Technica
+      url: https://feeds.arstechnica.com/arstechnica/technology-lab
+      region: global
+      tier_bias: T2
+    - name: The Verge Tech
+      url: https://www.theverge.com/rss/tech/index.xml
+      region: global
+      tier_bias: T2
+    - name: MIT Technology Review
+      url: https://www.technologyreview.com/feed/
+      region: global
+      tier_bias: T4
+    - name: Google News - humanoid robot
+      url: https://news.google.com/rss/search?q=humanoid+robot&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
+    - name: Google News - Physical AI
+      url: https://news.google.com/rss/search?q=%22Physical+AI%22+robot&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
+    - name: Google News - robot funding
+      url: https://news.google.com/rss/search?q=robotics+funding+startup&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T3
+    - name: Google News - Figure Boston Dynamics
+      url: https://news.google.com/rss/search?q=Figure+OR+%22Boston+Dynamics%22+OR+%22Agility+Robotics%22+robot&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
+    - name: Google News - NVIDIA robot
+      url: https://news.google.com/rss/search?q=NVIDIA+robot+OR+%22Isaac+Lab%22+OR+%22GR00T%22&hl=en-US&gl=US&ceid=US:en
       region: global
       tier_bias: T1
 
@@ -135,6 +236,18 @@ sources:
       url: https://www.mk.co.kr/rss/50200011/
       region: KR
       tier_bias: T2
+    - name: Google News KR - 휴머노이드
+      url: https://news.google.com/rss/search?q=%ED%9C%B4%EB%A8%B8%EB%85%B8%EC%9D%B4%EB%93%9C+%EB%A1%9C%EB%B4%87&hl=ko&gl=KR&ceid=KR:ko
+      region: KR
+      tier_bias: T2
+    - name: Google News KR - 로봇 기업
+      url: https://news.google.com/rss/search?q=%EB%A1%9C%EB%B4%87+%EC%82%B0%EC%97%85+%EA%B8%B0%EC%97%85&hl=ko&gl=KR&ceid=KR:ko
+      region: KR
+      tier_bias: T2
+    - name: Google News KR - AI 로봇
+      url: https://news.google.com/rss/search?q=%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5+%EB%A1%9C%EB%B4%87+%ED%88%AC%EC%9E%90&hl=ko&gl=KR&ceid=KR:ko
+      region: KR
+      tier_bias: T2
 
   us:
     - name: Bloomberg Technology
@@ -145,10 +258,18 @@ sources:
       url: https://feeds.reuters.com/reuters/technologyNews
       region: US
       tier_bias: T1
-    - name: MIT Tech Review
-      url: https://www.technologyreview.com/feed/
+    - name: CNBC Technology
+      url: https://www.cnbc.com/id/19854910/device/rss/rss.html
       region: US
-      tier_bias: T4
+      tier_bias: T2
+    - name: Google News US - robotics
+      url: https://news.google.com/rss/search?q=robotics+AI+investment&hl=en-US&gl=US&ceid=US:en
+      region: US
+      tier_bias: T2
+    - name: Google News US - robot company
+      url: https://news.google.com/rss/search?q=robot+company+raises+OR+acquires+OR+launches&hl=en-US&gl=US&ceid=US:en
+      region: US
+      tier_bias: T2
 
   china:
     - name: TechNode (EN)
@@ -163,8 +284,16 @@ sources:
       url: https://kr-asia.com/feed
       region: CN
       tier_bias: T3
+    - name: Google News CN - robot
+      url: https://news.google.com/rss/search?q=China+robot+humanoid+Unitree+Agibot&hl=en-US&gl=US&ceid=US:en
+      region: CN
+      tier_bias: T3
+    - name: Google News CN - 중국 로봇
+      url: https://news.google.com/rss/search?q=%EC%A4%91%EA%B5%AD+%EB%A1%9C%EB%B4%87+%ED%9C%B4%EB%A8%B8%EB%85%B8%EC%9D%B4%EB%93%9C&hl=ko&gl=KR&ceid=KR:ko
+      region: CN
+      tier_bias: T3
 
 dedup:
-  similarity_threshold: 0.75   # 75% 이상 유사하면 중복
-  title_match_ratio: 0.6       # 제목 60% 이상 겹치면 중복
-  time_window_hours: 48        # 48시간 내 같은 키워드면 중복 후보
+  similarity_threshold: 0.75
+  title_match_ratio: 0.6
+  time_window_hours: 48

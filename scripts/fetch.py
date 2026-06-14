@@ -33,15 +33,38 @@ def similarity(a, b):
     """두 문자열 유사도 (0~1)"""
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
+# 로봇 전용 엔티티 (이 이름만 나와도 로봇 기사로 판단)
+PURE_ROBOT_ENTITIES = {
+    'figure ai', 'figure robot', 'boston dynamics', 'physical intelligence',
+    '1x technologies', 'agility robotics', 'sanctuary ai', 'apptronik',
+    'unitree', '유니트리', 'agibot', '아지봇', 'fourier intelligence',
+    'skild ai', 'dextrous robotics', 'neura robotics', 'kepler robotics',
+    'ubtech', 'englineai', 'galbot', 'mentee robotics', 'clone robotics',
+    'irobot', 'softbank robotics', 'realman robotics',
+}
+
 def is_robot_related(title, summary):
-    """로봇 관련 기사인지 판단"""
+    """로봇 관련 기사인지 판단 - 단순 기업명 매칭 방지"""
     text = f"{title} {summary}".lower()
-    core_kws = CONFIG['keywords']['core'] + CONFIG['keywords']['market']
-    entity_kws = []
-    for tier in CONFIG['tiers'].values():
-        entity_kws.extend(tier['entities'])
-    all_kws = [k.lower() for k in core_kws + entity_kws]
-    return any(kw in text for kw in all_kws)
+
+    # 1) 핵심 로봇 키워드가 있으면 무조건 통과
+    core_kws = [k.lower() for k in CONFIG['keywords']['core']]
+    if any(kw in text for kw in core_kws):
+        return True
+
+    # 2) 로봇 전용 기업명은 단독으로도 통과
+    if any(ent in text for ent in PURE_ROBOT_ENTITIES):
+        return True
+
+    # 3) 로봇 맥락 단어 존재 여부
+    robot_context = ['robot', '로봇', 'humanoid', '휴머노이드', 'autonomous', 'cobot',
+                     'actuator', 'gripper', 'exoskeleton', 'quadruped', 'locomotion']
+    has_robot = any(rt in text for rt in robot_context)
+    if not has_robot:
+        return False
+
+    # 4) 로봇 단어 있으면 충분 (ETF/주식 기사는 robot/로봇 단어 없음)
+    return True
 
 def get_tier(title, summary):
     """기사 티어 판단"""
@@ -122,8 +145,8 @@ def fetch_source(source):
     """단일 RSS 소스 수집"""
     articles = []
     try:
-        feed = feedparser.parse(source['url'])
-        for entry in feed.entries[:30]:
+        feed = feedparser.parse(source['url'], request_headers={'User-Agent': 'Mozilla/5.0'})
+        for entry in feed.entries[:50]:
             title = clean_text(entry.get('title', ''))
             summary = clean_text(entry.get('summary', '') or entry.get('description', ''))
             url = entry.get('link', '')
@@ -198,14 +221,14 @@ def fetch_all():
         else:
             regions['global'].append(a)
 
-    # 글로벌은 전체에서 Top 10
-    global_top = sorted(deduped, key=lambda x: x['raw_score'], reverse=True)[:15]
+    # 글로벌은 전체에서 Top 30
+    global_top = sorted(deduped, key=lambda x: x['raw_score'], reverse=True)[:30]
 
-    # 지역별 Top 10 (지역 내 중복 추가 제거)
+    # 지역별 Top 15 (지역 내 중복 추가 제거)
     regional = {}
     for region, arts in regions.items():
         reg_deduped = deduplicate(arts, threshold=0.65)
-        regional[region] = sorted(reg_deduped, key=lambda x: x['raw_score'], reverse=True)[:10]
+        regional[region] = sorted(reg_deduped, key=lambda x: x['raw_score'], reverse=True)[:15]
 
     return global_top, regional
 

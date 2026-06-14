@@ -487,20 +487,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
     <div class="comp-row"><span class="comp-n">BD</span><div class="comp-bw"><div class="comp-b" style="width:42%"></div></div><span class="comp-c">5</span></div>
   </div>
   <div class="side-sec">
-    <div class="side-lbl">Quick actions</div>
-    <div class="qa-glbl">파트너십</div>
-    <button class="qa-btn"><i class="ti ti-handshake"></i><span>파트너십 후보 발굴</span><span class="qa-arr">↗</span></button>
-    <button class="qa-btn"><i class="ti ti-arrows-exchange"></i><span>협력→경쟁 전환 리스크</span><span class="qa-arr">↗</span></button>
-    <div class="qa-glbl">전략</div>
-    <button class="qa-btn"><i class="ti ti-chart-arrows"></i><span>경쟁 구도 변화 분석</span><span class="qa-arr">↗</span></button>
-    <button class="qa-btn"><i class="ti ti-square-dot"></i><span>화이트스페이스 탐지</span><span class="qa-arr">↗</span></button>
-    <button class="qa-btn"><i class="ti ti-presentation"></i><span>임원 전략 브리핑 초안</span><span class="qa-arr">↗</span></button>
-    <div class="qa-glbl">CVC · M&A</div>
-    <button class="qa-btn"><i class="ti ti-trending-up"></i><span>투자 후보 우선순위</span><span class="qa-arr">↗</span></button>
-    <button class="qa-btn"><i class="ti ti-coin"></i><span>펀딩 라운드 동향</span><span class="qa-arr">↗</span></button>
-    <div class="qa-glbl">지역 분석</div>
-    <button class="qa-btn"><i class="ti ti-world"></i><span>Regional Delta 분석</span><span class="qa-arr">↗</span></button>
-    <button class="qa-btn"><i class="ti ti-building-bank"></i><span>지정학 리스크 평가</span><span class="qa-arr">↗</span></button>
+    <div class="side-lbl">내보내기</div>
+    <button class="qa-btn" onclick="copyBriefText('summary')"><i class="ti ti-clipboard-text"></i><span>오늘 브리핑 복사</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn" onclick="copyBriefText('email')"><i class="ti ti-mail"></i><span>이메일 초안 복사</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn" onclick="switchTab('pdf')"><i class="ti ti-file-type-pdf"></i><span>PDF 보고서 생성</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn" onclick="document.getElementById('exportBtn').click()"><i class="ti ti-download"></i><span>파일링 내보내기</span><span class="qa-arr">↗</span></button>
   </div>
 </aside>
 </div>
@@ -516,8 +507,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
     </div>
     <div class="modal-acts">
       <button class="modal-act" onclick="switchTab('pdf');document.getElementById('briefModal').classList.remove('open')"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> PDF 생성</button>
-      <button class="modal-act"><i class="ti ti-presentation" style="font-size:12px"></i> PPT 초안</button>
-      <button class="modal-act"><i class="ti ti-mail" style="font-size:12px"></i> 이메일 초안</button>
+      <button class="modal-act" onclick="copyBriefText('ppt')"><i class="ti ti-clipboard" style="font-size:12px"></i> PPT용 복사</button>
+      <button class="modal-act" onclick="copyBriefText('email')"><i class="ti ti-mail" style="font-size:12px"></i> 이메일 초안</button>
     </div>
   </div>
 </div>
@@ -647,15 +638,23 @@ function renderGlobalTop10(articles) {
   const [a1, a2] = articles;
   if (a1 && a2) {
     html += `<div class="g10-lead">
-      <div class="lead-cell">
+      <div class="lead-cell" data-id="${a1.id}" style="position:relative"
+        data-title="${esc(a1.title_ko||a1.title)}" data-summary="${esc(a1.summary_ko||a1.summary||'')}"
+        data-score="${a1.score}" data-tier="${a1.tier}" data-signal="${a1.signal||'FYI'}"
+        data-src="${esc(a1.source||'')}" data-url="${esc(a1.url||'')}" data-entity="${esc(a1.entity||'')}" data-keywords="${esc((a1.keywords||[]).join(','))}">
+        <button class="bm-btn" style="position:absolute;top:8px;right:8px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
         <div class="story-rank">No. 01 &nbsp;·&nbsp; Score ${a1.score}</div>
-        <div class="hl-lg" onclick="window.open('${a1.url||'#'}','_blank')">${a1.title}</div>
+        <div class="hl-lg" onclick="window.open('${a1.url||'#'}','_blank')">${a1.title_ko || a1.title}</div>
         <div class="deck">${a1.summary_ko || a1.summary || ''}</div>
         <div class="byline">${sigBadge(a1.signal)}${tierBadge(a1.tier)}${regBadge(a1.region)}<span class="srctxt">${a1.source||''}</span>${scoreBadge(a1.score)}</div>
       </div>
-      <div class="lead-cell">
+      <div class="lead-cell" data-id="${a2.id}" style="position:relative"
+        data-title="${esc(a2.title_ko||a2.title)}" data-summary="${esc(a2.summary_ko||a2.summary||'')}"
+        data-score="${a2.score}" data-tier="${a2.tier}" data-signal="${a2.signal||'FYI'}"
+        data-src="${esc(a2.source||'')}" data-url="${esc(a2.url||'')}" data-entity="${esc(a2.entity||'')}" data-keywords="${esc((a2.keywords||[]).join(','))}">
+        <button class="bm-btn" style="position:absolute;top:8px;right:8px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
         <div class="story-rank">No. 02 &nbsp;·&nbsp; Score ${a2.score}</div>
-        <div class="hl-lg" onclick="window.open('${a2.url||'#'}','_blank')">${a2.title}</div>
+        <div class="hl-lg" onclick="window.open('${a2.url||'#'}','_blank')">${a2.title_ko || a2.title}</div>
         <div class="deck">${a2.summary_ko || a2.summary || ''}</div>
         <div class="byline">${sigBadge(a2.signal)}${tierBadge(a2.tier)}${regBadge(a2.region)}<span class="srctxt">${a2.source||''}</span>${scoreBadge(a2.score)}</div>
       </div>
@@ -666,12 +665,13 @@ function renderGlobalTop10(articles) {
   const mid = articles.slice(2, 6);
   if (mid.length) {
     html += `<div class="g10-mid">` + mid.map((a, i) => `
-      <div class="story-card" onclick="window.open('${a.url||'#'}','_blank')" data-id="g${i+3}"
-        data-title="${esc(a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
-        data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}" data-src="${esc(a.source||'')}">
+      <div class="story-card" onclick="window.open('${a.url||'#'}','_blank')" data-id="${a.id}"
+        data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
+        data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
+        data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}">
         <button class="bm-btn" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
         <div class="story-rank">No. 0${i+3} &nbsp;·&nbsp; ${a.score}</div>
-        <div class="hl-md">${a.title}</div>
+        <div class="hl-md">${a.title_ko || a.title}</div>
         <div class="deck-sm">${a.summary_ko || a.summary || ''}</div>
         <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${regBadge(a.region)}<span class="srctxt">${a.source||''}</span>${scoreBadge(a.score)}</div>
       </div>`).join('') + `</div>`;
@@ -684,10 +684,16 @@ function renderGlobalTop10(articles) {
     for (let i = 0; i < bot.length; i += Math.ceil(bot.length/3)) chunks.push(bot.slice(i, i + Math.ceil(bot.length/3)));
     html += `<div class="g10-bot">` + chunks.map((chunk) =>
       `<div class="mini-card">` + chunk.map((a, j) => `
-        <div class="mini-num">No.${articles.indexOf(a)+1} &nbsp;·&nbsp; ${a.score}</div>
-        <div class="hl-sm">${a.title}</div>
-        <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
-        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}</div>
+        <div data-id="${a.id}" style="position:relative"
+          data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
+          data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
+          data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}">
+          <button class="bm-btn" style="position:absolute;top:0;right:0;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
+          <div class="mini-num">No.${articles.indexOf(a)+1} &nbsp;·&nbsp; ${a.score}</div>
+          <div class="hl-sm" onclick="window.open('${a.url||'#'}','_blank')" style="cursor:pointer">${a.title_ko || a.title}</div>
+          <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
+          <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}</div>
+        </div>
         ${j < chunk.length-1 ? '<div style="margin:8px 0;border-top:1px dashed var(--rule)"></div>' : ''}
       `).join('') + `</div>`
     ).join('') + `</div>`;
@@ -724,10 +730,14 @@ function renderRegional(regional, delta) {
         <span class="rcol-flag">${flag}</span><span class="rcol-lbl">${label}</span>
       </div>
       ${arts.map((a, i) => `
-        <div class="rs" onclick="window.open('${a.url||'#'}','_blank')">
-          <div class="rs-num ${i<3?'hi':''}">${String(i+1).padStart(2,'0')}</div>
-          <div>
-            <div class="rs-title">${a.title}</div>
+        <div class="rs" data-id="${a.id}" style="position:relative"
+          data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
+          data-score="${a.score||''}" data-tier="${a.tier||''}" data-signal="${a.signal||'FYI'}"
+          data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}">
+          <button class="bm-btn" style="position:absolute;top:4px;right:4px;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
+          <div class="rs-num ${i<3?'hi':''}" onclick="window.open('${a.url||'#'}','_blank')" style="cursor:pointer">${String(i+1).padStart(2,'0')}</div>
+          <div onclick="window.open('${a.url||'#'}','_blank')" style="cursor:pointer;flex:1">
+            <div class="rs-title">${a.title_ko || a.title}</div>
             <div class="rs-deck">${a.summary_ko || a.summary || ''}</div>
             <div class="rs-foot">${sigBadge(a.signal)}${tierBadge(a.tier)}</div>
           </div>
@@ -773,27 +783,45 @@ function renderBriefContent(brief, data) {
     `${data.date || ''} · ${data.stats?.total_scanned || '—'} articles 분석`;
 
   let html = '';
-  if (brief.action_required?.length) {
+
+  if (brief.action_required?.length && brief.action_required.some(t => t)) {
     html += `<div class="modal-sec"><div class="modal-sec-lbl">Action required</div>` +
-      brief.action_required.map(t => `<div class="modal-item"><div class="modal-dot" style="background:var(--red)"></div><div class="modal-txt">${t}</div></div>`).join('') +
+      brief.action_required.filter(t=>t).map(t => `<div class="modal-item"><div class="modal-dot" style="background:var(--red)"></div><div class="modal-txt">${t}</div></div>`).join('') +
       `</div>`;
   }
+
   if (brief.regional_delta) {
-    html += `<div class="modal-sec"><div class="modal-sec-lbl">Regional Delta</div>` +
-      Object.entries(brief.regional_delta).map(([r, t]) =>
-        `<div class="modal-item"><div class="modal-dot" style="background:var(--${r.toLowerCase()})"></div><div class="modal-txt"><b>${r}:</b> ${t}</div></div>`
-      ).join('') + `</div>`;
+    const regColors = { KR: 'var(--kr)', US: 'var(--us)', CN: 'var(--cn)' };
+    const entries = Object.entries(brief.regional_delta).filter(([,t]) => t);
+    if (entries.length) {
+      html += `<div class="modal-sec"><div class="modal-sec-lbl">Regional Delta</div>` +
+        entries.map(([r, t]) =>
+          `<div class="modal-item"><div class="modal-dot" style="background:${regColors[r]||'#888'}"></div><div class="modal-txt"><b>${r}:</b> ${t}</div></div>`
+        ).join('') + `</div>`;
+    }
   }
-  if (brief.cvc_insight?.length) {
+
+  if (brief.cvc_insight?.length && brief.cvc_insight.some(t=>t)) {
     html += `<div class="modal-sec"><div class="modal-sec-lbl">CVC / 파트너십 시사점</div>` +
-      brief.cvc_insight.map(t => `<div class="modal-item"><div class="modal-dot" style="background:var(--purple)"></div><div class="modal-txt">${t}</div></div>`).join('') +
+      brief.cvc_insight.filter(t=>t).map(t => `<div class="modal-item"><div class="modal-dot" style="background:var(--purple)"></div><div class="modal-txt">${t}</div></div>`).join('') +
       `</div>`;
   }
+
   if (brief.bottom_line) {
     html += `<div class="modal-sec"><div class="modal-sec-lbl">Bottom line</div>` +
       `<div class="modal-item"><div class="modal-dot" style="background:var(--ink)"></div><div class="modal-txt">${brief.bottom_line}</div></div></div>`;
   }
-  document.getElementById('briefContent').innerHTML = html || '<div style="color:var(--ink4);font-size:12px">브리핑 데이터 없음</div>';
+
+  // 브리핑 데이터가 없으면 오늘 상위 기사로 대체
+  if (!html && data.global_top10?.length) {
+    const top3 = data.global_top10.slice(0, 3);
+    html = `<div class="modal-sec"><div class="modal-sec-lbl">오늘 주요 기사</div>` +
+      top3.map(a => `<div class="modal-item"><div class="modal-dot" style="background:${a.signal==='Action'?'var(--red)':a.signal==='Watch'?'var(--amber)':'var(--ink4)'}"></div>
+        <div class="modal-txt"><b>[${a.signal||'FYI'}]</b> ${a.title_ko || a.title}<br><span style="font-size:10px;color:var(--ink3)">${a.summary_ko || a.summary || ''}</span></div></div>`
+      ).join('') + `</div>`;
+  }
+
+  document.getElementById('briefContent').innerHTML = html || '<div style="color:var(--ink4);font-size:12px;padding:8px">브리핑 데이터 없음</div>';
 }
 
 // ── EXHIBITIONS ──────────────────────────────────────────
@@ -907,6 +935,126 @@ function updatePdfPreview() {
   document.getElementById('pdfPreviewContent').innerHTML = html || '<div style="color:var(--ink4)">미리보기 없음</div>';
 }
 
+function buildReportHTML(data, type) {
+  const date = data.date || new Date().toISOString().slice(0,10);
+  const brief = data.brief || {};
+  const articles = data.global_top10 || [];
+  const regional = data.regional || {};
+  const stats = data.stats || {};
+
+  const sigColor = { Action: '#c8102e', Watch: '#b45309', FYI: '#888' };
+
+  let content = '';
+
+  if (type === 'brief' || type === 'full') {
+    if (brief.action_required?.some(t=>t)) {
+      content += `<h2 style="color:#c8102e">Action Required</h2><ul>` +
+        brief.action_required.filter(t=>t).map(t=>`<li>${t}</li>`).join('') + `</ul>`;
+    }
+    if (brief.regional_delta) {
+      const entries = Object.entries(brief.regional_delta).filter(([,t])=>t);
+      if (entries.length) {
+        content += `<h2 style="color:#1e40af">Regional Delta</h2><ul>` +
+          entries.map(([r,t])=>`<li><strong>${r}:</strong> ${t}</li>`).join('') + `</ul>`;
+      }
+    }
+    if (brief.cvc_insight?.some(t=>t)) {
+      content += `<h2 style="color:#5b21b6">CVC / 파트너십 인사이트</h2><ul>` +
+        brief.cvc_insight.filter(t=>t).map(t=>`<li>${t}</li>`).join('') + `</ul>`;
+    }
+    if (brief.bottom_line) {
+      content += `<div class="bottom-line"><strong>Bottom Line</strong><p>${brief.bottom_line}</p></div>`;
+    }
+  }
+
+  if (type === 'top10' || type === 'full') {
+    if (type === 'full') content += `<div class="page-break"></div>`;
+    content += `<h2>Global Top 10</h2>`;
+    articles.slice(0, 10).forEach((a, i) => {
+      content += `<div class="article">
+        <div class="article-meta">No.${i+1} &nbsp;·&nbsp; <span style="color:${sigColor[a.signal]||'#888'}">${a.signal||'FYI'}</span> &nbsp;·&nbsp; ${a.tier||''} &nbsp;·&nbsp; Score ${a.score||'—'} &nbsp;·&nbsp; ${a.source||''}</div>
+        <div class="article-title"><a href="${a.url||'#'}" target="_blank">${a.title_ko || a.title}</a></div>
+        ${a.title_ko && a.title_ko !== a.title ? `<div class="article-orig">${a.title}</div>` : ''}
+        <div class="article-summary">${a.summary_ko || a.summary || ''}</div>
+        ${a.lg_implication ? `<div class="article-impl">LG 시사점: ${a.lg_implication}</div>` : ''}
+      </div>`;
+    });
+  }
+
+  if (type === 'regional' || type === 'full') {
+    [['KR','🇰🇷 한국'],['US','🇺🇸 미국'],['CN','🇨🇳 중국']].forEach(([key, label]) => {
+      content += `<div class="page-break"></div><h2>${label}</h2>`;
+      (regional[key]||[]).slice(0, 10).forEach((a, i) => {
+        content += `<div class="article">
+          <div class="article-meta">No.${i+1} &nbsp;·&nbsp; <span style="color:${sigColor[a.signal]||'#888'}">${a.signal||'FYI'}</span> &nbsp;·&nbsp; Score ${a.score||'—'}</div>
+          <div class="article-title"><a href="${a.url||'#'}" target="_blank">${a.title_ko || a.title}</a></div>
+          <div class="article-summary">${a.summary_ko || a.summary || ''}</div>
+        </div>`;
+      });
+    });
+  }
+
+  const typeLabel = { brief:'Intelligence Brief', top10:'Global Top 10', regional:'지역별 보고서', full:'전체 일간 리포트' };
+
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Robot Intelligence Daily — ${date}</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+  body{font-family:'Noto Sans KR',sans-serif;font-size:11pt;color:#111;margin:0;padding:0;background:#fff}
+  .wrap{max-width:800px;margin:0 auto;padding:20mm 20mm 15mm}
+  .header{border-bottom:3px solid #111;margin-bottom:14px;padding-bottom:8px;display:flex;justify-content:space-between;align-items:flex-end}
+  .header-title{font-size:22pt;font-weight:700;letter-spacing:-.02em}
+  .header-meta{font-size:9pt;color:#888}
+  .report-type{font-size:14pt;font-weight:700;margin:0 0 4px}
+  .stats{background:#f2f2ee;padding:8px 12px;font-size:9pt;color:#555;margin-bottom:16px;border-radius:2px}
+  h2{font-size:10pt;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+  ul{margin:0 0 12px;padding-left:18px}
+  li{margin-bottom:5px;line-height:1.55}
+  .bottom-line{background:#f2f2ee;padding:10px 14px;margin:10px 0;border-radius:2px}
+  .bottom-line strong{display:block;font-size:9pt;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;color:#555}
+  .article{border-bottom:1px solid #e8e8e8;padding:8px 0 10px}
+  .article-meta{font-size:8pt;color:#999;margin-bottom:3px}
+  .article-title{font-size:11pt;font-weight:700;margin-bottom:4px;line-height:1.4}
+  .article-title a{color:#111;text-decoration:none}
+  .article-title a:hover{text-decoration:underline}
+  .article-orig{font-size:9pt;color:#888;margin-bottom:4px}
+  .article-summary{font-size:10pt;color:#444;line-height:1.55}
+  .article-impl{font-size:9pt;color:#1e40af;margin-top:4px;font-style:italic}
+  .footer{margin-top:20px;padding-top:8px;border-top:1px solid #e0e0e0;font-size:8pt;color:#aaa;display:flex;justify-content:space-between}
+  .page-break{page-break-before:always;height:0}
+  @media print{
+    body{margin:0}
+    .wrap{padding:12mm 15mm 10mm}
+    .no-print{display:none}
+    a{color:#111!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+  <div>
+    <div class="header-title">Robot Intelligence Daily</div>
+    <div class="report-type">${typeLabel[type]||'Report'}</div>
+  </div>
+  <div class="header-meta">${date}<br>Confidential</div>
+</div>
+<div class="stats">
+  분석 기사 ${stats.total_scanned||'—'}건 &nbsp;|&nbsp; Action ${stats.action_count||0} &nbsp;|&nbsp; Watch ${stats.watch_count||0} &nbsp;|&nbsp; Weak Signals ${stats.weak_signal_count||0} &nbsp;|&nbsp; Top Score ${stats.top_score||'—'}
+</div>
+${content}
+<div class="footer">
+  <span>Robot Intelligence Daily</span>
+  <span>Confidential · ${date}</span>
+</div>
+</div>
+</body>
+</html>`;
+}
+
 async function generatePDF() {
   const btn = document.getElementById('pdfGenBtn');
   const status = document.getElementById('pdfStatus');
@@ -914,142 +1062,72 @@ async function generatePDF() {
   if (!NEWS) { status.textContent = '⚠ 뉴스 데이터가 로드되지 않았습니다'; return; }
 
   btn.disabled = true;
-  status.textContent = '📄 PDF 생성 중...';
+  status.textContent = '📄 보고서 생성 중...';
 
   try {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-    const pw = doc.internal.pageSize.getWidth();
-    const ph = doc.internal.pageSize.getHeight();
-    const margin = 20;
-    const cw = pw - margin * 2;
-    let y = margin;
-
-    // ── Header ──
-    doc.setFillColor(15, 15, 15);
-    doc.rect(0, 0, pw, 18, 'F');
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Robot Intelligence Daily', margin, 12);
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Generated: ${NEWS.date || new Date().toISOString().slice(0,10)}`, pw - margin, 12, { align: 'right' });
-
-    y = 30;
-    doc.setTextColor(15, 15, 15);
-
-    // ── Title ──
-    const titles = { brief: 'Intelligence Brief', top10: 'Global Top 10 Report', regional: 'Regional News Report', full: 'Daily Robot Intelligence Report' };
-    doc.setFontSize(20);
-    doc.setFont('helvetica', 'bold');
-    doc.text(titles[pdfType] || 'Report', margin, y);
-    y += 8;
-    doc.setDrawColor(200, 16, 46);
-    doc.setLineWidth(0.8);
-    doc.line(margin, y, pw - margin, y);
-    y += 8;
-
-    // ── Stats box ──
-    doc.setFillColor(242, 242, 238);
-    doc.rect(margin, y, cw, 16, 'F');
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(90, 90, 90);
-    const stats = NEWS.stats || {};
-    doc.text(`Articles Scanned: ${stats.total_scanned||'—'}  |  Action Required: ${stats.action_count||'—'}  |  Weak Signals: ${stats.weak_signal_count||'—'}  |  Top Score: ${stats.top_score||'—'}`, margin + 4, y + 10);
-    y += 22;
-
-    const addText = (text, size, bold, color, indent) => {
-      doc.setFontSize(size);
-      doc.setFont('helvetica', bold ? 'bold' : 'normal');
-      doc.setTextColor(...(color || [15,15,15]));
-      const lines = doc.splitTextToSize(text, cw - (indent||0));
-      if (y + lines.length * (size * 0.45) > ph - 20) { doc.addPage(); y = margin; }
-      doc.text(lines, margin + (indent||0), y);
-      y += lines.length * (size * 0.45) + 3;
-    };
-
-    const brief = NEWS.brief || {};
-    const articles = NEWS.global_top10 || [];
-    const regional = NEWS.regional || {};
-
-    if (pdfType === 'brief' || pdfType === 'full') {
-      // Action Required
-      if (brief.action_required?.length) {
-        addText('ACTION REQUIRED', 10, true, [200,16,46]);
-        brief.action_required.forEach(t => addText(`• ${t}`, 9, false, null, 4));
-        y += 3;
-      }
-      // Regional Delta
-      if (brief.regional_delta) {
-        addText('REGIONAL DELTA', 10, true, [30,60,180]);
-        Object.entries(brief.regional_delta).forEach(([r,t]) => addText(`${r}: ${t}`, 9, false, null, 4));
-        y += 3;
-      }
-      // CVC
-      if (brief.cvc_insight?.length) {
-        addText('CVC / PARTNERSHIP INSIGHTS', 10, true, [91,33,182]);
-        brief.cvc_insight.forEach(t => addText(`• ${t}`, 9, false, null, 4));
-        y += 3;
-      }
-      // Bottom Line
-      if (brief.bottom_line) {
-        doc.setFillColor(242, 242, 238);
-        const blLines = doc.splitTextToSize(brief.bottom_line, cw - 8);
-        doc.rect(margin, y - 2, cw, blLines.length * 4.5 + 8, 'F');
-        addText('BOTTOM LINE', 10, true, [15,15,15]);
-        addText(brief.bottom_line, 9, false, [15,15,15], 4);
-      }
+    const html = buildReportHTML(NEWS, pdfType);
+    const printWin = window.open('', '_blank', 'width=1000,height=800');
+    if (!printWin) {
+      status.textContent = '⚠ 팝업이 차단되었습니다. 브라우저 팝업 허용 후 다시 시도하세요.';
+      btn.disabled = false;
+      return;
     }
-
-    if (pdfType === 'top10' || pdfType === 'full') {
-      if (pdfType === 'full') { doc.addPage(); y = margin; addText('GLOBAL TOP 10', 14, true); y += 3; }
-      articles.slice(0, pdfType==='full'?10:10).forEach((a, i) => {
-        addText(`${i+1}. [${a.signal||'FYI'}] [${a.tier}] Score: ${a.score}  |  ${a.source||''}`, 8, false, [120,120,120]);
-        addText(a.title, 10, true);
-        addText(a.summary_ko || a.summary || '', 8, false, [60,60,60], 4);
-        y += 3;
-      });
-    }
-
-    if (pdfType === 'regional' || pdfType === 'full') {
-      const regions = [['KR','🇰🇷 한국',[200,16,46]],['US','🇺🇸 미국',[30,60,180]],['CN','🇨🇳 중국',[180,112,9]]];
-      regions.forEach(([key, label, color]) => {
-        doc.addPage(); y = margin;
-        addText(label, 14, true, color);
-        doc.setDrawColor(...color);
-        doc.line(margin, y, pw-margin, y); y += 6;
-        (regional[key]||[]).slice(0,10).forEach((a,i) => {
-          addText(`${i+1}. [${a.signal||'FYI'}] Score: ${a.score}`, 8, false, [120,120,120]);
-          addText(a.title, 10, true);
-          addText(a.summary_ko || a.summary || '', 8, false, [60,60,60], 4);
-          y += 2;
-        });
-      });
-    }
-
-    // ── Footer ──
-    const pages = doc.internal.getNumberOfPages();
-    for (let p = 1; p <= pages; p++) {
-      doc.setPage(p);
-      doc.setFillColor(15,15,15);
-      doc.rect(0, ph-10, pw, 10, 'F');
-      doc.setTextColor(180,180,180);
-      doc.setFontSize(7);
-      doc.text('Robot Intelligence Daily — Confidential', margin, ph-4);
-      doc.text(`Page ${p} / ${pages}`, pw-margin, ph-4, { align: 'right' });
-    }
-
-    const fname = `RID_${pdfType}_${NEWS.date||'report'}.pdf`;
-    doc.save(fname);
-    status.textContent = `✅ ${fname} 다운로드 완료`;
+    printWin.document.write(html);
+    printWin.document.close();
+    printWin.addEventListener('load', () => {
+      setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
+    });
+    status.textContent = '✅ 인쇄/PDF 저장 창이 열렸습니다';
   } catch (e) {
     console.error(e);
-    status.textContent = '⚠ PDF 생성 중 오류 발생: ' + e.message;
+    status.textContent = '⚠ 오류: ' + e.message;
   } finally {
     btn.disabled = false;
   }
+}
+
+// ── CLIPBOARD EXPORT ─────────────────────────────────────
+function copyBriefText(mode) {
+  if (!NEWS) { alert('뉴스 데이터가 없습니다.'); return; }
+  const brief = NEWS.brief || {};
+  const date = NEWS.date || '';
+  const articles = NEWS.global_top10 || [];
+  let text = '';
+
+  if (mode === 'summary' || mode === 'ppt') {
+    text = `📡 Robot Intelligence Daily — ${date}\n\n`;
+    if (brief.action_required?.some(t=>t))
+      text += `■ Action Required\n` + brief.action_required.filter(t=>t).map(t=>`• ${t}`).join('\n') + '\n\n';
+    if (brief.regional_delta) {
+      text += `■ Regional Delta\n`;
+      Object.entries(brief.regional_delta).filter(([,t])=>t).forEach(([r,t])=>{ text += `  ${r}: ${t}\n`; });
+      text += '\n';
+    }
+    if (brief.cvc_insight?.some(t=>t))
+      text += `■ CVC / 파트너십\n` + brief.cvc_insight.filter(t=>t).map(t=>`• ${t}`).join('\n') + '\n\n';
+    if (brief.bottom_line)
+      text += `■ Bottom Line\n${brief.bottom_line}\n\n`;
+    text += `■ Top 5 기사\n` + articles.slice(0,5).map((a,i)=>`${i+1}. [${a.signal||'FYI'}] ${a.title_ko||a.title}`).join('\n');
+  } else if (mode === 'email') {
+    text = `안녕하세요,\n\n오늘(${date}) 로봇 업계 주요 동향을 공유드립니다.\n\n`;
+    if (brief.bottom_line) text += `【핵심 요약】\n${brief.bottom_line}\n\n`;
+    if (brief.action_required?.some(t=>t))
+      text += `【주목 사항】\n` + brief.action_required.filter(t=>t).map(t=>`• ${t}`).join('\n') + '\n\n';
+    text += `【주요 기사 Top 5】\n` + articles.slice(0,5).map((a,i)=>
+      `${i+1}. ${a.title_ko||a.title}\n   ${a.summary_ko||a.summary||''}`
+    ).join('\n\n') + '\n\n감사합니다.';
+  }
+
+  if (!text) { alert('생성할 내용이 없습니다.'); return; }
+  navigator.clipboard.writeText(text).then(() => {
+    alert('클립보드에 복사되었습니다!');
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    alert('클립보드에 복사되었습니다!');
+  });
 }
 
 // ── BOOKMARK / FILING ────────────────────────────────────
@@ -1059,6 +1137,20 @@ function updCnt() { const el=document.getElementById('bkCnt'); el.textContent=BK
 function saveBks() { localStorage.setItem('rid_bks', JSON.stringify(BKS)); }
 function getBk(id) { return BKS.find(b=>b.id==id); }
 
+function autoTags(card) {
+  const tags = [];
+  const sig = card.dataset.signal;
+  if (sig && sig !== 'FYI') tags.push('#' + sig);
+  const entity = card.dataset.entity;
+  if (entity) tags.push('#' + entity.replace(/\s+/g, ''));
+  const kws = (card.dataset.keywords || '').split(',').filter(Boolean);
+  kws.slice(0, 3).forEach(k => {
+    const t = '#' + k.replace(/\s+/g, '');
+    if (!tags.includes(t)) tags.push(t);
+  });
+  return tags;
+}
+
 function toggleBk(btn) {
   const card = btn.closest('[data-id]');
   const id = card.dataset.id;
@@ -1066,11 +1158,13 @@ function toggleBk(btn) {
     BKS = BKS.filter(b => b.id != id);
     btn.classList.remove('on'); btn.innerHTML = '<i class="ti ti-bookmark"></i>';
   } else {
+    const tags = autoTags(card);
     BKS.push({
       id, title: card.dataset.title || '', summary: card.dataset.summary || '',
       score: card.dataset.score || '', tier: card.dataset.tier || '',
       signal: card.dataset.signal || 'FYI', src: card.dataset.src || '',
-      date: new Date().toISOString().slice(0,10), tags: []
+      url: card.dataset.url || '',
+      date: new Date().toISOString().slice(0,10), tags
     });
     btn.classList.add('on'); btn.innerHTML = '<i class="ti ti-bookmark-filled"></i>';
     openTag(id);
@@ -1088,7 +1182,8 @@ function restoreBkStates() {
 function openTag(id) {
   tagId = id;
   document.getElementById('tagBg').classList.add('open');
-  document.getElementById('tagField').value = '';
+  const bk = getBk(id);
+  document.getElementById('tagField').value = bk ? bk.tags.join(' ') : '';
   document.getElementById('tagField').focus();
 }
 document.getElementById('tagBg').addEventListener('click', function(e) { if(e.target===this) closeTag(); });
@@ -1129,7 +1224,7 @@ function renderFiling() {
   feed.innerHTML = filtered.slice().reverse().map(b => `
     <div class="bk-card">
       <div class="bk-head"><span class="sig ${sm[b.signal]||'sig-F'}">${b.signal||'FYI'}</span><span class="tier ${tm[b.tier]||'t5'}">${b.tier||''}</span><span class="srctxt">${b.src||''}</span></div>
-      <div class="bk-title">${b.title}</div>
+      <div class="bk-title">${b.url ? `<a href="${b.url}" target="_blank" style="color:inherit;text-decoration:none" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${b.title}</a>` : b.title}</div>
       <div class="bk-sum">${b.summary}</div>
       <div class="bk-tags">${b.tags.map(t=>`<span class="bk-pill">${t}</span>`).join('')}<button class="bk-addtag" onclick="openTag('${b.id}')">+ 태그</button></div>
       <div class="bk-meta">${b.date} 파일링 · Score ${b.score}</div>
