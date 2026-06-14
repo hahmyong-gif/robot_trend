@@ -1,0 +1,64 @@
+name: 🤖 Robot Intelligence Daily
+
+on:
+  schedule:
+    - cron: '0 22 * * *'   # 매일 KST 07:00
+  workflow_dispatch:
+    inputs:
+      run_exhibitions:
+        description: '전시회 데이터도 갱신'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  daily-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install anthropic feedparser pyyaml requests python-dateutil
+
+      - name: 📡 Fetch news
+        run: python scripts/fetch.py
+
+      - name: 🤖 Analyze with Claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/analyze.py
+
+      - name: 📅 Update exhibitions
+        if: |
+          github.event_name == 'schedule' ||
+          (github.event_name == 'workflow_dispatch' && inputs.run_exhibitions == 'true')
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/exhibitions.py
+
+      - name: Commit and push
+        run: |
+          git config user.name  "RID Bot"
+          git config user.email "rid-bot@users.noreply.github.com"
+          git add data/
+          git diff --staged --quiet || git commit -m "🤖 Daily update $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
+
+      - name: Summary
+        run: |
+          echo "## ✅ Update Complete" >> $GITHUB_STEP_SUMMARY
+          echo "- Date: $(date -u '+%Y-%m-%d')" >> $GITHUB_STEP_SUMMARY
+          if [ -f data/news.json ]; then
+            COUNT=$(python3 -c "import json; d=json.load(open('data/news.json')); print(len(d.get('global_top10',[])))" 2>/dev/null || echo "—")
+            echo "- Top articles: ${COUNT}" >> $GITHUB_STEP_SUMMARY
+          fi
