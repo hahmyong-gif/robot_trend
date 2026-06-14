@@ -60,6 +60,59 @@ NEGATIVE_TITLE_KWS = [
     'bitcoin', 'crypto', 'blockchain', 'nft',
 ]
 
+# ── 로봇 문맥 키워드 (이 중 하나라도 있으면 로봇 기사로 분류) ──────────
+ROBOT_CONTEXT_KWS = {
+    # 기체/형태
+    'robot', '로봇', 'humanoid', '휴머노이드', 'bipedal', '이족보행',
+    'quadruped', '4족보행', 'legged robot', 'wheeled robot', 'exoskeleton',
+    '외골격', 'android', '안드로이드 로봇',
+
+    # 구동/메커니즘
+    'actuator', '액추에이터', 'gripper', '그리퍼', 'end-effector',
+    'robotic arm', 'robot arm', '로봇 팔', 'robotic hand', 'dexterous',
+    'torque', 'servo motor', 'linear motor', 'hydraulic robot',
+
+    # 이동/운동
+    'locomotion', 'gait', '보행', 'walking robot', 'running robot',
+    'jumping robot', 'climbing robot', 'mobile robot', '이동 로봇',
+
+    # 인지/지능
+    'embodied ai', 'embodied intelligence', 'physical ai',
+    'robot learning', 'robot perception', 'robot vision', 'robot sensing',
+    'sim-to-real', 'imitation learning', 'reinforcement learning robot',
+    'robot policy', 'robot foundation model', 'manipulation policy',
+    'whole-body control', 'loco-manipulation',
+
+    # 협동/산업
+    'cobot', 'collaborative robot', '협동 로봇', 'industrial robot', '산업용 로봇',
+    'autonomous mobile robot', 'amr', 'agv', '물류 로봇', 'logistics robot',
+    'service robot', '서비스 로봇', 'surgical robot', '수술 로봇',
+    'welding robot', 'painting robot', 'assembly robot',
+
+    # 센서/HW
+    'lidar robot', 'depth sensor robot', 'force sensor', 'tactile sensor',
+    'robot camera', 'robot perception',
+
+    # 소프트웨어/플랫폼
+    'ros', 'ros2', 'robot operating system', 'isaac sim', 'isaac lab',
+    'robot simulation', 'digital twin robot', 'robot sdk',
+
+    # 한국어 로봇 정책/산업
+    '로봇 산업', '로봇 정책', '로봇 육성', '로봇 전략', '로봇 법',
+    '로봇 규제', '로봇 표준', '로봇 보조금', '로봇 펀드', '로봇 투자',
+    '로봇 스타트업', '로봇 기업', '로봇 공학', '로봇 연구',
+    'k-로봇', 'k-휴머노이드', '휴머노이드 산업',
+
+    # 영문 로봇 정책/시장
+    'robot regulation', 'robot policy', 'robot legislation', 'robot ethics',
+    'robot safety standard', 'robot certification',
+    'robot market', 'robot industry', 'robot sector', 'robot ecosystem',
+    'robot investment', 'robot funding', 'robot venture', 'robot startup',
+    'robot deployment', 'robot commercialization', 'robot adoption',
+    'robot workforce', 'robot labor', 'robot automation',
+    'humanoid market', 'humanoid industry', 'humanoid deployment',
+}
+
 def is_robot_related(title, summary):
     """로봇 관련 기사인지 판단"""
     title_lower = title.lower()
@@ -69,19 +122,17 @@ def is_robot_related(title, summary):
     if any(neg in title_lower for neg in NEGATIVE_TITLE_KWS):
         return False
 
-    # 1) 핵심 로봇 키워드가 있으면 통과
+    # 1) 핵심 로봇 키워드 (keywords.yml core)
     core_kws = [k.lower() for k in CONFIG['keywords']['core']]
     if any(kw in text for kw in core_kws):
         return True
 
-    # 2) 로봇 전용 기업명은 단독으로도 통과
+    # 2) 로봇 전용 기업명 단독 통과
     if any(ent in text for ent in PURE_ROBOT_ENTITIES):
         return True
 
-    # 3) 로봇 맥락 단어 존재 여부
-    robot_context = ['robot', '로봇', 'humanoid', '휴머노이드', 'autonomous robot',
-                     'cobot', 'actuator', 'gripper', 'exoskeleton', 'quadruped', 'locomotion']
-    if any(rt in text for rt in robot_context):
+    # 3) 광범위 로봇 문맥 키워드
+    if any(kw in text for kw in ROBOT_CONTEXT_KWS):
         return True
 
     return False

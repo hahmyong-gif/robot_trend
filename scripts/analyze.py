@@ -6,7 +6,7 @@ import anthropic
 import json
 import os
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
@@ -184,6 +184,25 @@ def score_final(article):
     signal_bonus = {'Action': 1.0, 'Watch': 0.3, 'FYI': 0.0}
     return round(min(10.0, base + signal_bonus.get(article.get('signal', 'FYI'), 0)), 1)
 
+def load_archive_articles(archive_dir, days=6):
+    """최근 N일 아카이브에서 이미 분석된 기사 로드 (재분석 없이)"""
+    articles = []
+    today_date = datetime.now(timezone.utc).date()
+    for d in range(1, days + 1):
+        date_str = (today_date - timedelta(days=d)).strftime('%Y-%m-%d')
+        path = os.path.join(archive_dir, f'{date_str}.json')
+        if not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding='utf-8') as f:
+                old = json.load(f)
+            for a in old.get('global_top10', []):
+                a['_age_days'] = d
+                articles.append(dict(a))
+        except Exception as e:
+            print(f"  ⚠ archive {date_str}: {e}")
+    return articles
+
 # ── MAIN ─────────────────────────────────────────────────
 if __name__ == '__main__':
     raw_path = os.path.join(DATA_DIR, 'raw.json')
@@ -222,8 +241,27 @@ if __name__ == '__main__':
                 analyzed.append(article)
                 time.sleep(0.3)
 
-    # Signal 기준 재정렬, 전체에서 Top 10
-    global_top10 = sorted(analyzed, key=lambda x: x['score'], reverse=True)[:10]
+    # ── 아카이브 병합: 지난 6일 기사 추가 (재분석 없음) ──────────
+    archive_dir = os.path.join(DATA_DIR, 'archive')
+    os.makedirs(archive_dir, exist_ok=True)
+    print("\n📚 Merging archive articles (past 6 days)...")
+    archive_arts = load_archive_articles(archive_dir)
+    seen_ids = {a['id'] for a in analyzed}
+    archive_added = 0
+    for a in archive_arts:
+        if a['id'] in seen_ids:
+            continue
+        age = a.get('_age_days', 7)
+        # 날짜당 12% 점수 감쇄, 최소 40% 유지
+        decay = max(0.4, 1.0 - age * 0.12)
+        a['score'] = round(a.get('score', 3.0) * decay, 1)
+        analyzed.append(a)
+        seen_ids.add(a['id'])
+        archive_added += 1
+    print(f"   Added {archive_added} archive articles → total {len(analyzed)} unique")
+
+    # 주간 전체에서 Top 20 (날짜 다양성 확보)
+    global_top10 = sorted(analyzed, key=lambda x: x['score'], reverse=True)[:20]
 
     # Weak Signal 탐지
     print("\n📡 Detecting weak signals...")
