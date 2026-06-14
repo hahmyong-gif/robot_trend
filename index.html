@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RID — Robot Intelligence Daily</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{
+  --ink:#0f0f0f;--ink2:#3a3a3a;--ink3:#7a7a7a;--ink4:#b8b8b8;
+  --paper:#fafaf7;--paper2:#f2f2ee;--rule:#e0e0d8;
+  --red:#c8102e;--redbg:#fff0f2;--redbd:#fca5a5;
+  --amber:#b45309;--amberbg:#fffbeb;--amberbd:#fcd34d;
+  --green:#166534;--greenbg:#f0fdf4;--greenbd:#86efac;
+  --blue:#1e40af;--bluebg:#eff6ff;--bluebd:#93c5fd;
+  --purple:#5b21b6;--purplebg:#f5f3ff;--purplebd:#c4b5fd;
+  --kr:#c8102e;--krbg:#fff0f2;
+  --cn:#d97706;--cnbg:#fffbeb;
+  --us:#1e40af;--usbg:#eff6ff;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.5}
+
+/* MASTHEAD */
+.masthead{border-bottom:3px solid var(--ink);padding:0 28px}
+.mast-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0 10px;border-bottom:1px solid var(--rule)}
+.mast-meta{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:.06em}
+.mast-meta em{color:var(--red);font-style:normal;font-weight:500}
+.wordmark{font-family:var(--serif);font-size:34px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.wordmark sup{font-family:var(--mono);font-size:9px;font-weight:400;color:var(--ink3);letter-spacing:.1em;vertical-align:super;margin-left:3px}
+.mast-right{display:flex;align-items:center;gap:8px}
+.live-badge{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;color:var(--green);font-weight:500}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#16a34a;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.mbtn{display:flex;align-items:center;gap:4px;padding:5px 10px;border:1px solid var(--rule);border-radius:2px;background:transparent;color:var(--ink2);font-family:var(--sans);font-size:11px;font-weight:500;cursor:pointer;transition:all .1s}
+.mbtn:hover,.mbtn.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+.section-nav{display:flex;align-items:center;padding:0;overflow-x:auto}
+.snav{padding:9px 12px;border:none;background:transparent;color:var(--ink3);font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-3px;transition:all .1s;white-space:nowrap;flex-shrink:0}
+.snav:hover{color:var(--ink)}.snav.act{color:var(--ink);border-bottom-color:var(--red)}
+.snd{width:1px;height:12px;background:var(--rule);margin:0 2px;flex-shrink:0}
+
+/* TICKER */
+.ticker{background:var(--ink);color:#fff;padding:6px 28px;display:flex;align-items:center;gap:14px;overflow:hidden}
+.ticker-lbl{font-family:var(--mono);font-size:9px;font-weight:500;color:var(--red);letter-spacing:.12em;text-transform:uppercase;flex-shrink:0}
+.ticker-track{display:flex;gap:24px;animation:scroll 35s linear infinite;white-space:nowrap}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ti-item{font-family:var(--mono);font-size:10px;color:#d4d4d4}
+.ti-item b{color:#fff;margin-right:5px}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:1fr 260px;min-height:calc(100vh - 108px)}
+.main-col{border-right:1px solid var(--rule);overflow-y:auto}
+.sidebar{padding:16px 14px;overflow-y:auto}
+.panel{display:none}.panel.show{display:block}
+
+/* BADGES */
+.sig{font-family:var(--mono);font-size:9px;font-weight:500;padding:2px 5px;border-radius:2px;letter-spacing:.04em;text-transform:uppercase}
+.sig-A{background:var(--red);color:#fff}
+.sig-W{background:var(--amberbg);color:var(--amber);border:1px solid var(--amberbd)}
+.sig-F{background:var(--paper2);color:var(--ink3);border:1px solid var(--rule)}
+.tier{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:2px;font-weight:500}
+.t1{background:var(--redbg);color:var(--red)}.t2{background:var(--amberbg);color:var(--amber)}
+.t3{background:var(--greenbg);color:var(--green)}.t4{background:var(--bluebg);color:var(--blue)}
+.t5{background:var(--paper2);color:var(--ink3)}
+.stag{font-family:var(--mono);font-size:10px;color:var(--ink);background:var(--paper2);border:1px solid var(--rule);padding:1px 6px;border-radius:2px;margin-left:auto}
+.srctxt{font-family:var(--mono);font-size:10px;color:var(--ink4)}
+.reg{font-family:var(--mono);font-size:9px;padding:2px 5px;border-radius:2px;font-weight:500}
+.reg-kr{background:var(--krbg);color:var(--kr)}.reg-cn{background:var(--cnbg);color:var(--cn)}.reg-us{background:var(--usbg);color:var(--us)}
+
+/* LEAD STORY */
+.g10-lead{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--ink)}
+.lead-cell{padding:18px 22px}.lead-cell:first-child{border-right:1px solid var(--rule)}
+.story-rank{font-family:var(--mono);font-size:10px;color:var(--ink4);letter-spacing:.1em;margin-bottom:5px}
+.hl-lg{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:7px;cursor:pointer}
+.hl-lg:hover{text-decoration:underline;text-underline-offset:3px}
+.deck{font-size:11px;color:var(--ink2);line-height:1.6;margin-bottom:9px}
+.byline{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+
+/* MID / MINI STORY */
+.g10-mid{display:grid;grid-template-columns:1fr 1fr}
+.story-card{padding:13px 18px;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .1s;position:relative}
+.story-card:hover{background:var(--paper2)}
+.story-card:nth-child(odd){border-right:1px solid var(--rule)}
+.hl-md{font-family:var(--serif);font-size:14px;font-weight:700;line-height:1.25;color:var(--ink);margin:5px 0 4px}
+.deck-sm{font-size:11px;color:var(--ink2);line-height:1.45;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.foot{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.g10-bot{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--rule)}
+.mini-card{padding:12px 16px;border-right:1px solid var(--rule);cursor:pointer;transition:background .1s}
+.mini-card:last-child{border-right:none}.mini-card:hover{background:var(--paper2)}
+.mini-num{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-bottom:3px}
+.hl-sm{font-family:var(--serif);font-size:12px;font-weight:700;line-height:1.25;color:var(--ink);margin-bottom:3px}
+.deck-xs{font-size:10px;color:var(--ink3);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px}
+.bm-btn{position:absolute;top:10px;right:12px;background:none;border:none;cursor:pointer;color:var(--ink4);font-size:14px;transition:color .1s;line-height:1}
+.bm-btn:hover{color:var(--ink)}.bm-btn.on{color:#d97706}
+
+/* REGIONAL */
+.reg-wrap{border-top:2px solid var(--ink)}
+.reg-hdr{display:flex;align-items:baseline;gap:10px;padding:11px 22px;border-bottom:1px solid var(--rule);background:var(--paper2)}
+.reg-hdr-t{font-family:var(--serif);font-size:17px;font-weight:700}
+.reg-hdr-s{font-family:var(--mono);font-size:10px;color:var(--ink4)}
+.delta-bar-lbl{padding:7px 22px;background:var(--paper2);border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:10px;font-weight:500;color:var(--ink3);letter-spacing:.06em}
+.delta-cols{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:2px solid var(--ink)}
+.delta-cell{padding:10px 14px;font-size:11px;line-height:1.5;color:var(--ink2);border-right:1px solid var(--rule)}
+.delta-cell:last-child{border-right:none}
+.delta-head{display:flex;align-items:center;gap:5px;margin-bottom:4px;font-family:var(--mono);font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3)}
+.delta-kw{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.reg3col{display:grid;grid-template-columns:1fr 1fr 1fr}
+.rcol{border-right:1px solid var(--rule);min-width:0}
+.rcol:last-child{border-right:none}
+.rcol-head{display:flex;align-items:center;gap:7px;padding:8px 14px;background:var(--paper2);border-bottom:1px solid var(--rule)}
+.rcol-flag{font-size:15px;line-height:1}
+.rcol-lbl{font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.rs{display:grid;grid-template-columns:24px 1fr 38px;gap:6px;align-items:start;padding:8px 11px;border-bottom:1px solid var(--rule);cursor:pointer;transition:background .1s}
+.rs:hover{background:var(--paper2)}.rs:last-child{border-bottom:none}
+.rs-num{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink4);line-height:1;padding-top:2px}
+.rs-num.hi{color:var(--ink)}
+.rs-title{font-family:var(--serif);font-size:11px;font-weight:700;line-height:1.3;color:var(--ink);margin-bottom:2px}
+.rs-deck{font-size:10px;color:var(--ink2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:3px}
+.rs-foot{display:flex;align-items:center;gap:3px;flex-wrap:wrap}
+.rs-scol{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.rs-sv{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink);line-height:1}
+.rs-bar{width:30px;height:2px;background:var(--rule);border-radius:1px;overflow:hidden}
+.rs-fill{height:100%;border-radius:1px}
+.fill-kr{background:var(--kr)}.fill-cn{background:var(--cn)}.fill-us{background:var(--us)}
+
+/* WEAK SIGNAL */
+.sec-wrap{padding:18px 22px}
+.sec-title{font-family:var(--serif);font-size:20px;font-weight:700;padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:5px}
+.sec-sub{font-size:11px;color:var(--ink3);margin-bottom:14px}
+.ws-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ws-card{border:1px solid var(--rule);padding:12px 14px;background:#fff;cursor:pointer;transition:box-shadow .1s;border-radius:2px}
+.ws-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.ws-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.ws-co{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink)}
+.spike{font-family:var(--mono);font-size:9px;font-weight:500;padding:2px 6px;border-radius:2px}
+.sp-hot{background:var(--redbg);color:var(--red)}.sp-warm{background:var(--amberbg);color:var(--amber)}.sp-cool{background:var(--greenbg);color:var(--green)}
+.ws-sig{font-size:11px;color:var(--ink2);line-height:1.5;margin-bottom:7px}
+.ws-bar-row{display:flex;align-items:center;gap:7px}
+.ws-bg{flex:1;height:3px;background:var(--rule);border-radius:1px;overflow:hidden}
+.ws-fill{height:100%;border-radius:1px;background:var(--ink)}
+.ws-num{font-family:var(--mono);font-size:10px;color:var(--ink3);white-space:nowrap}
+
+/* EXHIBITIONS */
+.expo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.expo-card{border:1px solid var(--rule);padding:14px 16px;background:#fff;border-radius:2px;cursor:pointer;transition:box-shadow .1s}
+.expo-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.expo-card.this-month{border-left:3px solid var(--red)}
+.expo-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px}
+.expo-name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink)}
+.expo-tier{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:2px;font-weight:500}
+.expo-t1{background:var(--redbg);color:var(--red)}.expo-t2{background:var(--paper2);color:var(--ink3)}
+.expo-full-name{font-size:11px;color:var(--ink3);margin-bottom:4px}
+.expo-meta{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.expo-month{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--ink);background:var(--paper2);padding:2px 7px;border-radius:2px}
+.expo-loc{font-family:var(--mono);font-size:10px;color:var(--ink3)}
+.expo-this{font-family:var(--mono);font-size:9px;color:var(--red);font-weight:500;background:var(--redbg);padding:2px 6px;border-radius:2px}
+.expo-desc{font-size:11px;color:var(--ink2);line-height:1.5;margin-bottom:7px}
+.expo-focus{display:flex;flex-wrap:wrap;gap:3px}
+.expo-tag{font-family:var(--mono);font-size:9px;color:var(--purple);background:var(--purplebg);padding:1px 6px;border-radius:2px}
+.expo-rel{font-family:var(--mono);font-size:11px;color:var(--amber)}
+.expo-section-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--rule)}
+
+/* NARRATIVE */
+.ns-cards{display:flex;flex-direction:column;gap:8px}
+.ns-card{border:1px solid var(--rule);background:#fff;padding:13px 15px;border-radius:2px}
+.ns-kw{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.ns-shift{display:flex;align-items:center;gap:5px;margin-bottom:5px}
+.ns-from{font-size:10px;padding:2px 6px;border-radius:2px;background:var(--redbg);color:var(--red);font-weight:500;font-family:var(--mono)}
+.ns-arr{color:var(--ink4)}
+.ns-to{font-size:10px;padding:2px 6px;border-radius:2px;background:var(--greenbg);color:var(--green);font-weight:500;font-family:var(--mono)}
+.ns-desc{font-size:11px;color:var(--ink2);line-height:1.5;margin-bottom:7px}
+.ns-chart{display:flex;align-items:flex-end;gap:2px;height:28px}
+.ns-bar{flex:1;min-width:8px;border-radius:1px 1px 0 0}
+.ns-leg{display:flex;gap:10px;margin-top:5px}
+.ns-leg-i{display:flex;align-items:center;gap:3px;font-family:var(--mono);font-size:9px;color:var(--ink3)}
+.ns-leg-d{width:10px;height:3px;border-radius:1px}
+
+/* GEOPOLITICAL */
+.geo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px}
+.geo-card{border:1px solid var(--rule);background:#fff;padding:12px 14px;border-radius:2px}
+.geo-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.geo-country{font-family:var(--serif);font-size:15px;font-weight:700}
+.geo-temp{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:2px;font-weight:500}
+.temp-hot{background:var(--redbg);color:var(--red)}.temp-warm{background:var(--amberbg);color:var(--amber)}.temp-cool{background:var(--bluebg);color:var(--blue)}
+.geo-policy{font-size:11px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.geo-desc{font-size:11px;color:var(--ink2);line-height:1.5;margin-bottom:8px}
+.geo-items{display:flex;flex-direction:column;gap:4px}
+.geo-item{display:flex;align-items:flex-start;gap:5px;font-size:11px;color:var(--ink2)}
+.geo-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:4px}
+
+/* PDF TAB */
+.pdf-wrap{padding:22px}
+.pdf-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.pdf-opt{border:1px solid var(--rule);background:#fff;padding:14px 16px;border-radius:2px;cursor:pointer;transition:all .1s}
+.pdf-opt:hover,.pdf-opt.sel{border-color:var(--ink);background:var(--paper2)}
+.pdf-opt.sel{border-left:3px solid var(--ink)}
+.pdf-opt-title{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.pdf-opt-desc{font-size:11px;color:var(--ink3)}
+.pdf-preview{border:1px solid var(--rule);background:#fff;border-radius:2px;padding:20px;min-height:320px;margin-bottom:16px}
+.pdf-preview-title{font-family:var(--serif);font-size:18px;font-weight:700;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:12px}
+.pdf-preview-date{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:16px}
+.pdf-item{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+.pdf-item:last-child{border-bottom:none}
+.pdf-item-rank{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-bottom:3px}
+.pdf-item-title{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.pdf-item-sum{font-size:11px;color:var(--ink2);line-height:1.45}
+.pdf-gen-btn{width:100%;padding:12px;border:none;border-radius:2px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .1s}
+.pdf-gen-btn:hover{opacity:.85}
+.pdf-gen-btn:disabled{opacity:.5;cursor:not-allowed}
+.pdf-status{font-family:var(--mono);font-size:10px;color:var(--ink3);text-align:center;margin-top:8px;min-height:16px}
+
+/* FILING */
+.filing-toolbar{display:flex;align-items:center;gap:5px;padding:9px 22px;border-bottom:1px solid var(--rule);background:var(--paper2);flex-wrap:wrap}
+.ftag{font-family:var(--mono);font-size:10px;padding:3px 7px;border-radius:2px;border:1px solid var(--rule);background:#fff;color:var(--ink3);cursor:pointer;transition:all .1s}
+.ftag:hover,.ftag.act{background:var(--ink);color:#fff;border-color:var(--ink)}
+.f-export{margin-left:auto;display:flex;align-items:center;gap:4px;padding:4px 9px;border:1px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:500;cursor:pointer;transition:all .1s}
+.f-export:hover{background:var(--ink);color:#fff}
+.filing-feed{padding:14px 22px;display:flex;flex-direction:column;gap:7px}
+.bk-card{border:1px solid var(--rule);background:#fffef9;padding:11px 13px;border-radius:2px;position:relative;border-left:3px solid #d97706}
+.bk-head{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:4px}
+.bk-title{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.bk-sum{font-size:11px;color:var(--ink2);line-height:1.45;margin-bottom:5px}
+.bk-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:4px}
+.bk-pill{font-family:var(--mono);font-size:9px;color:var(--purple);background:var(--purplebg);padding:1px 5px;border-radius:2px}
+.bk-addtag{font-family:var(--mono);font-size:9px;color:var(--ink4);background:var(--paper2);border:1px dashed var(--rule);padding:1px 5px;border-radius:2px;cursor:pointer;transition:all .1s}
+.bk-addtag:hover{color:var(--purple);border-color:var(--purple)}
+.bk-meta{font-family:var(--mono);font-size:9px;color:var(--ink4)}
+.bk-rm{position:absolute;top:9px;right:9px;background:none;border:none;cursor:pointer;color:var(--ink4);font-size:13px;line-height:1;transition:color .1s}
+.bk-rm:hover{color:var(--red)}
+.filing-empty{text-align:center;padding:44px 20px;color:var(--ink4)}
+.fe-title{font-family:var(--serif);font-size:15px;color:var(--ink3);margin-bottom:4px}
+
+/* SIDEBAR */
+.side-sec{margin-bottom:16px}
+.side-lbl{font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink4);padding-bottom:6px;border-bottom:1px solid var(--rule);margin-bottom:8px}
+.brief-btn{width:100%;padding:9px 12px;border:none;border-radius:2px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:opacity .1s;margin-bottom:4px}
+.brief-btn:hover{opacity:.85}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.stat-box{background:var(--paper2);padding:8px 9px;border-radius:2px}
+.stat-n{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--ink);line-height:1;margin-bottom:2px}
+.stat-l{font-size:10px;color:var(--ink3)}
+.trend-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--rule)}
+.trend-kw{font-size:11px;color:var(--ink2)}.trend-ct{font-family:var(--mono);font-size:10px;color:var(--red)}
+.comp-row{display:flex;align-items:center;gap:5px;padding:3px 0}
+.comp-n{font-size:11px;color:var(--ink2);width:60px;flex-shrink:0}
+.comp-bw{flex:1;height:3px;background:var(--rule);border-radius:1px;overflow:hidden}
+.comp-b{height:100%;border-radius:1px;background:var(--ink)}
+.comp-c{font-family:var(--mono);font-size:10px;color:var(--ink4);width:14px;text-align:right}
+.qa-glbl{font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.08em;text-transform:uppercase;margin:6px 0 3px}
+.qa-btn{width:100%;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;background:#fff;color:var(--ink);font-family:var(--sans);font-size:11px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .1s;margin-bottom:2px;text-align:left}
+.qa-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.qa-btn:hover .ti,.qa-btn:hover .qa-arr{color:inherit}
+.qa-btn .ti{font-size:12px;color:var(--ink3);flex-shrink:0}
+.qa-btn span{flex:1}.qa-arr{font-size:11px;color:var(--ink4)}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:500;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:2px;border-top:4px solid var(--ink);padding:22px;max-width:480px;width:92%;position:relative;max-height:82vh;overflow-y:auto}
+.modal-title{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:2px}
+.modal-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:14px}
+.modal-close{position:absolute;top:13px;right:13px;background:none;border:none;cursor:pointer;color:var(--ink3);font-size:16px;line-height:1}
+.modal-close:hover{color:var(--ink)}
+.modal-sec{margin-bottom:12px}
+.modal-sec-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink4);border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:7px}
+.modal-item{display:flex;align-items:flex-start;gap:5px;margin-bottom:5px}
+.modal-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.modal-txt{font-size:12px;color:var(--ink2);line-height:1.5}
+.modal-acts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-top:14px}
+.modal-act{padding:7px 5px;border:1px solid var(--rule);border-radius:2px;background:#fff;color:var(--ink);font-size:10px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:3px;transition:all .1s;font-family:var(--sans)}
+.modal-act:hover{background:var(--ink);color:#fff}
+
+/* TAG */
+.tag-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:600;align-items:center;justify-content:center}
+.tag-bg.open{display:flex}
+.tag-popup{background:#fff;border:1px solid var(--ink);border-radius:2px;padding:16px;width:255px;box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.tag-pop-title{font-family:var(--serif);font-size:14px;font-weight:700;margin-bottom:8px}
+.tag-field{width:100%;padding:6px 8px;border:1px solid var(--rule);border-radius:2px;font-family:var(--mono);font-size:11px;color:var(--ink);background:var(--paper);margin-bottom:7px}
+.tag-field:focus{outline:none;border-color:var(--ink)}
+.tag-presets{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:7px}
+.tag-pre{font-family:var(--mono);font-size:9px;color:var(--ink3);background:var(--paper2);border:1px solid var(--rule);padding:2px 6px;border-radius:2px;cursor:pointer;transition:all .1s}
+.tag-pre:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tag-save{width:100%;padding:7px;border:none;border-radius:2px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer}
+
+/* LOADING */
+.loading{text-align:center;padding:40px;color:var(--ink4)}
+.loading .ti{font-size:28px;display:block;margin-bottom:8px;opacity:.3;animation:spin 1.5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--rule);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="mast-top">
+    <div class="mast-meta">VOL.1 &nbsp;·&nbsp; <em>LIVE</em> &nbsp;·&nbsp; EST. 2026 &nbsp;·&nbsp; ROBOTICS</div>
+    <div class="wordmark">Robot Intelligence Daily<sup>BETA</sup></div>
+    <div class="mast-right">
+      <div class="live-badge"><div class="live-dot"></div><span id="updateTime">Loading...</span></div>
+      <button class="mbtn" onclick="openBrief()"><i class="ti ti-file-description"></i> Intelligence Brief</button>
+      <button class="mbtn pri" onclick="switchTab('pdf')"><i class="ti ti-file-type-pdf"></i> PDF 생성</button>
+    </div>
+  </div>
+  <nav class="section-nav">
+    <button class="snav act" data-tab="top10">Global Top 10</button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="weak">Weak Signal</button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="narrative">Narrative Shift</button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="geo">Geopolitical</button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="expo">전시회 <span id="expoThisMonth" style="font-family:var(--mono);font-size:9px;color:var(--red);margin-left:2px"></span></button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="pdf"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> PDF</button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="filing">파일링 <span id="bkCnt" style="font-family:var(--mono);font-size:10px;color:var(--red);margin-left:2px"></span></button>
+  </nav>
+</div>
+
+<div class="ticker">
+  <span class="ticker-lbl">Breaking</span>
+  <div class="ticker-track" id="tickerTrack">
+    <span class="ti-item">데이터 로딩 중...</span>
+  </div>
+</div>
+
+<div class="layout">
+<main class="main-col" id="mainCol">
+
+<!-- TOP 10 -->
+<div class="panel show" id="tab-top10">
+  <div id="globalTop10"><div class="loading"><i class="ti ti-refresh"></i><div>뉴스 데이터 로딩 중...</div></div></div>
+  <div id="regionalSection" style="display:none">
+    <div class="reg-wrap">
+      <div class="reg-hdr"><span class="reg-hdr-t">지역별 Top 10</span><span class="reg-hdr-s">한국 · 미국 · 중국 독립 집계</span></div>
+      <div class="delta-bar-lbl" id="deltaLabel">REGIONAL DELTA — 같은 사건, 세 개의 시각</div>
+      <div class="delta-cols" id="deltaCols">
+        <div class="delta-cell"><div class="delta-head"><span class="reg reg-kr">KR</span> 한국</div><div class="delta-kw" id="deltaKw"></div><div id="deltaKR"></div></div>
+        <div class="delta-cell"><div class="delta-head"><span class="reg reg-us">US</span> 미국</div><div id="deltaUS"></div></div>
+        <div class="delta-cell"><div class="delta-head"><span class="reg reg-cn">CN</span> 중국</div><div id="deltaCN"></div></div>
+      </div>
+      <div class="reg3col" id="reg3col"></div>
+    </div>
+  </div>
+</div>
+
+<!-- WEAK SIGNAL -->
+<div class="panel" id="tab-weak">
+  <div class="sec-wrap">
+    <div class="sec-title">Weak Signal 탐지</div>
+    <div class="sec-sub">30일 평균 대비 언급량 급등 기업·기술 — 주류 미디어 등장 전 조기 포착</div>
+    <div class="ws-grid" id="weakGrid"><div class="loading"><i class="ti ti-refresh"></i><div>로딩 중...</div></div></div>
+  </div>
+</div>
+
+<!-- NARRATIVE SHIFT -->
+<div class="panel" id="tab-narrative">
+  <div class="sec-wrap">
+    <div class="sec-title">Narrative Shift</div>
+    <div class="sec-sub">업계 담론 프레이밍 변화 추적 · 6개월 롤링 윈도우</div>
+    <div class="ns-cards">
+      <div class="ns-card"><div class="ns-kw">Humanoid robot</div><div class="ns-shift"><span class="ns-from">위협 / 공상과학</span><span class="ns-arr">→</span><span class="ns-to">파트너십 / 상용화</span></div><div class="ns-desc">6개월 전 "일자리 위협" 프레임 지배적 → 최근 3개월 "기업 파트너십"·"양산 타임라인" 중심으로 급전환.</div><div class="ns-chart"><div class="ns-bar" style="height:9px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:12px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:15px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:11px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:7px;background:var(--ink4)"></div><div class="ns-bar" style="height:5px;background:var(--ink4)"></div><div class="ns-bar" style="height:6px;background:#16a34a;opacity:.7"></div><div class="ns-bar" style="height:10px;background:#16a34a;opacity:.75"></div><div class="ns-bar" style="height:15px;background:#16a34a;opacity:.8"></div><div class="ns-bar" style="height:20px;background:#16a34a;opacity:.85"></div><div class="ns-bar" style="height:24px;background:#16a34a;opacity:.9"></div><div class="ns-bar" style="height:28px;background:#16a34a"></div></div><div class="ns-leg"><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--red)"></div>위협 프레임</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--ink4)"></div>중립</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:#16a34a"></div>기회 프레임</div></div></div>
+      <div class="ns-card"><div class="ns-kw">Data factory</div><div class="ns-shift"><span class="ns-from">기술 용어 / 연구</span><span class="ns-arr">→</span><span class="ns-to">전략 필수 인프라</span></div><div class="ns-desc">학술 논문 중심 개념이 기업 전략 문서에 등장. NVIDIA·LG 워크숍 핵심 의제로 부상.</div><div class="ns-chart"><div class="ns-bar" style="height:4px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:5px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:6px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:7px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:9px;background:var(--ink4)"></div><div class="ns-bar" style="height:11px;background:var(--ink4)"></div><div class="ns-bar" style="height:13px;background:#16a34a;opacity:.7"></div><div class="ns-bar" style="height:16px;background:#16a34a;opacity:.75"></div><div class="ns-bar" style="height:19px;background:#16a34a;opacity:.8"></div><div class="ns-bar" style="height:22px;background:#16a34a;opacity:.85"></div><div class="ns-bar" style="height:25px;background:#16a34a;opacity:.9"></div><div class="ns-bar" style="height:28px;background:#16a34a"></div></div><div class="ns-leg"><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--red)"></div>연구 영역</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--ink4)"></div>중립</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:#16a34a"></div>전략 인프라</div></div></div>
+      <div class="ns-card"><div class="ns-kw">China robotics</div><div class="ns-shift"><span class="ns-from">추격자 / 모방</span><span class="ns-arr">→</span><span class="ns-to">저가 선도 / 위협</span></div><div class="ns-desc">서방 미디어에서 "저품질 모방" 프레임이었다가 Agibot 양산 선언 이후 "실질적 위협"으로 전환.</div><div class="ns-chart"><div class="ns-bar" style="height:18px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:16px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:17px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:15px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:12px;background:var(--ink4)"></div><div class="ns-bar" style="height:10px;background:var(--ink4)"></div><div class="ns-bar" style="height:8px;background:#d97706;opacity:.7"></div><div class="ns-bar" style="height:12px;background:#d97706;opacity:.75"></div><div class="ns-bar" style="height:16px;background:#d97706;opacity:.8"></div><div class="ns-bar" style="height:20px;background:#d97706;opacity:.85"></div><div class="ns-bar" style="height:24px;background:#d97706;opacity:.9"></div><div class="ns-bar" style="height:28px;background:#d97706"></div></div><div class="ns-leg"><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--red)"></div>모방 프레임</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--ink4)"></div>중립</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:#d97706"></div>위협 프레임</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GEOPOLITICAL -->
+<div class="panel" id="tab-geo">
+  <div class="sec-wrap">
+    <div class="sec-title">Geopolitical Signal</div>
+    <div class="sec-sub">규제·정책·보조금 움직임 — 전략 타이밍에 직접 영향</div>
+    <div class="geo-grid">
+      <div class="geo-card"><div class="geo-head"><span class="geo-country">🇰🇷 한국</span><span class="geo-temp temp-warm">온도 ▲상승</span></div><div class="geo-policy">K-휴머노이드 얼라이언스 2단계</div><div class="geo-desc">과기부 주도 12개사 추가 선정. 총 3,200억원 확대. 2027년 글로벌 점유율 15% 목표 공식화.</div><div class="geo-items"><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>로봇 친화 빌딩 인증제 2027 시행</div><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>제조 로봇 세액공제 30% 유지</div><div class="geo-item"><div class="geo-dot" style="background:var(--amber)"></div>데이터 공유 규제 완화 논의 중</div></div></div>
+      <div class="geo-card"><div class="geo-head"><span class="geo-country">🇺🇸 미국</span><span class="geo-temp temp-cool">온도 ▷유지</span></div><div class="geo-policy">수출 통제 검토 + IRA 연계</div><div class="geo-desc">상무부 로봇 핵심 부품 수출 통제 검토. IRA 보조금 로봇 연계 확대 논의.</div><div class="geo-items"><div class="geo-item"><div class="geo-dot" style="background:var(--amber)"></div>액추에이터·센서 수출 통제 가능성</div><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>NSF 로봇 R&D $2.1B 승인</div><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>DOD 조달 예산 40% 증가</div></div></div>
+      <div class="geo-card"><div class="geo-head"><span class="geo-country">🇨🇳 중국</span><span class="geo-temp temp-hot">온도 ▲▲급등</span></div><div class="geo-policy">국가 표준 + 보조금 3중 공세</div><div class="geo-desc">공업부 국가 표준 초안 발표. 선전·상하이 추가 보조금. 2025~2027년 $8B 투자 계획.</div><div class="geo-items"><div class="geo-item"><div class="geo-dot" style="background:var(--red)"></div>국내 기업 유리 표준 규격</div><div class="geo-item"><div class="geo-dot" style="background:var(--red)"></div>로봇 부품 수입 관세 인상 검토</div><div class="geo-item"><div class="geo-dot" style="background:var(--amber)"></div>해외 기업 JV 요구 강화 가능성</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXHIBITIONS -->
+<div class="panel" id="tab-expo">
+  <div class="sec-wrap">
+    <div class="sec-title">글로벌 로봇 전시회</div>
+    <div class="sec-sub">주요 전시회 · 컨퍼런스 · 서밋 캘린더 — 이번 달 개최 행사 <span style="color:var(--red)">●</span> 표시</div>
+    <div id="expoContent"><div class="loading"><i class="ti ti-refresh"></i><div>전시회 데이터 로딩 중...</div></div></div>
+  </div>
+</div>
+
+<!-- PDF 생성 -->
+<div class="panel" id="tab-pdf">
+  <div class="pdf-wrap">
+    <div class="sec-title">PDF 브리핑 생성</div>
+    <div class="sec-sub">오늘 주요 뉴스를 임원 보고용 PDF로 자동 생성합니다</div>
+
+    <div class="pdf-options">
+      <div class="pdf-opt sel" data-type="brief" onclick="selectPdfType(this,'brief')">
+        <div class="pdf-opt-title"><i class="ti ti-file-description" style="font-size:14px;margin-right:4px"></i>Intelligence Brief</div>
+        <div class="pdf-opt-desc">Action Required + 지역 Delta + CVC 시사점 + Bottom Line — 1페이지</div>
+      </div>
+      <div class="pdf-opt" data-type="top10" onclick="selectPdfType(this,'top10')">
+        <div class="pdf-opt-title"><i class="ti ti-layout-list" style="font-size:14px;margin-right:4px"></i>Global Top 10</div>
+        <div class="pdf-opt-desc">오늘 글로벌 Top 10 뉴스 전체 — 스코어, 티어, 요약 포함</div>
+      </div>
+      <div class="pdf-opt" data-type="regional" onclick="selectPdfType(this,'regional')">
+        <div class="pdf-opt-title"><i class="ti ti-world" style="font-size:14px;margin-right:4px"></i>지역별 보고서</div>
+        <div class="pdf-opt-desc">한국 / 미국 / 중국 Top 10 + Regional Delta — 3페이지</div>
+      </div>
+      <div class="pdf-opt" data-type="full" onclick="selectPdfType(this,'full')">
+        <div class="pdf-opt-title"><i class="ti ti-report" style="font-size:14px;margin-right:4px"></i>전체 일간 리포트</div>
+        <div class="pdf-opt-desc">Brief + Global + Regional + Weak Signal 전체 통합 — 5페이지</div>
+      </div>
+    </div>
+
+    <div class="pdf-preview" id="pdfPreview">
+      <div class="pdf-preview-title" id="pdfPreviewTitle">Intelligence Brief</div>
+      <div class="pdf-preview-date" id="pdfPreviewDate"></div>
+      <div id="pdfPreviewContent"></div>
+    </div>
+
+    <button class="pdf-gen-btn" id="pdfGenBtn" onclick="generatePDF()">
+      <i class="ti ti-download" style="font-size:16px"></i> PDF 다운로드
+    </button>
+    <div class="pdf-status" id="pdfStatus"></div>
+  </div>
+</div>
+
+<!-- FILING -->
+<div class="panel" id="tab-filing">
+  <div class="filing-toolbar" id="filingToolbar">
+    <button class="ftag act" data-tag="all">전체</button>
+    <button class="ftag" data-tag="#파트너십">#파트너십</button>
+    <button class="ftag" data-tag="#경쟁사">#경쟁사</button>
+    <button class="ftag" data-tag="#CVC">#CVC</button>
+    <button class="ftag" data-tag="#기술동향">#기술동향</button>
+    <button class="ftag" data-tag="#전략">#전략</button>
+    <button class="ftag" data-tag="#펀딩">#펀딩</button>
+    <button class="ftag" data-tag="#정책">#정책</button>
+    <button class="f-export" id="exportBtn"><i class="ti ti-file-export" style="font-size:12px"></i> 보고서 초안 ↗</button>
+  </div>
+  <div class="filing-feed" id="filingFeed">
+    <div class="filing-empty"><i class="ti ti-bookmark" style="font-size:32px;display:block;margin-bottom:8px;opacity:.25"></i><div class="fe-title">아직 파일링된 기사가 없습니다</div><div style="font-size:11px;color:var(--ink4)">각 탭의 기사에서 북마크 버튼을 눌러 저장하세요</div></div>
+  </div>
+</div>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="side-sec">
+    <div class="side-lbl">Today at a glance</div>
+    <div class="stat-grid" id="statsGrid">
+      <div class="stat-box"><div class="stat-n" id="statScanned">—</div><div class="stat-l">Articles scanned</div></div>
+      <div class="stat-box"><div class="stat-n" id="statAction" style="color:var(--red)">—</div><div class="stat-l">Action required</div></div>
+      <div class="stat-box"><div class="stat-n" id="statWeak" style="color:var(--amber)">—</div><div class="stat-l">Weak signals</div></div>
+      <div class="stat-box"><div class="stat-n" id="statTop">—</div><div class="stat-l">Top score</div></div>
+    </div>
+  </div>
+  <div class="side-sec">
+    <div class="side-lbl">Intelligence Brief</div>
+    <button class="brief-btn" onclick="openBrief()"><i class="ti ti-file-description" style="font-size:14px"></i> 오늘 브리핑 생성</button>
+  </div>
+  <div class="side-sec">
+    <div class="side-lbl">Regional pulse</div>
+    <div class="trend-row"><span class="trend-kw"><span class="reg reg-kr" style="margin-right:4px">KR</span>K-휴머노이드 정책</span><span class="trend-ct">↑</span></div>
+    <div class="trend-row"><span class="trend-kw"><span class="reg reg-us" style="margin-right:4px">US</span>수출 통제 검토</span><span class="trend-ct">→</span></div>
+    <div class="trend-row"><span class="trend-kw"><span class="reg reg-cn" style="margin-right:4px">CN</span>양산 경쟁 가속</span><span class="trend-ct">↑↑</span></div>
+  </div>
+  <div class="side-sec">
+    <div class="side-lbl">Trending keywords</div>
+    <div id="trendingKws"><div style="font-size:11px;color:var(--ink4)">로딩 중...</div></div>
+  </div>
+  <div class="side-sec">
+    <div class="side-lbl">Competitor activity</div>
+    <div class="comp-row"><span class="comp-n">Figure</span><div class="comp-bw"><div class="comp-b" style="width:92%"></div></div><span class="comp-c">11</span></div>
+    <div class="comp-row"><span class="comp-n">Agibot</span><div class="comp-bw"><div class="comp-b" style="width:78%"></div></div><span class="comp-c">9</span></div>
+    <div class="comp-row"><span class="comp-n">Unitree</span><div class="comp-bw"><div class="comp-b" style="width:62%"></div></div><span class="comp-c">7</span></div>
+    <div class="comp-row"><span class="comp-n">1X</span><div class="comp-bw"><div class="comp-b" style="width:50%"></div></div><span class="comp-c">6</span></div>
+    <div class="comp-row"><span class="comp-n">BD</span><div class="comp-bw"><div class="comp-b" style="width:42%"></div></div><span class="comp-c">5</span></div>
+  </div>
+  <div class="side-sec">
+    <div class="side-lbl">Quick actions</div>
+    <div class="qa-glbl">파트너십</div>
+    <button class="qa-btn"><i class="ti ti-handshake"></i><span>파트너십 후보 발굴</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn"><i class="ti ti-arrows-exchange"></i><span>협력→경쟁 전환 리스크</span><span class="qa-arr">↗</span></button>
+    <div class="qa-glbl">전략</div>
+    <button class="qa-btn"><i class="ti ti-chart-arrows"></i><span>경쟁 구도 변화 분석</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn"><i class="ti ti-square-dot"></i><span>화이트스페이스 탐지</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn"><i class="ti ti-presentation"></i><span>임원 전략 브리핑 초안</span><span class="qa-arr">↗</span></button>
+    <div class="qa-glbl">CVC · M&A</div>
+    <button class="qa-btn"><i class="ti ti-trending-up"></i><span>투자 후보 우선순위</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn"><i class="ti ti-coin"></i><span>펀딩 라운드 동향</span><span class="qa-arr">↗</span></button>
+    <div class="qa-glbl">지역 분석</div>
+    <button class="qa-btn"><i class="ti ti-world"></i><span>Regional Delta 분석</span><span class="qa-arr">↗</span></button>
+    <button class="qa-btn"><i class="ti ti-building-bank"></i><span>지정학 리스크 평가</span><span class="qa-arr">↗</span></button>
+  </div>
+</aside>
+</div>
+
+<!-- BRIEF MODAL -->
+<div class="modal-bg" id="briefModal">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="document.getElementById('briefModal').classList.remove('open')"><i class="ti ti-x"></i></button>
+    <div class="modal-title">Intelligence Brief</div>
+    <div class="modal-sub" id="briefSub">로딩 중...</div>
+    <div id="briefContent">
+      <div class="loading"><i class="ti ti-refresh"></i><div>브리핑 생성 중...</div></div>
+    </div>
+    <div class="modal-acts">
+      <button class="modal-act" onclick="switchTab('pdf');document.getElementById('briefModal').classList.remove('open')"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> PDF 생성</button>
+      <button class="modal-act"><i class="ti ti-presentation" style="font-size:12px"></i> PPT 초안</button>
+      <button class="modal-act"><i class="ti ti-mail" style="font-size:12px"></i> 이메일 초안</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAG POPUP -->
+<div class="tag-bg" id="tagBg">
+  <div class="tag-popup" onclick="event.stopPropagation()">
+    <div class="tag-pop-title">태그 추가</div>
+    <input type="text" class="tag-field" id="tagField" placeholder="#태그명">
+    <div class="tag-presets">
+      <span class="tag-pre" data-tag="#파트너십">#파트너십</span>
+      <span class="tag-pre" data-tag="#경쟁사">#경쟁사</span>
+      <span class="tag-pre" data-tag="#CVC">#CVC</span>
+      <span class="tag-pre" data-tag="#기술동향">#기술동향</span>
+      <span class="tag-pre" data-tag="#전략">#전략</span>
+      <span class="tag-pre" data-tag="#펀딩">#펀딩</span>
+      <span class="tag-pre" data-tag="#정책">#정책</span>
+      <span class="tag-pre" data-tag="#중국">#중국</span>
+    </div>
+    <button class="tag-save" id="tagSave">저장</button>
+  </div>
+</div>
+
+<script>
+// ── STATE ────────────────────────────────────────────────
+let NEWS = null;
+let EXPO = null;
+let BKS = JSON.parse(localStorage.getItem('rid_bks') || '[]');
+let tagId = null;
+let filTag = 'all';
+let pdfType = 'brief';
+
+// ── TABS ─────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.snav').forEach(x => x.classList.remove('act'));
+  document.querySelectorAll('.panel').forEach(x => x.classList.remove('show'));
+  const tab = document.querySelector(`.snav[data-tab="${name}"]`);
+  if (tab) tab.classList.add('act');
+  const panel = document.getElementById(`tab-${name}`);
+  if (panel) panel.classList.add('show');
+  if (name === 'pdf') updatePdfPreview();
+}
+document.querySelectorAll('.snav').forEach(t => {
+  t.addEventListener('click', () => switchTab(t.dataset.tab));
+});
+
+// ── DATA LOAD ────────────────────────────────────────────
+async function loadData() {
+  try {
+    const [newsRes, expoRes] = await Promise.all([
+      fetch('data/news.json').catch(() => null),
+      fetch('data/exhibitions.json').catch(() => null)
+    ]);
+    if (newsRes && newsRes.ok) {
+      NEWS = await newsRes.json();
+      renderAll();
+    } else {
+      renderFallback();
+    }
+    if (expoRes && expoRes.ok) {
+      EXPO = await expoRes.json();
+      renderExhibitions();
+    } else {
+      renderExhibitionsFallback();
+    }
+  } catch (e) {
+    console.error(e);
+    renderFallback();
+    renderExhibitionsFallback();
+  }
+}
+
+function renderAll() {
+  if (!NEWS) return;
+  const d = NEWS;
+
+  // Update time
+  const dt = new Date(d.generated_at);
+  document.getElementById('updateTime').textContent =
+    dt.toLocaleString('ko-KR', {month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}) + ' KST';
+
+  // Stats
+  document.getElementById('statScanned').textContent = d.stats?.total_scanned || '—';
+  document.getElementById('statAction').textContent = d.stats?.action_count || '—';
+  document.getElementById('statWeak').textContent = d.stats?.weak_signal_count || '—';
+  document.getElementById('statTop').textContent = d.stats?.top_score || '—';
+
+  // Ticker
+  const items = (d.global_top10 || []).slice(0, 5).map(a =>
+    `<span class="ti-item"><b>${a.source || ''}</b>${a.title}</span>`
+  ).join('');
+  document.getElementById('tickerTrack').innerHTML = items + items; // loop
+
+  // Trending keywords
+  const allKws = (d.global_top10 || []).flatMap(a => a.keywords || []);
+  const kwCount = {};
+  allKws.forEach(k => { kwCount[k] = (kwCount[k] || 0) + 1; });
+  const topKws = Object.entries(kwCount).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  document.getElementById('trendingKws').innerHTML = topKws.map(([k,c]) =>
+    `<div class="trend-row"><span class="trend-kw">${k}</span><span class="trend-ct">×${c}</span></div>`
+  ).join('');
+
+  renderGlobalTop10(d.global_top10 || []);
+  renderRegional(d.regional || {}, d.regional_delta || {});
+  renderWeakSignals(d.weak_signals || []);
+  renderBriefContent(d.brief || {}, d);
+  updatePdfPreview();
+}
+
+// ── HELPERS ──────────────────────────────────────────────
+const sigClass = { Action: 'sig-A', Watch: 'sig-W', FYI: 'sig-F' };
+const tierClass = { T1: 't1', T2: 't2', T3: 't3', T4: 't4', T5: 't5' };
+const regClass = { KR: 'reg-kr', US: 'reg-us', CN: 'reg-cn' };
+const fillClass = { KR: 'fill-kr', US: 'fill-us', CN: 'fill-cn' };
+
+function sigBadge(s) { return `<span class="sig ${sigClass[s]||'sig-F'}">${s||'FYI'}</span>`; }
+function tierBadge(t) { return `<span class="tier ${tierClass[t]||'t5'}">${t||'T5'}</span>`; }
+function regBadge(r) { return r && regClass[r] ? `<span class="reg ${regClass[r]}">${r}</span>` : ''; }
+function scoreBadge(s) { return `<span class="stag">${s||'—'}</span>`; }
+
+// ── GLOBAL TOP 10 ────────────────────────────────────────
+function renderGlobalTop10(articles) {
+  if (!articles.length) { document.getElementById('globalTop10').innerHTML = '<div class="loading">데이터 없음</div>'; return; }
+
+  let html = '';
+  // Lead 2
+  const [a1, a2] = articles;
+  if (a1 && a2) {
+    html += `<div class="g10-lead">
+      <div class="lead-cell">
+        <div class="story-rank">No. 01 &nbsp;·&nbsp; Score ${a1.score}</div>
+        <div class="hl-lg" onclick="window.open('${a1.url||'#'}','_blank')">${a1.title}</div>
+        <div class="deck">${a1.summary_ko || a1.summary || ''}</div>
+        <div class="byline">${sigBadge(a1.signal)}${tierBadge(a1.tier)}${regBadge(a1.region)}<span class="srctxt">${a1.source||''}</span>${scoreBadge(a1.score)}</div>
+      </div>
+      <div class="lead-cell">
+        <div class="story-rank">No. 02 &nbsp;·&nbsp; Score ${a2.score}</div>
+        <div class="hl-lg" onclick="window.open('${a2.url||'#'}','_blank')">${a2.title}</div>
+        <div class="deck">${a2.summary_ko || a2.summary || ''}</div>
+        <div class="byline">${sigBadge(a2.signal)}${tierBadge(a2.tier)}${regBadge(a2.region)}<span class="srctxt">${a2.source||''}</span>${scoreBadge(a2.score)}</div>
+      </div>
+    </div>`;
+  }
+
+  // Mid 4 (3~6)
+  const mid = articles.slice(2, 6);
+  if (mid.length) {
+    html += `<div class="g10-mid">` + mid.map((a, i) => `
+      <div class="story-card" onclick="window.open('${a.url||'#'}','_blank')" data-id="g${i+3}"
+        data-title="${esc(a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
+        data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}" data-src="${esc(a.source||'')}">
+        <button class="bm-btn" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
+        <div class="story-rank">No. 0${i+3} &nbsp;·&nbsp; ${a.score}</div>
+        <div class="hl-md">${a.title}</div>
+        <div class="deck-sm">${a.summary_ko || a.summary || ''}</div>
+        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${regBadge(a.region)}<span class="srctxt">${a.source||''}</span>${scoreBadge(a.score)}</div>
+      </div>`).join('') + `</div>`;
+  }
+
+  // Bot 3 (7~10 condensed)
+  const bot = articles.slice(6, 10);
+  if (bot.length) {
+    const chunks = [];
+    for (let i = 0; i < bot.length; i += Math.ceil(bot.length/3)) chunks.push(bot.slice(i, i + Math.ceil(bot.length/3)));
+    html += `<div class="g10-bot">` + chunks.map((chunk) =>
+      `<div class="mini-card">` + chunk.map((a, j) => `
+        <div class="mini-num">No.${articles.indexOf(a)+1} &nbsp;·&nbsp; ${a.score}</div>
+        <div class="hl-sm">${a.title}</div>
+        <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
+        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}</div>
+        ${j < chunk.length-1 ? '<div style="margin:8px 0;border-top:1px dashed var(--rule)"></div>' : ''}
+      `).join('') + `</div>`
+    ).join('') + `</div>`;
+  }
+
+  document.getElementById('globalTop10').innerHTML = html;
+  restoreBkStates();
+}
+
+// ── REGIONAL ─────────────────────────────────────────────
+function renderRegional(regional, delta) {
+  const sec = document.getElementById('regionalSection');
+  sec.style.display = '';
+
+  // Delta
+  if (delta.topic) {
+    document.getElementById('deltaLabel').textContent = `REGIONAL DELTA — ${delta.topic}`;
+    document.getElementById('deltaKR').textContent = delta.kr_angle || '';
+    document.getElementById('deltaUS').textContent = delta.us_angle || '';
+    document.getElementById('deltaCN').textContent = delta.cn_angle || '';
+  }
+
+  // 3 cols: KR, US, CN
+  const regions = [
+    { key: 'KR', flag: '🇰🇷', label: '한국', color: 'kr', fill: 'fill-kr' },
+    { key: 'US', flag: '🇺🇸', label: '미국', color: 'us', fill: 'fill-us' },
+    { key: 'CN', flag: '🇨🇳', label: '중국', color: 'cn', fill: 'fill-cn' },
+  ];
+
+  document.getElementById('reg3col').innerHTML = regions.map(({ key, flag, label, color, fill }) => {
+    const arts = (regional[key] || []).slice(0, 10);
+    return `<div class="rcol">
+      <div class="rcol-head" style="border-top:3px solid var(--${color})">
+        <span class="rcol-flag">${flag}</span><span class="rcol-lbl">${label}</span>
+      </div>
+      ${arts.map((a, i) => `
+        <div class="rs" onclick="window.open('${a.url||'#'}','_blank')">
+          <div class="rs-num ${i<3?'hi':''}">${String(i+1).padStart(2,'0')}</div>
+          <div>
+            <div class="rs-title">${a.title}</div>
+            <div class="rs-deck">${a.summary_ko || a.summary || ''}</div>
+            <div class="rs-foot">${sigBadge(a.signal)}${tierBadge(a.tier)}</div>
+          </div>
+          <div class="rs-scol">
+            <span class="rs-sv">${a.score}</span>
+            <div class="rs-bar"><div class="rs-fill ${fill}" style="width:${a.score*10}%"></div></div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+// ── WEAK SIGNAL ──────────────────────────────────────────
+function renderWeakSignals(signals) {
+  if (!signals.length) {
+    document.getElementById('weakGrid').innerHTML = '<div style="color:var(--ink4);font-size:12px;padding:20px">오늘 탐지된 Weak Signal이 없습니다</div>';
+    return;
+  }
+  const levelClass = { hot: 'sp-hot', warm: 'sp-warm', cool: 'sp-cool' };
+  const levelLabel = { hot: '폭등', warm: '상승', cool: '주목' };
+  document.getElementById('weakGrid').innerHTML = signals.map(s => `
+    <div class="ws-card">
+      <div class="ws-top">
+        <span class="ws-co">${s.entity}</span>
+        <span class="spike ${levelClass[s.level]||'sp-cool'}">↑ ${s.spike_pct}% · ${levelLabel[s.level]||''}</span>
+      </div>
+      <div class="ws-sig">30일 평균 ${s.avg_count}회 → 오늘 ${s.today_count}회. 급격한 언급량 증가 포착.</div>
+      <div class="ws-bar-row">
+        <div class="ws-bg"><div class="ws-fill" style="width:${Math.min(100, s.spike_pct/15)}%"></div></div>
+        <span class="ws-num">${s.avg_count} → ${s.today_count}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ── BRIEF ────────────────────────────────────────────────
+function openBrief() {
+  document.getElementById('briefModal').classList.add('open');
+}
+document.getElementById('briefModal').addEventListener('click', function(e) { if(e.target===this)this.classList.remove('open'); });
+
+function renderBriefContent(brief, data) {
+  document.getElementById('briefSub').textContent =
+    `${data.date || ''} · ${data.stats?.total_scanned || '—'} articles 분석`;
+
+  let html = '';
+  if (brief.action_required?.length) {
+    html += `<div class="modal-sec"><div class="modal-sec-lbl">Action required</div>` +
+      brief.action_required.map(t => `<div class="modal-item"><div class="modal-dot" style="background:var(--red)"></div><div class="modal-txt">${t}</div></div>`).join('') +
+      `</div>`;
+  }
+  if (brief.regional_delta) {
+    html += `<div class="modal-sec"><div class="modal-sec-lbl">Regional Delta</div>` +
+      Object.entries(brief.regional_delta).map(([r, t]) =>
+        `<div class="modal-item"><div class="modal-dot" style="background:var(--${r.toLowerCase()})"></div><div class="modal-txt"><b>${r}:</b> ${t}</div></div>`
+      ).join('') + `</div>`;
+  }
+  if (brief.cvc_insight?.length) {
+    html += `<div class="modal-sec"><div class="modal-sec-lbl">CVC / 파트너십 시사점</div>` +
+      brief.cvc_insight.map(t => `<div class="modal-item"><div class="modal-dot" style="background:var(--purple)"></div><div class="modal-txt">${t}</div></div>`).join('') +
+      `</div>`;
+  }
+  if (brief.bottom_line) {
+    html += `<div class="modal-sec"><div class="modal-sec-lbl">Bottom line</div>` +
+      `<div class="modal-item"><div class="modal-dot" style="background:var(--ink)"></div><div class="modal-txt">${brief.bottom_line}</div></div></div>`;
+  }
+  document.getElementById('briefContent').innerHTML = html || '<div style="color:var(--ink4);font-size:12px">브리핑 데이터 없음</div>';
+}
+
+// ── EXHIBITIONS ──────────────────────────────────────────
+function renderExhibitions() {
+  if (!EXPO) return;
+  const thisMonth = EXPO.this_month || [];
+  const upcoming = EXPO.upcoming || [];
+
+  const thisMonthCount = thisMonth.length;
+  if (thisMonthCount) {
+    const el = document.getElementById('expoThisMonth');
+    if (el) el.textContent = thisMonthCount;
+  }
+
+  let html = '';
+  if (thisMonth.length) {
+    html += `<div class="expo-section-title">🔴 이번 달 — ${EXPO.current_month}</div>`;
+    html += `<div class="expo-grid">` + thisMonth.map(e => expoCard(e, true)).join('') + `</div>`;
+  }
+  if (upcoming.length) {
+    html += `<div class="expo-section-title">📅 향후 예정</div>`;
+    html += `<div class="expo-grid">` + upcoming.map(e => expoCard(e, false)).join('') + `</div>`;
+  }
+  document.getElementById('expoContent').innerHTML = html || '<div style="color:var(--ink4);padding:20px">전시회 데이터 없음</div>';
+}
+
+function expoCard(e, isThisMonth) {
+  return `<div class="expo-card ${isThisMonth ? 'this-month' : ''}" onclick="window.open('${e.url||'#'}','_blank')">
+    <div class="expo-head">
+      <div>
+        <div class="expo-name">${e.name}</div>
+        <div class="expo-full-name">${e.full_name || ''}</div>
+      </div>
+      <span class="expo-tier ${e.tier==='Tier 1'?'expo-t1':'expo-t2'}">${e.tier||''}</span>
+    </div>
+    <div class="expo-meta">
+      <span class="expo-month">${e.month_name || ''}</span>
+      <span class="expo-loc"><i class="ti ti-map-pin" style="font-size:11px"></i> ${e.location||''}</span>
+      ${isThisMonth ? '<span class="expo-this">● 이번 달</span>' : ''}
+    </div>
+    <div class="expo-desc">${e.description||''}</div>
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="expo-focus">${(e.focus||[]).slice(0,3).map(f=>`<span class="expo-tag">${f}</span>`).join('')}</div>
+      <span class="expo-rel">${e.relevance||''}</span>
+    </div>
+  </div>`;
+}
+
+function renderExhibitionsFallback() {
+  // 정적 데이터로 폴백 (data/exhibitions.json 없을 때)
+  EXPO = {
+    current_month: new Date().toLocaleString('en-US',{month:'long',year:'numeric'}),
+    this_month: [],
+    upcoming: [
+      {name:'Automatica',full_name:'Automatica Munich',month:6,month_name:'June 2026',location:'Munich, Germany',description:'유럽 최대 산업 자동화·로봇 전시회. 제조 로봇, 협동 로봇 중심.',relevance:'★★★★★',focus:['industrial robot','cobot','automation'],url:'https://www.automatica-munich.com',tier:'Tier 1'},
+      {name:'NVIDIA GTC',full_name:'GPU Technology Conference',month:3,month_name:'March 2027',location:'San Jose, USA',description:'NVIDIA 주관. Isaac Lab, GR00T, Jetson 등 Physical AI 스택 핵심 발표 무대.',relevance:'★★★★★',focus:['Physical AI','GR00T','Isaac Sim'],url:'https://www.nvidia.com/gtc/',tier:'Tier 1'},
+      {name:'IROS 2026',full_name:'IEEE/RSJ Intelligent Robots and Systems',month:10,month_name:'October 2026',location:'Abu Dhabi, UAE',description:'세계 양대 로봇 학술대회. 지능형 로봇 시스템 연구 발표.',relevance:'★★★★☆',focus:['intelligent robot','autonomous system','HRI'],url:'https://iros2026.org',tier:'Tier 1'},
+      {name:'Humanoids Summit',full_name:'The Humanoids Summit',month:11,month_name:'November 2026',location:'San Francisco, USA',description:'휴머노이드 로봇 전문 컨퍼런스. Figure, 1X, Agility 등 주요 기업 참가.',relevance:'★★★★★',focus:['humanoid','Physical AI','embodied AI'],url:'https://humanoidssummit.com',tier:'Tier 1'},
+    ]
+  };
+  renderExhibitions();
+}
+
+// ── PDF GENERATION ───────────────────────────────────────
+function selectPdfType(el, type) {
+  document.querySelectorAll('.pdf-opt').forEach(x => x.classList.remove('sel'));
+  el.classList.add('sel');
+  pdfType = type;
+  updatePdfPreview();
+}
+
+function updatePdfPreview() {
+  const titles = { brief: 'Intelligence Brief', top10: 'Global Top 10', regional: '지역별 보고서', full: '전체 일간 리포트' };
+  document.getElementById('pdfPreviewTitle').textContent = titles[pdfType] || '';
+  document.getElementById('pdfPreviewDate').textContent = NEWS ? `생성일: ${NEWS.date || '—'} · Robot Intelligence Daily` : '데이터 로딩 대기 중...';
+
+  if (!NEWS) {
+    document.getElementById('pdfPreviewContent').innerHTML = '<div style="color:var(--ink4);font-size:11px">뉴스 데이터 로딩 후 미리보기가 표시됩니다</div>';
+    return;
+  }
+
+  let html = '';
+  const articles = NEWS.global_top10 || [];
+  const brief = NEWS.brief || {};
+
+  if (pdfType === 'brief') {
+    if (brief.action_required?.length) {
+      html += `<div class="pdf-item"><div class="pdf-item-rank">ACTION REQUIRED</div>` + brief.action_required.map(t=>`<div style="font-size:11px;margin-bottom:4px">• ${t}</div>`).join('') + `</div>`;
+    }
+    if (brief.bottom_line) {
+      html += `<div class="pdf-item"><div class="pdf-item-rank">BOTTOM LINE</div><div class="pdf-item-sum">${brief.bottom_line}</div></div>`;
+    }
+  } else if (pdfType === 'top10' || pdfType === 'full') {
+    html = articles.slice(0, pdfType==='full'?5:10).map((a,i) => `
+      <div class="pdf-item">
+        <div class="pdf-item-rank">No.${i+1} &nbsp;·&nbsp; Score ${a.score} &nbsp;·&nbsp; ${a.signal||'FYI'} &nbsp;·&nbsp; ${a.tier}</div>
+        <div class="pdf-item-title">${a.title}</div>
+        <div class="pdf-item-sum">${a.summary_ko || a.summary || ''}</div>
+      </div>`).join('');
+  } else if (pdfType === 'regional') {
+    const reg = NEWS.regional || {};
+    ['KR','US','CN'].forEach(r => {
+      const arts = (reg[r] || []).slice(0,3);
+      if (arts.length) {
+        html += `<div class="pdf-item"><div class="pdf-item-rank">${r} TOP 3</div>` +
+          arts.map(a=>`<div style="font-size:11px;margin-bottom:3px">• ${a.title}</div>`).join('') + `</div>`;
+      }
+    });
+  }
+
+  document.getElementById('pdfPreviewContent').innerHTML = html || '<div style="color:var(--ink4)">미리보기 없음</div>';
+}
+
+async function generatePDF() {
+  const btn = document.getElementById('pdfGenBtn');
+  const status = document.getElementById('pdfStatus');
+
+  if (!NEWS) { status.textContent = '⚠ 뉴스 데이터가 로드되지 않았습니다'; return; }
+
+  btn.disabled = true;
+  status.textContent = '📄 PDF 생성 중...';
+
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const pw = doc.internal.pageSize.getWidth();
+    const ph = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const cw = pw - margin * 2;
+    let y = margin;
+
+    // ── Header ──
+    doc.setFillColor(15, 15, 15);
+    doc.rect(0, 0, pw, 18, 'F');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Robot Intelligence Daily', margin, 12);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Generated: ${NEWS.date || new Date().toISOString().slice(0,10)}`, pw - margin, 12, { align: 'right' });
+
+    y = 30;
+    doc.setTextColor(15, 15, 15);
+
+    // ── Title ──
+    const titles = { brief: 'Intelligence Brief', top10: 'Global Top 10 Report', regional: 'Regional News Report', full: 'Daily Robot Intelligence Report' };
+    doc.setFontSize(20);
+    doc.setFont('helvetica', 'bold');
+    doc.text(titles[pdfType] || 'Report', margin, y);
+    y += 8;
+    doc.setDrawColor(200, 16, 46);
+    doc.setLineWidth(0.8);
+    doc.line(margin, y, pw - margin, y);
+    y += 8;
+
+    // ── Stats box ──
+    doc.setFillColor(242, 242, 238);
+    doc.rect(margin, y, cw, 16, 'F');
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(90, 90, 90);
+    const stats = NEWS.stats || {};
+    doc.text(`Articles Scanned: ${stats.total_scanned||'—'}  |  Action Required: ${stats.action_count||'—'}  |  Weak Signals: ${stats.weak_signal_count||'—'}  |  Top Score: ${stats.top_score||'—'}`, margin + 4, y + 10);
+    y += 22;
+
+    const addText = (text, size, bold, color, indent) => {
+      doc.setFontSize(size);
+      doc.setFont('helvetica', bold ? 'bold' : 'normal');
+      doc.setTextColor(...(color || [15,15,15]));
+      const lines = doc.splitTextToSize(text, cw - (indent||0));
+      if (y + lines.length * (size * 0.45) > ph - 20) { doc.addPage(); y = margin; }
+      doc.text(lines, margin + (indent||0), y);
+      y += lines.length * (size * 0.45) + 3;
+    };
+
+    const brief = NEWS.brief || {};
+    const articles = NEWS.global_top10 || [];
+    const regional = NEWS.regional || {};
+
+    if (pdfType === 'brief' || pdfType === 'full') {
+      // Action Required
+      if (brief.action_required?.length) {
+        addText('ACTION REQUIRED', 10, true, [200,16,46]);
+        brief.action_required.forEach(t => addText(`• ${t}`, 9, false, null, 4));
+        y += 3;
+      }
+      // Regional Delta
+      if (brief.regional_delta) {
+        addText('REGIONAL DELTA', 10, true, [30,60,180]);
+        Object.entries(brief.regional_delta).forEach(([r,t]) => addText(`${r}: ${t}`, 9, false, null, 4));
+        y += 3;
+      }
+      // CVC
+      if (brief.cvc_insight?.length) {
+        addText('CVC / PARTNERSHIP INSIGHTS', 10, true, [91,33,182]);
+        brief.cvc_insight.forEach(t => addText(`• ${t}`, 9, false, null, 4));
+        y += 3;
+      }
+      // Bottom Line
+      if (brief.bottom_line) {
+        doc.setFillColor(242, 242, 238);
+        const blLines = doc.splitTextToSize(brief.bottom_line, cw - 8);
+        doc.rect(margin, y - 2, cw, blLines.length * 4.5 + 8, 'F');
+        addText('BOTTOM LINE', 10, true, [15,15,15]);
+        addText(brief.bottom_line, 9, false, [15,15,15], 4);
+      }
+    }
+
+    if (pdfType === 'top10' || pdfType === 'full') {
+      if (pdfType === 'full') { doc.addPage(); y = margin; addText('GLOBAL TOP 10', 14, true); y += 3; }
+      articles.slice(0, pdfType==='full'?10:10).forEach((a, i) => {
+        addText(`${i+1}. [${a.signal||'FYI'}] [${a.tier}] Score: ${a.score}  |  ${a.source||''}`, 8, false, [120,120,120]);
+        addText(a.title, 10, true);
+        addText(a.summary_ko || a.summary || '', 8, false, [60,60,60], 4);
+        y += 3;
+      });
+    }
+
+    if (pdfType === 'regional' || pdfType === 'full') {
+      const regions = [['KR','🇰🇷 한국',[200,16,46]],['US','🇺🇸 미국',[30,60,180]],['CN','🇨🇳 중국',[180,112,9]]];
+      regions.forEach(([key, label, color]) => {
+        doc.addPage(); y = margin;
+        addText(label, 14, true, color);
+        doc.setDrawColor(...color);
+        doc.line(margin, y, pw-margin, y); y += 6;
+        (regional[key]||[]).slice(0,10).forEach((a,i) => {
+          addText(`${i+1}. [${a.signal||'FYI'}] Score: ${a.score}`, 8, false, [120,120,120]);
+          addText(a.title, 10, true);
+          addText(a.summary_ko || a.summary || '', 8, false, [60,60,60], 4);
+          y += 2;
+        });
+      });
+    }
+
+    // ── Footer ──
+    const pages = doc.internal.getNumberOfPages();
+    for (let p = 1; p <= pages; p++) {
+      doc.setPage(p);
+      doc.setFillColor(15,15,15);
+      doc.rect(0, ph-10, pw, 10, 'F');
+      doc.setTextColor(180,180,180);
+      doc.setFontSize(7);
+      doc.text('Robot Intelligence Daily — Confidential', margin, ph-4);
+      doc.text(`Page ${p} / ${pages}`, pw-margin, ph-4, { align: 'right' });
+    }
+
+    const fname = `RID_${pdfType}_${NEWS.date||'report'}.pdf`;
+    doc.save(fname);
+    status.textContent = `✅ ${fname} 다운로드 완료`;
+  } catch (e) {
+    console.error(e);
+    status.textContent = '⚠ PDF 생성 중 오류 발생: ' + e.message;
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ── BOOKMARK / FILING ────────────────────────────────────
+function esc(s) { return (s||'').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+function updCnt() { const el=document.getElementById('bkCnt'); el.textContent=BKS.length||''; }
+function saveBks() { localStorage.setItem('rid_bks', JSON.stringify(BKS)); }
+function getBk(id) { return BKS.find(b=>b.id==id); }
+
+function toggleBk(btn) {
+  const card = btn.closest('[data-id]');
+  const id = card.dataset.id;
+  if (getBk(id)) {
+    BKS = BKS.filter(b => b.id != id);
+    btn.classList.remove('on'); btn.innerHTML = '<i class="ti ti-bookmark"></i>';
+  } else {
+    BKS.push({
+      id, title: card.dataset.title || '', summary: card.dataset.summary || '',
+      score: card.dataset.score || '', tier: card.dataset.tier || '',
+      signal: card.dataset.signal || 'FYI', src: card.dataset.src || '',
+      date: new Date().toISOString().slice(0,10), tags: []
+    });
+    btn.classList.add('on'); btn.innerHTML = '<i class="ti ti-bookmark-filled"></i>';
+    openTag(id);
+  }
+  saveBks(); updCnt(); renderFiling();
+}
+
+function restoreBkStates() {
+  document.querySelectorAll('[data-id] .bm-btn').forEach(btn => {
+    const id = btn.closest('[data-id]').dataset.id;
+    if (getBk(id)) { btn.classList.add('on'); btn.innerHTML = '<i class="ti ti-bookmark-filled"></i>'; }
+  });
+}
+
+function openTag(id) {
+  tagId = id;
+  document.getElementById('tagBg').classList.add('open');
+  document.getElementById('tagField').value = '';
+  document.getElementById('tagField').focus();
+}
+document.getElementById('tagBg').addEventListener('click', function(e) { if(e.target===this) closeTag(); });
+function closeTag() { document.getElementById('tagBg').classList.remove('open'); tagId = null; }
+
+document.querySelectorAll('.tag-pre').forEach(p => {
+  p.addEventListener('click', () => {
+    const f = document.getElementById('tagField');
+    f.value = f.value.trim() ? f.value.trim() + ' ' + p.dataset.tag : p.dataset.tag;
+  });
+});
+document.getElementById('tagSave').addEventListener('click', () => {
+  const tags = document.getElementById('tagField').value.trim().split(/\s+/).filter(t=>t.startsWith('#')&&t.length>1);
+  if (tagId) { const bk=getBk(tagId); if(bk){bk.tags=[...new Set([...bk.tags,...tags])];saveBks();} }
+  closeTag(); renderFiling();
+});
+document.getElementById('tagField').addEventListener('keydown', e => {
+  if(e.key==='Enter') document.getElementById('tagSave').click();
+  if(e.key==='Escape') closeTag();
+});
+
+document.querySelectorAll('.ftag').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.ftag').forEach(x=>x.classList.remove('act'));
+    b.classList.add('act'); filTag=b.dataset.tag; renderFiling();
+  });
+});
+
+function renderFiling() {
+  const feed = document.getElementById('filingFeed');
+  const filtered = filTag==='all' ? BKS : BKS.filter(b=>b.tags.includes(filTag));
+  if (!filtered.length) {
+    feed.innerHTML = `<div class="filing-empty"><i class="ti ti-bookmark" style="font-size:32px;display:block;margin-bottom:8px;opacity:.25"></i><div class="fe-title">${BKS.length===0?'아직 파일링된 기사가 없습니다':'해당 태그의 기사가 없습니다'}</div><div style="font-size:11px;color:var(--ink4)">${BKS.length===0?'각 탭에서 북마크 버튼을 눌러 저장하세요':'다른 태그를 선택해보세요'}</div></div>`;
+    return;
+  }
+  const sm={'Action':'sig-A','Watch':'sig-W','FYI':'sig-F'};
+  const tm={'T1':'t1','T2':'t2','T3':'t3','T4':'t4','T5':'t5'};
+  feed.innerHTML = filtered.slice().reverse().map(b => `
+    <div class="bk-card">
+      <div class="bk-head"><span class="sig ${sm[b.signal]||'sig-F'}">${b.signal||'FYI'}</span><span class="tier ${tm[b.tier]||'t5'}">${b.tier||''}</span><span class="srctxt">${b.src||''}</span></div>
+      <div class="bk-title">${b.title}</div>
+      <div class="bk-sum">${b.summary}</div>
+      <div class="bk-tags">${b.tags.map(t=>`<span class="bk-pill">${t}</span>`).join('')}<button class="bk-addtag" onclick="openTag('${b.id}')">+ 태그</button></div>
+      <div class="bk-meta">${b.date} 파일링 · Score ${b.score}</div>
+      <button class="bk-rm" onclick="removeBk('${b.id}')"><i class="ti ti-x"></i></button>
+    </div>`).join('');
+}
+
+function removeBk(id) {
+  BKS = BKS.filter(b=>b.id!=id); saveBks(); updCnt(); renderFiling();
+  const btn = document.querySelector(`[data-id="${id}"] .bm-btn`);
+  if(btn){btn.classList.remove('on');btn.innerHTML='<i class="ti ti-bookmark"></i>';}
+}
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  if (!BKS.length) { alert('파일링된 기사가 없습니다.'); return; }
+  const txt = `Robot Intelligence Daily — Filing Export\n생성: ${new Date().toLocaleDateString('ko-KR')} · ${BKS.length}건\n${'─'.repeat(50)}\n\n` +
+    BKS.map(b=>`[${b.date}] ${b.tier} · ${b.signal}\n제목: ${b.title}\n요약: ${b.summary}\n태그: ${b.tags.join(', ')||'없음'}\nScore: ${b.score}`).join('\n\n─\n\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));
+  a.download = `RID_filing_${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+});
+
+// ── FALLBACK (no data) ───────────────────────────────────
+function renderFallback() {
+  document.getElementById('globalTop10').innerHTML = `
+    <div style="text-align:center;padding:40px;color:var(--ink4)">
+      <i class="ti ti-refresh" style="font-size:28px;display:block;margin-bottom:8px;opacity:.3"></i>
+      <div style="font-size:13px;font-weight:500;margin-bottom:4px">뉴스 데이터 없음</div>
+      <div style="font-size:11px">GitHub Actions가 아직 실행되지 않았습니다.<br>Actions 탭에서 수동으로 실행해주세요.</div>
+    </div>`;
+  document.getElementById('updateTime').textContent = '데이터 대기 중';
+}
+
+// ── INIT ─────────────────────────────────────────────────
+updCnt();
+renderFiling();
+loadData();
+</script>
+</body>
+</html>

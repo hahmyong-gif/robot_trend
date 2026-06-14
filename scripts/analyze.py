@@ -1,0 +1,264 @@
+#!/usr/bin/env python3
+"""
+analyze.py — Claude API로 기사 분석 + 최종 JSON 생성
+"""
+import anthropic
+import json
+import os
+import time
+from datetime import datetime, timezone
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
+client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
+
+SYSTEM = """당신은 LG Electronics 로봇/Physical AI 전략팀 수석 분석가입니다.
+뉴스 기사를 분석해서 반드시 아래 JSON 형식만 반환하세요. 다른 텍스트는 절대 포함하지 마세요."""
+
+def analyze(title, summary, region):
+    prompt = f"""기사 분석:
+제목: {title}
+요약: {summary}
+출처 지역: {region}
+
+다음 JSON만 반환 (다른 텍스트 없이):
+{{
+  "summary_ko": "한국어 2문장 핵심 요약",
+  "signal": "Action 또는 Watch 또는 FYI",
+  "signal_reason": "분류 이유 1문장",
+  "lg_implication": "LG전자 관점 시사점 1문장",
+  "keywords": ["핵심키워드1", "핵심키워드2", "핵심키워드3"]
+}}
+
+signal 기준:
+- Action: LG 전략/사업에 즉각 영향, 빠른 대응 필요
+- Watch: 중기적으로 모니터링 필요한 동향
+- FYI: 참고용 정보"""
+
+    try:
+        msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=400,
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            system=SYSTEM
+        )
+        text = msg.content[0].text.strip()
+        # JSON만 추출
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        return json.loads(text[start:end])
+    except Exception as e:
+        print(f"    ⚠ analyze error: {e}")
+        return {
+            "summary_ko": summary[:100] if summary else title,
+            "signal": "FYI",
+            "signal_reason": "자동 분석 실패",
+            "lg_implication": "",
+            "keywords": []
+        }
+
+def generate_brief(articles):
+    """Intelligence Brief 자동 생성"""
+    action_items = [a for a in articles if a.get('signal') == 'Action']
+    watch_items = [a for a in articles if a.get('signal') == 'Watch'][:3]
+
+    items_text = "\n".join([
+        f"- [{a['signal']}] {a['title']}: {a.get('summary_ko','')}"
+        for a in (action_items + watch_items)[:8]
+    ])
+
+    try:
+        msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=600,
+            messages=[{"role": "user", "content": f"""오늘 로봇 업계 뉴스 기반으로 LG전자 전략팀을 위한 Intelligence Brief를 작성하세요.
+
+주요 기사:
+{items_text}
+
+다음 JSON만 반환:
+{{
+  "action_required": ["즉각 대응 필요 사항 1", "즉각 대응 필요 사항 2"],
+  "regional_delta": {{
+    "KR": "한국 업계 핵심 동향 1문장",
+    "US": "미국 업계 핵심 동향 1문장",
+    "CN": "중국 업계 핵심 동향 1문장"
+  }},
+  "cvc_insight": ["CVC/파트너십 관점 인사이트 1", "CVC/파트너십 관점 인사이트 2"],
+  "bottom_line": "오늘 가장 중요한 전략적 메시지 1~2문장"
+}}"""}],
+            system=SYSTEM
+        )
+        text = msg.content[0].text.strip()
+        start = text.find('{')
+        end = text.rfind('}') + 1
+        return json.loads(text[start:end])
+    except Exception as e:
+        print(f"  ⚠ brief error: {e}")
+        return {
+            "action_required": [],
+            "regional_delta": {"KR": "", "US": "", "CN": ""},
+            "cvc_insight": [],
+            "bottom_line": ""
+        }
+
+def detect_weak_signals(history_path, today_articles):
+    """Weak Signal 탐지: 30일 평균 대비 급등"""
+    # 히스토리 로드
+    history = {}
+    if os.path.exists(history_path):
+        with open(history_path) as f:
+            history = json.load(f)
+
+    # 오늘 엔티티 카운트
+    today_counts = {}
+    for a in today_articles:
+        entity = a.get('entity')
+        if entity:
+            today_counts[entity] = today_counts.get(entity, 0) + 1
+
+    # 30일 평균과 비교
+    signals = []
+    for entity, count in today_counts.items():
+        past = history.get(entity, {}).get('counts', [])
+        avg = sum(past[-30:]) / len(past[-30:]) if past else 0.1
+        spike_pct = ((count - avg) / avg * 100) if avg > 0 else count * 100
+
+        if spike_pct >= 150:  # 150% 이상 급등만
+            signals.append({
+                'entity': entity,
+                'today_count': count,
+                'avg_count': round(avg, 1),
+                'spike_pct': round(spike_pct),
+                'level': 'hot' if spike_pct >= 500 else ('warm' if spike_pct >= 250 else 'cool')
+            })
+
+        # 히스토리 업데이트
+        if entity not in history:
+            history[entity] = {'counts': []}
+        history[entity]['counts'].append(count)
+        history[entity]['counts'] = history[entity]['counts'][-60:]  # 60일 보관
+
+    # 히스토리 저장
+    with open(history_path, 'w') as f:
+        json.dump(history, f, ensure_ascii=False)
+
+    return sorted(signals, key=lambda x: x['spike_pct'], reverse=True)[:6]
+
+def score_final(article):
+    """최종 스코어 = raw_score + signal 보정"""
+    base = article.get('raw_score', 5.0)
+    signal_bonus = {'Action': 1.0, 'Watch': 0.3, 'FYI': 0.0}
+    return round(min(10.0, base + signal_bonus.get(article.get('signal', 'FYI'), 0)), 1)
+
+# ── MAIN ─────────────────────────────────────────────────
+if __name__ == '__main__':
+    raw_path = os.path.join(DATA_DIR, 'raw.json')
+    history_path = os.path.join(DATA_DIR, 'entity_history.json')
+
+    with open(raw_path, encoding='utf-8') as f:
+        raw = json.load(f)
+
+    today = datetime.now(timezone.utc).strftime('%Y-%m-%d')
+    all_articles = raw['global']
+
+    # 전체 기사 분석 (중복 없이)
+    print(f"🤖 Analyzing {len(all_articles)} articles with Claude...")
+    analyzed = []
+    for i, article in enumerate(all_articles):
+        print(f"  [{i+1}/{len(all_articles)}] {article['title'][:60]}...")
+        result = analyze(article['title'], article['summary'], article['region'])
+        article.update(result)
+        article['score'] = score_final(article)
+        analyzed.append(article)
+        time.sleep(0.5)  # Rate limit 방지
+
+    # 지역별도 분석
+    regional_analyzed = {}
+    for region, arts in raw['regional'].items():
+        regional_analyzed[region] = []
+        for article in arts:
+            # 이미 분석된 것은 재사용
+            existing = next((a for a in analyzed if a['id'] == article['id']), None)
+            if existing:
+                regional_analyzed[region].append(existing)
+            else:
+                result = analyze(article['title'], article['summary'], region)
+                article.update(result)
+                article['score'] = score_final(article)
+                regional_analyzed[region].append(article)
+                time.sleep(0.3)
+
+    # Signal 기준 재정렬
+    global_top10 = sorted(analyzed, key=lambda x: x['score'], reverse=True)[:10]
+
+    # Weak Signal 탐지
+    print("\n📡 Detecting weak signals...")
+    weak_signals = detect_weak_signals(history_path, analyzed)
+
+    # Intelligence Brief 생성
+    print("\n📝 Generating Intelligence Brief...")
+    brief = generate_brief(global_top10)
+
+    # Regional Delta (Claude가 생성)
+    try:
+        delta_msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=400,
+            system=SYSTEM,
+            messages=[{"role": "user", "content": f"""오늘 가장 중요한 로봇 뉴스 1건에 대해 KR/US/CN 미디어 시각 차이를 분석하세요.
+
+주요 뉴스: {global_top10[0]['title'] if global_top10 else ''}
+
+JSON만 반환:
+{{
+  "topic": "분석 대상 이슈",
+  "kr_angle": "한국 미디어 관점 1~2문장",
+  "us_angle": "미국 미디어 관점 1~2문장",
+  "cn_angle": "중국 미디어 관점 1~2문장"
+}}"""}]
+        )
+        delta_text = delta_msg.content[0].text.strip()
+        delta = json.loads(delta_text[delta_text.find('{'):delta_text.rfind('}')+1])
+    except:
+        delta = {"topic": "", "kr_angle": "", "us_angle": "", "cn_angle": ""}
+
+    # ── 최종 JSON 저장 ──
+    output = {
+        "date": today,
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "stats": {
+            "total_scanned": len(raw['global']),
+            "action_count": sum(1 for a in global_top10 if a.get('signal') == 'Action'),
+            "watch_count": sum(1 for a in global_top10 if a.get('signal') == 'Watch'),
+            "weak_signal_count": len(weak_signals),
+            "top_score": global_top10[0]['score'] if global_top10 else 0
+        },
+        "global_top10": global_top10,
+        "regional": {
+            "KR": regional_analyzed.get('KR', [])[:10],
+            "US": regional_analyzed.get('US', [])[:10],
+            "CN": regional_analyzed.get('CN', [])[:10],
+        },
+        "regional_delta": delta,
+        "weak_signals": weak_signals,
+        "brief": brief
+    }
+
+    # 오늘 파일 저장
+    news_path = os.path.join(DATA_DIR, 'news.json')
+    with open(news_path, 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    # 아카이브 저장
+    archive_dir = os.path.join(DATA_DIR, 'archive')
+    os.makedirs(archive_dir, exist_ok=True)
+    archive_path = os.path.join(archive_dir, f'{today}.json')
+    with open(archive_path, 'w', encoding='utf-8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    print(f"\n✅ Saved: {news_path}")
+    print(f"   Global Top 10: {len(global_top10)}")
+    print(f"   Weak Signals: {len(weak_signals)}")
+    print(f"   Brief: generated")

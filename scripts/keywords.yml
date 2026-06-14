@@ -1,0 +1,170 @@
+tiers:
+  T1:
+    weight: 3.0
+    entities:
+      - NVIDIA
+      - Figure AI
+      - Boston Dynamics
+      - Physical Intelligence
+      - 1X Technologies
+      - Apptronik
+      - Agility Robotics
+      - Tesla Optimus
+      - Sanctuary AI
+
+  T2:
+    weight: 2.0
+    entities:
+      - LG Electronics
+      - LG전자
+      - Samsung
+      - 삼성
+      - Hyundai
+      - 현대
+      - ABB
+      - Fanuc
+      - KUKA
+      - Yaskawa
+
+  T3:
+    weight: 1.5
+    entities:
+      - Agibot
+      - Unitree
+      - Fourier Intelligence
+      - Skild AI
+      - Covariant
+      - Mytra
+      - Dextrous Robotics
+      - NEURA Robotics
+      - Kepler Robotics
+
+  T4:
+    weight: 1.2
+    entities:
+      - MIT CSAIL
+      - Stanford AI Lab
+      - KAIST
+      - KIST
+      - CMU Robotics
+      - ETH Zurich
+      - 카이스트
+      - 한국과학기술연구원
+
+  T5:
+    weight: 1.0
+    entities:
+      - home appliance
+      - 가전
+      - smart home
+      - 스마트홈
+      - green tech
+      - 친환경
+
+keywords:
+  core:
+    - humanoid robot
+    - 휴머노이드
+    - Physical AI
+    - robot foundation model
+    - sim-to-real
+    - data factory
+    - GR00T
+    - Isaac Sim
+    - Isaac Lab
+    - VLA
+    - robot manipulation
+    - bipedal robot
+    - 이족보행
+
+  market:
+    - robot investment
+    - robot funding
+    - Series A
+    - Series B
+    - Series C
+    - 로봇 투자
+    - robot partnership
+    - robot acquisition
+
+  policy:
+    - robot regulation
+    - 로봇 정책
+    - K-humanoid
+    - K-휴머노이드
+    - robot standard
+    - robot subsidy
+
+sources:
+  global:
+    - name: The Robot Report
+      url: https://www.therobotreport.com/feed/
+      region: global
+      tier_bias: T1
+    - name: IEEE Spectrum Robotics
+      url: https://spectrum.ieee.org/feeds/topic/robotics.rss
+      region: global
+      tier_bias: T1
+    - name: TechCrunch Robotics
+      url: https://techcrunch.com/tag/robotics/feed/
+      region: global
+      tier_bias: T1
+    - name: VentureBeat AI
+      url: https://venturebeat.com/category/ai/feed/
+      region: global
+      tier_bias: T3
+    - name: Wired Robots
+      url: https://www.wired.com/feed/tag/robots/rss
+      region: global
+      tier_bias: T1
+
+  korea:
+    - name: 전자신문
+      url: https://www.etnews.com/rss/rss.xml
+      region: KR
+      tier_bias: T2
+    - name: 한국경제
+      url: https://feeds.hankyung.com/news/it.xml
+      region: KR
+      tier_bias: T2
+    - name: 로봇신문
+      url: https://www.irobotnews.com/rss/allArticle.xml
+      region: KR
+      tier_bias: T2
+    - name: 매일경제 IT
+      url: https://www.mk.co.kr/rss/50200011/
+      region: KR
+      tier_bias: T2
+
+  us:
+    - name: Bloomberg Technology
+      url: https://feeds.bloomberg.com/technology/news.rss
+      region: US
+      tier_bias: T1
+    - name: Reuters Technology
+      url: https://feeds.reuters.com/reuters/technologyNews
+      region: US
+      tier_bias: T1
+    - name: MIT Tech Review
+      url: https://www.technologyreview.com/feed/
+      region: US
+      tier_bias: T4
+
+  china:
+    - name: TechNode (EN)
+      url: https://technode.com/feed/
+      region: CN
+      tier_bias: T3
+    - name: Pandaily (EN)
+      url: https://pandaily.com/feed/
+      region: CN
+      tier_bias: T3
+    - name: KrASIA (EN)
+      url: https://kr-asia.com/feed
+      region: CN
+      tier_bias: T3
+
+dedup:
+  similarity_threshold: 0.75   # 75% 이상 유사하면 중복
+  title_match_ratio: 0.6       # 제목 60% 이상 겹치면 중복
+  time_window_hours: 48        # 48시간 내 같은 키워드면 중복 후보

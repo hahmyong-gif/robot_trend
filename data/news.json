@@ -1,0 +1,30 @@
+{
+  "date": "",
+  "generated_at": "",
+  "stats": {
+    "total_scanned": 0,
+    "action_count": 0,
+    "watch_count": 0,
+    "weak_signal_count": 0,
+    "top_score": 0
+  },
+  "global_top10": [],
+  "regional": {
+    "KR": [],
+    "US": [],
+    "CN": []
+  },
+  "regional_delta": {
+    "topic": "",
+    "kr_angle": "",
+    "us_angle": "",
+    "cn_angle": ""
+  },
+  "weak_signals": [],
+  "brief": {
+    "action_required": [],
+    "regional_delta": {"KR": "", "US": "", "CN": ""},
+    "cvc_insight": [],
+    "bottom_line": ""
+  }
+}
