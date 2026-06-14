@@ -55,11 +55,7 @@ tiers:
     weight: 1.0
     entities:
       - home appliance
-      - 가전
-      - smart home
-      - 스마트홈
-      - green tech
-      - 친환경
+
 
 keywords:
   core:
@@ -115,6 +111,10 @@ sources:
       tier_bias: T3
     - name: Wired Robots
       url: https://www.wired.com/feed/tag/robots/rss
+      region: global
+      tier_bias: T1
+    - name: Google News
+      url: https://news.google.com/home?hl=en-US&gl=US&ceid=US:en
       region: global
       tier_bias: T1
 
