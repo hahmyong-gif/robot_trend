@@ -756,6 +756,33 @@ function renderCompetitorActivity(data) {
 }
 
 // ── AUTO-FILE IMPORTANT ARTICLES ─────────────────────────
+// Tag generator for raw article objects (used by autoFileNewArticles)
+function autoTagsFromObj(article, dateStr) {
+  const tags = [];
+  const sig = article.signal;
+  if (sig && sig !== 'FYI') tags.push('#' + sig);
+
+  // Week tag
+  const wk = getWeekKey(dateStr || new Date().toISOString().slice(0,10));
+  if (wk) tags.push('#' + wk);
+
+  // Entity → canonical + #경쟁사
+  if (article.entity) {
+    const ct = canonicalTag(article.entity);
+    if (!tags.includes(ct)) tags.push(ct);
+    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
+  }
+
+  // Keywords (up to 2) → canonical + #경쟁사
+  (article.keywords || []).slice(0, 2).forEach(k => {
+    const ct = canonicalTag(k.trim());
+    if (!tags.includes(ct)) tags.push(ct);
+    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
+  });
+
+  return tags;
+}
+
 function autoFileNewArticles(data) {
   if (!data?.date || !data.global_top10?.length) return;
   const key = `rid_af_${data.date}`;
@@ -769,10 +796,7 @@ function autoFileNewArticles(data) {
   let added = 0;
   toFile.forEach(a => {
     if (getBk(a.id)) return;
-    const tags = ['#자동저장'];
-    if (a.signal && a.signal !== 'FYI') tags.push('#' + a.signal);
-    if (a.entity) tags.push('#' + a.entity.replace(/\s+/g, ''));
-    (a.keywords || []).slice(0, 2).forEach(k => tags.push('#' + k.replace(/\s+/g, '')));
+    const tags = ['#자동저장', ...autoTagsFromObj(a, data.date)];
     BKS.push({
       id: a.id, title: a.title_ko || a.title,
       summary: a.summary_ko || a.summary || '',
@@ -1431,32 +1455,12 @@ function canonicalTag(raw) {
 }
 
 function autoTags(card) {
-  const tags = [];
-  const sig = card.dataset.signal;
-  if (sig && sig !== 'FYI') tags.push('#' + sig);
-
-  // Week tag based on today's filing date
-  const todayIso = new Date().toISOString().slice(0, 10);
-  const wk = getWeekKey(todayIso);
-  if (wk && !tags.includes('#' + wk)) tags.push('#' + wk);
-
-  // Entity with canonical deduplication + competitor auto-tag
-  const entity = card.dataset.entity;
-  if (entity) {
-    const ct = canonicalTag(entity);
-    if (!tags.includes(ct)) tags.push(ct);
-    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
-  }
-
-  // Keywords (up to 2, canonicalized)
-  const kws = (card.dataset.keywords || '').split(',').filter(Boolean);
-  kws.slice(0, 2).forEach(k => {
-    const ct = canonicalTag(k.trim());
-    if (!tags.includes(ct)) tags.push(ct);
-    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
-  });
-
-  return tags;
+  // Bridge DOM card → object form, then reuse shared tag logic
+  return autoTagsFromObj({
+    signal: card.dataset.signal,
+    entity: card.dataset.entity,
+    keywords: (card.dataset.keywords || '').split(',').filter(Boolean),
+  }, new Date().toISOString().slice(0, 10));
 }
 
 function toggleBk(btn) {
