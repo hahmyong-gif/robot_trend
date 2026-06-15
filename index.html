@@ -473,14 +473,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 <div class="panel" id="tab-filing">
   <div class="filing-toolbar" id="filingToolbar">
     <span style="font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.06em;text-transform:uppercase;flex-shrink:0">태그</span>
-    <button class="ftag act" data-filter-type="tag" data-tag="all">전체</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#파트너십">#파트너십</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#경쟁사">#경쟁사</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#CVC">#CVC</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#기술동향">#기술동향</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#전략">#전략</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#펀딩">#펀딩</button>
-    <button class="ftag" data-filter-type="tag" data-tag="#정책">#정책</button>
+    <div id="tagFilterBtns" style="display:flex;gap:4px;flex-wrap:wrap"><button class="ftag act" data-filter-type="tag" data-tag="all">전체</button></div>
     <div style="width:1px;height:14px;background:var(--rule);flex-shrink:0;margin:0 2px"></div>
     <span style="font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.06em;text-transform:uppercase;flex-shrink:0">주차</span>
     <div id="weekFilterBtns" style="display:flex;gap:4px;flex-wrap:wrap"></div>
@@ -650,8 +643,13 @@ function renderAll() {
     `<div class="trend-row"><span class="trend-kw">${k}</span><span class="trend-ct">×${c}</span></div>`
   ).join('');
 
-  renderGlobalTop10(d.global_top10 || []);
-  renderRegional(d.regional || {}, d.regional_delta || {});
+  // Client-side: skip articles older than 21 days (guards against stale news.json)
+  const cutoff21 = Date.now()/1000 - 21*86400;
+  const freshArticles = (d.global_top10 || []).filter(a => !a.pub_ts || a.pub_ts > cutoff21);
+  renderGlobalTop10(freshArticles);
+  const freshRegional = {};
+  Object.entries(d.regional || {}).forEach(([k,v]) => { freshRegional[k] = v.filter(a => !a.pub_ts || a.pub_ts > cutoff21); });
+  renderRegional(freshRegional, d.regional_delta || {});
   renderWeakSignals(d.weak_signals || []);
   renderNarrativeShifts(d.narrative_shifts || []);
   renderGeopolitical(d.geopolitical || {});
@@ -857,26 +855,22 @@ function renderGlobalTop10(articles) {
       </div>`).join('') + `</div>`;
   }
 
-  // Bot 3 (7~10 condensed)
+  // Bot (7~10): one mini-card per article in 3-col grid
   const bot = articles.slice(6, 10);
   if (bot.length) {
-    const chunks = [];
-    for (let i = 0; i < bot.length; i += Math.ceil(bot.length/3)) chunks.push(bot.slice(i, i + Math.ceil(bot.length/3)));
-    html += `<div class="g10-bot">` + chunks.map((chunk) =>
-      `<div class="mini-card">` + chunk.map((a, j) => `
-        <div data-id="${a.id}" style="position:relative"
-          data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
-          data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
-          data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}">
-          <button class="bm-btn" style="position:absolute;top:0;right:0;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
-          <div class="mini-num">No.${articles.indexOf(a)+1} &nbsp;·&nbsp; ${a.score}</div>
-          <div class="hl-sm" onclick="window.open('${a.url||'#'}','_blank')" style="cursor:pointer">${a.title_ko || a.title}</div>
-          <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
-          <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${relDate(a.pub_ts)}</div>
-        </div>
-        ${j < chunk.length-1 ? '<div style="margin:8px 0;border-top:1px dashed var(--rule)"></div>' : ''}
-      `).join('') + `</div>`
-    ).join('') + `</div>`;
+    html += `<div class="g10-bot">` + bot.map((a, i) => `
+      <div class="mini-card" onclick="window.open('${esc(a.url||'#')}','_blank')"
+        data-id="${a.id}"
+        data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
+        data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
+        data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}"
+        style="position:relative">
+        <button class="bm-btn" style="position:absolute;top:6px;right:6px;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
+        <div class="mini-num">No.${String(i+7).padStart(2,'0')} &nbsp;·&nbsp; ${a.score}</div>
+        <div class="hl-sm">${a.title_ko || a.title}</div>
+        <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
+        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${relDate(a.pub_ts)}</div>
+      </div>`).join('') + `</div>`;
   }
 
   document.getElementById('globalTop10').innerHTML = html;
@@ -1385,17 +1379,84 @@ function updCnt() { const el=document.getElementById('bkCnt'); el.textContent=BK
 function saveBks() { localStorage.setItem('rid_bks', JSON.stringify(BKS)); }
 function getBk(id) { return BKS.find(b=>b.id==id); }
 
+const ENTITY_CANONICAL = {
+  'bostonDynamics':'#BostonDynamics','boston dynamics':'#BostonDynamics','보스턴다이나믹스':'#BostonDynamics','보스턴 다이나믹스':'#BostonDynamics',
+  'figureai':'#FigureAI','figure ai':'#FigureAI',
+  'physicalintelligence':'#PhysicalIntelligence','physical intelligence':'#PhysicalIntelligence',
+  '1xtechnologies':'#1XTechnologies','1x technologies':'#1XTechnologies',
+  'agilityrobotics':'#AgilityRobotics','agility robotics':'#AgilityRobotics',
+  'apptronik':'#Apptronik',
+  'sanctuaryai':'#SanctuaryAI','sanctuary ai':'#SanctuaryAI',
+  'unitree':'#Unitree','유니트리':'#Unitree','宇树':'#Unitree',
+  'agibot':'#Agibot','아지봇':'#Agibot','智元':'#Agibot',
+  'fourierintelligence':'#FourierIntelligence','fourier intelligence':'#FourierIntelligence','傅利叶':'#FourierIntelligence',
+  'covariant':'#Covariant',
+  'skildai':'#SkildAI','skild ai':'#SkildAI',
+  'neurarobotics':'#NEURARobotics','neura robotics':'#NEURARobotics',
+  'keplerrobotics':'#KeplerRobotics','kepler robotics':'#KeplerRobotics',
+  'ubtech':'#UBTECH',
+  'lerobot':'#LeRobot','hugging face robotics':'#LeRobot','hugfacerobotics':'#LeRobot',
+  'maumai':'#MaumAI','maum ai':'#MaumAI','마음ai':'#MaumAI',
+  'geminirobotics':'#GeminiRobotics','gemini robotics':'#GeminiRobotics',
+  'intrinsic':'#Intrinsic',
+  'embodiedintelligence':'#EmbodiedIntelligence','embodied intelligence':'#EmbodiedIntelligence',
+  'nvidia':'#NVIDIA','엔비디아':'#NVIDIA',
+  'tesla':'#Tesla','테슬라':'#Tesla','tesla optimus':'#Tesla','teslaoptimus':'#Tesla',
+  'openai':'#OpenAI','오픈ai':'#OpenAI',
+  'deepmind':'#DeepMind','google deepmind':'#DeepMind','googledeepmind':'#DeepMind','gemini':'#DeepMind',
+  'softbank':'#SoftBank','소프트뱅크':'#SoftBank','softbank robotics':'#SoftBankRobotics','softbankrobotics':'#SoftBankRobotics',
+  'lgelectronics':'#LGElectronics','lg electronics':'#LGElectronics','lg전자':'#LGElectronics',
+  'samsung':'#Samsung','삼성전자':'#Samsung',
+  'hyundai':'#Hyundai','현대자동차':'#Hyundai',
+  'rainbowrobotics':'#RainbowRobotics','rainbow robotics':'#RainbowRobotics','레인보우로보틱스':'#RainbowRobotics',
+  'doosanrobotics':'#DoosanRobotics','doosan robotics':'#DoosanRobotics','두산로보틱스':'#DoosanRobotics',
+  'abb':'#ABBRobotics','abb robotics':'#ABBRobotics','abbRobotics':'#ABBRobotics',
+  'fanuc':'#Fanuc','kuka':'#KUKA','yaskawa':'#Yaskawa',
+  'galbot':'#Galbot','clonerobotics':'#CloneRobotics','clone robotics':'#CloneRobotics',
+  'menteeRobotics':'#MenteeRobotics','mentee robotics':'#MenteeRobotics',
+};
+
+const COMPETITOR_TAGS = new Set([
+  '#BostonDynamics','#PhysicalIntelligence','#FigureAI','#AgilityRobotics',
+  '#Apptronik','#SanctuaryAI','#1XTechnologies',
+  '#Unitree','#Agibot','#FourierIntelligence','#Galbot',
+  '#Covariant','#SkildAI','#NEURARobotics','#KeplerRobotics','#UBTECH',
+  '#GeminiRobotics','#MaumAI','#EmbodiedIntelligence','#LeRobot',
+  '#RainbowRobotics','#DoosanRobotics','#CloneRobotics','#MenteeRobotics',
+  '#Tesla','#Samsung','#Hyundai','#ABBRobotics','#Fanuc','#KUKA','#Yaskawa',
+]);
+
+function canonicalTag(raw) {
+  const key = raw.toLowerCase().replace(/\s+/g,'');
+  return ENTITY_CANONICAL[key] || ENTITY_CANONICAL[raw.toLowerCase()] || ('#' + raw.replace(/\s+/g,''));
+}
+
 function autoTags(card) {
   const tags = [];
   const sig = card.dataset.signal;
   if (sig && sig !== 'FYI') tags.push('#' + sig);
+
+  // Week tag based on today's filing date
+  const todayIso = new Date().toISOString().slice(0, 10);
+  const wk = getWeekKey(todayIso);
+  if (wk && !tags.includes('#' + wk)) tags.push('#' + wk);
+
+  // Entity with canonical deduplication + competitor auto-tag
   const entity = card.dataset.entity;
-  if (entity) tags.push('#' + entity.replace(/\s+/g, ''));
+  if (entity) {
+    const ct = canonicalTag(entity);
+    if (!tags.includes(ct)) tags.push(ct);
+    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
+  }
+
+  // Keywords (up to 2, canonicalized)
   const kws = (card.dataset.keywords || '').split(',').filter(Boolean);
-  kws.slice(0, 3).forEach(k => {
-    const t = '#' + k.replace(/\s+/g, '');
-    if (!tags.includes(t)) tags.push(t);
+  kws.slice(0, 2).forEach(k => {
+    const ct = canonicalTag(k.trim());
+    if (!tags.includes(ct)) tags.push(ct);
+    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
   });
+
   return tags;
 }
 
@@ -1455,12 +1516,34 @@ document.getElementById('tagField').addEventListener('keydown', e => {
 
 // ── FILING FILTER HELPERS ────────────────────────────────
 function getWeekKey(dateStr) {
-  const m = dateStr && dateStr.match(/(\d+)\.\s*(\d+)\.\s*(\d+)/);
+  if (!dateStr) return null;
+  // Handle "YYYY-MM-DD" (ISO) or "YYYY.MM.DD"
+  const m = dateStr.match(/(\d{4})[-.](\d{1,2})[-.](\d{1,2})/);
   if (!m) return null;
   const d = new Date(+m[1], +m[2]-1, +m[3]);
   const jan1 = new Date(d.getFullYear(), 0, 1);
   const wk = Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
   return `W${String(wk).padStart(2,'0')}`;
+}
+
+function renderTagFilterBtns() {
+  const el = document.getElementById('tagFilterBtns');
+  if (!el) return;
+  const allTags = [...new Set(BKS.flatMap(b => b.tags || []))].sort();
+  el.innerHTML =
+    `<button class="ftag${filTags.size===0?' act':''}" data-filter-type="tag" data-tag="all">전체</button>` +
+    allTags.map(t => `<button class="ftag${filTags.has(t)?' act':''}" data-filter-type="tag" data-tag="${t}">${t}</button>`).join('');
+  el.querySelectorAll('.ftag').forEach(b => {
+    b.addEventListener('click', () => {
+      const tag = b.dataset.tag;
+      if (tag === 'all') {
+        filTags.clear();
+      } else {
+        filTags.has(tag) ? filTags.delete(tag) : filTags.add(tag);
+      }
+      renderFiling();
+    });
+  });
 }
 
 function renderWeekButtons() {
@@ -1479,24 +1562,8 @@ function renderWeekButtons() {
   });
 }
 
-document.querySelectorAll('.ftag[data-filter-type="tag"]').forEach(b => {
-  b.addEventListener('click', () => {
-    const tag = b.dataset.tag;
-    if (tag === 'all') {
-      filTags.clear();
-      document.querySelectorAll('.ftag[data-filter-type="tag"]').forEach(x => x.classList.remove('act'));
-      b.classList.add('act');
-    } else {
-      document.querySelector('.ftag[data-tag="all"]').classList.remove('act');
-      filTags.has(tag) ? filTags.delete(tag) : filTags.add(tag);
-      b.classList.toggle('act', filTags.has(tag));
-      if (!filTags.size) document.querySelector('.ftag[data-tag="all"]').classList.add('act');
-    }
-    renderFiling();
-  });
-});
-
 function renderFiling() {
+  renderTagFilterBtns();
   renderWeekButtons();
   const feed = document.getElementById('filingFeed');
   const filtered = BKS.filter(b => {

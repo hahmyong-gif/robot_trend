@@ -37,10 +37,14 @@ def similarity(a, b):
 PURE_ROBOT_ENTITIES = {
     'figure ai', 'figure robot', 'boston dynamics', 'physical intelligence',
     '1x technologies', 'agility robotics', 'sanctuary ai', 'apptronik',
-    'unitree', '유니트리', 'agibot', '아지봇', 'fourier intelligence',
+    'unitree', '유니트리', '宇树', 'agibot', '아지봇', '智元', 'fourier intelligence', '傅利叶',
     'skild ai', 'dextrous robotics', 'neura robotics', 'kepler robotics',
     'ubtech', 'galbot', 'mentee robotics', 'clone robotics',
     'irobot', 'softbank robotics', 'realman robotics',
+    'rainbow robotics', '레인보우로보틱스', 'doosan robotics', '두산로보틱스',
+    'lerobot', 'hugging face robotics', 'gemini robotics',
+    'gear lab', 'gr00t', 'helix robot', 'maum ai', '마음ai',
+    'intrinsic robotics', 'covariant', 'embodied intelligence',
 }
 
 # 비-로봇 주제 제외 키워드 (제목에 있으면 바로 제외)
@@ -58,14 +62,18 @@ NEGATIVE_TITLE_KWS = [
     'cybertruck', 'model 3', 'model y',
     # 암호화폐
     'bitcoin', 'crypto', 'blockchain', 'nft',
+    # 가전/청소 로봇 리뷰 (로봇청소기는 제외)
+    'robot vacuum', 'roomba', '로봇청소기', 'dyson robot', 'robot mop',
+    # 연예/쇼핑/생활
+    'horoscope', '운세', '연예인', 'celebrity', 'deal of the day', '쇼핑 할인',
 ]
 
 # ── 로봇 문맥 키워드 (이 중 하나라도 있으면 로봇 기사로 분류) ──────────
 ROBOT_CONTEXT_KWS = {
     # 기체/형태
-    'robot', '로봇', 'humanoid', '휴머노이드', 'bipedal', '이족보행',
+    'robot', '로봇', 'humanoid', '휴머노이드', '人形机器人', 'bipedal', '이족보행',
     'quadruped', '4족보행', 'legged robot', 'wheeled robot', 'exoskeleton',
-    '외골격', 'android', '안드로이드 로봇',
+    '외골격', 'android robot', '안드로이드 로봇',
 
     # 구동/메커니즘
     'actuator', '액추에이터', 'gripper', '그리퍼', 'end-effector',
@@ -79,23 +87,28 @@ ROBOT_CONTEXT_KWS = {
     # 인지/지능
     'embodied ai', 'embodied intelligence', 'physical ai',
     'robot learning', 'robot perception', 'robot vision', 'robot sensing',
-    'sim-to-real', 'imitation learning', 'reinforcement learning robot',
+    'sim-to-real', 'imitation learning', 'behavior cloning',
+    'reinforcement learning robot', 'teleoperation', '원격조작',
     'robot policy', 'robot foundation model', 'manipulation policy',
-    'whole-body control', 'loco-manipulation',
+    'whole-body control', 'loco-manipulation', 'vla', 'vision-language-action',
+    'world model', '월드 모델', 'digital twin', '디지털 트윈',
+    'data factory', '데이터 팩토리', 'zero-shot robot', 'few-shot robot',
+
+    # 특정 모델/플랫폼명
+    'gr00t', 'helix', 'lerobot', 'gemini robotics', 'gear lab',
+    'isaac sim', 'isaac lab', 'isaac gym', 'cosmos',
 
     # 협동/산업
     'cobot', 'collaborative robot', '협동 로봇', 'industrial robot', '산업용 로봇',
     'autonomous mobile robot', 'amr', 'agv', '물류 로봇', 'logistics robot',
     'service robot', '서비스 로봇', 'surgical robot', '수술 로봇',
-    'welding robot', 'painting robot', 'assembly robot',
+    'warehouse robot', '창고 로봇', 'welding robot', 'assembly robot',
 
     # 센서/HW
-    'lidar robot', 'depth sensor robot', 'force sensor', 'tactile sensor',
-    'robot camera', 'robot perception',
+    'force sensor', 'tactile sensor', 'haptic',
 
     # 소프트웨어/플랫폼
-    'ros', 'ros2', 'robot operating system', 'isaac sim', 'isaac lab',
-    'robot simulation', 'digital twin robot', 'robot sdk',
+    'ros2', 'robot operating system', 'robot simulation', 'robot sdk',
 
     # 한국어 로봇 정책/산업
     '로봇 산업', '로봇 정책', '로봇 육성', '로봇 전략', '로봇 법',
@@ -109,8 +122,8 @@ ROBOT_CONTEXT_KWS = {
     'robot market', 'robot industry', 'robot sector', 'robot ecosystem',
     'robot investment', 'robot funding', 'robot venture', 'robot startup',
     'robot deployment', 'robot commercialization', 'robot adoption',
-    'robot workforce', 'robot labor', 'robot automation',
-    'humanoid market', 'humanoid industry', 'humanoid deployment',
+    'robot workforce', 'humanoid market', 'humanoid industry', 'humanoid deployment',
+    'humanoid policy',
 }
 
 def is_robot_related(title, summary):
@@ -274,7 +287,8 @@ def fetch_all():
         CONFIG['sources']['global'] +
         CONFIG['sources']['korea'] +
         CONFIG['sources']['us'] +
-        CONFIG['sources']['china']
+        CONFIG['sources']['china'] +
+        CONFIG['sources'].get('europe', [])
     )
 
     print(f"📡 Fetching {len(sources)} sources...")
@@ -290,7 +304,7 @@ def fetch_all():
     print(f"🔍 After dedup: {len(deduped)}")
 
     # 지역별 분리 후 각각 중복 제거
-    regions = {'global': [], 'KR': [], 'US': [], 'CN': []}
+    regions = {'global': [], 'KR': [], 'US': [], 'CN': [], 'EU': []}
     for a in deduped:
         r = a['region']
         if r in regions:
