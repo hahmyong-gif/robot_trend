@@ -404,11 +404,9 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 <div class="panel" id="tab-narrative">
   <div class="sec-wrap">
     <div class="sec-title">Narrative Shift</div>
-    <div class="sec-sub">업계 담론 프레이밍 변화 추적 · 6개월 롤링 윈도우</div>
-    <div class="ns-cards">
-      <div class="ns-card"><div class="ns-kw">Humanoid robot</div><div class="ns-shift"><span class="ns-from">위협 / 공상과학</span><span class="ns-arr">→</span><span class="ns-to">파트너십 / 상용화</span></div><div class="ns-desc">6개월 전 "일자리 위협" 프레임 지배적 → 최근 3개월 "기업 파트너십"·"양산 타임라인" 중심으로 급전환.</div><div class="ns-chart"><div class="ns-bar" style="height:9px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:12px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:15px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:11px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:7px;background:var(--ink4)"></div><div class="ns-bar" style="height:5px;background:var(--ink4)"></div><div class="ns-bar" style="height:6px;background:#16a34a;opacity:.7"></div><div class="ns-bar" style="height:10px;background:#16a34a;opacity:.75"></div><div class="ns-bar" style="height:15px;background:#16a34a;opacity:.8"></div><div class="ns-bar" style="height:20px;background:#16a34a;opacity:.85"></div><div class="ns-bar" style="height:24px;background:#16a34a;opacity:.9"></div><div class="ns-bar" style="height:28px;background:#16a34a"></div></div><div class="ns-leg"><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--red)"></div>위협 프레임</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--ink4)"></div>중립</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:#16a34a"></div>기회 프레임</div></div></div>
-      <div class="ns-card"><div class="ns-kw">Data factory</div><div class="ns-shift"><span class="ns-from">기술 용어 / 연구</span><span class="ns-arr">→</span><span class="ns-to">전략 필수 인프라</span></div><div class="ns-desc">학술 논문 중심 개념이 기업 전략 문서에 등장. NVIDIA·LG 워크숍 핵심 의제로 부상.</div><div class="ns-chart"><div class="ns-bar" style="height:4px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:5px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:6px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:7px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:9px;background:var(--ink4)"></div><div class="ns-bar" style="height:11px;background:var(--ink4)"></div><div class="ns-bar" style="height:13px;background:#16a34a;opacity:.7"></div><div class="ns-bar" style="height:16px;background:#16a34a;opacity:.75"></div><div class="ns-bar" style="height:19px;background:#16a34a;opacity:.8"></div><div class="ns-bar" style="height:22px;background:#16a34a;opacity:.85"></div><div class="ns-bar" style="height:25px;background:#16a34a;opacity:.9"></div><div class="ns-bar" style="height:28px;background:#16a34a"></div></div><div class="ns-leg"><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--red)"></div>연구 영역</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--ink4)"></div>중립</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:#16a34a"></div>전략 인프라</div></div></div>
-      <div class="ns-card"><div class="ns-kw">China robotics</div><div class="ns-shift"><span class="ns-from">추격자 / 모방</span><span class="ns-arr">→</span><span class="ns-to">저가 선도 / 위협</span></div><div class="ns-desc">서방 미디어에서 "저품질 모방" 프레임이었다가 Agibot 양산 선언 이후 "실질적 위협"으로 전환.</div><div class="ns-chart"><div class="ns-bar" style="height:18px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:16px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:17px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:15px;background:var(--red);opacity:.7"></div><div class="ns-bar" style="height:12px;background:var(--ink4)"></div><div class="ns-bar" style="height:10px;background:var(--ink4)"></div><div class="ns-bar" style="height:8px;background:#d97706;opacity:.7"></div><div class="ns-bar" style="height:12px;background:#d97706;opacity:.75"></div><div class="ns-bar" style="height:16px;background:#d97706;opacity:.8"></div><div class="ns-bar" style="height:20px;background:#d97706;opacity:.85"></div><div class="ns-bar" style="height:24px;background:#d97706;opacity:.9"></div><div class="ns-bar" style="height:28px;background:#d97706"></div></div><div class="ns-leg"><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--red)"></div>모방 프레임</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:var(--ink4)"></div>중립</div><div class="ns-leg-i"><div class="ns-leg-d" style="background:#d97706"></div>위협 프레임</div></div></div>
+    <div class="sec-sub">업계 담론 프레이밍 변화 · 이번 주 뉴스 기반 AI 분석</div>
+    <div class="ns-cards" id="narrativeCards">
+      <div class="loading"><i class="ti ti-refresh"></i><div>분석 중...</div></div>
     </div>
   </div>
 </div>
@@ -417,11 +415,9 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 <div class="panel" id="tab-geo">
   <div class="sec-wrap">
     <div class="sec-title">Geopolitical Signal</div>
-    <div class="sec-sub">규제·정책·보조금 움직임 — 전략 타이밍에 직접 영향</div>
-    <div class="geo-grid">
-      <div class="geo-card"><div class="geo-head"><span class="geo-country">🇰🇷 한국</span><span class="geo-temp temp-warm">온도 ▲상승</span></div><div class="geo-policy">K-휴머노이드 얼라이언스 2단계</div><div class="geo-desc">과기부 주도 12개사 추가 선정. 총 3,200억원 확대. 2027년 글로벌 점유율 15% 목표 공식화.</div><div class="geo-items"><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>로봇 친화 빌딩 인증제 2027 시행</div><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>제조 로봇 세액공제 30% 유지</div><div class="geo-item"><div class="geo-dot" style="background:var(--amber)"></div>데이터 공유 규제 완화 논의 중</div></div></div>
-      <div class="geo-card"><div class="geo-head"><span class="geo-country">🇺🇸 미국</span><span class="geo-temp temp-cool">온도 ▷유지</span></div><div class="geo-policy">수출 통제 검토 + IRA 연계</div><div class="geo-desc">상무부 로봇 핵심 부품 수출 통제 검토. IRA 보조금 로봇 연계 확대 논의.</div><div class="geo-items"><div class="geo-item"><div class="geo-dot" style="background:var(--amber)"></div>액추에이터·센서 수출 통제 가능성</div><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>NSF 로봇 R&D $2.1B 승인</div><div class="geo-item"><div class="geo-dot" style="background:var(--green)"></div>DOD 조달 예산 40% 증가</div></div></div>
-      <div class="geo-card"><div class="geo-head"><span class="geo-country">🇨🇳 중국</span><span class="geo-temp temp-hot">온도 ▲▲급등</span></div><div class="geo-policy">국가 표준 + 보조금 3중 공세</div><div class="geo-desc">공업부 국가 표준 초안 발표. 선전·상하이 추가 보조금. 2025~2027년 $8B 투자 계획.</div><div class="geo-items"><div class="geo-item"><div class="geo-dot" style="background:var(--red)"></div>국내 기업 유리 표준 규격</div><div class="geo-item"><div class="geo-dot" style="background:var(--red)"></div>로봇 부품 수입 관세 인상 검토</div><div class="geo-item"><div class="geo-dot" style="background:var(--amber)"></div>해외 기업 JV 요구 강화 가능성</div></div></div>
+    <div class="sec-sub">규제·정책·보조금 움직임 — 전략 타이밍에 직접 영향 · 이번 주 뉴스 기반 AI 분석</div>
+    <div class="geo-grid" id="geoGrid">
+      <div class="loading"><i class="ti ti-refresh"></i><div>분석 중...</div></div>
     </div>
   </div>
 </div>
@@ -652,6 +648,8 @@ function renderAll() {
   renderGlobalTop10(d.global_top10 || []);
   renderRegional(d.regional || {}, d.regional_delta || {});
   renderWeakSignals(d.weak_signals || []);
+  renderNarrativeShifts(d.narrative_shifts || []);
+  renderGeopolitical(d.geopolitical || {});
   renderBriefContent(d.brief || {}, d);
   renderRegionalPulse(d.regional || {});
   renderCompetitorActivity(d);
@@ -947,6 +945,67 @@ function renderWeakSignals(signals) {
         <span class="ws-num">${s.avg_count} → ${s.today_count}</span>
       </div>
     </div>`).join('');
+}
+
+// ── NARRATIVE SHIFT ──────────────────────────────────────
+function renderNarrativeShifts(shifts) {
+  const el = document.getElementById('narrativeCards');
+  if (!el) return;
+  if (!shifts || !shifts.length) {
+    el.innerHTML = '<div style="color:var(--ink4);font-size:12px;padding:20px">이번 주 담론 변화 데이터가 없습니다. 다음 업데이트 시 생성됩니다.</div>';
+    return;
+  }
+  el.innerHTML = shifts.map(s => `
+    <div class="ns-card">
+      <div class="ns-kw">${s.keyword || ''}</div>
+      <div class="ns-shift">
+        <span class="ns-from">${s.from_frame || ''}</span>
+        <span class="ns-arr">→</span>
+        <span class="ns-to">${s.to_frame || ''}</span>
+      </div>
+      <div class="ns-desc">${s.desc || ''}</div>
+    </div>`).join('');
+}
+
+// ── GEOPOLITICAL ─────────────────────────────────────────
+function renderGeopolitical(geo) {
+  const el = document.getElementById('geoGrid');
+  if (!el) return;
+  const regions = [
+    { key: 'KR', flag: '🇰🇷', label: '한국' },
+    { key: 'US', flag: '🇺🇸', label: '미국' },
+    { key: 'CN', flag: '🇨🇳', label: '중국' },
+  ];
+  const tempMap = {
+    '상승': 'temp-warm', '급등': 'temp-hot', '하락': 'temp-cool', '유지': 'temp-cool',
+  };
+  const tempIcon = { '상승': '▲상승', '급등': '▲▲급등', '하락': '▼하락', '유지': '▷유지' };
+  const dotColors = ['var(--green)', 'var(--amber)', 'var(--red)'];
+
+  const anyData = regions.some(r => geo[r.key]?.policy && geo[r.key].policy !== '데이터 없음');
+  if (!anyData) {
+    el.innerHTML = '<div style="color:var(--ink4);font-size:12px;padding:20px;grid-column:1/-1">이번 주 정책/규제 관련 기사가 부족합니다. 다음 업데이트 시 생성됩니다.</div>';
+    return;
+  }
+
+  el.innerHTML = regions.map(({ key, flag, label }) => {
+    const g = geo[key] || {};
+    const temp = g.temp || '유지';
+    const cls = tempMap[temp] || 'temp-cool';
+    const icon = tempIcon[temp] || '▷유지';
+    const items = (g.items || []).slice(0, 3);
+    return `<div class="geo-card">
+      <div class="geo-head">
+        <span class="geo-country">${flag} ${label}</span>
+        <span class="geo-temp ${cls}">온도 ${icon}</span>
+      </div>
+      <div class="geo-policy">${g.policy || ''}</div>
+      <div class="geo-desc">${g.desc || ''}</div>
+      <div class="geo-items">
+        ${items.map((it, i) => `<div class="geo-item"><div class="geo-dot" style="background:${dotColors[i]||dotColors[0]}"></div>${it}</div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ── BRIEF ────────────────────────────────────────────────
