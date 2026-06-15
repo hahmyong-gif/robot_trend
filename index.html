@@ -643,8 +643,13 @@ function renderAll() {
     `<div class="trend-row"><span class="trend-kw">${k}</span><span class="trend-ct">×${c}</span></div>`
   ).join('');
 
-  renderGlobalTop10(d.global_top10 || []);
-  renderRegional(d.regional || {}, d.regional_delta || {});
+  // Client-side: skip articles older than 21 days (guards against stale news.json)
+  const cutoff21 = Date.now()/1000 - 21*86400;
+  const freshArticles = (d.global_top10 || []).filter(a => !a.pub_ts || a.pub_ts > cutoff21);
+  renderGlobalTop10(freshArticles);
+  const freshRegional = {};
+  Object.entries(d.regional || {}).forEach(([k,v]) => { freshRegional[k] = v.filter(a => !a.pub_ts || a.pub_ts > cutoff21); });
+  renderRegional(freshRegional, d.regional_delta || {});
   renderWeakSignals(d.weak_signals || []);
   renderNarrativeShifts(d.narrative_shifts || []);
   renderGeopolitical(d.geopolitical || {});
@@ -850,26 +855,22 @@ function renderGlobalTop10(articles) {
       </div>`).join('') + `</div>`;
   }
 
-  // Bot 3 (7~10 condensed)
+  // Bot (7~10): one mini-card per article in 3-col grid
   const bot = articles.slice(6, 10);
   if (bot.length) {
-    const chunks = [];
-    for (let i = 0; i < bot.length; i += Math.ceil(bot.length/3)) chunks.push(bot.slice(i, i + Math.ceil(bot.length/3)));
-    html += `<div class="g10-bot">` + chunks.map((chunk) =>
-      `<div class="mini-card">` + chunk.map((a, j) => `
-        <div data-id="${a.id}" style="position:relative"
-          data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
-          data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
-          data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}">
-          <button class="bm-btn" style="position:absolute;top:0;right:0;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
-          <div class="mini-num">No.${articles.indexOf(a)+1} &nbsp;·&nbsp; ${a.score}</div>
-          <div class="hl-sm" onclick="window.open('${a.url||'#'}','_blank')" style="cursor:pointer">${a.title_ko || a.title}</div>
-          <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
-          <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${relDate(a.pub_ts)}</div>
-        </div>
-        ${j < chunk.length-1 ? '<div style="margin:8px 0;border-top:1px dashed var(--rule)"></div>' : ''}
-      `).join('') + `</div>`
-    ).join('') + `</div>`;
+    html += `<div class="g10-bot">` + bot.map((a, i) => `
+      <div class="mini-card" onclick="window.open('${esc(a.url||'#')}','_blank')"
+        data-id="${a.id}"
+        data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
+        data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
+        data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}"
+        style="position:relative">
+        <button class="bm-btn" style="position:absolute;top:6px;right:6px;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
+        <div class="mini-num">No.${String(i+7).padStart(2,'0')} &nbsp;·&nbsp; ${a.score}</div>
+        <div class="hl-sm">${a.title_ko || a.title}</div>
+        <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
+        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${relDate(a.pub_ts)}</div>
+      </div>`).join('') + `</div>`;
   }
 
   document.getElementById('globalTop10').innerHTML = html;

@@ -326,8 +326,12 @@ if __name__ == '__main__':
     archive_arts = load_archive_articles(archive_dir)
     seen_ids = {a['id'] for a in analyzed}
     archive_added = 0
+    cutoff_ts = (datetime.now(timezone.utc) - timedelta(days=21)).timestamp()
     for a in archive_arts:
         if a['id'] in seen_ids:
+            continue
+        # 21일 이상 된 기사는 archive에서도 제외
+        if a.get('pub_ts', 0) and a['pub_ts'] < cutoff_ts:
             continue
         age = a.get('_age_days', 7)
         # 날짜당 12% 점수 감쇄, 최소 40% 유지
