@@ -977,9 +977,9 @@ function autoTagsFromObj(article, dateStr) {
     if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
   }
 
-  // Keywords (up to 2) → canonical + #경쟁사
-  (article.keywords || []).slice(0, 2).forEach(k => {
-    const ct = canonicalTag(k.trim());
+  // Keywords → topicTag (중복·유사어 통합, 최대 3개)
+  (article.keywords || []).slice(0, 4).forEach(k => {
+    const ct = topicTag(k.trim());
     if (!tags.includes(ct)) tags.push(ct);
     if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
   });
@@ -1283,13 +1283,13 @@ function renderStrategy(data) {
   const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 5);
   const cvc = (brief.cvc_insight || []).filter(Boolean);
 
-  const artCard = (a) => {
+  const artCard = (a, showImpl = false) => {
     const dateStr = fmtDate(a.pub_ts);
     return `<div class="sa-article">
       <div class="sa-meta">${sigBadge(a.signal)}${tierBadge(a.tier)}${regBadge(a.region)}<span class="srctxt">${a.source||''}</span>${dateStr?`<span style="font-family:var(--mono);font-size:9px;color:var(--red);font-weight:600;margin-left:4px">${dateStr}</span>`:''}<span class="stag" style="margin-left:auto">${a.score||'—'}</span></div>
       <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
       ${(a.summary_ko||a.summary)?`<div class="sa-sum">${a.summary_ko||a.summary}</div>`:''}
-      ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
+      ${showImpl && a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
     </div>`;
   };
 
@@ -1329,7 +1329,7 @@ function renderStrategy(data) {
     parts.push(`<div class="strategy-block">
       <div class="strategy-label">즉각 대응 필요 (Action)</div>
       ${(brief.action_required||[]).filter(Boolean).map(a=>`<div class="strategy-action-item">${a}</div>`).join('')}
-      ${actionArts.map(artCard).join('')}
+      ${actionArts.map(a => artCard(a, true)).join('')}
     </div>`);
   }
 
@@ -1572,8 +1572,8 @@ function buildReportHTML(data, type) {
   const sigColor = { Action: '#c8102e', Watch: '#b45309', FYI: '#777' };
   const sigBg = { Action: '#fff0f2', Watch: '#fffbeb', FYI: '#f2f2ee' };
 
-  // Article card with date
-  const artCard = (a, rank) => {
+  // Article card with date; showImpl=true only for Action articles
+  const artCard = (a, rank, showImpl = false) => {
     const dateStr = fmtDate(a.pub_ts);
     const rankStr = rank != null ? `No.${rank} &nbsp;·&nbsp; ` : '';
     return `<div class="s-article">
@@ -1581,7 +1581,7 @@ function buildReportHTML(data, type) {
       <div class="s-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
       ${a.title_ko&&a.title_ko!==a.title?`<div class="s-orig">${a.title}</div>`:''}
       <div class="s-summary">${a.summary_ko||a.summary||''}</div>
-      ${a.lg_implication?`<div class="s-impl">→ LG 시사점: ${a.lg_implication}</div>`:''}
+      ${showImpl && a.lg_implication?`<div class="s-impl">→ LG 시사점: ${a.lg_implication}</div>`:''}
     </div>`;
   };
 
@@ -1602,7 +1602,7 @@ function buildReportHTML(data, type) {
       if (brief.action_required?.some(t=>t)) {
         content += `<div class="s-bullets">${brief.action_required.filter(t=>t).map(t=>`<div class="s-bullet" style="border-color:#c8102e">${t}</div>`).join('')}</div>`;
       }
-      content += actionArts.map(a => artCard(a)).join('');
+      content += actionArts.map(a => artCard(a, null, true)).join('');
     }
 
     // 3. 지역별 시각
@@ -1866,6 +1866,65 @@ const COMPETITOR_TAGS = new Set([
 function canonicalTag(raw) {
   const key = raw.toLowerCase().replace(/\s+/g,'');
   return ENTITY_CANONICAL[key] || ENTITY_CANONICAL[raw.toLowerCase()] || ('#' + raw.replace(/\s+/g,''));
+}
+
+// 핵심 키워드 → 통합 토픽 태그 (유사어 중복 방지)
+const KEYWORD_TOPIC_MAP = {
+  // 폼팩터
+  'humanoid':'#휴머노이드','humanoid robot':'#휴머노이드','휴머노이드':'#휴머노이드',
+  'bipedal':'#휴머노이드','quadruped':'#4족보행','legged robot':'#4족보행',
+  'exoskeleton':'#엑소스켈레톤','외골격':'#엑소스켈레톤',
+  // Physical AI / 구현
+  'embodied ai':'#PhysicalAI','physical ai':'#PhysicalAI','embodied intelligence':'#PhysicalAI',
+  'physical intelligence':'#PhysicalAI',
+  // 학습
+  'robot learning':'#로봇학습','reinforcement learning':'#로봇학습','imitation learning':'#로봇학습',
+  'behavior cloning':'#로봇학습','sim-to-real':'#로봇학습','teleoperation':'#로봇학습','원격조작':'#로봇학습',
+  // 모델/AI
+  'foundation model':'#파운데이션모델','robot foundation model':'#파운데이션모델','robot policy':'#파운데이션모델',
+  'vla':'#VLA','vision-language-action':'#VLA',
+  'world model':'#월드모델','digital twin':'#디지털트윈',
+  'large language model':'#LLM','llm':'#LLM',
+  // 하드웨어
+  'robotic arm':'#로봇팔','robot arm':'#로봇팔','manipulation':'#로봇팔',
+  'gripper':'#로봇팔','end-effector':'#로봇팔','dexterous':'#로봇팔',
+  'actuator':'#액추에이터','servo motor':'#액추에이터',
+  'force sensor':'#센서','tactile sensor':'#센서','haptic':'#센서',
+  // 이동
+  'locomotion':'#이동','gait':'#이동','walking robot':'#이동',
+  'mobile robot':'#이동','autonomous mobile robot':'#이동','amr':'#이동',
+  // 협동·산업
+  'cobot':'#협동로봇','collaborative robot':'#협동로봇','협동 로봇':'#협동로봇',
+  'industrial robot':'#산업로봇','산업용 로봇':'#산업로봇',
+  'warehouse robot':'#물류로봇','logistics robot':'#물류로봇','물류 로봇':'#물류로봇',
+  'surgical robot':'#수술로봇','수술 로봇':'#수술로봇',
+  'service robot':'#서비스로봇',
+  // 비즈니스
+  'funding':'#펀딩','investment':'#펀딩','펀딩':'#펀딩','투자':'#펀딩','series a':'#펀딩','series b':'#펀딩',
+  'partnership':'#파트너십','파트너십':'#파트너십','collaboration':'#파트너십','협력':'#파트너십',
+  'cvc':'#CVC','corporate venture':'#CVC','strategic investment':'#CVC',
+  'ipo':'#IPO','acquisition':'#M&A','merger':'#M&A','인수':'#M&A',
+  'commercialization':'#상용화','상용화':'#상용화','deployment':'#상용화','도입':'#상용화',
+  // 정책·규제
+  'regulation':'#정책','policy':'#정책','정책':'#정책','규제':'#정책','legislation':'#정책',
+  'subsidy':'#정책','보조금':'#정책','robot policy':'#정책',
+  // 시뮬레이션
+  'simulation':'#시뮬레이션','isaac sim':'#시뮬레이션','isaac lab':'#시뮬레이션',
+  'isaac gym':'#시뮬레이션','robot simulation':'#시뮬레이션',
+  // 플랫폼
+  'ros2':'#ROS','robot operating system':'#ROS',
+  'nvidia':'#NVIDIA','엔비디아':'#NVIDIA',
+  'gr00t':'#GR00T','helix':'#Helix','lerobot':'#LeRobot',
+  // 시장
+  'humanoid market':'#시장','robot market':'#시장','robot industry':'#시장','로봇 산업':'#시장',
+};
+
+function topicTag(raw) {
+  const key = raw.toLowerCase().trim();
+  // 1) 먼저 토픽 맵 확인 (유사어 통합)
+  if (KEYWORD_TOPIC_MAP[key]) return KEYWORD_TOPIC_MAP[key];
+  // 2) 회사명 canonical
+  return canonicalTag(raw);
 }
 
 function autoTags(card) {
