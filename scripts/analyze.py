@@ -38,7 +38,7 @@ signal 기준:
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=500,
+            max_tokens=1000,
             messages=[
                 {"role": "user", "content": prompt}
             ],
@@ -88,7 +88,7 @@ def generate_brief(articles):
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=800,
+            max_tokens=2000,
             messages=[{"role": "user", "content": f"""오늘 로봇 업계 뉴스 기반으로 LG전자 전략팀을 위한 Intelligence Brief를 작성하세요.
 
 주요 기사:
@@ -197,7 +197,7 @@ def generate_geopolitical(articles):
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=800,
+            max_tokens=1500,
             system=SYSTEM,
             messages=[{"role": "user", "content": f"""아래 로봇 업계 뉴스를 바탕으로 KR/US/CN 지정학·전략 신호를 분석하세요.
 직접적인 정책 기사가 없어도 투자, 파트너십, 기업 동향에서 각국 전략 방향을 추론하세요.
@@ -238,7 +238,7 @@ def generate_narrative_shifts(articles):
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=600,
+            max_tokens=1200,
             system=SYSTEM,
             messages=[{"role": "user", "content": f"""아래 로봇 업계 뉴스에서 업계 담론/프레이밍 변화를 3개 탐지하세요.
 
@@ -363,7 +363,7 @@ if __name__ == '__main__':
     try:
         delta_msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=400,
+            max_tokens=800,
             system=SYSTEM,
             messages=[{"role": "user", "content": f"""오늘 가장 중요한 로봇 뉴스 1건에 대해 KR/US/CN 미디어 시각 차이를 분석하세요.
 
