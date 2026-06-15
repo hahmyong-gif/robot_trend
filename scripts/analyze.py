@@ -185,12 +185,9 @@ def score_final(article):
     return round(min(10.0, base + signal_bonus.get(article.get('signal', 'FYI'), 0)), 1)
 
 def generate_geopolitical(articles):
-    """국가별 지정학/정책 신호 생성"""
-    policy_arts = [a for a in articles if any(
-        kw in (a.get('title','') + a.get('summary','')).lower()
-        for kw in ['policy','regulation','legislation','government','ministry','규제','정책','부처','법','보조금','표준','규격','subsidy','standard']
-    )]
-    sample = (policy_arts + articles)[:12]
+    """국가별 지정학/전략 신호 생성"""
+    # Use all articles — derive signals from industry trends even without explicit policy news
+    sample = articles[:20]
     items_text = "\n".join([
         f"- [{a.get('region','?')}] {a.get('title_ko') or a.get('title','')}: {a.get('summary_ko') or a.get('summary','')[:100]}"
         for a in sample
@@ -200,18 +197,19 @@ def generate_geopolitical(articles):
     try:
         msg = client.messages.create(
             model="claude-sonnet-4-6",
-            max_tokens=700,
+            max_tokens=800,
             system=SYSTEM,
-            messages=[{"role": "user", "content": f"""아래 로봇 업계 뉴스를 바탕으로 KR/US/CN 지정학·정책 신호를 분석하세요.
+            messages=[{"role": "user", "content": f"""아래 로봇 업계 뉴스를 바탕으로 KR/US/CN 지정학·전략 신호를 분석하세요.
+직접적인 정책 기사가 없어도 투자, 파트너십, 기업 동향에서 각국 전략 방향을 추론하세요.
 
 뉴스:
 {items_text}
 
 JSON만 반환:
 {{
-  "KR": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 정책 이슈 1줄", "desc": "한국 로봇 정책/규제 동향 2문장", "items": ["항목1", "항목2", "항목3"]}},
-  "US": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 정책 이슈 1줄", "desc": "미국 로봇 정책/규제 동향 2문장", "items": ["항목1", "항목2", "항목3"]}},
-  "CN": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 정책 이슈 1줄", "desc": "중국 로봇 정책/규제 동향 2문장", "items": ["항목1", "항목2", "항목3"]}}
+  "KR": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 전략 동향 1줄", "desc": "한국 로봇 생태계 동향 2문장", "items": ["항목1", "항목2", "항목3"]}},
+  "US": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 전략 동향 1줄", "desc": "미국 로봇 생태계 동향 2문장", "items": ["항목1", "항목2", "항목3"]}},
+  "CN": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 전략 동향 1줄", "desc": "중국 로봇 생태계 동향 2문장", "items": ["항목1", "항목2", "항목3"]}}
 }}"""
         }])
         text = msg.content[0].text.strip()
@@ -230,7 +228,7 @@ def _geo_fallback():
 
 def generate_narrative_shifts(articles):
     """업계 담론 프레이밍 변화 탐지"""
-    sample = articles[:15]
+    sample = articles[:20]
     items_text = "\n".join([
         f"- {a.get('title_ko') or a.get('title','')}: {a.get('summary_ko') or a.get('summary','')[:120]}"
         for a in sample
@@ -359,7 +357,7 @@ if __name__ == '__main__':
 
     # Narrative Shift 생성
     print("\n📊 Generating Narrative shifts...")
-    narrative_shifts = generate_narrative_shifts(global_top10)
+    narrative_shifts = generate_narrative_shifts(analyzed[:20])
 
     # Regional Delta (Claude가 생성)
     try:

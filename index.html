@@ -287,6 +287,18 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .tag-pre:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 .tag-save{width:100%;padding:7px;border:none;border-radius:2px;background:var(--ink);color:#fff;font-family:var(--sans);font-size:12px;font-weight:600;cursor:pointer}
 
+/* STRATEGY */
+.strategy-block{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.strategy-block:last-child{border-bottom:none}
+.strategy-label{font-family:var(--mono);font-size:10px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.strategy-bottomline{font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--ink);font-weight:700}
+.strategy-action-item{padding:6px 0 6px 12px;border-left:3px solid var(--red);font-size:13px;color:var(--ink);margin-bottom:6px;line-height:1.4}
+.sreg-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;font-size:12px;color:var(--ink2);line-height:1.5}
+.sa-article{margin-bottom:12px;padding:10px 14px;background:var(--paper2);border-radius:2px}
+.sa-title{font-family:var(--serif);font-size:13px;font-weight:700;margin-bottom:4px}
+.sa-title a{color:var(--ink);text-decoration:none}.sa-title a:hover{text-decoration:underline}
+.sa-impl{font-size:11px;color:var(--ink3);line-height:1.5}
+
 /* LOADING */
 .loading{text-align:center;padding:40px;color:var(--ink4)}
 .loading .ti{font-size:28px;display:block;margin-bottom:8px;opacity:.3;animation:spin 1.5s linear infinite}
@@ -358,6 +370,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
     <div class="snd"></div>
     <button class="snav" data-tab="expo">전시회 <span id="expoThisMonth" style="font-family:var(--mono);font-size:9px;color:var(--red);margin-left:2px"></span></button>
     <div class="snd"></div>
+    <button class="snav" data-tab="strategy">전략보고서</button>
+    <div class="snd"></div>
     <button class="snav" data-tab="pdf"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> PDF</button>
     <div class="snd"></div>
     <button class="snav" data-tab="filing">파일링 <span id="bkCnt" style="font-family:var(--mono);font-size:10px;color:var(--red);margin-left:2px"></span></button>
@@ -373,6 +387,15 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 
 <div class="layout">
 <main class="main-col" id="mainCol">
+
+<!-- 전략보고서 -->
+<div class="panel" id="tab-strategy">
+  <div class="sec-wrap">
+    <div class="sec-title">전략보고서</div>
+    <div class="sec-sub">이번 주 LG전자 로봇·Physical AI 전략 시사점 종합 — 자동 생성</div>
+    <div id="strategyContent"><div class="loading"><i class="ti ti-refresh"></i><div>로딩 중...</div></div></div>
+  </div>
+</div>
 
 <!-- TOP 10 -->
 <div class="panel show" id="tab-top10">
@@ -646,14 +669,15 @@ function renderAll() {
   // Client-side: skip articles older than 21 days (guards against stale news.json)
   const cutoff21 = Date.now()/1000 - 21*86400;
   const freshArticles = (d.global_top10 || []).filter(a => !a.pub_ts || a.pub_ts > cutoff21);
-  renderGlobalTop10(freshArticles);
+  renderGlobalTop10(freshArticles.slice(0, 10));
   const freshRegional = {};
   Object.entries(d.regional || {}).forEach(([k,v]) => { freshRegional[k] = v.filter(a => !a.pub_ts || a.pub_ts > cutoff21); });
   renderRegional(freshRegional, d.regional_delta || {});
   renderWeakSignals(d.weak_signals || []);
-  renderNarrativeShifts(d.narrative_shifts || []);
-  renderGeopolitical(d.geopolitical || {});
+  renderNarrativeShifts(d.narrative_shifts || [], freshArticles);
+  renderGeopolitical(d.geopolitical || {}, freshArticles, freshRegional);
   renderBriefContent(d.brief || {}, d);
+  renderStrategy(d);
   renderRegionalPulse(d.regional || {});
   renderCompetitorActivity(d);
   autoFileNewArticles(d);
@@ -970,11 +994,35 @@ function renderWeakSignals(signals) {
 }
 
 // ── NARRATIVE SHIFT ──────────────────────────────────────
-function renderNarrativeShifts(shifts) {
+function renderNarrativeShifts(shifts, articles) {
   const el = document.getElementById('narrativeCards');
   if (!el) return;
   if (!shifts || !shifts.length) {
-    el.innerHTML = '<div style="color:var(--ink4);font-size:12px;padding:20px">이번 주 담론 변화 데이터가 없습니다. 다음 업데이트 시 생성됩니다.</div>';
+    if (!articles || !articles.length) {
+      el.innerHTML = '<div style="color:var(--ink4);font-size:12px;padding:20px">이번 주 담론 변화 데이터가 없습니다.</div>';
+      return;
+    }
+    // Compute keyword-trend fallback from articles
+    const entityMap = {};
+    articles.forEach(a => {
+      if (a.entity) entityMap[a.entity] = (entityMap[a.entity]||0) + (a.signal==='Action'?3:a.signal==='Watch'?2:1);
+      (a.keywords||[]).forEach(k => { entityMap[k] = (entityMap[k]||0) + 1; });
+    });
+    const topEntities = Object.entries(entityMap).sort((a,b)=>b[1]-a[1]).slice(0,3);
+
+    const FRAME_PAIRS = [
+      {from:'R&D 실험', to:'상용화 가속'},
+      {from:'소프트웨어 AI', to:'물리적 구현'},
+      {from:'단순 자동화', to:'범용 로봇'},
+    ];
+
+    el.innerHTML = `<div style="font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.08em;margin-bottom:12px">⚠ AI 분석 준비 중 — 기사 기반 자동 추출</div>` +
+    topEntities.map(([entity, score], i) => `
+      <div class="ns-card">
+        <div class="ns-kw">${entity}</div>
+        <div class="ns-shift"><span class="ns-from">${FRAME_PAIRS[i]?.from||'기존 접근'}</span><span class="ns-arr">→</span><span class="ns-to">${FRAME_PAIRS[i]?.to||'새 동향'}</span></div>
+        <div class="ns-desc">이번 주 뉴스에서 ${entity} 관련 기사 비중 ${score}점. 다음 업데이트 시 상세 분석이 제공됩니다.</div>
+      </div>`).join('');
     return;
   }
   el.innerHTML = shifts.map(s => `
@@ -990,7 +1038,7 @@ function renderNarrativeShifts(shifts) {
 }
 
 // ── GEOPOLITICAL ─────────────────────────────────────────
-function renderGeopolitical(geo) {
+function renderGeopolitical(geo, articles, regional) {
   const el = document.getElementById('geoGrid');
   if (!el) return;
   const regions = [
@@ -1006,7 +1054,20 @@ function renderGeopolitical(geo) {
 
   const anyData = regions.some(r => geo[r.key]?.policy && geo[r.key].policy !== '데이터 없음');
   if (!anyData) {
-    el.innerHTML = '<div style="color:var(--ink4);font-size:12px;padding:20px;grid-column:1/-1">이번 주 정책/규제 관련 기사가 부족합니다. 다음 업데이트 시 생성됩니다.</div>';
+    // Fallback: derive from regional articles
+    el.innerHTML = `<div style="grid-column:1/-1;margin-bottom:8px;font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.08em">⚠ AI 분석 준비 중 — 기사 기반 자동 요약</div>` +
+    regions.map(({key, flag, label}) => {
+      const arts = (regional?.[key] || []).filter(a => a.signal);
+      const topArts = arts.slice(0, 3);
+      if (!topArts.length) return `<div class="geo-card"><div class="geo-head"><span class="geo-country">${flag} ${label}</span></div><div class="geo-policy" style="color:var(--ink4)">기사 없음</div></div>`;
+      const topSig = arts.find(a=>a.signal==='Action')?.signal || arts.find(a=>a.signal==='Watch')?.signal || 'FYI';
+      const sigColors = {Action:'var(--red)',Watch:'var(--amber)',FYI:'var(--ink4)'};
+      return `<div class="geo-card">
+        <div class="geo-head"><span class="geo-country">${flag} ${label}</span><span class="geo-temp" style="color:${sigColors[topSig]}">${topSig} ×${arts.filter(a=>a.signal===topSig).length}</span></div>
+        <div class="geo-policy">${topArts[0]?.title_ko || topArts[0]?.title || ''}</div>
+        <div class="geo-items">${topArts.map((a,i) => `<div class="geo-item"><div class="geo-dot" style="background:${['var(--green)','var(--amber)','var(--red)'][i]}"></div>${(a.title_ko||a.title||'').slice(0,45)}</div>`).join('')}</div>
+      </div>`;
+    }).join('');
     return;
   }
 
@@ -1028,6 +1089,53 @@ function renderGeopolitical(geo) {
       </div>
     </div>`;
   }).join('');
+}
+
+// ── STRATEGY REPORT ──────────────────────────────────────
+function renderStrategy(data) {
+  const el = document.getElementById('strategyContent');
+  if (!el) return;
+  const brief = data.brief || {};
+  const delta = data.regional_delta || {};
+  const articles = (data.global_top10 || []);
+  const actionArts = articles.filter(a => a.signal === 'Action').slice(0, 5);
+  const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 3);
+  const cvc = (brief.cvc_insight || []).filter(Boolean);
+
+  el.innerHTML = `
+    ${brief.bottom_line ? `<div class="strategy-block">
+      <div class="strategy-label">이번 주 핵심 메시지</div>
+      <div class="strategy-bottomline">${brief.bottom_line}</div>
+    </div>` : ''}
+    ${actionArts.length ? `<div class="strategy-block">
+      <div class="strategy-label">즉각 대응 필요 (Action)</div>
+      ${(brief.action_required||[]).filter(Boolean).map(a=>`<div class="strategy-action-item">${a}</div>`).join('')}
+    </div>` : ''}
+    ${(delta.kr_angle||delta.us_angle||delta.cn_angle) ? `<div class="strategy-block">
+      <div class="strategy-label">지역별 전략 시각${delta.topic?` — ${delta.topic}`:''}</div>
+      ${delta.kr_angle?`<div class="sreg-row"><span class="reg reg-kr" style="flex-shrink:0">KR</span><span>${delta.kr_angle}</span></div>`:''}
+      ${delta.us_angle?`<div class="sreg-row"><span class="reg reg-us" style="flex-shrink:0">US</span><span>${delta.us_angle}</span></div>`:''}
+      ${delta.cn_angle?`<div class="sreg-row"><span class="reg reg-cn" style="flex-shrink:0">CN</span><span>${delta.cn_angle}</span></div>`:''}
+    </div>` : ''}
+    ${cvc.length ? `<div class="strategy-block">
+      <div class="strategy-label">CVC / 파트너십 관점</div>
+      ${cvc.map(c=>`<div class="strategy-action-item" style="border-color:var(--amber)">${c}</div>`).join('')}
+    </div>` : ''}
+    ${actionArts.length ? `<div class="strategy-block">
+      <div class="strategy-label">LG 시사점 — Action 기사</div>
+      ${actionArts.map(a=>`<div class="sa-article">
+        <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
+        ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
+      </div>`).join('')}
+    </div>` : ''}
+    ${watchArts.length ? `<div class="strategy-block">
+      <div class="strategy-label">주목 동향 — Watch 기사</div>
+      ${watchArts.map(a=>`<div class="sa-article">
+        <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
+        ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
+      </div>`).join('')}
+    </div>` : ''}
+  ` || '<div class="loading">브리핑 데이터 없음</div>';
 }
 
 // ── BRIEF ────────────────────────────────────────────────
