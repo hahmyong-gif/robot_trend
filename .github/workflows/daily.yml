@@ -2,7 +2,7 @@ name: 🤖 Robot Intelligence Daily
 
 on:
   schedule:
-    - cron: '0 22 */2 * *'   # 2일마다 KST 07:00 (월·수·금·일)
+    - cron: '0 22 * * *'   # 매일 KST 07:00
   workflow_dispatch:
     inputs:
       run_exhibitions:

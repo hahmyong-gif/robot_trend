@@ -299,6 +299,11 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .sa-title a{color:var(--ink);text-decoration:none}.sa-title a:hover{text-decoration:underline}
 .sa-impl{font-size:11px;color:var(--ink3);line-height:1.5}
 
+/* ARCHIVE BROWSER */
+.archive-bar{display:flex;align-items:center;gap:8px;padding:7px 22px;background:var(--paper2);border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.arc-btn{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:2px;border:1px solid var(--rule);background:#fff;color:var(--ink3);cursor:pointer;transition:all .1s}
+.arc-btn:hover,.arc-btn.act{background:var(--ink);color:#fff;border-color:var(--ink)}
+
 /* LOADING */
 .loading{text-align:center;padding:40px;color:var(--ink4)}
 .loading .ti{font-size:28px;display:block;margin-bottom:8px;opacity:.3;animation:spin 1.5s linear infinite}
@@ -391,7 +396,10 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 <!-- 전략보고서 -->
 <div class="panel" id="tab-strategy">
   <div class="sec-wrap">
-    <div class="sec-title">전략보고서</div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:5px">
+      <div class="sec-title" style="padding-bottom:0;border-bottom:none;margin-bottom:0">전략보고서</div>
+      <button onclick="exportStrategyInsight()" style="display:flex;align-items:center;gap:5px;padding:5px 11px;border:1px solid var(--ink);border-radius:2px;background:transparent;color:var(--ink);font-family:var(--sans);font-size:11px;font-weight:500;cursor:pointer;transition:all .1s" onmouseover="this.style.background='var(--ink)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--ink)'"><i class="ti ti-report" style="font-size:13px"></i> 전략 인사이트 출력</button>
+    </div>
     <div class="sec-sub">이번 주 LG전자 로봇·Physical AI 전략 시사점 종합 — 자동 생성</div>
     <div id="strategyContent"><div class="loading"><i class="ti ti-refresh"></i><div>로딩 중...</div></div></div>
   </div>
@@ -399,6 +407,10 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 
 <!-- TOP 10 -->
 <div class="panel show" id="tab-top10">
+  <div class="archive-bar" id="archiveBar" style="display:none">
+    <span style="font-family:var(--mono);font-size:9px;color:var(--ink4);letter-spacing:.06em;text-transform:uppercase;flex-shrink:0">날짜</span>
+    <div id="archiveBtns" style="display:flex;gap:3px;flex-wrap:wrap"></div>
+  </div>
   <div id="globalTop10"><div class="loading"><i class="ti ti-refresh"></i><div>뉴스 데이터 로딩 중...</div></div></div>
   <div id="regionalSection" style="display:none">
     <div class="reg-wrap">
@@ -683,6 +695,169 @@ function renderAll() {
   autoFileNewArticles(d);
   renderFiling();
   updatePdfPreview();
+  buildArchiveBar();
+}
+
+// ── ARCHIVE BROWSER ──────────────────────────────────────
+let ARCHIVE_DATE = null; // null = today (current news.json)
+
+function buildArchiveBar() {
+  const bar = document.getElementById('archiveBar');
+  const btns = document.getElementById('archiveBtns');
+  if (!bar || !btns) return;
+  bar.style.display = '';
+
+  const today = new Date();
+  const dates = [];
+  for (let i = 0; i <= 6; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    dates.push(d.toISOString().slice(0, 10));
+  }
+
+  btns.innerHTML = dates.map((d, i) => {
+    const label = i === 0 ? '오늘' : i === 1 ? '어제' : d.slice(5).replace('-', '/');
+    const isAct = (ARCHIVE_DATE === null && i === 0) || ARCHIVE_DATE === d;
+    return `<button class="arc-btn${isAct?' act':''}" data-date="${i===0?'':d}"
+      onclick="loadArchive('${i===0?'':d}',this)">${label}</button>`;
+  }).join('');
+}
+
+async function loadArchive(dateStr, btn) {
+  document.querySelectorAll('.arc-btn').forEach(b => b.classList.remove('act'));
+  btn.classList.add('act');
+
+  if (!dateStr) {
+    ARCHIVE_DATE = null;
+    if (NEWS) {
+      const cutoff21 = Date.now()/1000 - 21*86400;
+      const fresh = (NEWS.global_top10||[]).filter(a=>!a.pub_ts||a.pub_ts>cutoff21);
+      renderGlobalTop10(fresh.slice(0,10));
+      const freshReg = {};
+      Object.entries(NEWS.regional||{}).forEach(([k,v])=>{freshReg[k]=v.filter(a=>!a.pub_ts||a.pub_ts>cutoff21);});
+      renderRegional(freshReg, NEWS.regional_delta||{});
+    }
+    return;
+  }
+
+  ARCHIVE_DATE = dateStr;
+  document.getElementById('globalTop10').innerHTML = '<div class="loading"><i class="ti ti-refresh"></i><div>아카이브 로딩 중...</div></div>';
+  document.getElementById('regionalSection').style.display = 'none';
+
+  try {
+    const res = await fetch(`data/archive/${dateStr}.json`);
+    if (!res.ok) throw new Error('not found');
+    const ad = await res.json();
+    renderGlobalTop10((ad.global_top10||[]).slice(0,10));
+    if (ad.regional) renderRegional(ad.regional, ad.regional_delta||{});
+  } catch(e) {
+    document.getElementById('globalTop10').innerHTML =
+      `<div class="loading" style="color:var(--ink4);padding:40px"><i class="ti ti-calendar-x" style="font-size:28px;display:block;margin-bottom:8px;opacity:.3"></i>${dateStr} 아카이브가 없습니다<br><span style="font-size:11px">해당 날짜에 업데이트가 없었거나 아카이브가 아직 없습니다</span></div>`;
+  }
+}
+
+// ── STRATEGY INSIGHT EXPORT ──────────────────────────────
+function exportStrategyInsight() {
+  if (!NEWS) { alert('뉴스 데이터가 없습니다.'); return; }
+  const d = NEWS;
+  const brief = d.brief || {};
+  const delta = d.regional_delta || {};
+  const articles = d.global_top10 || [];
+  const date = d.date || new Date().toISOString().slice(0, 10);
+  const stats = d.stats || {};
+
+  const actionArts = articles.filter(a => a.signal === 'Action');
+  const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 5);
+  const sigColors = { Action:'#c8102e', Watch:'#b45309', FYI:'#555' };
+
+  const artRows = (arr) => arr.map(a => `
+    <div style="border:1px solid #e0e0d8;border-radius:2px;padding:12px 16px;margin-bottom:10px;background:#fff;page-break-inside:avoid">
+      <div style="font-family:monospace;font-size:10px;color:#888;margin-bottom:4px">
+        <span style="color:${sigColors[a.signal]||'#555'};font-weight:700">[${a.signal||'FYI'}]</span>
+        ${a.tier||''} &nbsp;·&nbsp; Score ${a.score||'—'} &nbsp;·&nbsp; ${a.source||''}
+      </div>
+      <div style="font-family:Georgia,serif;font-size:15px;font-weight:700;color:#0f0f0f;margin-bottom:5px;line-height:1.3">
+        ${a.url?`<a href="${a.url}" style="color:inherit;text-decoration:none">${a.title_ko||a.title}</a>`:a.title_ko||a.title}
+      </div>
+      <div style="font-size:12px;color:#444;line-height:1.6;margin-bottom:6px">${a.summary_ko||a.summary||''}</div>
+      ${a.lg_implication?`<div style="font-size:11px;color:#1e40af;border-left:3px solid #1e40af;padding-left:8px;font-style:italic">LG 시사점: ${a.lg_implication}</div>`:''}
+    </div>`).join('');
+
+  const regSection = (key, flag, label, color) => {
+    const angle = key==='KR'?delta.kr_angle:key==='US'?delta.us_angle:delta.cn_angle;
+    const arts = (d.regional?.[key]||[]).slice(0,5);
+    if (!angle && !arts.length) return '';
+    return `<h3 style="font-size:11pt;margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0;color:${color}">${flag} ${label}</h3>
+      ${angle?`<p style="font-size:11px;color:#444;margin-bottom:8px">${angle}</p>`:''}
+      ${arts.map(a=>`<div style="padding:6px 0;border-bottom:1px solid #f0f0ee;font-size:11px;color:#333">
+        <span style="color:${sigColors[a.signal]||'#888'};font-weight:600">[${a.signal||'FYI'}]</span>
+        ${a.url?`<a href="${a.url}" style="color:inherit">${a.title_ko||a.title}</a>`:a.title_ko||a.title}
+      </div>`).join('')}`;
+  };
+
+  const html = `<!DOCTYPE html><html lang="ko"><head>
+<meta charset="UTF-8">
+<title>RID 전략 인사이트 — ${date}</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans KR',sans-serif;background:#fafaf7;color:#0f0f0f;font-size:12px;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 32px}
+  @media print{.wrap{padding:12mm 14mm}.no-print{display:none}}
+  .header{border-bottom:3px solid #0f0f0f;padding-bottom:12px;margin-bottom:20px}
+  .header h1{font-size:26px;font-weight:900;font-family:Georgia,serif;letter-spacing:-.02em}
+  .meta{font-family:monospace;font-size:10px;color:#888;margin-top:4px}
+  .stats{background:#f2f2ee;padding:8px 14px;font-size:10px;color:#666;margin-bottom:20px;border-radius:2px;font-family:monospace}
+  h2{font-size:12pt;letter-spacing:.04em;text-transform:uppercase;margin:20px 0 8px;padding-bottom:5px;border-bottom:2px solid #0f0f0f}
+  .bottom-line{background:#f2f2ee;padding:12px 16px;margin:12px 0 20px;border-radius:2px;border-left:4px solid #0f0f0f}
+  .action-item{padding:6px 0 6px 12px;border-left:3px solid #c8102e;margin-bottom:6px;font-size:12px}
+  .cvc-item{padding:6px 0 6px 12px;border-left:3px solid #5b21b6;margin-bottom:6px;font-size:12px;color:#5b21b6}
+  .no-print{text-align:right;margin-bottom:18px}
+  .no-print button{padding:8px 16px;border:none;background:#0f0f0f;color:#fff;font-size:12px;cursor:pointer;border-radius:2px}
+  .footer{margin-top:28px;padding-top:10px;border-top:1px solid #e0e0e0;font-family:monospace;font-size:9px;color:#aaa;display:flex;justify-content:space-between}
+  .confidential{color:#c8102e;font-weight:700}
+</style>
+</head><body><div class="wrap">
+<div class="no-print"><button onclick="window.print()">🖨 인쇄 / PDF 저장</button></div>
+<div class="header">
+  <div class="meta">ROBOT INTELLIGENCE DAILY — 전략 인사이트 보고서 &nbsp;·&nbsp; <span class="confidential">CONFIDENTIAL</span></div>
+  <h1>전략보고서</h1>
+  <div class="meta">생성일: ${date} &nbsp;·&nbsp; LG전자 CTO / 로봇사업부 전략팀</div>
+</div>
+<div class="stats">
+  분석 기사 ${stats.total_scanned||'—'}건 &nbsp;|&nbsp; Action ${stats.action_count||0} &nbsp;|&nbsp; Watch ${stats.watch_count||0} &nbsp;|&nbsp; Weak Signals ${stats.weak_signal_count||0} &nbsp;|&nbsp; Top Score ${stats.top_score||'—'}
+</div>
+
+${brief.bottom_line?`<div class="bottom-line"><strong style="font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#555;display:block;margin-bottom:6px">이번 주 핵심 메시지</strong><div style="font-family:Georgia,serif;font-size:15px;font-weight:700">${brief.bottom_line}</div></div>`:''}
+
+${(brief.action_required||[]).filter(Boolean).length?`<h2 style="color:#c8102e">즉각 대응 필요</h2>${(brief.action_required||[]).filter(Boolean).map(a=>`<div class="action-item">${a}</div>`).join('')}`:''}
+
+${(brief.cvc_insight||[]).filter(Boolean).length?`<h2 style="color:#5b21b6">CVC / 파트너십 시사점</h2>${(brief.cvc_insight||[]).filter(Boolean).map(c=>`<div class="cvc-item">${c}</div>`).join('')}`:''}
+
+${delta.topic||delta.kr_angle?`<h2>지역별 전략 시각${delta.topic?` — ${delta.topic}`:''}</h2>
+${regSection('KR','🇰🇷','한국','#c8102e')}
+${regSection('US','🇺🇸','미국','#1e40af')}
+${regSection('CN','🇨🇳','중국','#d97706')}`:''}
+
+${actionArts.length?`<h2>Action 기사 — LG 시사점</h2>${artRows(actionArts)}`:''}
+${watchArts.length?`<h2>Watch 기사 — 동향 주목</h2>${artRows(watchArts)}`:''}
+
+${(d.narrative_shifts||[]).length?`<h2>Narrative Shift — 담론 변화</h2>${d.narrative_shifts.map(s=>`<div style="border:1px solid #e0e0d8;padding:10px 14px;margin-bottom:8px;border-radius:2px;background:#fff">
+  <div style="font-family:Georgia,serif;font-size:14px;font-weight:700;margin-bottom:4px">${s.keyword||''}</div>
+  <div style="font-size:11px;color:#888;margin-bottom:6px"><span style="background:#fff0f2;color:#c8102e;padding:1px 6px;border-radius:2px">${s.from_frame||''}</span> → <span style="background:#f0fdf4;color:#166534;padding:1px 6px;border-radius:2px">${s.to_frame||''}</span></div>
+  <div style="font-size:11px;color:#444">${s.desc||''}</div>
+</div>`).join('')}`:''}
+
+<div class="footer">
+  <span>Robot Intelligence Daily — 전략 인사이트</span>
+  <span class="confidential">CONFIDENTIAL · ${date}</span>
+</div>
+</div></body></html>`;
+
+  const win = window.open('', '_blank');
+  if (!win) { alert('팝업이 차단되었습니다. 팝업 허용 후 다시 시도하세요.'); return; }
+  win.document.write(html);
+  win.document.close();
 }
 
 // ── MOBILE SIDEBAR ───────────────────────────────────────
@@ -1141,6 +1316,11 @@ function renderStrategy(data) {
 // ── BRIEF ────────────────────────────────────────────────
 function openBrief() {
   document.getElementById('briefModal').classList.add('open');
+  // Re-render if data loaded but content still in initial loading state
+  const el = document.getElementById('briefContent');
+  if (NEWS && el.querySelector('.loading')) {
+    renderBriefContent(NEWS.brief || {}, NEWS);
+  }
 }
 document.getElementById('briefModal').addEventListener('click', function(e) { if(e.target===this)this.classList.remove('open'); });
 
