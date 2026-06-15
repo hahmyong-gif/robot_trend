@@ -18,6 +18,7 @@ tiers:
       - DeepMind
       - Softbank Robotics
       - SoftBank
+      - Gemini Robotics
 
   T2:
     weight: 2.0
@@ -28,6 +29,10 @@ tiers:
       - 삼성전자
       - Hyundai
       - 현대자동차
+      - Rainbow Robotics
+      - 레인보우로보틱스
+      - Doosan Robotics
+      - 두산로보틱스
       - ABB Robotics
       - ABB
       - Fanuc
@@ -35,6 +40,7 @@ tiers:
       - Yaskawa
       - Universal Robots
       - Kawasaki Robotics
+      - OMRON Robotics
 
   T3:
     weight: 1.5
@@ -63,7 +69,12 @@ tiers:
       - Galbot
       - Mentee Robotics
       - Clone Robotics
-      - Apptronik
+      - LeRobot
+      - Hugging Face Robotics
+      - Maum AI
+      - 마음AI
+      - Intrinsic
+      - Embodied Intelligence
 
   T4:
     weight: 1.2
@@ -79,6 +90,10 @@ tiers:
       - UC Berkeley
       - Oxford Robotics
       - Carnegie Mellon
+      - GEAR Lab
+      - Seoul National University Robot
+      - Waseda University Robot
+      - Tokyo University Robot
 
   T5:
     weight: 1.0
@@ -87,6 +102,10 @@ tiers:
       - Atlas
       - Optimus
       - Digit
+      - Helix
+      - GR00T N1
+      - Neo robot
+      - Apollo robot
 
 
 keywords:
@@ -100,10 +119,17 @@ keywords:
     - robot foundation model
     - sim-to-real
     - data factory
+    - 데이터 팩토리
     - GR00T
+    - GR00T N1
     - Isaac Sim
     - Isaac Lab
+    - Isaac Gym
     - VLA
+    - vision-language-action
+    - Helix
+    - LeRobot
+    - Gemini Robotics
     - robot manipulation
     - bipedal robot
     - 이족보행
@@ -120,17 +146,30 @@ keywords:
     - 산업용 로봇
     - robot gripper
     - dexterous manipulation
+    - dexterous hand
     - robot locomotion
     - legged robot
     - 4족 보행
     - quadruped
     - imitation learning robot
+    - behavior cloning
     - robot learning
+    - teleoperation
+    - 원격조작
+    - world model
+    - 월드 모델
+    - digital twin
+    - 디지털 트윈
+    - whole-body control
+    - loco-manipulation
     - robot AI
     - 로봇 인공지능
     - robot operating system
     - ROS2
     - 로봇 공학
+    - warehouse robot
+    - 창고 로봇
+    - GEAR Lab
 
   market:
     - robot investment
@@ -237,6 +276,18 @@ sources:
       url: https://news.google.com/rss/search?q=NVIDIA+robot+OR+%22Isaac+Lab%22+OR+%22GR00T%22&hl=en-US&gl=US&ceid=US:en
       region: global
       tier_bias: T1
+    - name: Google News - VLA foundation model
+      url: https://news.google.com/rss/search?q=%22VLA%22+OR+%22vision+language+action%22+OR+%22robot+foundation+model%22+OR+%22Helix%22+robot&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
+    - name: Google News - Unitree Agibot Fourier
+      url: https://news.google.com/rss/search?q=Unitree+OR+Agibot+OR+%22Fourier+Intelligence%22+OR+Galbot+humanoid&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T3
+    - name: Robotics & Automation News
+      url: https://roboticsandautomationnews.com/feed/
+      region: global
+      tier_bias: T2
 
   korea:
     - name: 전자신문
@@ -255,6 +306,10 @@ sources:
       url: https://www.mk.co.kr/rss/50200011/
       region: KR
       tier_bias: T2
+    - name: 조선비즈
+      url: https://biz.chosun.com/site/data/rss/rss.xml
+      region: KR
+      tier_bias: T2
     - name: Google News KR - 휴머노이드
       url: https://news.google.com/rss/search?q=%ED%9C%B4%EB%A8%B8%EB%85%B8%EC%9D%B4%EB%93%9C+%EB%A1%9C%EB%B4%87&hl=ko&gl=KR&ceid=KR:ko
       region: KR
@@ -265,6 +320,10 @@ sources:
       tier_bias: T2
     - name: Google News KR - AI 로봇
       url: https://news.google.com/rss/search?q=%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5+%EB%A1%9C%EB%B4%87+%ED%88%AC%EC%9E%90&hl=ko&gl=KR&ceid=KR:ko
+      region: KR
+      tier_bias: T2
+    - name: Google News KR - 로봇 정책
+      url: https://news.google.com/rss/search?q=%EB%A1%9C%EB%B4%87+%EC%A0%95%EC%B1%85+OR+%EB%A1%9C%EB%B4%87+%EC%9C%A1%EC%84%B1+OR+K-%ED%9C%B4%EB%A8%B8%EB%85%B8%EC%9D%B4%EB%93%9C&hl=ko&gl=KR&ceid=KR:ko
       region: KR
       tier_bias: T2
 
@@ -289,6 +348,10 @@ sources:
       url: https://news.google.com/rss/search?q=robot+company+raises+OR+acquires+OR+launches&hl=en-US&gl=US&ceid=US:en
       region: US
       tier_bias: T2
+    - name: Google News US - humanoid deploy
+      url: https://news.google.com/rss/search?q=humanoid+robot+deploy+OR+commercial+OR+factory+OR+warehouse&hl=en-US&gl=US&ceid=US:en
+      region: US
+      tier_bias: T2
 
   china:
     - name: TechNode (EN)
@@ -304,13 +367,31 @@ sources:
       region: CN
       tier_bias: T3
     - name: Google News CN - robot
-      url: https://news.google.com/rss/search?q=China+robot+humanoid+Unitree+Agibot&hl=en-US&gl=US&ceid=US:en
+      url: https://news.google.com/rss/search?q=China+robot+humanoid+Unitree+Agibot+Fourier&hl=en-US&gl=US&ceid=US:en
       region: CN
       tier_bias: T3
     - name: Google News CN - 중국 로봇
       url: https://news.google.com/rss/search?q=%EC%A4%91%EA%B5%AD+%EB%A1%9C%EB%B4%87+%ED%9C%B4%EB%A8%B8%EB%85%B8%EC%9D%B4%EB%93%9C&hl=ko&gl=KR&ceid=KR:ko
       region: CN
       tier_bias: T3
+    - name: Google News CN - 中文 机器人
+      url: https://news.google.com/rss/search?q=%E6%9C%BA%E5%99%A8%E4%BA%BA+OR+%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA+OR+%E5%AE%87%E6%A0%91+OR+%E6%99%BA%E5%85%83&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+      region: CN
+      tier_bias: T3
+
+  europe:
+    - name: Robotics & Automation News
+      url: https://roboticsandautomationnews.com/feed/
+      region: EU
+      tier_bias: T2
+    - name: The Robot Report EU
+      url: https://www.therobotreport.com/tag/europe/feed/
+      region: EU
+      tier_bias: T2
+    - name: Google News EU - robotics
+      url: https://news.google.com/rss/search?q=robotics+OR+%22humanoid+robot%22+OR+%22physical+AI%22&hl=en-GB&gl=GB&ceid=GB:en
+      region: EU
+      tier_bias: T2
 
 dedup:
   similarity_threshold: 0.75

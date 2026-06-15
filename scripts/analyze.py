@@ -396,6 +396,7 @@ JSON만 반환:
             "KR": regional_analyzed.get('KR', [])[:10],
             "US": regional_analyzed.get('US', [])[:10],
             "CN": regional_analyzed.get('CN', [])[:10],
+            "EU": regional_analyzed.get('EU', [])[:10],
         },
         "regional_delta": delta,
         "weak_signals": weak_signals,
