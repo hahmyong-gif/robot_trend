@@ -1199,47 +1199,59 @@ function renderBriefContent(brief, data) {
 // ── EXHIBITIONS ──────────────────────────────────────────
 function renderExhibitions() {
   if (!EXPO) return;
+  const past      = (EXPO.past || EXPO.exhibitions || []).filter(e => e.status === 'past');
   const thisMonth = EXPO.this_month || [];
-  const upcoming  = EXPO.upcoming  || [];
+  const upcoming  = EXPO.upcoming || [];
 
   // Nav badge: 이번 달 전시회 수
   const el = document.getElementById('expoThisMonth');
   if (el) el.textContent = thisMonth.length || '';
 
   let html = '';
+
   if (thisMonth.length) {
-    html += `<div class="expo-section-title">🔴 이번 달 로봇 전시회 — ${EXPO.current_month}</div>`;
-    html += `<div class="expo-grid">` + thisMonth.map(e => expoCard(e, true)).join('') + `</div>`;
+    html += `<div class="expo-section-title">🔴 이번 달 — ${EXPO.current_month}</div>`;
+    html += `<div class="expo-grid">` + thisMonth.map(e => expoCard(e, 'this_month')).join('') + `</div>`;
   } else {
     html += `<div style="color:var(--ink4);font-size:12px;padding:14px 20px 6px">이번 달(${EXPO.current_month}) 주요 로봇 전시회가 없습니다.</div>`;
   }
 
   if (upcoming.length) {
     html += `<div class="expo-section-title" style="margin-top:8px">📅 향후 일정</div>`;
-    html += `<div class="expo-grid">` + upcoming.map(e => expoCard(e, false)).join('') + `</div>`;
+    html += `<div class="expo-grid">` + upcoming.map(e => expoCard(e, 'upcoming')).join('') + `</div>`;
   }
+
+  if (past.length) {
+    html += `<div class="expo-section-title" style="margin-top:8px;color:var(--ink4)">✓ 완료된 행사 (2026)</div>`;
+    html += `<div class="expo-grid">` + past.map(e => expoCard(e, 'past')).join('') + `</div>`;
+  }
+
   document.getElementById('expoContent').innerHTML = html || '<div style="color:var(--ink4);padding:20px">전시회 데이터 없음</div>';
 }
 
-function expoCard(e, isThisMonth) {
-  return `<div class="expo-card ${isThisMonth ? 'this-month' : ''}" onclick="window.open('${e.url||'#'}','_blank')">
+function expoCard(e, status) {
+  const isPast = status === 'past';
+  const isThis = status === 'this_month';
+  const dateLine = e.dates ? e.dates : (e.month_name || '');
+  return `<div class="expo-card ${isThis ? 'this-month' : ''}" onclick="window.open('${e.url||'#'}','_blank')" style="${isPast?'opacity:.55':''}">
     <div class="expo-head">
       <div>
-        <div class="expo-name">${e.name}</div>
+        <div class="expo-name">${isPast?'<s>':''}${e.name}${isPast?'</s>':''}</div>
         <div class="expo-full-name">${e.full_name || ''}</div>
       </div>
       <span class="expo-tier ${e.tier==='Tier 1'?'expo-t1':'expo-t2'}">${e.tier||''}</span>
     </div>
     <div class="expo-meta">
-      <span class="expo-month">${e.month_name || ''}</span>
+      <span class="expo-month">${dateLine}</span>
       <span class="expo-loc"><i class="ti ti-map-pin" style="font-size:11px"></i> ${e.location||''}</span>
-      ${isThisMonth ? '<span class="expo-this">● 이번 달</span>' : ''}
+      ${isThis ? '<span class="expo-this">● 이번 달</span>' : ''}
+      ${isPast ? '<span style="font-family:var(--mono);font-size:9px;color:var(--ink4)">완료</span>' : ''}
     </div>
-    <div class="expo-desc">${e.description||''}</div>
-    <div style="display:flex;align-items:center;justify-content:space-between">
-      <div class="expo-focus">${(e.focus||[]).slice(0,3).map(f=>`<span class="expo-tag">${f}</span>`).join('')}</div>
+    ${e.description ? `<div class="expo-desc">${e.description}</div>` : ''}
+    ${(e.focus||[]).length ? `<div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="expo-focus">${e.focus.slice(0,3).map(f=>`<span class="expo-tag">${f}</span>`).join('')}</div>
       <span class="expo-rel">${e.relevance||''}</span>
-    </div>
+    </div>` : ''}
   </div>`;
 }
 
