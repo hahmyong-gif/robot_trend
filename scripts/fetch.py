@@ -212,9 +212,13 @@ def extract_main_entity(title, summary):
     return None
 
 # ── FETCH ────────────────────────────────────────────────
+MAX_ARTICLE_AGE_DAYS = 21  # 21일 이상 된 기사 제외
+
 def fetch_source(source):
     """단일 RSS 소스 수집"""
     articles = []
+    now_ts = datetime.now(timezone.utc).timestamp()
+    cutoff_ts = now_ts - MAX_ARTICLE_AGE_DAYS * 86400
     try:
         feed = feedparser.parse(source['url'], request_headers={'User-Agent': 'Mozilla/5.0'})
         for entry in feed.entries[:50]:
@@ -225,6 +229,15 @@ def fetch_source(source):
 
             if not title or not is_robot_related(title, summary):
                 continue
+
+            # pub timestamp — 날짜 없으면 오늘로 처리, 21일 초과 기사 제외
+            try:
+                import email.utils
+                pub_ts = datetime(*email.utils.parsedate(pub_date)[:6]).timestamp()
+                if pub_ts < cutoff_ts:
+                    continue
+            except:
+                pub_ts = now_ts
 
             tier = get_tier(title, summary)
             tier_weight = CONFIG['tiers'].get(tier, {}).get('weight', 1.0)
@@ -237,13 +250,6 @@ def fetch_source(source):
 
             raw_score = round(relevance * tier_weight * recency * 10 / 3, 2)
 
-            # pub timestamp
-            try:
-                import email.utils
-                pub_ts = datetime(*email.utils.parsedate(pub_date)[:6]).timestamp()
-            except:
-                pub_ts = 0
-
             articles.append({
                 'id': article_id(title, url),
                 'title': title,
@@ -252,7 +258,7 @@ def fetch_source(source):
                 'source': source['name'],
                 'region': source['region'],
                 'pub_date': pub_date,
-                'pub_ts': pub_ts,
+                'pub_ts': round(pub_ts),
                 'tier': tier,
                 'raw_score': raw_score,
                 'entity': extract_main_entity(title, summary),

@@ -184,6 +184,84 @@ def score_final(article):
     signal_bonus = {'Action': 1.0, 'Watch': 0.3, 'FYI': 0.0}
     return round(min(10.0, base + signal_bonus.get(article.get('signal', 'FYI'), 0)), 1)
 
+def generate_geopolitical(articles):
+    """국가별 지정학/정책 신호 생성"""
+    policy_arts = [a for a in articles if any(
+        kw in (a.get('title','') + a.get('summary','')).lower()
+        for kw in ['policy','regulation','legislation','government','ministry','규제','정책','부처','법','보조금','표준','규격','subsidy','standard']
+    )]
+    sample = (policy_arts + articles)[:12]
+    items_text = "\n".join([
+        f"- [{a.get('region','?')}] {a.get('title_ko') or a.get('title','')}: {a.get('summary_ko') or a.get('summary','')[:100]}"
+        for a in sample
+    ])
+    if not items_text:
+        return _geo_fallback()
+    try:
+        msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=700,
+            system=SYSTEM,
+            messages=[{"role": "user", "content": f"""아래 로봇 업계 뉴스를 바탕으로 KR/US/CN 지정학·정책 신호를 분석하세요.
+
+뉴스:
+{items_text}
+
+JSON만 반환:
+{{
+  "KR": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 정책 이슈 1줄", "desc": "한국 로봇 정책/규제 동향 2문장", "items": ["항목1", "항목2", "항목3"]}},
+  "US": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 정책 이슈 1줄", "desc": "미국 로봇 정책/규제 동향 2문장", "items": ["항목1", "항목2", "항목3"]}},
+  "CN": {{"temp": "상승 또는 유지 또는 하락", "policy": "핵심 정책 이슈 1줄", "desc": "중국 로봇 정책/규제 동향 2문장", "items": ["항목1", "항목2", "항목3"]}}
+}}"""
+        }])
+        text = msg.content[0].text.strip()
+        result = json.loads(text[text.find('{'):text.rfind('}')+1])
+        return result
+    except Exception as e:
+        print(f"  ⚠ geopolitical error: {e}")
+        return _geo_fallback()
+
+def _geo_fallback():
+    return {
+        "KR": {"temp": "유지", "policy": "데이터 없음", "desc": "", "items": []},
+        "US": {"temp": "유지", "policy": "데이터 없음", "desc": "", "items": []},
+        "CN": {"temp": "유지", "policy": "데이터 없음", "desc": "", "items": []},
+    }
+
+def generate_narrative_shifts(articles):
+    """업계 담론 프레이밍 변화 탐지"""
+    sample = articles[:15]
+    items_text = "\n".join([
+        f"- {a.get('title_ko') or a.get('title','')}: {a.get('summary_ko') or a.get('summary','')[:120]}"
+        for a in sample
+    ])
+    if not items_text:
+        return []
+    try:
+        msg = client.messages.create(
+            model="claude-sonnet-4-6",
+            max_tokens=600,
+            system=SYSTEM,
+            messages=[{"role": "user", "content": f"""아래 로봇 업계 뉴스에서 업계 담론/프레이밍 변화를 3개 탐지하세요.
+
+뉴스:
+{items_text}
+
+JSON 배열만 반환:
+[
+  {{"keyword": "주제어", "from_frame": "이전 프레임 (짧게)", "to_frame": "현재 프레임 (짧게)", "desc": "변화 설명 2문장"}},
+  {{"keyword": "...", "from_frame": "...", "to_frame": "...", "desc": "..."}},
+  {{"keyword": "...", "from_frame": "...", "to_frame": "...", "desc": "..."}}
+]"""
+        }])
+        text = msg.content[0].text.strip()
+        start = text.find('[')
+        end = text.rfind(']') + 1
+        return json.loads(text[start:end])
+    except Exception as e:
+        print(f"  ⚠ narrative error: {e}")
+        return []
+
 def load_archive_articles(archive_dir, days=6):
     """최근 N일 아카이브에서 이미 분석된 기사 로드 (재분석 없이)"""
     articles = []
@@ -271,6 +349,14 @@ if __name__ == '__main__':
     print("\n📝 Generating Intelligence Brief...")
     brief = generate_brief(global_top10)
 
+    # Geopolitical Signal 생성
+    print("\n🌏 Generating Geopolitical signals...")
+    geopolitical = generate_geopolitical(analyzed)
+
+    # Narrative Shift 생성
+    print("\n📊 Generating Narrative shifts...")
+    narrative_shifts = generate_narrative_shifts(global_top10)
+
     # Regional Delta (Claude가 생성)
     try:
         delta_msg = client.messages.create(
@@ -313,7 +399,9 @@ JSON만 반환:
         },
         "regional_delta": delta,
         "weak_signals": weak_signals,
-        "brief": brief
+        "brief": brief,
+        "geopolitical": geopolitical,
+        "narrative_shifts": narrative_shifts
     }
 
     # 오늘 파일 저장
@@ -331,4 +419,5 @@ JSON만 반환:
     print(f"\n✅ Saved: {news_path}")
     print(f"   Global Top 10: {len(global_top10)}")
     print(f"   Weak Signals: {len(weak_signals)}")
+    print(f"   Narrative Shifts: {len(narrative_shifts)}")
     print(f"   Brief: generated")
