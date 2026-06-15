@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T23:13:41.424788+00:00",
+  "generated_at": "2026-06-15T00:00:00+00:00",
   "current_month": "June 2026",
   "exhibitions": [
     {
@@ -7,7 +7,7 @@
       "full_name": "Automatica Munich",
       "month": 6,
       "location": "Munich, Germany",
-      "description": "유럽 최대 산업 자동화·로봇 전시회. 제조 로봇, 협동 로봇 중심.",
+      "description": "유럽 최대 산업 자동화·로봇 전시회. 제조 로봇, 협동 로봇 중심. 격년 개최.",
       "relevance": "★★★★★",
       "focus": [
         "industrial robot",
@@ -19,6 +19,150 @@
       "year": 2026,
       "is_this_month": true,
       "month_name": "June 2026"
+    },
+    {
+      "name": "IMTS",
+      "full_name": "International Manufacturing Technology Show",
+      "month": 9,
+      "location": "Chicago, USA",
+      "description": "미국 최대 제조기술 전시. 산업용 로봇, 자동화 솔루션 대거 출시.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "manufacturing robot",
+        "automation",
+        "CNC"
+      ],
+      "url": "https://www.imts.com",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "September 2026"
+    },
+    {
+      "name": "IROS",
+      "full_name": "IEEE/RSJ Intelligent Robots and Systems",
+      "month": 10,
+      "location": "Abu Dhabi, UAE",
+      "description": "ICRA와 함께 세계 양대 로봇 학술대회. 지능형 로봇 시스템 연구 발표.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "intelligent robot",
+        "autonomous system",
+        "HRI"
+      ],
+      "url": "https://iros2026.org",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "Korea Robot World",
+      "full_name": "Korea Robot World",
+      "month": 10,
+      "location": "KINTEX, Korea",
+      "description": "한국 최대 로봇 전시회. 국내 로봇 기업 현황 파악 및 네트워킹 필수.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "Korean robot",
+        "service robot",
+        "manufacturing"
+      ],
+      "url": "https://www.korearobotworld.com",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "WRS",
+      "full_name": "World Robot Summit",
+      "month": 10,
+      "location": "Nagoya, Japan",
+      "description": "일본 주도 글로벌 로봇 경진대회·전시. 서비스 로봇, 재난 로봇 분야 강점.",
+      "relevance": "★★★☆☆",
+      "focus": [
+        "service robot",
+        "disaster robot",
+        "competition"
+      ],
+      "url": "https://worldrobotsummit.org",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "ROSCon",
+      "full_name": "ROSCon",
+      "month": 10,
+      "location": "TBD 2026",
+      "description": "ROS(로봇 운영체제) 개발자 컨퍼런스. 오픈소스 로봇 생태계 동향.",
+      "relevance": "★★★☆☆",
+      "focus": [
+        "ROS",
+        "open source",
+        "robot middleware"
+      ],
+      "url": "https://roscon.ros.org",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "CEATEC",
+      "full_name": "CEATEC Japan",
+      "month": 10,
+      "location": "Makuhari Messe, Japan",
+      "description": "일본 최대 IT·전자·로봇 전시. 소프트뱅크, 소니 등 로봇 신제품 발표.",
+      "relevance": "★★★☆☆",
+      "focus": [
+        "service robot",
+        "AI",
+        "consumer electronics"
+      ],
+      "url": "https://www.ceatec.com",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "iREX",
+      "full_name": "International Robot Exhibition",
+      "month": 11,
+      "location": "Tokyo, Japan",
+      "description": "아시아 최대 로봇 전시회. 산업·서비스 로봇 전 분야 망라.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "industrial robot",
+        "service robot",
+        "Asia market"
+      ],
+      "url": "https://biz.nikkan.co.jp/eve/irex/",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "November 2026"
+    },
+    {
+      "name": "Humanoids Summit",
+      "full_name": "The Humanoids Summit",
+      "month": 11,
+      "location": "San Francisco, USA",
+      "description": "휴머노이드 로봇 전문 컨퍼런스. Figure, 1X, Agility 등 주요 기업 참가.",
+      "relevance": "★★★★★",
+      "focus": [
+        "humanoid",
+        "Physical AI",
+        "embodied AI"
+      ],
+      "url": "https://humanoidssummit.com",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "November 2026"
     }
   ],
   "this_month": [
@@ -27,7 +171,7 @@
       "full_name": "Automatica Munich",
       "month": 6,
       "location": "Munich, Germany",
-      "description": "유럽 최대 산업 자동화·로봇 전시회. 제조 로봇, 협동 로봇 중심.",
+      "description": "유럽 최대 산업 자동화·로봇 전시회. 제조 로봇, 협동 로봇 중심. 격년 개최.",
       "relevance": "★★★★★",
       "focus": [
         "industrial robot",
@@ -41,5 +185,150 @@
       "month_name": "June 2026"
     }
   ],
-  "upcoming": []
+  "upcoming": [
+    {
+      "name": "IMTS",
+      "full_name": "International Manufacturing Technology Show",
+      "month": 9,
+      "location": "Chicago, USA",
+      "description": "미국 최대 제조기술 전시. 산업용 로봇, 자동화 솔루션 대거 출시.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "manufacturing robot",
+        "automation",
+        "CNC"
+      ],
+      "url": "https://www.imts.com",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "September 2026"
+    },
+    {
+      "name": "IROS",
+      "full_name": "IEEE/RSJ Intelligent Robots and Systems",
+      "month": 10,
+      "location": "Abu Dhabi, UAE",
+      "description": "ICRA와 함께 세계 양대 로봇 학술대회. 지능형 로봇 시스템 연구 발표.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "intelligent robot",
+        "autonomous system",
+        "HRI"
+      ],
+      "url": "https://iros2026.org",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "Korea Robot World",
+      "full_name": "Korea Robot World",
+      "month": 10,
+      "location": "KINTEX, Korea",
+      "description": "한국 최대 로봇 전시회. 국내 로봇 기업 현황 파악 및 네트워킹 필수.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "Korean robot",
+        "service robot",
+        "manufacturing"
+      ],
+      "url": "https://www.korearobotworld.com",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "WRS",
+      "full_name": "World Robot Summit",
+      "month": 10,
+      "location": "Nagoya, Japan",
+      "description": "일본 주도 글로벌 로봇 경진대회·전시. 서비스 로봇, 재난 로봇 분야 강점.",
+      "relevance": "★★★☆☆",
+      "focus": [
+        "service robot",
+        "disaster robot",
+        "competition"
+      ],
+      "url": "https://worldrobotsummit.org",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "ROSCon",
+      "full_name": "ROSCon",
+      "month": 10,
+      "location": "TBD 2026",
+      "description": "ROS(로봇 운영체제) 개발자 컨퍼런스. 오픈소스 로봇 생태계 동향.",
+      "relevance": "★★★☆☆",
+      "focus": [
+        "ROS",
+        "open source",
+        "robot middleware"
+      ],
+      "url": "https://roscon.ros.org",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "CEATEC",
+      "full_name": "CEATEC Japan",
+      "month": 10,
+      "location": "Makuhari Messe, Japan",
+      "description": "일본 최대 IT·전자·로봇 전시. 소프트뱅크, 소니 등 로봇 신제품 발표.",
+      "relevance": "★★★☆☆",
+      "focus": [
+        "service robot",
+        "AI",
+        "consumer electronics"
+      ],
+      "url": "https://www.ceatec.com",
+      "tier": "Tier 2",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "October 2026"
+    },
+    {
+      "name": "iREX",
+      "full_name": "International Robot Exhibition",
+      "month": 11,
+      "location": "Tokyo, Japan",
+      "description": "아시아 최대 로봇 전시회. 산업·서비스 로봇 전 분야 망라.",
+      "relevance": "★★★★☆",
+      "focus": [
+        "industrial robot",
+        "service robot",
+        "Asia market"
+      ],
+      "url": "https://biz.nikkan.co.jp/eve/irex/",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "November 2026"
+    },
+    {
+      "name": "Humanoids Summit",
+      "full_name": "The Humanoids Summit",
+      "month": 11,
+      "location": "San Francisco, USA",
+      "description": "휴머노이드 로봇 전문 컨퍼런스. Figure, 1X, Agility 등 주요 기업 참가.",
+      "relevance": "★★★★★",
+      "focus": [
+        "humanoid",
+        "Physical AI",
+        "embodied AI"
+      ],
+      "url": "https://humanoidssummit.com",
+      "tier": "Tier 1",
+      "year": 2026,
+      "is_this_month": false,
+      "month_name": "November 2026"
+    }
+  ]
 }
