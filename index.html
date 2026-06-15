@@ -770,18 +770,20 @@ function exportStrategyInsight() {
   const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 5);
   const sigColors = { Action:'#c8102e', Watch:'#b45309', FYI:'#555' };
 
-  const artRows = (arr) => arr.map(a => `
-    <div style="border:1px solid #e0e0d8;border-radius:2px;padding:12px 16px;margin-bottom:10px;background:#fff;page-break-inside:avoid">
+  const artRows = (arr) => arr.map(a => {
+    const dateStr = fmtDate(a.pub_ts);
+    return `<div style="border:1px solid #e0e0d8;border-radius:2px;padding:12px 16px;margin-bottom:10px;background:#fff;page-break-inside:avoid">
       <div style="font-family:monospace;font-size:10px;color:#888;margin-bottom:4px">
-        <span style="color:${sigColors[a.signal]||'#555'};font-weight:700">[${a.signal||'FYI'}]</span>
-        ${a.tier||''} &nbsp;·&nbsp; Score ${a.score||'—'} &nbsp;·&nbsp; ${a.source||''}
+        <span style="color:${sigColors[a.signal]||'#555'};font-weight:700;background:${a.signal==='Action'?'#fff0f2':a.signal==='Watch'?'#fffbeb':'#f2f2ee'};padding:1px 5px;border-radius:2px">[${a.signal||'FYI'}]</span>
+        &nbsp;${a.tier||''} &nbsp;·&nbsp; Score ${a.score||'—'} &nbsp;·&nbsp; ${a.source||''}${dateStr?` &nbsp;·&nbsp; <span style="color:#c8102e;font-weight:600">${dateStr}</span>`:''}
       </div>
       <div style="font-family:Georgia,serif;font-size:15px;font-weight:700;color:#0f0f0f;margin-bottom:5px;line-height:1.3">
         ${a.url?`<a href="${a.url}" style="color:inherit;text-decoration:none">${a.title_ko||a.title}</a>`:a.title_ko||a.title}
       </div>
       <div style="font-size:12px;color:#444;line-height:1.6;margin-bottom:6px">${a.summary_ko||a.summary||''}</div>
       ${a.lg_implication?`<div style="font-size:11px;color:#1e40af;border-left:3px solid #1e40af;padding-left:8px;font-style:italic">LG 시사점: ${a.lg_implication}</div>`:''}
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   const regSection = (key, flag, label, color) => {
     const angle = key==='KR'?delta.kr_angle:key==='US'?delta.us_angle:delta.cn_angle;
@@ -789,10 +791,11 @@ function exportStrategyInsight() {
     if (!angle && !arts.length) return '';
     return `<h3 style="font-size:11pt;margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0;color:${color}">${flag} ${label}</h3>
       ${angle?`<p style="font-size:11px;color:#444;margin-bottom:8px">${angle}</p>`:''}
-      ${arts.map(a=>`<div style="padding:6px 0;border-bottom:1px solid #f0f0ee;font-size:11px;color:#333">
-        <span style="color:${sigColors[a.signal]||'#888'};font-weight:600">[${a.signal||'FYI'}]</span>
-        ${a.url?`<a href="${a.url}" style="color:inherit">${a.title_ko||a.title}</a>`:a.title_ko||a.title}
-      </div>`).join('')}`;
+      ${arts.map(a=>{const ds=fmtDate(a.pub_ts);return`<div style="padding:6px 0;border-bottom:1px solid #f0f0ee;font-size:11px;color:#333;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+        <span style="color:${sigColors[a.signal]||'#888'};font-weight:600;white-space:nowrap">[${a.signal||'FYI'}]</span>
+        <span style="flex:1">${a.url?`<a href="${a.url}" style="color:inherit">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</span>
+        ${ds?`<span style="font-family:monospace;font-size:9px;color:#c8102e;font-weight:600;white-space:nowrap">${ds}</span>`:''}
+      </div>`}).join('')}`;
   };
 
   const html = `<!DOCTYPE html><html lang="ko"><head>
@@ -1458,8 +1461,14 @@ function selectPdfType(el, type) {
   updatePdfPreview();
 }
 
+function fmtDate(pubTs) {
+  if (!pubTs) return '';
+  const d = new Date(pubTs * 1000);
+  return d.toLocaleDateString('ko-KR', {year:'numeric', month:'long', day:'numeric'});
+}
+
 function updatePdfPreview() {
-  const titles = { brief: 'Intelligence Brief', top10: 'Global Top 10', regional: '지역별 보고서', full: '전체 일간 리포트' };
+  const titles = { brief: '전략보고서 (Intelligence Brief)', top10: 'Global Top 10', regional: '지역별 보고서', full: '전체 일간 리포트' };
   document.getElementById('pdfPreviewTitle').textContent = titles[pdfType] || '';
   document.getElementById('pdfPreviewDate').textContent = NEWS ? `생성일: ${NEWS.date || '—'} · Robot Intelligence Daily` : '데이터 로딩 대기 중...';
 
@@ -1468,23 +1477,32 @@ function updatePdfPreview() {
     return;
   }
 
-  let html = '';
   const articles = NEWS.global_top10 || [];
   const brief = NEWS.brief || {};
+  const delta = NEWS.regional_delta || {};
+  let html = '';
 
-  if (pdfType === 'brief') {
-    if (brief.action_required?.length) {
-      html += `<div class="pdf-item"><div class="pdf-item-rank">ACTION REQUIRED</div>` + brief.action_required.map(t=>`<div style="font-size:11px;margin-bottom:4px">• ${t}</div>`).join('') + `</div>`;
-    }
+  if (pdfType === 'brief' || pdfType === 'full') {
     if (brief.bottom_line) {
-      html += `<div class="pdf-item"><div class="pdf-item-rank">BOTTOM LINE</div><div class="pdf-item-sum">${brief.bottom_line}</div></div>`;
+      html += `<div class="pdf-item" style="background:#f2f2ee;padding:10px 12px;border-left:3px solid #0f0f0f"><div class="pdf-item-rank">핵심 메시지</div><div class="pdf-item-title" style="font-size:12px">${brief.bottom_line}</div></div>`;
     }
-  } else if (pdfType === 'top10' || pdfType === 'full') {
-    html = articles.slice(0, pdfType==='full'?5:10).map((a,i) => `
+    if (brief.action_required?.some(t=>t)) {
+      html += `<div class="pdf-item"><div class="pdf-item-rank" style="color:#c8102e">즉각 대응 필요</div>` + brief.action_required.filter(t=>t).map(t=>`<div style="font-size:11px;margin-bottom:4px;padding-left:8px;border-left:2px solid #c8102e">• ${t}</div>`).join('') + `</div>`;
+    }
+    const actionArts = articles.filter(a => a.signal === 'Action').slice(0, 3);
+    if (actionArts.length) {
+      html += `<div class="pdf-item"><div class="pdf-item-rank">Action 기사</div>` +
+        actionArts.map(a => `<div style="margin-bottom:8px"><div class="pdf-item-title">${a.title_ko||a.title}</div><div style="font-family:monospace;font-size:9px;color:#888;margin-bottom:2px">${a.source||''} · ${fmtDate(a.pub_ts)}</div><div class="pdf-item-sum">${a.summary_ko||a.summary||''}</div>${a.lg_implication?`<div style="font-size:10px;color:#1e40af;margin-top:3px">→ LG 시사점: ${a.lg_implication}</div>`:''}</div>`).join('') + `</div>`;
+    }
+    if (delta.kr_angle || delta.us_angle || delta.cn_angle) {
+      html += `<div class="pdf-item"><div class="pdf-item-rank">지역별 시각</div>${delta.kr_angle?`<div style="font-size:11px;margin-bottom:3px"><b>KR:</b> ${delta.kr_angle}</div>`:''}${delta.us_angle?`<div style="font-size:11px;margin-bottom:3px"><b>US:</b> ${delta.us_angle}</div>`:''}${delta.cn_angle?`<div style="font-size:11px"><b>CN:</b> ${delta.cn_angle}</div>`:''}</div>`;
+    }
+  } else if (pdfType === 'top10') {
+    html = articles.slice(0, 10).map((a,i) => `
       <div class="pdf-item">
-        <div class="pdf-item-rank">No.${i+1} &nbsp;·&nbsp; Score ${a.score} &nbsp;·&nbsp; ${a.signal||'FYI'} &nbsp;·&nbsp; ${a.tier}</div>
-        <div class="pdf-item-title">${a.title}</div>
-        <div class="pdf-item-sum">${a.summary_ko || a.summary || ''}</div>
+        <div class="pdf-item-rank">No.${i+1} · ${a.signal||'FYI'} · ${a.tier} · ${fmtDate(a.pub_ts)||a.source||''}</div>
+        <div class="pdf-item-title">${a.title_ko||a.title}</div>
+        <div class="pdf-item-sum">${a.summary_ko||a.summary||''}</div>
       </div>`).join('');
   } else if (pdfType === 'regional') {
     const reg = NEWS.regional || {};
@@ -1492,7 +1510,7 @@ function updatePdfPreview() {
       const arts = (reg[r] || []).slice(0,3);
       if (arts.length) {
         html += `<div class="pdf-item"><div class="pdf-item-rank">${r} TOP 3</div>` +
-          arts.map(a=>`<div style="font-size:11px;margin-bottom:3px">• ${a.title}</div>`).join('') + `</div>`;
+          arts.map(a=>`<div style="font-size:11px;margin-bottom:5px"><div style="font-weight:600">${a.title_ko||a.title}</div><div style="font-family:monospace;font-size:9px;color:#888">${a.source||''} · ${fmtDate(a.pub_ts)}</div></div>`).join('') + `</div>`;
       }
     });
   }
@@ -1505,115 +1523,168 @@ function buildReportHTML(data, type) {
   const brief = data.brief || {};
   const articles = data.global_top10 || [];
   const regional = data.regional || {};
+  const delta = data.regional_delta || {};
   const stats = data.stats || {};
 
-  const sigColor = { Action: '#c8102e', Watch: '#b45309', FYI: '#888' };
+  const sigColor = { Action: '#c8102e', Watch: '#b45309', FYI: '#777' };
+  const sigBg = { Action: '#fff0f2', Watch: '#fffbeb', FYI: '#f2f2ee' };
+
+  // Article card with date
+  const artCard = (a, rank) => {
+    const dateStr = fmtDate(a.pub_ts);
+    const rankStr = rank != null ? `No.${rank} &nbsp;·&nbsp; ` : '';
+    return `<div class="s-article">
+      <div class="s-meta">${rankStr}<span style="color:${sigColor[a.signal]||'#777'};font-weight:700;background:${sigBg[a.signal]||'#f2f2ee'};padding:1px 6px;border-radius:2px">${a.signal||'FYI'}</span> &nbsp;·&nbsp; ${a.tier||'T5'} &nbsp;·&nbsp; Score ${a.score||'—'} &nbsp;·&nbsp; ${a.source||''} &nbsp;·&nbsp; <span style="color:#c8102e;font-weight:600">${dateStr}</span></div>
+      <div class="s-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
+      ${a.title_ko&&a.title_ko!==a.title?`<div class="s-orig">${a.title}</div>`:''}
+      <div class="s-summary">${a.summary_ko||a.summary||''}</div>
+      ${a.lg_implication?`<div class="s-impl">→ LG 시사점: ${a.lg_implication}</div>`:''}
+    </div>`;
+  };
+
+  const actionArts = articles.filter(a => a.signal === 'Action');
+  const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 5);
 
   let content = '';
 
   if (type === 'brief' || type === 'full') {
-    if (brief.action_required?.some(t=>t)) {
-      content += `<h2 style="color:#c8102e">Action Required</h2><ul>` +
-        brief.action_required.filter(t=>t).map(t=>`<li>${t}</li>`).join('') + `</ul>`;
-    }
-    if (brief.regional_delta) {
-      const entries = Object.entries(brief.regional_delta).filter(([,t])=>t);
-      if (entries.length) {
-        content += `<h2 style="color:#1e40af">Regional Delta</h2><ul>` +
-          entries.map(([r,t])=>`<li><strong>${r}:</strong> ${t}</li>`).join('') + `</ul>`;
-      }
-    }
-    if (brief.cvc_insight?.some(t=>t)) {
-      content += `<h2 style="color:#5b21b6">CVC / 파트너십 인사이트</h2><ul>` +
-        brief.cvc_insight.filter(t=>t).map(t=>`<li>${t}</li>`).join('') + `</ul>`;
-    }
+    // 1. 핵심 메시지
     if (brief.bottom_line) {
-      content += `<div class="bottom-line"><strong>Bottom Line</strong><p>${brief.bottom_line}</p></div>`;
+      content += `<div class="s-bottomline"><div class="s-section-lbl">이번 주 핵심 메시지</div><div class="s-bottomline-text">${brief.bottom_line}</div></div>`;
+    }
+
+    // 2. 즉각 대응
+    if (actionArts.length) {
+      content += `<h2 class="s-h2" style="color:#c8102e;border-color:#c8102e">즉각 대응 필요 — Action</h2>`;
+      if (brief.action_required?.some(t=>t)) {
+        content += `<div class="s-bullets">${brief.action_required.filter(t=>t).map(t=>`<div class="s-bullet" style="border-color:#c8102e">${t}</div>`).join('')}</div>`;
+      }
+      content += actionArts.map(a => artCard(a)).join('');
+    }
+
+    // 3. 지역별 시각
+    if (delta.kr_angle || delta.us_angle || delta.cn_angle) {
+      content += `<h2 class="s-h2" style="color:#1e40af;border-color:#1e40af">지역별 전략 시각${delta.topic?` — ${delta.topic}`:''}</h2>`;
+      const regCfg = [['KR','🇰🇷 한국','#c8102e',delta.kr_angle],['US','🇺🇸 미국','#1e40af',delta.us_angle],['CN','🇨🇳 중국','#d97706',delta.cn_angle]];
+      regCfg.forEach(([key, label, color, angle]) => {
+        if (!angle) return;
+        const regArts = (regional[key]||[]).slice(0, 3);
+        content += `<div class="s-region">
+          <div class="s-reg-head" style="color:${color}">${label}</div>
+          <div class="s-reg-angle">${angle}</div>
+          ${regArts.map(a => {
+            const dateStr = fmtDate(a.pub_ts);
+            return `<div class="s-reg-art">
+              <span style="color:${sigColor[a.signal]||'#777'};font-weight:700">[${a.signal||'FYI'}]</span>
+              <span class="s-reg-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</span>
+              ${dateStr?`<span class="s-date">${dateStr}</span>`:''}
+            </div>`;
+          }).join('')}
+        </div>`;
+      });
+    }
+
+    // 4. CVC
+    if (brief.cvc_insight?.some(t=>t)) {
+      content += `<h2 class="s-h2" style="color:#5b21b6;border-color:#5b21b6">CVC / 파트너십 시사점</h2>`;
+      content += `<div class="s-bullets">${brief.cvc_insight.filter(t=>t).map(t=>`<div class="s-bullet" style="border-color:#5b21b6;color:#5b21b6">${t}</div>`).join('')}</div>`;
+    }
+
+    // 5. Watch
+    if (watchArts.length) {
+      content += `<h2 class="s-h2">주목 동향 — Watch</h2>`;
+      content += watchArts.map(a => artCard(a)).join('');
     }
   }
 
   if (type === 'top10' || type === 'full') {
     if (type === 'full') content += `<div class="page-break"></div>`;
-    content += `<h2>Global Top 10</h2>`;
-    articles.slice(0, 10).forEach((a, i) => {
-      content += `<div class="article">
-        <div class="article-meta">No.${i+1} &nbsp;·&nbsp; <span style="color:${sigColor[a.signal]||'#888'}">${a.signal||'FYI'}</span> &nbsp;·&nbsp; ${a.tier||''} &nbsp;·&nbsp; Score ${a.score||'—'} &nbsp;·&nbsp; ${a.source||''}</div>
-        <div class="article-title"><a href="${a.url||'#'}" target="_blank">${a.title_ko || a.title}</a></div>
-        ${a.title_ko && a.title_ko !== a.title ? `<div class="article-orig">${a.title}</div>` : ''}
-        <div class="article-summary">${a.summary_ko || a.summary || ''}</div>
-        ${a.lg_implication ? `<div class="article-impl">LG 시사점: ${a.lg_implication}</div>` : ''}
-      </div>`;
-    });
+    content += `<h2 class="s-h2">Global Top 10</h2>`;
+    content += articles.slice(0, 10).map((a, i) => artCard(a, i+1)).join('');
   }
 
   if (type === 'regional' || type === 'full') {
-    [['KR','🇰🇷 한국'],['US','🇺🇸 미국'],['CN','🇨🇳 중국']].forEach(([key, label]) => {
-      content += `<div class="page-break"></div><h2>${label}</h2>`;
-      (regional[key]||[]).slice(0, 10).forEach((a, i) => {
-        content += `<div class="article">
-          <div class="article-meta">No.${i+1} &nbsp;·&nbsp; <span style="color:${sigColor[a.signal]||'#888'}">${a.signal||'FYI'}</span> &nbsp;·&nbsp; Score ${a.score||'—'}</div>
-          <div class="article-title"><a href="${a.url||'#'}" target="_blank">${a.title_ko || a.title}</a></div>
-          <div class="article-summary">${a.summary_ko || a.summary || ''}</div>
-        </div>`;
-      });
+    [['KR','🇰🇷 한국','#c8102e'],['US','🇺🇸 미국','#1e40af'],['CN','🇨🇳 중국','#d97706'],['EU','🇪🇺 유럽','#166534']].forEach(([key, label, color]) => {
+      const arts = regional[key] || [];
+      if (!arts.length) return;
+      content += `<div class="page-break"></div><h2 class="s-h2" style="color:${color};border-color:${color}">${label} — Top ${arts.length}</h2>`;
+      content += arts.slice(0, 10).map((a, i) => artCard(a, i+1)).join('');
     });
   }
 
-  const typeLabel = { brief:'Intelligence Brief', top10:'Global Top 10', regional:'지역별 보고서', full:'전체 일간 리포트' };
+  const typeLabel = { brief:'전략보고서', top10:'Global Top 10', regional:'지역별 보고서', full:'전체 일간 리포트' };
 
   return `<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Robot Intelligence Daily — ${date}</title>
+<title>Robot Intelligence Daily — ${typeLabel[type]||'Report'} ${date}</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-  body{font-family:'Noto Sans KR',sans-serif;font-size:11pt;color:#111;margin:0;padding:0;background:#fff}
-  .wrap{max-width:800px;margin:0 auto;padding:20mm 20mm 15mm}
-  .header{border-bottom:3px solid #111;margin-bottom:14px;padding-bottom:8px;display:flex;justify-content:space-between;align-items:flex-end}
-  .header-title{font-size:22pt;font-weight:700;letter-spacing:-.02em}
-  .header-meta{font-size:9pt;color:#888}
-  .report-type{font-size:14pt;font-weight:700;margin:0 0 4px}
-  .stats{background:#f2f2ee;padding:8px 12px;font-size:9pt;color:#555;margin-bottom:16px;border-radius:2px}
-  h2{font-size:10pt;letter-spacing:.06em;text-transform:uppercase;margin:16px 0 6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
-  ul{margin:0 0 12px;padding-left:18px}
-  li{margin-bottom:5px;line-height:1.55}
-  .bottom-line{background:#f2f2ee;padding:10px 14px;margin:10px 0;border-radius:2px}
-  .bottom-line strong{display:block;font-size:9pt;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;color:#555}
-  .article{border-bottom:1px solid #e8e8e8;padding:8px 0 10px}
-  .article-meta{font-size:8pt;color:#999;margin-bottom:3px}
-  .article-title{font-size:11pt;font-weight:700;margin-bottom:4px;line-height:1.4}
-  .article-title a{color:#111;text-decoration:none}
-  .article-title a:hover{text-decoration:underline}
-  .article-orig{font-size:9pt;color:#888;margin-bottom:4px}
-  .article-summary{font-size:10pt;color:#444;line-height:1.55}
-  .article-impl{font-size:9pt;color:#1e40af;margin-top:4px;font-style:italic}
-  .footer{margin-top:20px;padding-top:8px;border-top:1px solid #e0e0e0;font-size:8pt;color:#aaa;display:flex;justify-content:space-between}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans KR',sans-serif;font-size:11pt;color:#0f0f0f;background:#fff}
+  .wrap{max-width:820px;margin:0 auto;padding:20mm 22mm 16mm}
+  @media print{.wrap{padding:12mm 16mm 10mm}.no-print{display:none}a{color:#0f0f0f!important}}
+  .no-print{text-align:right;padding:12px 22mm;margin-bottom:0}
+  .no-print button{padding:8px 18px;border:none;background:#0f0f0f;color:#fff;font-size:12px;cursor:pointer;border-radius:2px}
+  /* HEADER */
+  .s-header{border-bottom:3px solid #0f0f0f;padding-bottom:10px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-end}
+  .s-brand{font-family:'Noto Serif KR',Georgia,serif;font-size:24pt;font-weight:900;letter-spacing:-.02em;line-height:1}
+  .s-type{font-size:13pt;font-weight:700;margin-top:3px}
+  .s-header-meta{text-align:right;font-size:9pt;color:#888;font-family:monospace;line-height:1.6}
+  .s-conf{color:#c8102e;font-weight:700}
+  /* STATS */
+  .s-stats{font-family:monospace;font-size:9pt;color:#666;background:#f2f2ee;padding:7px 12px;margin-bottom:18px;border-radius:2px}
+  /* BOTTOM LINE */
+  .s-bottomline{background:#f2f2ee;border-left:4px solid #0f0f0f;padding:14px 18px;margin-bottom:20px;border-radius:0 2px 2px 0}
+  .s-section-lbl{font-family:monospace;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:6px}
+  .s-bottomline-text{font-family:'Noto Serif KR',Georgia,serif;font-size:14pt;font-weight:700;line-height:1.4;color:#0f0f0f}
+  /* HEADINGS */
+  .s-h2{font-size:9pt;letter-spacing:.08em;text-transform:uppercase;margin:22px 0 10px;padding-bottom:5px;border-bottom:2px solid #0f0f0f}
+  /* BULLETS */
+  .s-bullets{margin-bottom:12px}
+  .s-bullet{padding:6px 0 6px 14px;border-left:3px solid #0f0f0f;margin-bottom:6px;font-size:11pt;line-height:1.5;color:#0f0f0f}
+  /* ARTICLE CARD */
+  .s-article{border:1px solid #e8e8e0;border-radius:2px;padding:12px 16px;margin-bottom:10px;background:#fff;page-break-inside:avoid}
+  .s-meta{font-family:monospace;font-size:8pt;color:#888;margin-bottom:5px}
+  .s-title{font-family:'Noto Serif KR',Georgia,serif;font-size:12pt;font-weight:700;line-height:1.35;margin-bottom:5px}
+  .s-title a{color:#0f0f0f;text-decoration:none}
+  .s-orig{font-size:9pt;color:#aaa;margin-bottom:4px;font-style:italic}
+  .s-summary{font-size:10pt;color:#333;line-height:1.6;margin-bottom:5px}
+  .s-impl{font-size:10pt;color:#1e40af;border-left:3px solid #1e40af;padding-left:10px;line-height:1.5;font-style:italic}
+  /* REGION SECTION */
+  .s-region{border:1px solid #e8e8e0;border-radius:2px;padding:12px 16px;margin-bottom:10px;background:#fafaf7}
+  .s-reg-head{font-family:'Noto Serif KR',Georgia,serif;font-size:13pt;font-weight:700;margin-bottom:5px}
+  .s-reg-angle{font-size:10pt;color:#444;line-height:1.55;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #e8e8e0}
+  .s-reg-art{font-size:10pt;color:#333;padding:4px 0;border-bottom:1px solid #f0f0ee;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;line-height:1.4}
+  .s-reg-art:last-child{border-bottom:none}
+  .s-reg-title{flex:1}
+  .s-reg-title a{color:#0f0f0f;text-decoration:none}
+  .s-date{font-family:monospace;font-size:8pt;color:#c8102e;white-space:nowrap;font-weight:600}
+  /* FOOTER */
+  .s-footer{margin-top:24px;padding-top:8px;border-top:1px solid #e0e0d8;font-family:monospace;font-size:8pt;color:#aaa;display:flex;justify-content:space-between}
   .page-break{page-break-before:always;height:0}
-  @media print{
-    body{margin:0}
-    .wrap{padding:12mm 15mm 10mm}
-    .no-print{display:none}
-    a{color:#111!important}
-  }
 </style>
 </head>
 <body>
+<div class="no-print"><button onclick="window.print()">🖨 인쇄 / PDF 저장</button></div>
 <div class="wrap">
-<div class="header">
+<div class="s-header">
   <div>
-    <div class="header-title">Robot Intelligence Daily</div>
-    <div class="report-type">${typeLabel[type]||'Report'}</div>
+    <div class="s-brand">Robot Intelligence Daily</div>
+    <div class="s-type">${typeLabel[type]||'Report'}</div>
   </div>
-  <div class="header-meta">${date}<br>Confidential</div>
+  <div class="s-header-meta">
+    ${date}<br>
+    LG전자 CTO / 로봇사업부 전략팀<br>
+    <span class="s-conf">CONFIDENTIAL</span>
+  </div>
 </div>
-<div class="stats">
-  분석 기사 ${stats.total_scanned||'—'}건 &nbsp;|&nbsp; Action ${stats.action_count||0} &nbsp;|&nbsp; Watch ${stats.watch_count||0} &nbsp;|&nbsp; Weak Signals ${stats.weak_signal_count||0} &nbsp;|&nbsp; Top Score ${stats.top_score||'—'}
-</div>
+<div class="s-stats">분석 기사 ${stats.total_scanned||'—'}건 &nbsp;|&nbsp; Action ${stats.action_count||0} &nbsp;|&nbsp; Watch ${stats.watch_count||0} &nbsp;|&nbsp; Weak Signals ${stats.weak_signal_count||0} &nbsp;|&nbsp; Top Score ${stats.top_score||'—'}</div>
 ${content}
-<div class="footer">
-  <span>Robot Intelligence Daily</span>
-  <span>Confidential · ${date}</span>
+<div class="s-footer">
+  <span>Robot Intelligence Daily &nbsp;·&nbsp; ${typeLabel[type]||'Report'}</span>
+  <span class="s-conf">CONFIDENTIAL &nbsp;·&nbsp; ${date}</span>
 </div>
 </div>
 </body>
