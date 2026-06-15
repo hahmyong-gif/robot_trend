@@ -89,9 +89,9 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .hl-md{font-family:var(--serif);font-size:14px;font-weight:700;line-height:1.25;color:var(--ink);margin:5px 0 4px}
 .deck-sm{font-size:11px;color:var(--ink2);line-height:1.45;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .foot{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
-.g10-bot{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--rule)}
-.mini-card{padding:12px 16px;border-right:1px solid var(--rule);cursor:pointer;transition:background .1s}
-.mini-card:last-child{border-right:none}.mini-card:hover{background:var(--paper2)}
+.g10-bot{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}
+.mini-card{padding:12px 18px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);cursor:pointer;transition:background .1s;position:relative}
+.mini-card:nth-child(even){border-right:none}.mini-card:hover{background:var(--paper2)}
 .mini-num{font-family:var(--mono);font-size:10px;color:var(--ink4);margin-bottom:3px}
 .hl-sm{font-family:var(--serif);font-size:12px;font-weight:700;line-height:1.25;color:var(--ink);margin-bottom:3px}
 .deck-xs{font-size:10px;color:var(--ink3);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:5px}
@@ -756,6 +756,33 @@ function renderCompetitorActivity(data) {
 }
 
 // ── AUTO-FILE IMPORTANT ARTICLES ─────────────────────────
+// Tag generator for raw article objects (used by autoFileNewArticles)
+function autoTagsFromObj(article, dateStr) {
+  const tags = [];
+  const sig = article.signal;
+  if (sig && sig !== 'FYI') tags.push('#' + sig);
+
+  // Week tag
+  const wk = getWeekKey(dateStr || new Date().toISOString().slice(0,10));
+  if (wk) tags.push('#' + wk);
+
+  // Entity → canonical + #경쟁사
+  if (article.entity) {
+    const ct = canonicalTag(article.entity);
+    if (!tags.includes(ct)) tags.push(ct);
+    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
+  }
+
+  // Keywords (up to 2) → canonical + #경쟁사
+  (article.keywords || []).slice(0, 2).forEach(k => {
+    const ct = canonicalTag(k.trim());
+    if (!tags.includes(ct)) tags.push(ct);
+    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
+  });
+
+  return tags;
+}
+
 function autoFileNewArticles(data) {
   if (!data?.date || !data.global_top10?.length) return;
   const key = `rid_af_${data.date}`;
@@ -769,10 +796,7 @@ function autoFileNewArticles(data) {
   let added = 0;
   toFile.forEach(a => {
     if (getBk(a.id)) return;
-    const tags = ['#자동저장'];
-    if (a.signal && a.signal !== 'FYI') tags.push('#' + a.signal);
-    if (a.entity) tags.push('#' + a.entity.replace(/\s+/g, ''));
-    (a.keywords || []).slice(0, 2).forEach(k => tags.push('#' + k.replace(/\s+/g, '')));
+    const tags = ['#자동저장', ...autoTagsFromObj(a, data.date)];
     BKS.push({
       id: a.id, title: a.title_ko || a.title,
       summary: a.summary_ko || a.summary || '',
@@ -855,21 +879,20 @@ function renderGlobalTop10(articles) {
       </div>`).join('') + `</div>`;
   }
 
-  // Bot (7~10): one mini-card per article in 3-col grid
-  const bot = articles.slice(6, 10);
+  // Bot (7~): 2-col grid — 4 articles = perfect 2×2, extras wrap cleanly
+  const bot = articles.slice(6);
   if (bot.length) {
     html += `<div class="g10-bot">` + bot.map((a, i) => `
       <div class="mini-card" onclick="window.open('${esc(a.url||'#')}','_blank')"
         data-id="${a.id}"
         data-title="${esc(a.title_ko||a.title)}" data-summary="${esc(a.summary_ko||a.summary||'')}"
         data-score="${a.score}" data-tier="${a.tier}" data-signal="${a.signal||'FYI'}"
-        data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}"
-        style="position:relative">
-        <button class="bm-btn" style="position:absolute;top:6px;right:6px;padding:2px 4px;font-size:10px" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
+        data-src="${esc(a.source||'')}" data-url="${esc(a.url||'')}" data-entity="${esc(a.entity||'')}" data-keywords="${esc((a.keywords||[]).join(','))}">
+        <button class="bm-btn" onclick="event.stopPropagation();toggleBk(this)"><i class="ti ti-bookmark"></i></button>
         <div class="mini-num">No.${String(i+7).padStart(2,'0')} &nbsp;·&nbsp; ${a.score}</div>
         <div class="hl-sm">${a.title_ko || a.title}</div>
         <div class="deck-xs">${a.summary_ko || a.summary || ''}</div>
-        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${relDate(a.pub_ts)}</div>
+        <div class="foot">${sigBadge(a.signal)}${tierBadge(a.tier)}${regBadge(a.region)}<span class="srctxt">${a.source||''}</span>${relDate(a.pub_ts)}</div>
       </div>`).join('') + `</div>`;
   }
 
@@ -1432,32 +1455,12 @@ function canonicalTag(raw) {
 }
 
 function autoTags(card) {
-  const tags = [];
-  const sig = card.dataset.signal;
-  if (sig && sig !== 'FYI') tags.push('#' + sig);
-
-  // Week tag based on today's filing date
-  const todayIso = new Date().toISOString().slice(0, 10);
-  const wk = getWeekKey(todayIso);
-  if (wk && !tags.includes('#' + wk)) tags.push('#' + wk);
-
-  // Entity with canonical deduplication + competitor auto-tag
-  const entity = card.dataset.entity;
-  if (entity) {
-    const ct = canonicalTag(entity);
-    if (!tags.includes(ct)) tags.push(ct);
-    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
-  }
-
-  // Keywords (up to 2, canonicalized)
-  const kws = (card.dataset.keywords || '').split(',').filter(Boolean);
-  kws.slice(0, 2).forEach(k => {
-    const ct = canonicalTag(k.trim());
-    if (!tags.includes(ct)) tags.push(ct);
-    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
-  });
-
-  return tags;
+  // Bridge DOM card → object form, then reuse shared tag logic
+  return autoTagsFromObj({
+    signal: card.dataset.signal,
+    entity: card.dataset.entity,
+    keywords: (card.dataset.keywords || '').split(',').filter(Boolean),
+  }, new Date().toISOString().slice(0, 10));
 }
 
 function toggleBk(btn) {
