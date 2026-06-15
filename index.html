@@ -294,10 +294,12 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .strategy-bottomline{font-family:var(--serif);font-size:16px;line-height:1.5;color:var(--ink);font-weight:700}
 .strategy-action-item{padding:6px 0 6px 12px;border-left:3px solid var(--red);font-size:13px;color:var(--ink);margin-bottom:6px;line-height:1.4}
 .sreg-row{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;font-size:12px;color:var(--ink2);line-height:1.5}
-.sa-article{margin-bottom:12px;padding:10px 14px;background:var(--paper2);border-radius:2px}
-.sa-title{font-family:var(--serif);font-size:13px;font-weight:700;margin-bottom:4px}
+.sa-article{margin-bottom:10px;padding:10px 14px;background:var(--paper2);border-radius:2px;border-left:3px solid var(--rule)}
+.sa-meta{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-bottom:5px}
+.sa-title{font-family:var(--serif);font-size:13px;font-weight:700;margin-bottom:4px;line-height:1.3}
 .sa-title a{color:var(--ink);text-decoration:none}.sa-title a:hover{text-decoration:underline}
-.sa-impl{font-size:11px;color:var(--ink3);line-height:1.5}
+.sa-sum{font-size:11px;color:var(--ink2);line-height:1.5;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sa-impl{font-size:11px;color:var(--blue);border-left:2px solid var(--bluebd);padding-left:8px;line-height:1.5;font-style:italic}
 
 /* ARCHIVE BROWSER */
 .archive-bar{display:flex;align-items:center;gap:8px;padding:7px 22px;background:var(--paper2);border-bottom:1px solid var(--rule);flex-wrap:wrap}
@@ -1276,44 +1278,85 @@ function renderStrategy(data) {
   const brief = data.brief || {};
   const delta = data.regional_delta || {};
   const articles = (data.global_top10 || []);
+  const regional = data.regional || {};
   const actionArts = articles.filter(a => a.signal === 'Action').slice(0, 5);
-  const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 3);
+  const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 5);
   const cvc = (brief.cvc_insight || []).filter(Boolean);
 
-  el.innerHTML = `
-    ${brief.bottom_line ? `<div class="strategy-block">
+  const artCard = (a) => {
+    const dateStr = fmtDate(a.pub_ts);
+    return `<div class="sa-article">
+      <div class="sa-meta">${sigBadge(a.signal)}${tierBadge(a.tier)}${regBadge(a.region)}<span class="srctxt">${a.source||''}</span>${dateStr?`<span style="font-family:var(--mono);font-size:9px;color:var(--red);font-weight:600;margin-left:4px">${dateStr}</span>`:''}<span class="stag" style="margin-left:auto">${a.score||'—'}</span></div>
+      <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
+      ${(a.summary_ko||a.summary)?`<div class="sa-sum">${a.summary_ko||a.summary}</div>`:''}
+      ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
+    </div>`;
+  };
+
+  const regArts = (key, flag, label, color) => {
+    const arts = (regional[key]||[]).slice(0, 5);
+    if (!arts.length) return '';
+    const angle = key==='KR'?delta.kr_angle:key==='US'?delta.us_angle:delta.cn_angle;
+    return `<div style="margin-bottom:10px">
+      <div class="sreg-row" style="margin-bottom:6px">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:600;color:${color};flex-shrink:0">${flag} ${label}</span>
+        ${angle?`<span style="font-size:11px;color:var(--ink2)">${angle}</span>`:''}
+      </div>
+      ${arts.map(a=>{
+        const ds=fmtDate(a.pub_ts);
+        return `<div style="display:grid;grid-template-columns:auto 1fr auto;gap:5px;align-items:start;padding:6px 0;border-bottom:1px solid var(--rule)">
+          <div>${sigBadge(a.signal)}</div>
+          <div>
+            <div style="font-family:var(--serif);font-size:12px;font-weight:700;line-height:1.3;margin-bottom:2px">${a.url?`<a href="${a.url}" target="_blank" style="color:var(--ink);text-decoration:none">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
+            ${(a.summary_ko||a.summary)?`<div style="font-size:10px;color:var(--ink3);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${a.summary_ko||a.summary}</div>`:''}
+          </div>
+          <div style="text-align:right;white-space:nowrap"><span class="stag">${a.score||'—'}</span>${ds?`<div style="font-family:var(--mono);font-size:9px;color:var(--red);margin-top:2px">${ds}</div>`:''}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  };
+
+  const parts = [];
+
+  if (brief.bottom_line) {
+    parts.push(`<div class="strategy-block">
       <div class="strategy-label">이번 주 핵심 메시지</div>
       <div class="strategy-bottomline">${brief.bottom_line}</div>
-    </div>` : ''}
-    ${actionArts.length ? `<div class="strategy-block">
+    </div>`);
+  }
+
+  if (actionArts.length) {
+    parts.push(`<div class="strategy-block">
       <div class="strategy-label">즉각 대응 필요 (Action)</div>
       ${(brief.action_required||[]).filter(Boolean).map(a=>`<div class="strategy-action-item">${a}</div>`).join('')}
-    </div>` : ''}
-    ${(delta.kr_angle||delta.us_angle||delta.cn_angle) ? `<div class="strategy-block">
+      ${actionArts.map(artCard).join('')}
+    </div>`);
+  }
+
+  if (delta.kr_angle||delta.us_angle||delta.cn_angle||regional.KR?.length||regional.US?.length||regional.CN?.length) {
+    parts.push(`<div class="strategy-block">
       <div class="strategy-label">지역별 전략 시각${delta.topic?` — ${delta.topic}`:''}</div>
-      ${delta.kr_angle?`<div class="sreg-row"><span class="reg reg-kr" style="flex-shrink:0">KR</span><span>${delta.kr_angle}</span></div>`:''}
-      ${delta.us_angle?`<div class="sreg-row"><span class="reg reg-us" style="flex-shrink:0">US</span><span>${delta.us_angle}</span></div>`:''}
-      ${delta.cn_angle?`<div class="sreg-row"><span class="reg reg-cn" style="flex-shrink:0">CN</span><span>${delta.cn_angle}</span></div>`:''}
-    </div>` : ''}
-    ${cvc.length ? `<div class="strategy-block">
+      ${regArts('KR','🇰🇷','한국','var(--kr)')}
+      ${regArts('US','🇺🇸','미국','var(--us)')}
+      ${regArts('CN','🇨🇳','중국','var(--cn)')}
+    </div>`);
+  }
+
+  if (cvc.length) {
+    parts.push(`<div class="strategy-block">
       <div class="strategy-label">CVC / 파트너십 관점</div>
       ${cvc.map(c=>`<div class="strategy-action-item" style="border-color:var(--amber)">${c}</div>`).join('')}
-    </div>` : ''}
-    ${actionArts.length ? `<div class="strategy-block">
-      <div class="strategy-label">LG 시사점 — Action 기사</div>
-      ${actionArts.map(a=>`<div class="sa-article">
-        <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
-        ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
-      </div>`).join('')}
-    </div>` : ''}
-    ${watchArts.length ? `<div class="strategy-block">
+    </div>`);
+  }
+
+  if (watchArts.length) {
+    parts.push(`<div class="strategy-block">
       <div class="strategy-label">주목 동향 — Watch 기사</div>
-      ${watchArts.map(a=>`<div class="sa-article">
-        <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
-        ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
-      </div>`).join('')}
-    </div>` : ''}
-  ` || '<div class="loading">브리핑 데이터 없음</div>';
+      ${watchArts.map(artCard).join('')}
+    </div>`);
+  }
+
+  el.innerHTML = parts.length ? parts.join('') : '<div style="color:var(--ink4);font-size:12px;padding:8px">브리핑 데이터 없음</div>';
 }
 
 // ── BRIEF ────────────────────────────────────────────────
