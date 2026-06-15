@@ -1283,13 +1283,13 @@ function renderStrategy(data) {
   const watchArts = articles.filter(a => a.signal === 'Watch').slice(0, 5);
   const cvc = (brief.cvc_insight || []).filter(Boolean);
 
-  const artCard = (a) => {
+  const artCard = (a, showImpl = false) => {
     const dateStr = fmtDate(a.pub_ts);
     return `<div class="sa-article">
       <div class="sa-meta">${sigBadge(a.signal)}${tierBadge(a.tier)}${regBadge(a.region)}<span class="srctxt">${a.source||''}</span>${dateStr?`<span style="font-family:var(--mono);font-size:9px;color:var(--red);font-weight:600;margin-left:4px">${dateStr}</span>`:''}<span class="stag" style="margin-left:auto">${a.score||'—'}</span></div>
       <div class="sa-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
       ${(a.summary_ko||a.summary)?`<div class="sa-sum">${a.summary_ko||a.summary}</div>`:''}
-      ${a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
+      ${showImpl && a.lg_implication?`<div class="sa-impl">${a.lg_implication}</div>`:''}
     </div>`;
   };
 
@@ -1329,7 +1329,7 @@ function renderStrategy(data) {
     parts.push(`<div class="strategy-block">
       <div class="strategy-label">즉각 대응 필요 (Action)</div>
       ${(brief.action_required||[]).filter(Boolean).map(a=>`<div class="strategy-action-item">${a}</div>`).join('')}
-      ${actionArts.map(artCard).join('')}
+      ${actionArts.map(a => artCard(a, true)).join('')}
     </div>`);
   }
 
@@ -1572,8 +1572,8 @@ function buildReportHTML(data, type) {
   const sigColor = { Action: '#c8102e', Watch: '#b45309', FYI: '#777' };
   const sigBg = { Action: '#fff0f2', Watch: '#fffbeb', FYI: '#f2f2ee' };
 
-  // Article card with date
-  const artCard = (a, rank) => {
+  // Article card with date; showImpl=true only for Action articles
+  const artCard = (a, rank, showImpl = false) => {
     const dateStr = fmtDate(a.pub_ts);
     const rankStr = rank != null ? `No.${rank} &nbsp;·&nbsp; ` : '';
     return `<div class="s-article">
@@ -1581,7 +1581,7 @@ function buildReportHTML(data, type) {
       <div class="s-title">${a.url?`<a href="${a.url}" target="_blank">${a.title_ko||a.title}</a>`:a.title_ko||a.title}</div>
       ${a.title_ko&&a.title_ko!==a.title?`<div class="s-orig">${a.title}</div>`:''}
       <div class="s-summary">${a.summary_ko||a.summary||''}</div>
-      ${a.lg_implication?`<div class="s-impl">→ LG 시사점: ${a.lg_implication}</div>`:''}
+      ${showImpl && a.lg_implication?`<div class="s-impl">→ LG 시사점: ${a.lg_implication}</div>`:''}
     </div>`;
   };
 
@@ -1602,7 +1602,7 @@ function buildReportHTML(data, type) {
       if (brief.action_required?.some(t=>t)) {
         content += `<div class="s-bullets">${brief.action_required.filter(t=>t).map(t=>`<div class="s-bullet" style="border-color:#c8102e">${t}</div>`).join('')}</div>`;
       }
-      content += actionArts.map(a => artCard(a)).join('');
+      content += actionArts.map(a => artCard(a, null, true)).join('');
     }
 
     // 3. 지역별 시각
