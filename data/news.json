@@ -1,10 +1,10 @@
 {
   "date": "2026-06-15",
-  "generated_at": "2026-06-15T23:35:00.912813+00:00",
+  "generated_at": "2026-06-16T00:07:43.714451+00:00",
   "stats": {
     "total_scanned": 30,
-    "action_count": 9,
-    "watch_count": 10,
+    "action_count": 8,
+    "watch_count": 12,
     "weak_signal_count": 6,
     "top_score": 7.0
   },
@@ -22,16 +22,16 @@
       "raw_score": 6.0,
       "entity": "nvidia",
       "domain": "news.google.com",
-      "title_ko": "폭스콘·대만 병원, 에이전틱 AI 및 피지컬 AI를 위해 NVIDIA와 협력",
-      "summary_ko": "폭스콘과 대만 주요 병원들이 NVIDIA의 AI 플랫폼을 활용해 에이전틱 AI 및 피지컬 AI 솔루션을 도입하는 협력을 추진하고 있다. 폭스콘은 스마트 제조 로봇 자동화에, 병원은 의료 AI 에이전트 및 디지털 헬스케어에 NVIDIA 기술을 적용할 계획이다.",
+      "title_ko": "폭스콘과 대만 병원, 에이전틱 AI 및 피지컬 AI 도입을 위해 NVIDIA와 협력",
+      "summary_ko": "폭스콘과 대만 주요 병원들이 NVIDIA의 AI 플랫폼을 활용해 에이전틱 AI 및 피지컬 AI(로봇) 솔루션을 도입하는 협력을 추진하고 있다. 폭스콘은 스마트 제조 로봇화에, 병원들은 의료 자동화 및 AI 에이전트 적용에 NVIDIA 기술을 활용할 예정이다.",
       "signal": "Action",
-      "signal_reason": "글로벌 제조·의료 분야 주요 플레이어들이 NVIDIA 기반 피지컬 AI·에이전틱 AI 생태계에 빠르게 편입되고 있어, LG전자의 로봇·스마트홈·의료 사업 경쟁 구도에 즉각적인 영향을 미칠 수 있음.",
-      "lg_implication": "LG전자는 스마트 팩토리, 의료·헬스케어 로봇 영역에서 NVIDIA Isaac/Omniverse 플랫폼 기반 파트너십 전략을 조속히 강화해 폭스콘 등 경쟁자 대비 생태계 내 포지션을 선점할 필요가 있음.",
+      "signal_reason": "글로벌 제조 강자 폭스콘과 NVIDIA의 피지컬 AI 협력은 LG전자가 경쟁하는 스마트 가전·제조 로봇 시장에서 기술 표준과 생태계 형성에 즉각적인 영향을 미칠 수 있다.",
+      "lg_implication": "LG전자는 NVIDIA Isaac/Omniverse 기반 피지컬 AI 생태계가 제조·의료·서비스 로봇 분야에서 사실상 표준으로 자리잡기 전에, 자사 로봇 및 스마트홈 플랫폼과의 협력 또는 독자 전략을 조속히 확정해야 한다.",
       "keywords": [
         "피지컬AI",
-        "에이전틱AI",
         "NVIDIA",
         "폭스콘",
+        "에이전틱AI",
         "스마트제조"
       ],
       "score": 7.0
@@ -49,17 +49,219 @@
       "raw_score": 5.0,
       "entity": "boston dynamics",
       "domain": "news.google.com",
-      "title_ko": "유안타증권, 보스턴 다이나믹스 로봇 부품 공급 기대감으로 현대모비스 목표주가 상향",
-      "summary_ko": "유안타증권이 현대모비스의 보스턴 다이나믹스향 로봇 부품 공급 가능성을 긍정적으로 평가하며 목표주가를 상향 조정했다. 현대차그룹 내 보스턴 다이나믹스와 현대모비스 간 로봇 부품 공급망 협력이 본격화될 것이라는 기대감이 반영된 것으로 보인다.",
+      "title_ko": "유안타증권, 보스턴다이나믹스 로봇 부품 공급 기대감에 현대모비스 목표주가 상향",
+      "summary_ko": "유안타증권이 현대모비스의 보스턴다이나믹스向 로봇 부품 공급 가능성을 긍정적으로 평가하며 목표주가를 상향 조정했다. 이는 현대자동차그룹 내 로봇 사업 밸류체인이 구체화되고 있음을 시사하며, 부품 계열사의 로봇 사업 참여가 본격화되는 신호로 해석된다.",
       "signal": "Watch",
-      "signal_reason": "현대차그룹이 보스턴 다이나믹스를 중심으로 로봇 부품 공급망을 내재화하는 움직임은 LG전자의 로봇 부품·액추에이터 공급 전략에 중기적 영향을 미칠 수 있어 모니터링이 필요하다.",
-      "lg_implication": "현대차그룹이 계열사(현대모비스)를 통해 로봇 부품 공급망을 수직 계열화할 경우, LG전자는 독립적인 로봇 부품 및 액추에이터 경쟁력 확보와 외부 로봇 기업 대상 공급 파트너십 전략을 더욱 강화해야 한다.",
+      "signal_reason": "현대차그룹 내 보스턴다이나믹스-현대모비스 로봇 부품 공급망 연계는 경쟁사 로봇 밸류체인 강화를 의미하며, LG전자의 부품·로봇 전략 포지셔닝에 중기적 영향을 줄 수 있다.",
+      "lg_implication": "LG전자도 로봇용 핵심 부품(액추에이터, 센서, 구동계 등) 공급 역량을 조기에 확보하고, 외부 로봇 제조사와의 파트너십을 통해 부품 공급 생태계에 진입하는 전략을 검토할 필요가 있다.",
       "keywords": [
         "현대모비스",
         "보스턴다이나믹스",
         "로봇부품공급망"
       ],
       "score": 5.3
+    },
+    {
+      "id": "23861e8b601b",
+      "title": "A Tiny Ball-Shaped Robot Helped Japan Figure Out What Went Wrong With Its Moon Landing - ZME Science",
+      "summary": "A Tiny Ball-Shaped Robot Helped Japan Figure Out What Went Wrong With Its Moon Landing&nbsp;&nbsp;ZME Science",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUWp5QzBmemo4X2prNHJOdXlHSHdMbWpkSnM2UXFBbnE2MGVnMGVqT0h6N1ZDckFSbHFSdXIzNjQ4OE13aFpaT2dtZDlBYkdkNGRieUNjdnBGaExkcHJEUlRDdUxwUnNEOXA2Y1Fiam5wSWNTSmJJbkp3a1ZtZ0VmLUVKN0VUclBpdXRDT1dsX3hUbGVyQzBtRlJhQVpZM2UyRlotZzRoSUJrdWo3VHRmTi0yR0EyNFg3Q01iQzdOaVlPSFhBYUpoMUJvalQ1S2p2VU1VWUFB?oc=5",
+      "source": "Google News - Figure Boston Dynamics",
+      "region": "global",
+      "pub_date": "Mon, 15 Jun 2026 14:33:26 GMT",
+      "pub_ts": 1781534006,
+      "tier": "T1",
+      "raw_score": 4.5,
+      "entity": "figure",
+      "domain": "news.google.com",
+      "title_ko": "작은 공 모양 로봇이 일본의 달 착륙 실패 원인 규명을 도왔다",
+      "summary_ko": "일본의 달 탐사 미션에서 소형 구형 로봇이 배치되어 착륙선의 비정상적인 자세와 착륙 실패 원인을 파악하는 데 핵심적인 역할을 했다. 이 초소형 탐사 로봇은 극한 환경에서도 작동하며 카메라를 통해 중요한 시각 정보를 지구로 전송하는 데 성공했다.",
+      "signal": "Watch",
+      "signal_reason": "소형 구형 로봇의 우주·극한환경 활용 사례는 향후 소형 모바일 로봇 플랫폼 및 내구성 설계 기술 트렌드로 중기적 모니터링이 필요하다.",
+      "lg_implication": "LG전자의 로봇 및 Physical AI 사업 관점에서 극한 환경 대응 소형 이동 로봇 플랫폼 기술과 자율 탐사 역량이 차별화 요소로 부상할 수 있음을 시사한다.",
+      "keywords": [
+        "소형 구형 로봇",
+        "달 탐사",
+        "극한환경 로봇"
+      ],
+      "score": 4.8
+    },
+    {
+      "id": "7d2e71cf8bc3",
+      "title": "엔젤로보틱스, 브레인 연동 웨어러블 휴머노이드 개발 착수",
+      "summary": "2024년 1월, 일론 머스크의 뉴럴링크(Neuralink)는 척추 골절로 사지가 마비된 29세 환자가 뇌에 이식된 칩을 통해 생각만으로 온라인 체스를 두는 장면을 공개했다. 이듬해 3월, 경쟁사 싱크론(Synchron)은 엔비디아(NVIDIA) GTC 2025에서 혈관 삽입형 전극으로 사지마비 환자가 아이폰과 아이패드를 조작하는 기술을 시연했으며, 애플과 공동 개발한 뇌-컴퓨터 인터페이스(BCI) 휴먼 인터페이스 디바이스(HID) 프로토콜을 통해 스마트홈 기기까지 뇌 신호로 제어하는 모습을 선보였다. 브레인 투 엑스(Brain-t",
+      "url": "https://www.irobotnews.com/news/articleView.html?idxno=46900",
+      "source": "로봇신문",
+      "region": "KR",
+      "pub_date": "2026-06-15 10:33:52",
+      "pub_ts": 1781567633,
+      "tier": "T1",
+      "raw_score": 4.2,
+      "entity": "nvidia",
+      "domain": "www.irobotnews.com",
+      "title_ko": "엔젤로보틱스, 브레인 연동 웨어러블 휴머노이드 개발 착수",
+      "summary_ko": "뉴럴링크, 싱크론 등 BCI 기업들이 뇌 신호로 디지털 기기 및 스마트홈을 제어하는 기술을 잇따라 시연하며 브레인-투-엑스(Brain-to-X) 패러다임이 현실화되고 있다. 국내 엔젤로보틱스는 이러한 흐름에 맞춰 뇌-컴퓨터 인터페이스와 연동된 웨어러블 휴머노이드 개발에 착수했다.",
+      "signal": "Watch",
+      "signal_reason": "BCI 기반 기기 제어 기술이 스마트홈·웨어러블 로봇으로 확장되며 LG 가전·로봇 사업의 중기적 인터페이스 패러다임 변화를 예고하고 있다.",
+      "lg_implication": "LG전자는 스마트홈 플랫폼 ThinQ 및 CLOi 로봇에 BCI 연동 가능성을 선제적으로 검토하고, 애플-싱크론 협력 모델처럼 BCI 기업과의 파트너십을 통한 뇌 신호 기반 가전 제어 생태계 진입을 고려해야 한다.",
+      "keywords": [
+        "뇌-컴퓨터 인터페이스(BCI)",
+        "웨어러블 로봇",
+        "스마트홈 제어"
+      ],
+      "score": 4.5
+    },
+    {
+      "id": "7b742b0933c1",
+      "title": "NVIDIA Announces NVIDIA Isaac GR00T Reference Humanoid Robot for Academic Research - NVIDIA Newsroom",
+      "summary": "NVIDIA Announces NVIDIA Isaac GR00T Reference Humanoid Robot for Academic Research&nbsp;&nbsp;NVIDIA Newsroom",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQa1B3b3A1eXcwc3AzeG1BNDRwU1hJbWliLWN6WW5FWlJCaUNrNW1sM24tV3p6NEF4YkVfTnZqWWtfbmttdUxXLVV6bnN4RzQxM0hlVUhLQXVGYzlzRlotVnEzcW1jYy1hallQQVBQWUNESDhXcXJKSElkbGdHM0FVSkVkSTc?oc=5",
+      "source": "Google News - humanoid robot",
+      "region": "global",
+      "pub_date": "Sun, 31 May 2026 07:00:00 GMT",
+      "pub_ts": 1780210800,
+      "tier": "T1",
+      "raw_score": 3.5,
+      "entity": "nvidia",
+      "domain": "news.google.com",
+      "title_ko": "NVIDIA, 학술 연구용 NVIDIA Isaac GR00T 레퍼런스 휴머노이드 로봇 발표",
+      "summary_ko": "NVIDIA가 학술 연구를 위한 레퍼런스 휴머노이드 로봇 'Isaac GR00T'를 공식 발표하며 로봇 AI 플랫폼 생태계 확장을 본격화했다. 이는 NVIDIA가 하드웨어·소프트웨어 통합 로봇 레퍼런스 플랫폼을 통해 휴머노이드 로봇 개발의 표준화를 주도하려는 전략적 행보로 해석된다.",
+      "signal": "Action",
+      "signal_reason": "NVIDIA가 휴머노이드 로봇 레퍼런스 플랫폼을 공개함으로써 로봇 AI 생태계의 표준 경쟁이 가속화되어 LG전자의 로봇 사업 전략 및 파트너십 방향에 즉각적인 재검토가 필요하다.",
+      "lg_implication": "LG전자는 NVIDIA Isaac GR00T 플랫폼과의 협력 또는 독자 기술 노선 선택을 조속히 결정하여 휴머노이드 로봇 개발 로드맵에 반영해야 한다.",
+      "keywords": [
+        "NVIDIA Isaac GR00T",
+        "휴머노이드 로봇",
+        "로봇 AI 플랫폼"
+      ],
+      "score": 4.5
+    },
+    {
+      "id": "994de2195b23",
+      "title": "NVIDIA introduces Isaac GR00T reference humanoid robot - Engineering.com",
+      "summary": "NVIDIA introduces Isaac GR00T reference humanoid robot&nbsp;&nbsp;Engineering.com",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNYkhvZkpDSC04bUt0cDdfWUE5ckV1S2pFVksxWm5PUnMxOTh2MkpnN3hpVUZTUG9SbUtiVTh5TldKd3BjeG9LMjFBT21LMkNBN29wcGthNzJ5MEVUODg2dktSRlpjU2hCdGR1WTNwZlF2dVE3LTNIcVdyM24wQnBBOV9hQ0tHRm9PUUNz?oc=5",
+      "source": "Google News - NVIDIA robot",
+      "region": "global",
+      "pub_date": "Tue, 09 Jun 2026 14:02:50 GMT",
+      "pub_ts": 1781013770,
+      "tier": "T1",
+      "raw_score": 3.5,
+      "entity": "nvidia",
+      "domain": "news.google.com",
+      "title_ko": "NVIDIA, Isaac GR00T 레퍼런스 휴머노이드 로봇 공개",
+      "summary_ko": "NVIDIA가 휴머노이드 로봇 개발을 위한 레퍼런스 플랫폼 'Isaac GR00T'를 공개하며 로봇 AI 생태계 구축에 본격 나섰다. 이 플랫폼은 로봇 훈련 및 시뮬레이션을 위한 표준 프레임워크를 제공하여 휴머노이드 로봇 개발 가속화를 목표로 한다.",
+      "signal": "Action",
+      "signal_reason": "NVIDIA의 휴머노이드 로봇 레퍼런스 플랫폼 출시는 로봇 AI 생태계의 표준화를 주도하며 LG전자의 로봇 사업 전략에 즉각적인 파트너십 및 기술 도입 검토가 필요한 전환점이다.",
+      "lg_implication": "LG전자는 가정용·상업용 로봇 개발 시 NVIDIA Isaac GR00T 플랫폼 기반의 협력 또는 자체 AI 로봇 역량과의 연계 방안을 조속히 검토해야 한다.",
+      "keywords": [
+        "Isaac GR00T",
+        "휴머노이드 로봇",
+        "NVIDIA 로봇 AI"
+      ],
+      "score": 4.5
+    },
+    {
+      "id": "020f08fac4a8",
+      "title": "Yaskawa eyes physical AI boom with JPY25 billion capex - digitimes",
+      "summary": "Yaskawa eyes physical AI boom with JPY25 billion capex&nbsp;&nbsp;digitimes",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxObVBzV0NwX3poRWFxdnk0SlFYQ0VVWUFkX29tb1JWZWd6cC1wOS1CMldTOVA3M0txMHlLMjNvUWtLU01sMjhOTXlCYUl1QnpjZ1RVdHFPZTlEM1VUbU10WlQyNzFWX1l2VnRzWjFQM0NueU5xMllZRk50b3VRNl9WbmpRY3M?oc=5",
+      "source": "Google News - Physical AI",
+      "region": "global",
+      "pub_date": "Mon, 15 Jun 2026 21:54:13 GMT",
+      "pub_ts": 1781560453,
+      "tier": "T2",
+      "raw_score": 4.0,
+      "entity": "yaskawa",
+      "domain": "news.google.com",
+      "title_ko": "야스카와, Physical AI 붐을 겨냥해 250억 엔 규모 설비투자 추진",
+      "summary_ko": "일본 산업용 로봇 선두기업 야스카와전기가 Physical AI 시장 성장에 대응하기 위해 250억 엔(약 2,200억 원) 규모의 대규모 설비투자 계획을 발표했다. 이는 AI와 로보틱스 융합 시장에서의 경쟁력 강화를 목표로 한 전략적 투자로, 글로벌 로봇 업계의 Physical AI 대응 투자가 본격화되고 있음을 시사한다.",
+      "signal": "Watch",
+      "signal_reason": "글로벌 산업용 로봇 강자 야스카와의 대규모 Physical AI 투자는 LG전자가 진출을 모색하는 로봇·AI 사업 영역의 경쟁 구도 변화를 예고하므로 중기적 모니터링이 필요하다.",
+      "lg_implication": "야스카와 등 전통 로봇 강자들이 Physical AI에 대규모 투자를 단행함에 따라, LG전자는 가전·서비스 로봇 분야에서의 차별화 포지셔닝과 투자 타이밍 가속화 전략을 재검토할 필요가 있다.",
+      "keywords": [
+        "Physical AI",
+        "야스카와전기",
+        "설비투자",
+        "산업용 로봇",
+        "AI 로보틱스"
+      ],
+      "score": 4.3
+    },
+    {
+      "id": "23e960eb89b1",
+      "title": "Samsung-Backed Rainbow Robotics Puts Its Dual-Arm Robot to Work in a Coupang Warehouse - Tech Times",
+      "summary": "Samsung-Backed Rainbow Robotics Puts Its Dual-Arm Robot to Work in a Coupang Warehouse&nbsp;&nbsp;Tech Times",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNRWthNzV1MHJya3EzUVpUb01keklqbVB2VVZaR1RYay1KVzVvYmZCako4aUR5ZHM3eWtac0NJemFRZmpxR3FRTG93WkZMb1JySERtaDBmdUdHRTM0N1NIWkJNeFhMZzRTRFZLbWkyZ0FDOHpwTkh4M1p3WmJXeEl0LUlRc1RKQzY5ZGFUU2Y4YU8xRERlY2dhNXhCakxPQ1hFVE1DdzE1NXNaT2NGel9MOEN3ZG16MjJGeUgwNTFnRF8yVE5EMnZsa0U1N3FyZw?oc=5",
+      "source": "Google News US - humanoid deploy",
+      "region": "US",
+      "pub_date": "Mon, 15 Jun 2026 19:56:27 GMT",
+      "pub_ts": 1781553387,
+      "tier": "T2",
+      "raw_score": 3.33,
+      "entity": "samsung",
+      "domain": "news.google.com",
+      "title_ko": "삼성 투자 레인보우로보틱스, 쿠팡 물류창고에 양팔 로봇 투입",
+      "summary_ko": "삼성전자의 투자를 받은 레인보우로보틱스가 자사 양팔 로봇을 쿠팡 물류창고에 실제 도입해 상업적 운용을 시작했다. 이는 한국 로봇 기업이 국내 대형 이커머스 물류 현장에서 구체적인 성과를 입증하는 사례로, 삼성-레인보우로보틱스-쿠팡으로 이어지는 로봇 생태계 협력이 가시화되고 있다.",
+      "signal": "Action",
+      "signal_reason": "삼성이 로봇-물류 생태계 연합을 빠르게 구축하고 있어, LG전자도 자사 로봇 사업(CLOi 등) 및 물류 파트너십 전략에 즉각적인 대응이 필요하다.",
+      "lg_implication": "LG전자는 CLOi 로봇 라인업의 양팔형 확장 및 이커머스·물류 고객사 확보를 통해 삼성-레인보우로보틱스-쿠팡 연합에 대응하는 상업화 레퍼런스를 조기에 확보해야 한다.",
+      "keywords": [
+        "양팔로봇",
+        "물류자동화",
+        "레인보우로보틱스"
+      ],
+      "score": 4.3
+    },
+    {
+      "id": "9e751cfe78a9",
+      "title": "OpenAI Just Launched a Robotics Division. Should Tesla Investors Be Worried? - The Motley Fool",
+      "summary": "OpenAI Just Launched a Robotics Division. Should Tesla Investors Be Worried?&nbsp;&nbsp;The Motley Fool",
+      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQS3ZwRG90dHF3WG12U19pRlNyR0xUUExrdjRsdlhlWlBraGUxWWtRNmUwUks3NmN6c1hXbXEzTWdfUFlwZHd1b1ZSTFdVZFhYbHlpeGJGVjJNOWdZUVkzcTc2bjZuOWloZnc4NkZNdVhJNmhXZy12UGU3Z2VvdlJvc3ZnMFpZY1lwV0E1T2hjVQ?oc=5",
+      "source": "Google News US - robotics",
+      "region": "US",
+      "pub_date": "Sun, 14 Jun 2026 12:45:00 GMT",
+      "pub_ts": 1781441100,
+      "tier": "T1",
+      "raw_score": 3.25,
+      "entity": "tesla",
+      "domain": "news.google.com",
+      "title_ko": "OpenAI가 로보틱스 부문을 출범했다. 테슬라 투자자들은 걱정해야 할까?",
+      "summary_ko": "OpenAI가 공식적으로 로보틱스 사업부를 신설하며 휴머노이드 로봇 시장에 본격 진출을 선언했다. 이는 테슬라 옵티머스 등 기존 로봇 플레이어들과의 경쟁 구도를 심화시키는 신호로 해석된다.",
+      "signal": "Action",
+      "signal_reason": "세계 최고 수준의 AI 기업인 OpenAI의 로보틱스 직접 진출은 Physical AI 경쟁 판도를 즉각적으로 재편할 수 있어 LG전자의 로봇 전략 재검토가 시급하다.",
+      "lg_implication": "OpenAI의 로보틱스 부문 출범으로 AI-로봇 통합 역량이 핵심 경쟁력으로 부상함에 따라, LG전자는 자체 로봇 플랫폼에 고도화된 AI 파트너십 또는 자체 개발 전략을 조속히 확립해야 한다.",
+      "keywords": [
+        "OpenAI 로보틱스",
+        "휴머노이드 로봇",
+        "Physical AI 경쟁"
+      ],
+      "score": 4.2
+    },
+    {
+      "id": "5eae7619a8d6",
+      "title": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…‘RB-Y1’이 여는 K-로보틱스 분기점 - 뉴스스페이스",
+      "summary": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…‘RB-Y1’이 여는 K-로보틱스 분기점&nbsp;&nbsp;뉴스스페이스",
+      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5hZkZnUC1lZU5YdG9pbjR4MmI2RDJ5RWxWTUxPc2NwVmNHdlNhaVd5NFJHQ2Z0NXFIQkNzVjdHR2Noc1hZR3hUQ19Ia1dUdUZwMTg2NmNsVVZCZXNVd09VbA?oc=5",
+      "source": "Google News KR - 휴머노이드",
+      "region": "KR",
+      "pub_date": "Mon, 15 Jun 2026 10:23:46 GMT",
+      "pub_ts": 1781519026,
+      "tier": "T2",
+      "raw_score": 3.2,
+      "entity": "레인보우로보틱스",
+      "domain": "news.google.com",
+      "title_ko": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…'RB-Y1'이 여는 K-로보틱스 분기점",
+      "summary_ko": "삼성전자가 인수한 레인보우로보틱스의 휴머노이드 로봇 'RB-Y1'이 쿠팡 물류센터에 실제 투입되며 국내 상업용 휴머노이드 로봇 시장의 본격적인 개막을 알렸다. 이는 K-로보틱스의 중요한 전환점으로, 삼성-레인보우로보틱스-쿠팡 연합이 물류 자동화 시장에서 선점 구도를 형성하고 있다.",
+      "signal": "Action",
+      "signal_reason": "삼성-레인보우로보틱스가 쿠팡이라는 대형 물류 고객사를 확보하며 국내 산업용 휴머노이드 시장을 선점함으로써 LG전자의 로봇 사업 전략에 즉각적인 경쟁 압박이 발생한다.",
+      "lg_implication": "LG전자는 CLOi 로봇 플랫폼 및 보스턴다이나믹스 협력 등 기존 역량을 바탕으로 물류·제조 현장 대상 휴머노이드 로봇 레퍼런스 확보를 삼성 대비 조속히 추진해야 한다.",
+      "keywords": [
+        "레인보우로보틱스",
+        "휴머노이드로봇",
+        "물류자동화"
+      ],
+      "score": 4.2
     },
     {
       "id": "896604e149c0",
@@ -84,7 +286,7 @@
         "휴머노이드 로봇",
         "Physical AI 경쟁"
       ],
-      "score": 4.8,
+      "score": 4.2,
       "_age_days": 1
     },
     {
@@ -110,85 +312,85 @@
         "아틀라스",
         "휴머노이드로봇"
       ],
-      "score": 4.7,
+      "score": 4.1,
       "_age_days": 1
     },
     {
-      "id": "23861e8b601b",
-      "title": "A Tiny Ball-Shaped Robot Helped Japan Figure Out What Went Wrong With Its Moon Landing - ZME Science",
-      "summary": "A Tiny Ball-Shaped Robot Helped Japan Figure Out What Went Wrong With Its Moon Landing&nbsp;&nbsp;ZME Science",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQUWp5QzBmemo4X2prNHJOdXlHSHdMbWpkSnM2UXFBbnE2MGVnMGVqT0h6N1ZDckFSbHFSdXIzNjQ4OE13aFpaT2dtZDlBYkdkNGRieUNjdnBGaExkcHJEUlRDdUxwUnNEOXA2Y1Fiam5wSWNTSmJJbkp3a1ZtZ0VmLUVKN0VUclBpdXRDT1dsX3hUbGVyQzBtRlJhQVpZM2UyRlotZzRoSUJrdWo3VHRmTi0yR0EyNFg3Q01iQzdOaVlPSFhBYUpoMUJvalQ1S2p2VU1VWUFB?oc=5",
-      "source": "Google News - Figure Boston Dynamics",
+      "id": "eb6696643e21",
+      "title": "How Sony AI’s table tennis robot is advancing physical AI",
+      "summary": "Although Omron and Kuka have demonstrated similar systems before, a table tennis-playing robot may still sound like a novelty to some. After all, industrial robots already assemble cars, sort parcels and weld metal with remarkable precision. But for researchers working at the intersection of robotics and artificial intelligence, table tennis represents one of the most [&#8230;]",
+      "url": "https://roboticsandautomationnews.com/2026/06/15/how-sony-ais-table-tennis-robot-is-advancing-physical-ai/102542/",
+      "source": "Robotics & Automation News",
       "region": "global",
-      "pub_date": "Mon, 15 Jun 2026 14:33:26 GMT",
-      "pub_ts": 1781534006,
-      "tier": "T1",
-      "raw_score": 4.5,
-      "entity": "figure",
-      "domain": "news.google.com",
-      "title_ko": "작은 공 모양 로봇이 일본의 달 착륙 실패 원인 규명에 도움",
-      "summary_ko": "일본의 달 탐사 임무에서 소형 구형 로봇이 착륙 현장을 탐색하며 착륙 과정에서 발생한 문제의 원인을 파악하는 데 기여했다. 이 사례는 소형 특수 목적 로봇이 극한 환경에서 정찰 및 진단 역할을 수행할 수 있음을 보여준다.",
-      "signal": "FYI",
-      "signal_reason": "우주 탐사용 소형 특수 로봇 사례로 LG 핵심 사업과 직접적 연관성은 낮으나 로봇 폼팩터 다양화 트렌드 참고 가능한 정보이다.",
-      "lg_implication": "극한 환경 대응 소형 구형 로봇 기술은 향후 LG전자의 특수 목적 로봇(산업·재난 대응 등) 개발 방향성 검토 시 참고할 수 있는 폼팩터 혁신 사례이다.",
-      "keywords": [
-        "소형 구형 로봇",
-        "달 탐사",
-        "특수목적 로봇"
-      ],
-      "score": 4.5
-    },
-    {
-      "id": "7d2e71cf8bc3",
-      "title": "엔젤로보틱스, 브레인 연동 웨어러블 휴머노이드 개발 착수",
-      "summary": "2024년 1월, 일론 머스크의 뉴럴링크(Neuralink)는 척추 골절로 사지가 마비된 29세 환자가 뇌에 이식된 칩을 통해 생각만으로 온라인 체스를 두는 장면을 공개했다. 이듬해 3월, 경쟁사 싱크론(Synchron)은 엔비디아(NVIDIA) GTC 2025에서 혈관 삽입형 전극으로 사지마비 환자가 아이폰과 아이패드를 조작하는 기술을 시연했으며, 애플과 공동 개발한 뇌-컴퓨터 인터페이스(BCI) 휴먼 인터페이스 디바이스(HID) 프로토콜을 통해 스마트홈 기기까지 뇌 신호로 제어하는 모습을 선보였다. 브레인 투 엑스(Brain-t",
-      "url": "https://www.irobotnews.com/news/articleView.html?idxno=46900",
-      "source": "로봇신문",
-      "region": "KR",
-      "pub_date": "2026-06-15 10:33:52",
-      "pub_ts": 1781565696,
-      "tier": "T1",
-      "raw_score": 4.2,
-      "entity": "nvidia",
-      "domain": "www.irobotnews.com",
-      "title_ko": "엔젤로보틱스, 브레인 연동 웨어러블 휴머노이드 개발 착수",
-      "summary_ko": "뉴럴링크, 싱크론 등 뇌-컴퓨터 인터페이스(BCI) 기술이 사지마비 환자의 디바이스 제어를 넘어 스마트홈까지 확장되는 단계에 진입했다. 한국의 엔젤로보틱스는 이러한 BCI 기술을 웨어러블 휴머노이드 로봇과 연동하는 개발에 착수하며 뇌 신호 기반 로봇 제어 시대를 본격 준비하고 있다.",
+      "pub_date": "Mon, 15 Jun 2026 08:25:01 +0000",
+      "pub_ts": 1781511901,
+      "tier": "T2",
+      "raw_score": 3.73,
+      "entity": "kuka",
+      "domain": "roboticsandautomationnews.com",
+      "title_ko": "소니 AI의 탁구 로봇이 피지컬 AI 발전을 이끄는 방법",
+      "summary_ko": "소니 AI가 개발한 탁구 로봇은 단순한 볼거리를 넘어, 빠른 물체 추적·실시간 의사결정·동적 환경 적응 등 피지컬 AI의 핵심 난제를 해결하는 연구 플랫폼으로 주목받고 있다. 탁구는 예측 불가능한 공의 궤적과 밀리초 단위의 반응을 요구해, 로보틱스와 AI의 융합 역량을 극한까지 시험할 수 있는 벤치마크로 평가된다.",
       "signal": "Watch",
-      "signal_reason": "BCI-로봇 연동 기술은 아직 초기 단계이나, 스마트홈·웨어러블 로봇과의 융합이 가속화되면 LG전자의 홈 AI 및 로봇 사업 영역과 중기적으로 교차될 가능성이 높다.",
-      "lg_implication": "LG전자는 스마트홈 플랫폼(ThinQ)과 웨어러블·서비스 로봇 사업을 보유한 만큼, BCI 기반 디바이스 제어 표준(HID 프로토콜 등) 동향을 선제적으로 추적하고 접근성(Accessibility) 특화 AI 홈 시나리오 개발을 검토할 필요가 있다.",
+      "signal_reason": "소니·오므론 등 주요 기업들이 피지컬 AI 역량 고도화를 위해 극한 동작 제어 연구를 가속화하고 있어, LG의 로봇/AI 전략 방향에 중기적 영향을 미칠 수 있는 기술 트렌드다.",
+      "lg_implication": "LG전자가 가정용·서비스 로봇 개발 시, 탁구 로봇 수준의 고속 센서 융합 및 실시간 적응형 제어 기술을 피지컬 AI 핵심 역량으로 내재화하는 전략 검토가 필요하다.",
       "keywords": [
-        "뇌-컴퓨터 인터페이스",
-        "웨어러블 로봇",
-        "스마트홈 제어"
+        "피지컬AI",
+        "탁구로봇",
+        "실시간동작제어"
       ],
-      "score": 4.5
+      "score": 4.0
     },
     {
-      "id": "994de2195b23",
-      "title": "NVIDIA introduces Isaac GR00T reference humanoid robot - Engineering.com",
-      "summary": "NVIDIA introduces Isaac GR00T reference humanoid robot&nbsp;&nbsp;Engineering.com",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNYkhvZkpDSC04bUt0cDdfWUE5ckV1S2pFVksxWm5PUnMxOTh2MkpnN3hpVUZTUG9SbUtiVTh5TldKd3BjeG9LMjFBT21LMkNBN29wcGthNzJ5MEVUODg2dktSRlpjU2hCdGR1WTNwZlF2dVE3LTNIcVdyM24wQnBBOV9hQ0tHRm9PUUNz?oc=5",
-      "source": "Google News - NVIDIA robot",
+      "id": "1ee89d0c3974",
+      "title": "Teradyne Robotics unveils production-ready physical AI applications at Automate 2026",
+      "summary": "Teradyne Robotics, the company that owns Universal Robots and Mobile Industrial Robots, will demonstrate how physical AI is transforming industrial automation at Automate 2026 in Chicago, June 22-25 at booth #1250. “Physical AI is on full display across our robotic solutions at Automate,&#8221; said Jean-Pierre Hathout, President of the Teradyne Robotics Group. “The demos we [&#8230;]",
+      "url": "https://roboticsandautomationnews.com/2026/06/15/teradyne-robotics-unveils-production-ready-physical-ai-applications-at-automate-2026/102536/",
+      "source": "Robotics & Automation News",
       "region": "global",
-      "pub_date": "Tue, 09 Jun 2026 14:02:50 GMT",
-      "pub_ts": 1781013770,
+      "pub_date": "Mon, 15 Jun 2026 07:19:32 +0000",
+      "pub_ts": 1781507972,
+      "tier": "T2",
+      "raw_score": 3.73,
+      "entity": "universal robots",
+      "domain": "roboticsandautomationnews.com",
+      "title_ko": "Teradyne Robotics, Automate 2026에서 양산 준비 완료된 Physical AI 애플리케이션 공개",
+      "summary_ko": "Universal Robots와 Mobile Industrial Robots를 보유한 Teradyne Robotics가 2026년 6월 시카고 Automate 전시회에서 Physical AI가 적용된 산업 자동화 솔루션을 대거 시연할 예정이다. 이번 전시는 Physical AI가 실제 산업 현장에 양산 단계로 진입했음을 보여주는 중요한 이정표로 평가된다.",
+      "signal": "Watch",
+      "signal_reason": "협동로봇 및 자율이동로봇 분야 선도 기업인 Teradyne Robotics의 Physical AI 양산화 움직임은 LG전자의 산업용 로봇 사업 방향성과 경쟁 구도에 중기적 영향을 미칠 수 있다.",
+      "lg_implication": "LG전자 CLOi 및 산업용 로봇 포트폴리오 고도화 시 Physical AI 통합 역량 확보가 시급하며, Universal Robots·MiR 등 기존 강자와의 차별화 전략 수립이 필요하다.",
+      "keywords": [
+        "Physical AI",
+        "산업 자동화",
+        "협동로봇"
+      ],
+      "score": 4.0
+    },
+    {
+      "id": "49f1be48aa98",
+      "title": "NVIDIA and Doosan Group Collaborate to Advance Physical AI and AI Factory Infrastructure - NVIDIA Blog",
+      "summary": "NVIDIA and Doosan Group Collaborate to Advance Physical AI and AI Factory Infrastructure&nbsp;&nbsp;NVIDIA Blog",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8tSURGOHpJeWFZa2kzTUJvcV9SbDQ1czl4cVltYW93cVdVWF9MM2twa1cyVVpXOHIyOFJtSUc4UU4wanozOWFuZHBaTUpqQV9qMExIX2hCWC1PX09TTHlIRTRRSm1fbDlvNkRtUkZhQXBsaE9T?oc=5",
+      "source": "Google News - Physical AI",
+      "region": "global",
+      "pub_date": "Sun, 07 Jun 2026 07:00:00 GMT",
+      "pub_ts": 1780815600,
       "tier": "T1",
-      "raw_score": 3.5,
+      "raw_score": 3.0,
       "entity": "nvidia",
       "domain": "news.google.com",
-      "title_ko": "NVIDIA, Isaac GR00T 레퍼런스 휴머노이드 로봇 공개",
-      "summary_ko": "NVIDIA가 휴머노이드 로봇 개발을 위한 레퍼런스 플랫폼 'Isaac GR00T'를 공개하며 로봇 AI 생태계 구축에 본격 나섰다. 이 플랫폼은 로봇 훈련 및 시뮬레이션을 위한 표준 프레임워크를 제공해 휴머노이드 로봇 개발을 가속화할 것으로 기대된다.",
+      "title_ko": "NVIDIA와 두산그룹, Physical AI 및 AI 팩토리 인프라 고도화를 위한 협력 발표",
+      "summary_ko": "NVIDIA와 두산그룹이 Physical AI 및 AI 팩토리 인프라 구축을 위한 전략적 협력 관계를 체결했다. 이번 협력은 두산의 산업 역량과 NVIDIA의 AI 플랫폼을 결합하여 제조·에너지·로보틱스 분야의 디지털 전환을 가속화하는 것을 목표로 한다.",
       "signal": "Action",
-      "signal_reason": "NVIDIA의 레퍼런스 휴머노이드 플랫폼 공개는 로봇 산업의 표준화를 주도할 수 있으며, LG전자의 로봇 사업 방향 및 파트너십 전략에 즉각적인 검토가 필요하다.",
-      "lg_implication": "LG전자는 가정용·산업용 로봇 개발 시 NVIDIA Isaac GR00T 플랫폼 기반의 협력 또는 독자 AI 스택 확보 여부를 조속히 결정해 경쟁력 있는 로봇 생태계 포지셔닝을 선점해야 한다.",
+      "signal_reason": "국내 대형 산업 그룹인 두산이 NVIDIA와 손잡고 Physical AI 및 AI 팩토리 분야에 진입함으로써 LG전자의 스마트팩토리·로보틱스 사업 영역과 직접적인 경쟁 구도가 형성될 수 있어 즉각적인 전략 대응이 필요하다.",
+      "lg_implication": "LG전자도 NVIDIA와의 협력 강화 또는 독자적 Physical AI·AI 팩토리 생태계 구축을 서두르지 않으면 국내외 산업용 AI 시장에서 두산-NVIDIA 연합에 선점 기회를 빼앗길 수 있다.",
       "keywords": [
-        "NVIDIA",
-        "Isaac GR00T",
-        "휴머노이드 로봇",
-        "레퍼런스 플랫폼",
-        "로봇 AI"
+        "Physical AI",
+        "AI 팩토리",
+        "NVIDIA 협력",
+        "두산그룹",
+        "스마트팩토리"
       ],
-      "score": 4.5
+      "score": 4.0
     },
     {
       "id": "09c1f99081df",
@@ -213,239 +415,8 @@
         "피지컬 인텔리전스",
         "TM테크놀로지"
       ],
-      "score": 4.5,
+      "score": 4.0,
       "_age_days": 1
-    },
-    {
-      "id": "020f08fac4a8",
-      "title": "Yaskawa eyes physical AI boom with JPY25 billion capex - digitimes",
-      "summary": "Yaskawa eyes physical AI boom with JPY25 billion capex&nbsp;&nbsp;digitimes",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxObVBzV0NwX3poRWFxdnk0SlFYQ0VVWUFkX29tb1JWZWd6cC1wOS1CMldTOVA3M0txMHlLMjNvUWtLU01sMjhOTXlCYUl1QnpjZ1RVdHFPZTlEM1VUbU10WlQyNzFWX1l2VnRzWjFQM0NueU5xMllZRk50b3VRNl9WbmpRY3M?oc=5",
-      "source": "Google News - Physical AI",
-      "region": "global",
-      "pub_date": "Mon, 15 Jun 2026 21:54:13 GMT",
-      "pub_ts": 1781560453,
-      "tier": "T2",
-      "raw_score": 4.0,
-      "entity": "yaskawa",
-      "domain": "news.google.com",
-      "title_ko": "야스카와, 피지컬 AI 붐에 대응해 250억 엔 설비투자 계획",
-      "summary_ko": "야스카와전기가 피지컬 AI 시장 성장에 대응하기 위해 250억 엔(약 2,300억 원) 규모의 설비투자를 계획하고 있다. 이는 산업용 로봇 및 모션 컨트롤 분야에서 AI 융합 가속화에 선제적으로 대응하기 위한 전략적 행보로 해석된다.",
-      "signal": "Watch",
-      "signal_reason": "글로벌 산업용 로봇 선두기업의 대규모 피지컬 AI 투자는 LG전자가 진입을 모색 중인 로봇/Physical AI 시장의 경쟁 구도 변화를 예고한다.",
-      "lg_implication": "야스카와 등 기존 산업용 로봇 강자들이 피지컬 AI로 영역을 확장함에 따라, LG전자는 가정·서비스 로봇 중심의 차별화 포지셔닝과 독자적 AI 역량 확보를 서둘러야 한다.",
-      "keywords": [
-        "야스카와",
-        "피지컬AI",
-        "설비투자",
-        "산업용로봇",
-        "모션컨트롤"
-      ],
-      "score": 4.3
-    },
-    {
-      "id": "23e960eb89b1",
-      "title": "Samsung-Backed Rainbow Robotics Puts Its Dual-Arm Robot to Work in a Coupang Warehouse - Tech Times",
-      "summary": "Samsung-Backed Rainbow Robotics Puts Its Dual-Arm Robot to Work in a Coupang Warehouse&nbsp;&nbsp;Tech Times",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNRWthNzV1MHJya3EzUVpUb01keklqbVB2VVZaR1RYay1KVzVvYmZCako4aUR5ZHM3eWtac0NJemFRZmpxR3FRTG93WkZMb1JySERtaDBmdUdHRTM0N1NIWkJNeFhMZzRTRFZLbWkyZ0FDOHpwTkh4M1p3WmJXeEl0LUlRc1RKQzY5ZGFUU2Y4YU8xRERlY2dhNXhCakxPQ1hFVE1DdzE1NXNaT2NGel9MOEN3ZG16MjJGeUgwNTFnRF8yVE5EMnZsa0U1N3FyZw?oc=5",
-      "source": "Google News US - humanoid deploy",
-      "region": "US",
-      "pub_date": "Mon, 15 Jun 2026 19:56:27 GMT",
-      "pub_ts": 1781553387,
-      "tier": "T2",
-      "raw_score": 3.33,
-      "entity": "samsung",
-      "domain": "news.google.com",
-      "title_ko": "삼성 지원 레인보우로보틱스, 쿠팡 물류창고에 양팔 로봇 투입",
-      "summary_ko": "삼성전자가 투자한 레인보우로보틱스가 자사의 양팔 로봇을 쿠팡 물류창고에 실제 배치하여 상업적 운용을 시작했다. 이는 국내 로봇 기업이 e-커머스 물류 자동화 시장에 본격 진입한 사례로, 삼성-레인보우로보틱스-쿠팡으로 이어지는 로봇 생태계 연합이 가시화되고 있다.",
-      "signal": "Action",
-      "signal_reason": "경쟁사 삼성이 투자한 로봇 기업이 국내 최대 e-커머스 물류 현장에 양팔 로봇을 실증 배치함으로써, LG전자의 클로이(CLOi) 로봇 및 물류 자동화 사업과 직접 경합 구도가 형성되어 즉각적인 전략 검토가 필요하다.",
-      "lg_implication": "LG전자는 삼성-레인보우로보틱스-쿠팡 연합에 대응하기 위해 CLOi 양팔 로봇의 물류 현장 실증 사례를 조기에 확보하고, 네이버·CJ대한통운 등 국내 물류 파트너와의 협력을 강화할 필요가 있다.",
-      "keywords": [
-        "레인보우로보틱스",
-        "양팔로봇",
-        "물류자동화"
-      ],
-      "score": 4.3
-    },
-    {
-      "id": "287f6674bd5c",
-      "title": "Rainbow Robotics Trials RB-Y1 in Coupang Warehouse - Let's Data Science",
-      "summary": "Rainbow Robotics Trials RB-Y1 in Coupang Warehouse&nbsp;&nbsp;Let's Data Science",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPV0p3c0tRWFBxbEZ4Tl9vV0c2anl5TGVNTml2aFdDYm1hVFgzeUpLU3hGb3U1NDZ3NGx0bTRRLXIwa1RWbmo4ZHVOMndURUpvTFNzeGotdXNBVVo1aGJjZlFhUXhyeEh4bHNnanpuemZCSHV6c1V0cnN2V21sZ0djdVVJTlBCLUhic285LXlIdTQ3ejBrVDFz?oc=5",
-      "source": "Google News US - humanoid deploy",
-      "region": "US",
-      "pub_date": "Mon, 15 Jun 2026 18:04:28 GMT",
-      "pub_ts": 1781546668,
-      "tier": "T2",
-      "raw_score": 3.33,
-      "entity": "rainbow robotics",
-      "domain": "news.google.com",
-      "title_ko": "레인보우로보틱스, 쿠팡 물류창고에서 RB-Y1 로봇 시범 운영",
-      "summary_ko": "레인보우로보틱스의 양팔 휴머노이드 로봇 RB-Y1이 국내 최대 이커머스 기업 쿠팡의 물류창고에서 실증 테스트를 진행하고 있다. 이는 물류 현장에서의 휴머노이드 로봇 상용화 가능성을 검증하는 중요한 사례로, 국내 로봇 산업의 실질적 적용 단계 진입을 의미한다.",
-      "signal": "Action",
-      "signal_reason": "삼성전자 지분 투자를 받은 레인보우로보틱스가 쿠팡이라는 대형 물류 고객과 실증을 진행함으로써 LG전자의 물류로봇 사업 영역과 직접적으로 경쟁 구도가 형성되고 있어 즉각적인 전략 검토가 필요하다.",
-      "lg_implication": "LG전자는 CLOi 등 물류로봇 포트폴리오를 보유하고 있으나, 휴머노이드 기반 물류 솔루션 분야에서 레인보우로보틱스-쿠팡 연합에 선제 대응하기 위해 국내 대형 물류/유통사와의 파트너십 및 실증 기회를 적극 확보해야 한다.",
-      "keywords": [
-        "레인보우로보틱스",
-        "RB-Y1",
-        "쿠팡 물류창고",
-        "휴머노이드 로봇",
-        "물류 자동화"
-      ],
-      "score": 4.3
-    },
-    {
-      "id": "9e751cfe78a9",
-      "title": "OpenAI Just Launched a Robotics Division. Should Tesla Investors Be Worried? - The Motley Fool",
-      "summary": "OpenAI Just Launched a Robotics Division. Should Tesla Investors Be Worried?&nbsp;&nbsp;The Motley Fool",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQS3ZwRG90dHF3WG12U19pRlNyR0xUUExrdjRsdlhlWlBraGUxWWtRNmUwUks3NmN6c1hXbXEzTWdfUFlwZHd1b1ZSTFdVZFhYbHlpeGJGVjJNOWdZUVkzcTc2bjZuOWloZnc4NkZNdVhJNmhXZy12UGU3Z2VvdlJvc3ZnMFpZY1lwV0E1T2hjVQ?oc=5",
-      "source": "Google News US - robotics",
-      "region": "US",
-      "pub_date": "Sun, 14 Jun 2026 12:45:00 GMT",
-      "pub_ts": 1781441100,
-      "tier": "T1",
-      "raw_score": 3.25,
-      "entity": "tesla",
-      "domain": "news.google.com",
-      "title_ko": "OpenAI, 로보틱스 부문 출범. 테슬라 투자자들은 걱정해야 할까?",
-      "summary_ko": "OpenAI가 공식적으로 로보틱스 전담 부문을 설립하며 물리적 AI 분야로의 본격 진출을 선언했다. 이는 테슬라 옵티머스 등 기존 휴머노이드 로봇 플레이어들과의 경쟁 심화를 의미하며, AI 소프트웨어 강자가 하드웨어 로보틱스 생태계에까지 영향력을 확대하는 구조적 변화를 예고한다.",
-      "signal": "Action",
-      "signal_reason": "세계 최고 수준의 AI 모델을 보유한 OpenAI의 로보틱스 진출은 LG전자의 로봇/Physical AI 전략 파트너십 및 독자 역량 구축 방향에 즉각적인 재검토를 요구한다.",
-      "lg_implication": "LG전자는 OpenAI 로보틱스와의 협력 가능성 및 경쟁 포지셔닝을 조기에 검토하고, AI 기반 로봇 두뇌 역량 확보 전략을 가속화할 필요가 있다.",
-      "keywords": [
-        "OpenAI 로보틱스",
-        "Physical AI",
-        "휴머노이드 경쟁"
-      ],
-      "score": 4.2
-    },
-    {
-      "id": "5eae7619a8d6",
-      "title": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…‘RB-Y1’이 여는 K-로보틱스 분기점 - 뉴스스페이스",
-      "summary": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…‘RB-Y1’이 여는 K-로보틱스 분기점&nbsp;&nbsp;뉴스스페이스",
-      "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5hZkZnUC1lZU5YdG9pbjR4MmI2RDJ5RWxWTUxPc2NwVmNHdlNhaVd5NFJHQ2Z0NXFIQkNzVjdHR2Noc1hZR3hUQ19Ia1dUdUZwMTg2NmNsVVZCZXNVd09VbA?oc=5",
-      "source": "Google News KR - 휴머노이드",
-      "region": "KR",
-      "pub_date": "Mon, 15 Jun 2026 10:23:46 GMT",
-      "pub_ts": 1781519026,
-      "tier": "T2",
-      "raw_score": 3.2,
-      "entity": "레인보우로보틱스",
-      "domain": "news.google.com",
-      "title_ko": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…'RB-Y1'이 여는 K-로보틱스 분기점",
-      "summary_ko": "삼성전자가 인수한 레인보우로보틱스의 휴머노이드 로봇 'RB-Y1'이 쿠팡 물류센터에 실제 투입되며 상업적 운용 단계에 진입했다. 이는 국내 휴머노이드 로봇의 물류 현장 실증 적용이라는 K-로보틱스의 중요한 분기점으로 평가된다.",
-      "signal": "Action",
-      "signal_reason": "삼성-레인보우로보틱스-쿠팡으로 이어지는 휴머노이드 상용화 밸류체인이 구체화되며, LG전자도 물류 로봇 생태계에서의 포지셔닝 전략을 즉각 재검토할 필요가 있다.",
-      "lg_implication": "LG전자는 CLOi 로봇 및 보스턴다이나믹스 협력 등 기존 자산을 활용해 삼성-쿠팡 연합에 맞설 물류 휴머노이드 상용화 로드맵을 가속화하고, 유통·물류 파트너십 확보에 선제적으로 나서야 한다.",
-      "keywords": [
-        "RB-Y1",
-        "휴머노이드 상용화",
-        "물류 로봇"
-      ],
-      "score": 4.2
-    },
-    {
-      "id": "eb6696643e21",
-      "title": "How Sony AI’s table tennis robot is advancing physical AI",
-      "summary": "Although Omron and Kuka have demonstrated similar systems before, a table tennis-playing robot may still sound like a novelty to some. After all, industrial robots already assemble cars, sort parcels and weld metal with remarkable precision. But for researchers working at the intersection of robotics and artificial intelligence, table tennis represents one of the most [&#8230;]",
-      "url": "https://roboticsandautomationnews.com/2026/06/15/how-sony-ais-table-tennis-robot-is-advancing-physical-ai/102542/",
-      "source": "Robotics & Automation News",
-      "region": "global",
-      "pub_date": "Mon, 15 Jun 2026 08:25:01 +0000",
-      "pub_ts": 1781511901,
-      "tier": "T2",
-      "raw_score": 3.73,
-      "entity": "kuka",
-      "domain": "roboticsandautomationnews.com",
-      "title_ko": "소니 AI의 탁구 로봇이 Physical AI를 발전시키는 방법",
-      "summary_ko": "소니 AI가 개발한 탁구 로봇은 단순한 기술 시연을 넘어, 빠른 반응 속도·불확실한 환경 적응·실시간 의사결정 등 Physical AI의 핵심 난제를 해결하는 연구 플랫폼으로 주목받고 있다. 탁구는 산업용 로봇이 다루는 반복적·구조화된 작업과 달리 매 순간 변화하는 동적 환경을 요구하여, 범용 로봇 지능 개발의 벤치마크로 활용되고 있다.",
-      "signal": "Watch",
-      "signal_reason": "Physical AI 및 동적 환경 적응형 로봇 기술은 LG전자가 추진 중인 가정용·서비스용 로봇 사업의 핵심 기술 방향과 직결되어 중기적 모니터링이 필요하다.",
-      "lg_implication": "소니 AI의 탁구 로봇 연구에서 도출되는 실시간 동적 환경 대응 및 감각-운동 통합 기술은 LG전자 가정용 로봇(CLOi 등)의 비정형 환경 적응력 강화에 벤치마킹 가능한 핵심 인사이트를 제공한다.",
-      "keywords": [
-        "Physical AI",
-        "탁구 로봇",
-        "동적 환경 적응",
-        "소니 AI",
-        "서비스 로봇"
-      ],
-      "score": 4.0
-    },
-    {
-      "id": "1ee89d0c3974",
-      "title": "Teradyne Robotics unveils production-ready physical AI applications at Automate 2026",
-      "summary": "Teradyne Robotics, the company that owns Universal Robots and Mobile Industrial Robots, will demonstrate how physical AI is transforming industrial automation at Automate 2026 in Chicago, June 22-25 at booth #1250. “Physical AI is on full display across our robotic solutions at Automate,&#8221; said Jean-Pierre Hathout, President of the Teradyne Robotics Group. “The demos we [&#8230;]",
-      "url": "https://roboticsandautomationnews.com/2026/06/15/teradyne-robotics-unveils-production-ready-physical-ai-applications-at-automate-2026/102536/",
-      "source": "Robotics & Automation News",
-      "region": "global",
-      "pub_date": "Mon, 15 Jun 2026 07:19:32 +0000",
-      "pub_ts": 1781507972,
-      "tier": "T2",
-      "raw_score": 3.73,
-      "entity": "universal robots",
-      "domain": "roboticsandautomationnews.com",
-      "title_ko": "Teradyne Robotics, Automate 2026에서 양산 준비 완료된 Physical AI 애플리케이션 공개",
-      "summary_ko": "Universal Robots와 Mobile Industrial Robots를 보유한 Teradyne Robotics가 2026년 6월 시카고 Automate 전시회에서 Physical AI 기반 산업 자동화 솔루션을 시연할 예정이다. Physical AI가 로봇 솔루션 전반에 걸쳐 양산 적용 단계에 진입했음을 선언하며 산업용 로봇 시장의 AI 융합 가속화를 알렸다.",
-      "signal": "Watch",
-      "signal_reason": "산업용 로봇 분야의 주요 플레이어가 Physical AI를 양산 수준으로 구현했다고 선언함으로써, LG전자의 로봇/Physical AI 사업 경쟁 환경이 빠르게 변화하고 있어 중기적 모니터링이 필요하다.",
-      "lg_implication": "LG전자는 가이드봇·클로이 등 서비스 로봇 라인업에 Physical AI 기술을 조기 통합하는 로드맵을 검토하고, Teradyne Robotics 계열의 협동로봇·AMR과의 기술 격차 및 협력 가능성을 동시에 분석해야 한다.",
-      "keywords": [
-        "Physical AI",
-        "산업용 로봇 자동화",
-        "Teradyne Robotics"
-      ],
-      "score": 4.0
-    },
-    {
-      "id": "49f1be48aa98",
-      "title": "NVIDIA and Doosan Group Collaborate to Advance Physical AI and AI Factory Infrastructure - NVIDIA Blog",
-      "summary": "NVIDIA and Doosan Group Collaborate to Advance Physical AI and AI Factory Infrastructure&nbsp;&nbsp;NVIDIA Blog",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE8tSURGOHpJeWFZa2kzTUJvcV9SbDQ1czl4cVltYW93cVdVWF9MM2twa1cyVVpXOHIyOFJtSUc4UU4wanozOWFuZHBaTUpqQV9qMExIX2hCWC1PX09TTHlIRTRRSm1fbDlvNkRtUkZhQXBsaE9T?oc=5",
-      "source": "Google News - Physical AI",
-      "region": "global",
-      "pub_date": "Sun, 07 Jun 2026 07:00:00 GMT",
-      "pub_ts": 1780815600,
-      "tier": "T1",
-      "raw_score": 3.0,
-      "entity": "nvidia",
-      "domain": "news.google.com",
-      "title_ko": "NVIDIA와 두산그룹, Physical AI 및 AI 팩토리 인프라 발전을 위해 협력",
-      "summary_ko": "NVIDIA와 두산그룹이 Physical AI 및 AI 팩토리 인프라 구축을 위한 협력 관계를 발표했다. 이번 협력은 두산의 산업 설비 및 에너지 사업에 NVIDIA의 AI 기술을 접목해 스마트 제조 및 로보틱스 역량을 강화하는 것을 목표로 한다.",
-      "signal": "Action",
-      "signal_reason": "국내 주요 경쟁 그룹인 두산이 NVIDIA와 Physical AI·AI 팩토리 분야에서 전략적 파트너십을 체결함으로써 LG전자의 스마트 팩토리 및 로봇 사업 경쟁 구도에 즉각적인 영향을 미칠 수 있다.",
-      "lg_implication": "LG전자도 NVIDIA와의 협력 심화 또는 독자적인 Physical AI·AI 팩토리 전략을 조속히 구체화하여 두산 대비 차별화된 포지셔닝을 확보해야 한다.",
-      "keywords": [
-        "Physical AI",
-        "AI 팩토리",
-        "NVIDIA 파트너십"
-      ],
-      "score": 4.0
-    },
-    {
-      "id": "7b742b0933c1",
-      "title": "NVIDIA Announces NVIDIA Isaac GR00T Reference Humanoid Robot for Academic Research - NVIDIA Newsroom",
-      "summary": "NVIDIA Announces NVIDIA Isaac GR00T Reference Humanoid Robot for Academic Research&nbsp;&nbsp;NVIDIA Newsroom",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQa1B3b3A1eXcwc3AzeG1BNDRwU1hJbWliLWN6WW5FWlJCaUNrNW1sM24tV3p6NEF4YkVfTnZqWWtfbmttdUxXLVV6bnN4RzQxM0hlVUhLQXVGYzlzRlotVnEzcW1jYy1hallQQVBQWUNESDhXcXJKSElkbGdHM0FVSkVkSTc?oc=5",
-      "source": "Google News - humanoid robot",
-      "region": "global",
-      "pub_date": "Sun, 31 May 2026 07:00:00 GMT",
-      "pub_ts": 1780210800,
-      "tier": "T1",
-      "raw_score": 3.5,
-      "entity": "nvidia",
-      "domain": "news.google.com",
-      "title_ko": "NVIDIA, 학술 연구용 Isaac GR00T 레퍼런스 휴머노이드 로봇 발표",
-      "summary_ko": "NVIDIA가 학술 연구자들을 위한 레퍼런스 휴머노이드 로봇 플랫폼 Isaac GR00T를 공식 발표하며 로봇 AI 생태계 확장에 나섰다. 이는 NVIDIA가 하드웨어·소프트웨어 통합 플랫폼을 통해 휴머노이드 로봇 개발의 표준을 선점하려는 전략적 행보로 해석된다.",
-      "signal": "Watch",
-      "signal_reason": "NVIDIA의 휴머노이드 로봇 레퍼런스 플랫폼 공개는 로봇 AI 생태계의 기술 표준화를 가속화하여 LG전자의 중장기 로봇 사업 방향에 영향을 미칠 수 있는 중요 동향이다.",
-      "lg_implication": "LG전자는 NVIDIA Isaac GR00T 플랫폼과의 협력 또는 호환성 확보를 검토하여 자사 로봇 제품(CLOi 등)의 AI 고도화 및 휴머노이드 개발 역량 강화에 활용할 수 있다.",
-      "keywords": [
-        "NVIDIA Isaac GR00T",
-        "휴머노이드 로봇",
-        "로봇 AI 플랫폼"
-      ],
-      "score": 3.8
     },
     {
       "id": "ef714b373fe4",
@@ -461,67 +432,93 @@
       "entity": "nvidia",
       "domain": "news.google.com",
       "title_ko": "엔비디아, 중국 기업과 협력해 '피지컬 AI' 휴머노이드 로봇 개발",
-      "summary_ko": "엔비디아가 중국 기업과 파트너십을 맺고 피지컬 AI 기반 휴머노이드 로봇 개발에 나섰다. 이는 엔비디아가 단순 칩 공급을 넘어 로봇 생태계 전반에 직접 참여하는 전략적 행보로 해석된다.",
+      "summary_ko": "엔비디아가 중국 기업과 파트너십을 맺고 피지컬 AI 기반 휴머노이드 로봇 개발에 나섰다. 이는 엔비디아가 GPU 및 AI 플랫폼을 로봇 하드웨어와 결합하는 생태계 구축을 본격화하고 있음을 시사한다.",
       "signal": "Watch",
-      "signal_reason": "엔비디아의 피지컬 AI 로봇 생태계 직접 참여는 중기적으로 LG전자의 로봇 사업 파트너십 및 기술 스택 선택에 영향을 미칠 수 있는 주요 산업 동향이다.",
-      "lg_implication": "LG전자는 자사 로봇 플랫폼 개발 시 엔비디아 피지컬 AI 생태계와의 협력 또는 독자 노선 여부를 조기에 검토하고, 중국 로봇 기업과의 경쟁 구도 변화에도 대비할 필요가 있다.",
+      "signal_reason": "엔비디아-중국 기업 간 휴머노이드 로봇 협력은 글로벌 피지컬 AI 경쟁 구도를 재편할 수 있는 중기적 산업 동향이다.",
+      "lg_implication": "LG전자는 엔비디아의 피지컬 AI 플랫폼 생태계 확장에 대응해 로봇 사업 파트너십 전략 및 자체 AI 로봇 개발 방향성을 재점검할 필요가 있다.",
       "keywords": [
         "엔비디아",
-        "피지컬AI",
-        "휴머노이드로봇"
+        "휴머노이드 로봇",
+        "피지컬 AI"
       ],
       "score": 3.8
     },
     {
-      "id": "b2e6af209180",
-      "title": "NVIDIA Announces Partnership With LG on Robotics and Data Centers - Let's Data Science",
-      "summary": "NVIDIA Announces Partnership With LG on Robotics and Data Centers&nbsp;&nbsp;Let's Data Science",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOMUs5enRxZmdPblpTcVRNbzlpaU5ENVVLWXZocG5KQnFvZXdsejZ3cm5BRGN2bkxNX1g0RWtyVGd5YWh0M0lUZVk2M1QwdWszUDNhM2lFX01PVFFZM0J5R0U3LWZCdkNtbnNZRkNXTi16aDdURkZ4WjdKUjZJeGk3U3lEeTRqb2pOVjZLcDQ5V3VyVkVpZWVaOEJyTHktZVR2OWF2eQ?oc=5",
-      "source": "Google News - NVIDIA robot",
+      "id": "7b36e729b183",
+      "title": "Yuanta cuts Hyundai Motor to hold, cites robot-fueled rally in South Korea - CHOSUNBIZ - Chosunbiz",
+      "summary": "Yuanta cuts Hyundai Motor to hold, cites robot-fueled rally in South Korea - CHOSUNBIZ&nbsp;&nbsp;Chosunbiz",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNNXdiOEEyM3BaRVNvYzd0RTB5SWtDMGVvNm05ZXNKa1RFYjFXZkhobE5sR2Z5c3M4b3NoSHVBU1dod3B2bUR0OHc1V3NyX2J4bEdaTGxfQ09nNzB6Q2x5R2VqOHdLa1JhRXNyVUw4aFZVWmJULXBaR0NENWkzZG5ZbtIBlAFBVV95cUxPamlESzQ5UERkOVE1SlBhU29DNUo4Y21oYUlZbmhHNG53TklZWWJiMkVvQi1Fb2paWDVqUThUcDVHYW5lZi11bGcwX3p6SlczR1plamhJU21nT0FEYW9LRjhaREtqbWk2dlNUWGNUalN5Uzd6QXpxSVdVdnRCS2dEUDZXMGxiN0puVk9COTZiY09oTHo0?oc=5",
+      "source": "Google News - Figure Boston Dynamics",
       "region": "global",
-      "pub_date": "Sat, 13 Jun 2026 17:59:48 GMT",
-      "pub_ts": 1781373588.0,
-      "tier": "T1",
-      "raw_score": 3.25,
-      "entity": "nvidia",
-      "domain": "news.google.com",
-      "title_ko": "NVIDIA, 로보틱스 및 데이터센터 분야에서 LG와 파트너십 발표",
-      "summary_ko": "NVIDIA가 LG와 로보틱스 및 데이터센터 분야에서 전략적 파트너십을 공식 발표했다. 이번 협력은 AI 인프라와 물리적 AI(Physical AI) 역량 강화를 목표로 한다.",
-      "signal": "Action",
-      "signal_reason": "LG전자가 직접 당사자로 참여한 NVIDIA와의 파트너십 발표로, 로보틱스 및 데이터센터 전략 실행에 즉각적인 영향을 미치는 핵심 사안이다.",
-      "lg_implication": "NVIDIA의 AI 컴퓨팅 플랫폼(Jetson, Isaac 등)과의 협력을 통해 LG전자의 로보틱스 제품 경쟁력 및 데이터센터 솔루션 사업을 가속화할 수 있는 중요한 기회다.",
-      "keywords": [
-        "NVIDIA파트너십",
-        "로보틱스",
-        "데이터센터"
-      ],
-      "score": 3.7,
-      "_age_days": 1
-    },
-    {
-      "id": "6cd8d419f0b6",
-      "title": "Robotic pet rabbit created that recognizes who hugs it by their voice - EurekAlert!",
-      "summary": "Robotic pet rabbit created that recognizes who hugs it by their voice&nbsp;&nbsp;EurekAlert!",
-      "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE41akhSSFFJV1pSd3l3VDJkT21IdWJPeWU4cUtSMUwwa09Vbkh0UWF3dTM3X1R6WTNxSUhEcUlWNnZNaENNOFNxakp1LU5xbHJLbXBYLXRWOGwxNm1i?oc=5",
-      "source": "Google News EU - robotics",
-      "region": "EU",
-      "pub_date": "Mon, 15 Jun 2026 17:26:21 GMT",
-      "pub_ts": 1781544381,
+      "pub_date": "Mon, 15 Jun 2026 23:32:00 GMT",
+      "pub_ts": 1781566320,
       "tier": "T2",
       "raw_score": 3.33,
-      "entity": "abb",
+      "entity": "hyundai",
       "domain": "news.google.com",
-      "title_ko": "목소리로 안아주는 사람을 인식하는 로봇 반려토끼 개발",
-      "summary_ko": "EU 연구팀이 사용자의 목소리를 인식하여 안아주는 사람이 누구인지 파악하는 로봇 반려동물 토끼를 개발했다. 이 로봇은 음성 인식 기술을 통해 개인화된 상호작용을 제공하며, 감성적 유대감을 강화하는 소셜 로봇 분야의 새로운 가능성을 제시한다.",
+      "title_ko": "유안타, 현대차 투자의견 '보유'로 하향… 한국 로봇 랠리 과열 우려",
+      "summary_ko": "유안타증권이 현대차 투자의견을 하향 조정하며 한국 증시의 로봇 테마 랠리가 과도하게 반영됐다는 분석을 내놨다. 이는 로봇 섹터에 대한 시장의 높은 기대감이 밸류에이션 부담으로 이어지고 있음을 시사한다.",
       "signal": "Watch",
-      "signal_reason": "소셜 로봇과 감성 인식 기술의 융합은 LG전자의 가정용 AI 로봇 및 반려 로봇 서비스 방향성과 중기적으로 연관성이 높다.",
-      "lg_implication": "LG전자가 개발 중인 가정용 AI 로봇에 음성 기반 사용자 식별 및 감성 교감 기능을 접목하여 차별화된 반려 로봇 서비스를 구현할 수 있는 기술적 참고 사례로 활용 가능하다.",
+      "signal_reason": "로봇 테마 랠리 과열 우려는 LG전자의 로봇 사업 투자 및 시장 포지셔닝 전략에 중기적 영향을 줄 수 있는 시장 심리 변화를 나타냄.",
+      "lg_implication": "한국 로봇 테마주 과열 논란은 LG전자의 로봇 사업 공시 및 IR 전략 수립 시 시장 기대치 관리의 필요성을 높이는 신호로 해석 가능.",
       "keywords": [
-        "소셜로봇",
-        "음성인식",
-        "반려로봇"
+        "로봇 랠리",
+        "현대차 하향",
+        "로봇 밸류에이션"
       ],
       "score": 3.6
+    },
+    {
+      "id": "287f6674bd5c",
+      "title": "Rainbow Robotics Trials RB-Y1 in Coupang Warehouse - Let's Data Science",
+      "summary": "Rainbow Robotics Trials RB-Y1 in Coupang Warehouse&nbsp;&nbsp;Let's Data Science",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPV0p3c0tRWFBxbEZ4Tl9vV0c2anl5TGVNTml2aFdDYm1hVFgzeUpLU3hGb3U1NDZ3NGx0bTRRLXIwa1RWbmo4ZHVOMndURUpvTFNzeGotdXNBVVo1aGJjZlFhUXhyeEh4bHNnanpuemZCSHV6c1V0cnN2V21sZ0djdVVJTlBCLUhic285LXlIdTQ3ejBrVDFz?oc=5",
+      "source": "Google News US - humanoid deploy",
+      "region": "US",
+      "pub_date": "Mon, 15 Jun 2026 18:04:28 GMT",
+      "pub_ts": 1781546668,
+      "tier": "T2",
+      "raw_score": 3.33,
+      "entity": "rainbow robotics",
+      "domain": "news.google.com",
+      "title_ko": "레인보우로보틱스, 쿠팡 물류창고에서 RB-Y1 시범 운영",
+      "summary_ko": "레인보우로보틱스가 자사의 양팔 로봇 RB-Y1을 국내 최대 이커머스 기업 쿠팡의 물류창고에서 시범 적용하며 실제 물류 환경에서의 실용성을 검증하고 있다. 이는 국내 휴머노이드·협동로봇의 물류 자동화 상용화 가능성을 보여주는 중요한 사례로 주목받고 있다.",
+      "signal": "Watch",
+      "signal_reason": "삼성전자가 지분을 보유한 레인보우로보틱스가 대형 커머스 물류센터에서 로봇 실증을 진행함으로써 국내 로봇 상용화 경쟁이 본격화되고 있어 LG전자의 물류 로봇 사업 전략에 중기적 영향을 미칠 수 있다.",
+      "lg_implication": "LG전자는 클로이 로봇 포트폴리오를 보유하고 있으나, 경쟁사(레인보우로보틱스-삼성 연합)가 대형 물류 레퍼런스를 선점할 경우 B2B 물류 자동화 시장에서의 입지가 약화될 수 있어 쿠팡·네이버 등 대형 플랫폼사와의 협력 실증 가속화가 필요하다.",
+      "keywords": [
+        "레인보우로보틱스",
+        "RB-Y1",
+        "쿠팡 물류창고",
+        "양팔로봇",
+        "물류자동화"
+      ],
+      "score": 3.6
+    },
+    {
+      "id": "8644f2767981",
+      "title": "\"Low-cost 'Cabbage-priced' Humanoid Robots Unsuitable for Factory Screw-tightening Tasks\" - 36 Kr",
+      "summary": "\"Low-cost 'Cabbage-priced' Humanoid Robots Unsuitable for Factory Screw-tightening Tasks\"&nbsp;&nbsp;36 Kr",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1yRVhNSmhlRlRVOUluZGZINFlsZGJHSlNpeVNyTm82bTkxQUdTWGo2M2VaeGI2MkdZaEVCYTFFR05KdEh1dFVucFhjbEVyQWwxWXZF?oc=5",
+      "source": "Google News - Unitree Agibot Fourier",
+      "region": "global",
+      "pub_date": "Mon, 15 Jun 2026 05:00:24 GMT",
+      "pub_ts": 1781499624,
+      "tier": "T2",
+      "raw_score": 3.2,
+      "entity": "abb",
+      "domain": "news.google.com",
+      "title_ko": "저가 '배추값' 휴머노이드 로봇, 공장 나사 조임 작업에는 부적합",
+      "summary_ko": "저가형 휴머노이드 로봇이 시장에 등장하고 있지만, 공장 환경에서의 나사 조임과 같은 정밀 반복 작업에는 아직 기술적 한계가 존재한다는 분석이 제기되었다. 비용 절감을 위한 저가 로봇의 보급 확대에도 불구하고, 산업 현장에서 요구되는 정밀도와 안정성을 충족하기에는 여전히 갭이 크다는 점이 지적되고 있다.",
+      "signal": "Watch",
+      "signal_reason": "휴머노이드 로봇의 가격 하락 추세와 함께 산업 현장 적용 가능성의 기술적 한계가 동시에 부각되고 있어, LG전자의 로봇 사업 전략 방향 설정에 중기적 참고가 필요하다.",
+      "lg_implication": "LG전자는 저가 휴머노이드 로봇의 정밀 작업 한계를 감안하여, 가정용·서비스용 등 정밀도 요구가 상대적으로 낮은 시장을 우선 공략하거나 고신뢰성 부품·솔루션 공급자로서의 포지셔닝을 검토할 필요가 있다.",
+      "keywords": [
+        "저가 휴머노이드 로봇",
+        "공장 자동화",
+        "산업용 로봇 한계"
+      ],
+      "score": 3.5
     }
   ],
   "regional": {
@@ -534,18 +531,18 @@
         "source": "로봇신문",
         "region": "KR",
         "pub_date": "2026-06-15 10:33:52",
-        "pub_ts": 1781565696,
+        "pub_ts": 1781567633,
         "tier": "T1",
         "raw_score": 4.2,
         "entity": "nvidia",
         "domain": "www.irobotnews.com",
         "title_ko": "엔젤로보틱스, 브레인 연동 웨어러블 휴머노이드 개발 착수",
-        "summary_ko": "뉴럴링크, 싱크론 등 뇌-컴퓨터 인터페이스(BCI) 기술이 사지마비 환자의 디바이스 제어를 넘어 스마트홈까지 확장되는 단계에 진입했다. 한국의 엔젤로보틱스는 이러한 BCI 기술을 웨어러블 휴머노이드 로봇과 연동하는 개발에 착수하며 뇌 신호 기반 로봇 제어 시대를 본격 준비하고 있다.",
+        "summary_ko": "뉴럴링크, 싱크론 등 BCI 기업들이 뇌 신호로 디지털 기기 및 스마트홈을 제어하는 기술을 잇따라 시연하며 브레인-투-엑스(Brain-to-X) 패러다임이 현실화되고 있다. 국내 엔젤로보틱스는 이러한 흐름에 맞춰 뇌-컴퓨터 인터페이스와 연동된 웨어러블 휴머노이드 개발에 착수했다.",
         "signal": "Watch",
-        "signal_reason": "BCI-로봇 연동 기술은 아직 초기 단계이나, 스마트홈·웨어러블 로봇과의 융합이 가속화되면 LG전자의 홈 AI 및 로봇 사업 영역과 중기적으로 교차될 가능성이 높다.",
-        "lg_implication": "LG전자는 스마트홈 플랫폼(ThinQ)과 웨어러블·서비스 로봇 사업을 보유한 만큼, BCI 기반 디바이스 제어 표준(HID 프로토콜 등) 동향을 선제적으로 추적하고 접근성(Accessibility) 특화 AI 홈 시나리오 개발을 검토할 필요가 있다.",
+        "signal_reason": "BCI 기반 기기 제어 기술이 스마트홈·웨어러블 로봇으로 확장되며 LG 가전·로봇 사업의 중기적 인터페이스 패러다임 변화를 예고하고 있다.",
+        "lg_implication": "LG전자는 스마트홈 플랫폼 ThinQ 및 CLOi 로봇에 BCI 연동 가능성을 선제적으로 검토하고, 애플-싱크론 협력 모델처럼 BCI 기업과의 파트너십을 통한 뇌 신호 기반 가전 제어 생태계 진입을 고려해야 한다.",
         "keywords": [
-          "뇌-컴퓨터 인터페이스",
+          "뇌-컴퓨터 인터페이스(BCI)",
           "웨어러블 로봇",
           "스마트홈 제어"
         ],
@@ -565,14 +562,14 @@
         "entity": "레인보우로보틱스",
         "domain": "news.google.com",
         "title_ko": "[이슈&논란] 삼성 레인보우로보틱스 휴머노이드, 쿠팡 물류센터에 투입…'RB-Y1'이 여는 K-로보틱스 분기점",
-        "summary_ko": "삼성전자가 인수한 레인보우로보틱스의 휴머노이드 로봇 'RB-Y1'이 쿠팡 물류센터에 실제 투입되며 상업적 운용 단계에 진입했다. 이는 국내 휴머노이드 로봇의 물류 현장 실증 적용이라는 K-로보틱스의 중요한 분기점으로 평가된다.",
+        "summary_ko": "삼성전자가 인수한 레인보우로보틱스의 휴머노이드 로봇 'RB-Y1'이 쿠팡 물류센터에 실제 투입되며 국내 상업용 휴머노이드 로봇 시장의 본격적인 개막을 알렸다. 이는 K-로보틱스의 중요한 전환점으로, 삼성-레인보우로보틱스-쿠팡 연합이 물류 자동화 시장에서 선점 구도를 형성하고 있다.",
         "signal": "Action",
-        "signal_reason": "삼성-레인보우로보틱스-쿠팡으로 이어지는 휴머노이드 상용화 밸류체인이 구체화되며, LG전자도 물류 로봇 생태계에서의 포지셔닝 전략을 즉각 재검토할 필요가 있다.",
-        "lg_implication": "LG전자는 CLOi 로봇 및 보스턴다이나믹스 협력 등 기존 자산을 활용해 삼성-쿠팡 연합에 맞설 물류 휴머노이드 상용화 로드맵을 가속화하고, 유통·물류 파트너십 확보에 선제적으로 나서야 한다.",
+        "signal_reason": "삼성-레인보우로보틱스가 쿠팡이라는 대형 물류 고객사를 확보하며 국내 산업용 휴머노이드 시장을 선점함으로써 LG전자의 로봇 사업 전략에 즉각적인 경쟁 압박이 발생한다.",
+        "lg_implication": "LG전자는 CLOi 로봇 플랫폼 및 보스턴다이나믹스 협력 등 기존 역량을 바탕으로 물류·제조 현장 대상 휴머노이드 로봇 레퍼런스 확보를 삼성 대비 조속히 추진해야 한다.",
         "keywords": [
-          "RB-Y1",
-          "휴머노이드 상용화",
-          "물류 로봇"
+          "레인보우로보틱스",
+          "휴머노이드로봇",
+          "물류자동화"
         ],
         "score": 4.2
       },
@@ -590,14 +587,14 @@
         "entity": "삼성전자",
         "domain": "news.google.com",
         "title_ko": "삼성전자, 'C랩 아웃사이드' 9기 모집…AI·로봇 등 스타트업 30곳 선발",
-        "summary_ko": "삼성전자가 외부 스타트업 육성 프로그램 'C랩 아웃사이드' 9기로 AI·로봇 분야를 포함한 스타트업 30곳을 선발 모집한다. 이는 삼성전자가 오픈 이노베이션을 통해 AI·로봇 생태계를 선제적으로 구축하려는 전략적 행보로 해석된다.",
+        "summary_ko": "삼성전자가 외부 스타트업 육성 프로그램 'C랩 아웃사이드' 9기를 모집하며 AI·로봇 분야 스타트업 30곳을 선발할 예정이다. 이는 삼성전자가 오픈 이노베이션을 통해 AI·로봇 생태계를 선제적으로 구축하려는 전략적 움직임으로 해석된다.",
         "signal": "Watch",
-        "signal_reason": "삼성전자가 AI·로봇 스타트업 생태계를 체계적으로 흡수·육성함으로써 중기적으로 LG전자의 로봇/AI 사업 경쟁 환경에 영향을 미칠 수 있다.",
-        "lg_implication": "LG전자도 로봇·AI 분야 스타트업과의 협력 및 오픈 이노베이션 프로그램을 강화해 경쟁력 있는 외부 혁신 생태계를 선제적으로 확보할 필요가 있다.",
+        "signal_reason": "삼성전자가 AI·로봇 스타트업 생태계 투자를 체계적으로 확대하고 있어 LG전자의 로봇·AI 스타트업 협력 및 인재/기술 확보 경쟁이 심화될 수 있다.",
+        "lg_implication": "LG전자도 'LG Nova' 등 오픈 이노베이션 채널을 통해 AI·로봇 스타트업 발굴 및 협력을 강화하지 않으면 우수 스타트업 및 기술 파이프라인을 삼성에 빼앗길 위험이 있다.",
         "keywords": [
-          "삼성전자",
           "C랩 아웃사이드",
-          "AI·로봇 스타트업"
+          "AI 로봇 스타트업",
+          "오픈 이노베이션"
         ],
         "score": 3.0
       },
@@ -615,16 +612,14 @@
         "entity": "두산로보틱스",
         "domain": "news.google.com",
         "title_ko": "두산로보틱스, AI 기대감 속 강세 지속…미국·이란 휴전 양상은 변수",
-        "summary_ko": "두산로보틱스가 AI 융합 로봇 기대감으로 주가 강세를 이어가고 있으며, 국내 로봇 섹터 전반에 긍정적 투자심리가 형성되고 있다. 다만 미국·이란 간 휴전 양상 변화가 지정학적 불확실성으로 작용해 시장 변동성의 변수로 지목된다.",
+        "summary_ko": "두산로보틱스가 AI 기술 접목에 대한 시장 기대감으로 주가 강세를 이어가고 있다. 다만 미국·이란 간 휴전 협상 양상이 글로벌 불확실성 변수로 작용할 수 있다는 분석이 나온다.",
         "signal": "Watch",
-        "signal_reason": "국내 협동로봇 경쟁사 두산로보틱스의 AI 기반 성장 모멘텀은 LG전자 로봇 사업의 시장 경쟁 강도 및 투자 방향성에 중기적 영향을 미칠 수 있다.",
-        "lg_implication": "두산로보틱스의 AI 로봇 기대감이 섹터 전반의 투자 유입을 촉진하는 만큼, LG전자도 클로이(CLOi) 등 서비스 로봇 라인업의 AI 역량 강화 및 시장 차별화 포지셔닝을 가속화할 필요가 있다.",
+        "signal_reason": "국내 협동로봇 선두주자인 두산로보틱스의 AI 로봇 기대감 상승은 LG전자가 경쟁하는 로봇 시장의 투자 심리 및 경쟁 구도 변화를 중기적으로 모니터링할 필요가 있음.",
+        "lg_implication": "두산로보틱스의 AI 로봇 기대감 확산은 LG전자 로봇사업본부의 협동로봇·서비스로봇 포지셔닝 전략 및 투자 우선순위 재검토에 참고 신호가 될 수 있다.",
         "keywords": [
           "두산로보틱스",
-          "AI 로봇",
-          "협동로봇",
-          "로봇 섹터",
-          "지정학적 리스크"
+          "AI로봇",
+          "협동로봇"
         ],
         "score": 3.0
       },
@@ -642,12 +637,12 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "휴머노이드 로봇주 급등 신호?…대만 TM테크, 피지컬AI 플랫폼 로봇 출시",
-        "summary_ko": "대만 TM테크가 피지컬AI 플랫폼 기반의 휴머노이드 로봇을 출시하며 관련 주식 시장의 급등 가능성이 주목받고 있다. 아시아 제조 기업들의 휴머노이드 로봇 시장 진입이 가속화되면서 글로벌 경쟁 구도가 빠르게 재편되고 있다.",
+        "summary_ko": "대만 TM테크가 피지컬AI 플랫폼 기반의 휴머노이드 로봇을 출시하며 글로벌 로봇 시장 경쟁이 본격화되고 있다. 이 소식이 휴머노이드 로봇 관련 주식 급등의 신호로 주목받으며 투자자들의 관심이 집중되고 있다.",
         "signal": "Watch",
-        "signal_reason": "아시아 경쟁사의 피지컬AI 기반 휴머노이드 로봇 출시는 LG전자의 로봇 사업 전략에 중기적 영향을 미칠 수 있는 시장 동향이다.",
-        "lg_implication": "LG전자는 자사의 AI·로봇 사업 포트폴리오 강화를 위해 피지컬AI 플랫폼 기반 휴머노이드 개발 및 협력 전략을 서둘러 구체화할 필요가 있다.",
+        "signal_reason": "대만 주요 기술기업의 피지컬AI 플랫폼 로봇 출시는 아시아 휴머노이드 로봇 시장 경쟁 구도에 중기적 영향을 미칠 수 있는 동향이다.",
+        "lg_implication": "LG전자가 추진 중인 로봇·피지컬AI 사업 전략과 직접적으로 경쟁하는 플레이어가 대만에서 등장함에 따라, 차별화된 플랫폼 경쟁력 확보 전략 재검토가 필요하다.",
         "keywords": [
-          "휴머노이드 로봇",
+          "휴머노이드로봇",
           "피지컬AI",
           "TM테크"
         ],
@@ -667,16 +662,16 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "마우저, 휴머노이드 로봇 설계의 핵심 기술을 조명한 '함께 만드는 혁신(EIT)' 시리즈 최신호 '로봇 시대의 도래'편 공개",
-        "summary_ko": "글로벌 전자부품 유통기업 마우저 일렉트로닉스가 휴머노이드 로봇 설계에 필요한 핵심 기술을 다루는 '함께 만드는 혁신(EIT)' 시리즈 최신호 '로봇 시대의 도래'편을 공개했다. 이 시리즈는 액추에이터, 센서, AI 제어 등 휴머노이드 로봇 구현을 위한 주요 부품 및 기술 트렌드를 조명한다.",
-        "signal": "FYI",
-        "signal_reason": "마우저의 기술 콘텐츠 시리즈로, 직접적인 경쟁·협력 이슈보다는 업계 기술 동향 파악에 참고할 수 있는 정보성 자료이다.",
-        "lg_implication": "LG전자는 휴머노이드 로봇 개발 가속화를 위해 마우저가 소개하는 핵심 부품·기술 트렌드를 부품 소싱 및 R&D 방향 수립에 참고 자료로 활용할 수 있다.",
+        "summary_ko": "전자부품 유통업체 마우저(Mouser)가 휴머노이드 로봇 설계에 필요한 핵심 기술을 다룬 '함께 만드는 혁신(EIT)' 시리즈 최신호를 공개했다. 이번 호는 로봇 시대의 도래를 주제로 휴머노이드 로봇 구현에 요구되는 부품 및 기술 트렌드를 조명한다.",
+        "signal": "Watch",
+        "signal_reason": "휴머노이드 로봇 설계 관련 핵심 기술 및 부품 생태계가 빠르게 형성되고 있어 LG전자의 로봇 사업 기술 로드맵 수립에 참고할 필요가 있다.",
+        "lg_implication": "LG전자가 휴머노이드 및 서비스 로봇 개발을 가속화하는 시점에서, 주요 부품 공급망과 설계 기술 트렌드를 파악해 하드웨어 소싱 및 기술 파트너십 전략에 반영할 수 있다.",
         "keywords": [
           "휴머노이드 로봇",
           "로봇 설계 기술",
-          "마우저 일렉트로닉스"
+          "부품 공급망"
         ],
-        "score": 2.3
+        "score": 2.6
       },
       {
         "id": "ea45e7f975b4",
@@ -692,10 +687,10 @@
         "entity": "lg전자",
         "domain": "news.google.com",
         "title_ko": "LG전자, AI·로봇 사내벤처 4곳 분사…최대 4억 투자",
-        "summary_ko": "LG전자가 AI·로봇 분야 사내벤처 4개 팀을 분사시키며 각 팀에 최대 4억 원을 투자한다. 이는 LG전자가 내부 혁신 아이디어를 독립 스타트업으로 육성해 AI·로봇 생태계를 확장하려는 전략의 일환이다.",
+        "summary_ko": "LG전자가 AI·로봇 분야 사내벤처 4곳을 분사시키며 스타트업 생태계 육성에 나섰다. 각 분사 기업에는 최대 4억 원의 투자를 지원해 혁신 기술의 사업화를 가속화할 방침이다.",
         "signal": "Action",
-        "signal_reason": "LG전자 내부의 AI·로봇 사내벤처 분사는 그룹 차원의 로봇/AI 사업화 가속을 의미하며, 전략팀 차원에서 분사 기업들의 사업 방향 및 시너지 방안을 즉각 검토할 필요가 있다.",
-        "lg_implication": "사내벤처 분사를 통해 AI·로봇 분야의 애자일한 사업화 구조를 구축함으로써, LG전자는 대기업의 한계를 넘어 스타트업 속도로 로봇/AI 시장을 공략하는 투트랙 전략을 강화하고 있다.",
+        "signal_reason": "LG전자 내부의 AI·로봇 혁신 역량이 분사 형태로 구체화되고 있어, 로봇/Physical AI 전략팀 차원에서 해당 스핀오프 기업들의 기술 방향성 및 협업·투자 기회를 즉각 검토할 필요가 있다.",
+        "lg_implication": "사내벤처 분사는 LG전자의 AI·로봇 포트폴리오 확장 전략의 일환으로, 내부 혁신 자산의 외부 사업화를 통해 로봇 생태계 주도권 확보와 오픈 이노베이션 가속화가 기대된다.",
         "keywords": [
           "사내벤처",
           "AI로봇",
@@ -717,10 +712,10 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "KH바텍, 힌지 넘어 '휴머노이드 로봇' 넘본다 … 정밀 감속기 시장 전격 진출",
-        "summary_ko": "스마트폰 힌지 전문업체 KH바텍이 휴머노이드 로봇의 핵심 부품인 정밀 감속기 시장에 진출하며 사업 다각화를 선언했다. 국내 부품 기업들이 잇따라 로봇 부품 시장에 뛰어들면서 휴머노이드 로봇 공급망 생태계가 빠르게 형성되고 있다.",
+        "summary_ko": "국내 힌지 부품 전문기업 KH바텍이 휴머노이드 로봇 핵심 부품인 정밀 감속기 시장에 신규 진출을 선언했다. 기존 폴더블폰 힌지 제조 역량을 바탕으로 로봇 관절 구동에 필수적인 감속기 사업으로 사업 영역을 확장하는 전략이다.",
         "signal": "Watch",
-        "signal_reason": "국내 정밀 부품 기업의 휴머노이드 로봇 핵심 부품 시장 진입은 LG전자의 로봇 사업 공급망 확보 전략에 중기적 영향을 미칠 수 있는 동향이다.",
-        "lg_implication": "LG전자는 휴머노이드 로봇 개발 가속화에 대비해 KH바텍 등 국내 정밀 감속기 공급 업체와의 파트너십 가능성을 검토하고 공급망 다변화 전략을 수립할 필요가 있다.",
+        "signal_reason": "국내 부품 업체들이 휴머노이드 로봇 핵심 부품 공급망에 본격 진입하고 있어, LG전자의 로봇 사업 부품 조달 및 협력 생태계 변화를 중기적으로 모니터링할 필요가 있다.",
+        "lg_implication": "LG전자가 휴머노이드 로봇 사업을 추진할 경우, 국내 정밀 감속기 공급업체로 부상하는 KH바텍을 잠재적 파트너 또는 공급망 후보로 검토할 수 있다.",
         "keywords": [
           "휴머노이드 로봇",
           "정밀 감속기",
@@ -729,6 +724,31 @@
           "공급망"
         ],
         "score": 2.4
+      },
+      {
+        "id": "7faf24180ed1",
+        "title": "뉴로메카, 휴머노이드 '에이르' 사업화 본격화…피지컬 AI 현장 적용 확대 - 마켓인",
+        "summary": "뉴로메카, 휴머노이드 '에이르' 사업화 본격화…피지컬 AI 현장 적용 확대&nbsp;&nbsp;마켓인",
+        "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5WVmdXMW5aSjRQRVFWdnVCNHF2cE93XzVMMlY1amI0VzUwZTVtTGwybGhQeHlNTUxOUENCbDA4Q3dqQzlvM2RXdTNXNWJEM0xXWlpJWF81OUxwUlppT2JLZDVHZ1FKYVlsSm5fRUV6M0dKTzg?oc=5",
+        "source": "Google News KR - 휴머노이드",
+        "region": "KR",
+        "pub_date": "Mon, 15 Jun 2026 23:31:36 GMT",
+        "pub_ts": 1781566296,
+        "tier": "T5",
+        "raw_score": 2.0,
+        "entity": null,
+        "domain": "news.google.com",
+        "title_ko": "뉴로메카, 휴머노이드 '에이르' 사업화 본격화…피지컬 AI 현장 적용 확대",
+        "summary_ko": "국내 로봇 기업 뉴로메카가 자체 개발한 휴머노이드 로봇 '에이르'의 상업화를 본격 추진하며 피지컬 AI 기반 현장 적용 범위를 확대하고 있다. 이는 국내 휴머노이드 로봇 시장의 본격적인 사업화 단계 진입을 알리는 신호로, 제조·물류 등 산업 현장에서의 경쟁이 가속화될 전망이다.",
+        "signal": "Watch",
+        "signal_reason": "국내 경쟁사의 휴머노이드 사업화 본격화는 LG전자의 로봇 전략 수립 및 시장 포지셔닝에 중기적 영향을 미칠 수 있어 지속 모니터링이 필요하다.",
+        "lg_implication": "LG전자는 뉴로메카의 피지컬 AI 현장 적용 사례를 참고하여 자사 휴머노이드 및 서비스 로봇 전략의 차별화 포인트와 타깃 시장을 재점검할 필요가 있다.",
+        "keywords": [
+          "뉴로메카",
+          "휴머노이드",
+          "피지컬AI"
+        ],
+        "score": 2.3
       },
       {
         "id": "8d306f99cf80",
@@ -743,40 +763,15 @@
         "raw_score": 2.0,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "미국 두뇌·중국 몸체 결합…젠슨 황의 휴머노이드 승부수",
-        "summary_ko": "엔비디아 젠슨 황 CEO가 미국의 AI 소프트웨어·두뇌 기술과 중국의 저비용 하드웨어·제조 역량을 결합하는 휴머노이드 로봇 전략을 추진하고 있다. 이는 글로벌 휴머노이드 로봇 생태계에서 미-중 기술 분업 구도가 가속화되고 있음을 시사한다.",
-        "signal": "Action",
-        "signal_reason": "엔비디아가 AI 두뇌와 중국 제조를 결합한 휴머노이드 생태계를 주도할 경우, LG전자의 로봇 하드웨어 및 AI 전략 포지셔닝에 즉각적인 경쟁 구도 재편이 필요하다.",
-        "lg_implication": "LG전자는 휴머노이드 로봇 사업에서 독자적 하드웨어·소프트웨어 역량을 강화하거나 엔비디아 Isaac 플랫폼 파트너십을 적극 검토해 생태계 내 전략적 위치를 선점해야 한다.",
-        "keywords": [
-          "휴머노이드로봇",
-          "엔비디아",
-          "미중기술분업"
-        ],
-        "score": 3.0
-      },
-      {
-        "id": "c9bc82843fc6",
-        "title": "\"현대차 목표가 120만원…휴머노이드 시장 선점할 것\"[클릭 e종목] - 아시아경제",
-        "summary": "\"현대차 목표가 120만원…휴머노이드 시장 선점할 것\"[클릭 e종목]&nbsp;&nbsp;아시아경제",
-        "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBVdkF6RGJ5TUVNWFZfd1N2QUVmeUlLaF9WYzRNX1F0S0pES3dyQVAyNkQwbnhxSXFHMHFCY3Brek9YWkNKSXA4Nk5HeWZnYXRnbDNYVllKdHJsMUJDTlg5dlh3?oc=5",
-        "source": "Google News KR - 휴머노이드",
-        "region": "KR",
-        "pub_date": "Mon, 15 Jun 2026 21:41:00 GMT",
-        "pub_ts": 1781559660,
-        "tier": "T5",
-        "raw_score": 2.0,
-        "entity": null,
-        "domain": "news.google.com",
-        "title_ko": "현대차 목표가 120만원…휴머노이드 시장 선점할 것",
-        "summary_ko": "증권사가 현대차의 목표주가를 120만원으로 제시하며 휴머노이드 로봇 시장 선점 가능성을 높이 평가했다. 현대차의 보스턴다이내믹스를 중심으로 한 휴머노이드 사업이 미래 핵심 성장동력으로 주목받고 있다.",
+        "title_ko": "美 두뇌·中 몸체 결합…젠슨 황의 휴머노이드 승부수",
+        "summary_ko": "엔비디아 젠슨 황 CEO가 미국의 AI 소프트웨어·두뇌 기술과 중국의 저비용 하드웨어·제조 역량을 결합한 휴머노이드 로봇 전략을 추진하고 있다. 이는 글로벌 휴머노이드 로봇 시장에서 미·중 기술 분업 구도가 본격화되고 있음을 시사한다.",
         "signal": "Watch",
-        "signal_reason": "국내 완성차 대기업이 휴머노이드 시장을 선점하려는 움직임은 LG전자의 로봇 사업 경쟁 구도에 중기적으로 영향을 미칠 수 있어 지속 모니터링이 필요하다.",
-        "lg_implication": "현대차-보스턴다이내믹스의 휴머노이드 시장 선점 전략이 가시화될 경우, LG전자는 차별화된 가정용·서비스용 로봇 포지셔닝 및 핵심 부품(구동기, AI 플랫폼) 역량 확보를 서둘러야 한다.",
+        "signal_reason": "엔비디아 주도의 미·중 휴머노이드 협력 구도는 중기적으로 글로벌 로봇 공급망 재편과 경쟁 구도에 영향을 미칠 수 있어 지속적인 모니터링이 필요하다.",
+        "lg_implication": "LG전자는 휴머노이드 로봇 개발 시 엔비디아 AI 플랫폼 활용 전략과 함께, 미·중 기술 분업 구도 속에서 한국 제조 경쟁력을 어떻게 차별화할지 포지셔닝 검토가 필요하다.",
         "keywords": [
-          "현대차",
           "휴머노이드",
-          "로봇시장선점"
+          "엔비디아",
+          "미중기술협력"
         ],
         "score": 2.3
       }
@@ -795,15 +790,15 @@
         "raw_score": 3.33,
         "entity": "samsung",
         "domain": "news.google.com",
-        "title_ko": "삼성 지원 레인보우로보틱스, 쿠팡 물류창고에 양팔 로봇 투입",
-        "summary_ko": "삼성전자가 투자한 레인보우로보틱스가 자사의 양팔 로봇을 쿠팡 물류창고에 실제 배치하여 상업적 운용을 시작했다. 이는 국내 로봇 기업이 e-커머스 물류 자동화 시장에 본격 진입한 사례로, 삼성-레인보우로보틱스-쿠팡으로 이어지는 로봇 생태계 연합이 가시화되고 있다.",
+        "title_ko": "삼성 투자 레인보우로보틱스, 쿠팡 물류창고에 양팔 로봇 투입",
+        "summary_ko": "삼성전자의 투자를 받은 레인보우로보틱스가 자사 양팔 로봇을 쿠팡 물류창고에 실제 도입해 상업적 운용을 시작했다. 이는 한국 로봇 기업이 국내 대형 이커머스 물류 현장에서 구체적인 성과를 입증하는 사례로, 삼성-레인보우로보틱스-쿠팡으로 이어지는 로봇 생태계 협력이 가시화되고 있다.",
         "signal": "Action",
-        "signal_reason": "경쟁사 삼성이 투자한 로봇 기업이 국내 최대 e-커머스 물류 현장에 양팔 로봇을 실증 배치함으로써, LG전자의 클로이(CLOi) 로봇 및 물류 자동화 사업과 직접 경합 구도가 형성되어 즉각적인 전략 검토가 필요하다.",
-        "lg_implication": "LG전자는 삼성-레인보우로보틱스-쿠팡 연합에 대응하기 위해 CLOi 양팔 로봇의 물류 현장 실증 사례를 조기에 확보하고, 네이버·CJ대한통운 등 국내 물류 파트너와의 협력을 강화할 필요가 있다.",
+        "signal_reason": "삼성이 로봇-물류 생태계 연합을 빠르게 구축하고 있어, LG전자도 자사 로봇 사업(CLOi 등) 및 물류 파트너십 전략에 즉각적인 대응이 필요하다.",
+        "lg_implication": "LG전자는 CLOi 로봇 라인업의 양팔형 확장 및 이커머스·물류 고객사 확보를 통해 삼성-레인보우로보틱스-쿠팡 연합에 대응하는 상업화 레퍼런스를 조기에 확보해야 한다.",
         "keywords": [
-          "레인보우로보틱스",
           "양팔로봇",
-          "물류자동화"
+          "물류자동화",
+          "레인보우로보틱스"
         ],
         "score": 4.3
       },
@@ -820,19 +815,19 @@
         "raw_score": 3.33,
         "entity": "rainbow robotics",
         "domain": "news.google.com",
-        "title_ko": "레인보우로보틱스, 쿠팡 물류창고에서 RB-Y1 로봇 시범 운영",
-        "summary_ko": "레인보우로보틱스의 양팔 휴머노이드 로봇 RB-Y1이 국내 최대 이커머스 기업 쿠팡의 물류창고에서 실증 테스트를 진행하고 있다. 이는 물류 현장에서의 휴머노이드 로봇 상용화 가능성을 검증하는 중요한 사례로, 국내 로봇 산업의 실질적 적용 단계 진입을 의미한다.",
-        "signal": "Action",
-        "signal_reason": "삼성전자 지분 투자를 받은 레인보우로보틱스가 쿠팡이라는 대형 물류 고객과 실증을 진행함으로써 LG전자의 물류로봇 사업 영역과 직접적으로 경쟁 구도가 형성되고 있어 즉각적인 전략 검토가 필요하다.",
-        "lg_implication": "LG전자는 CLOi 등 물류로봇 포트폴리오를 보유하고 있으나, 휴머노이드 기반 물류 솔루션 분야에서 레인보우로보틱스-쿠팡 연합에 선제 대응하기 위해 국내 대형 물류/유통사와의 파트너십 및 실증 기회를 적극 확보해야 한다.",
+        "title_ko": "레인보우로보틱스, 쿠팡 물류창고에서 RB-Y1 시범 운영",
+        "summary_ko": "레인보우로보틱스가 자사의 양팔 로봇 RB-Y1을 국내 최대 이커머스 기업 쿠팡의 물류창고에서 시범 적용하며 실제 물류 환경에서의 실용성을 검증하고 있다. 이는 국내 휴머노이드·협동로봇의 물류 자동화 상용화 가능성을 보여주는 중요한 사례로 주목받고 있다.",
+        "signal": "Watch",
+        "signal_reason": "삼성전자가 지분을 보유한 레인보우로보틱스가 대형 커머스 물류센터에서 로봇 실증을 진행함으로써 국내 로봇 상용화 경쟁이 본격화되고 있어 LG전자의 물류 로봇 사업 전략에 중기적 영향을 미칠 수 있다.",
+        "lg_implication": "LG전자는 클로이 로봇 포트폴리오를 보유하고 있으나, 경쟁사(레인보우로보틱스-삼성 연합)가 대형 물류 레퍼런스를 선점할 경우 B2B 물류 자동화 시장에서의 입지가 약화될 수 있어 쿠팡·네이버 등 대형 플랫폼사와의 협력 실증 가속화가 필요하다.",
         "keywords": [
           "레인보우로보틱스",
           "RB-Y1",
           "쿠팡 물류창고",
-          "휴머노이드 로봇",
-          "물류 자동화"
+          "양팔로봇",
+          "물류자동화"
         ],
-        "score": 4.3
+        "score": 3.6
       },
       {
         "id": "9e751cfe78a9",
@@ -847,15 +842,15 @@
         "raw_score": 3.25,
         "entity": "tesla",
         "domain": "news.google.com",
-        "title_ko": "OpenAI, 로보틱스 부문 출범. 테슬라 투자자들은 걱정해야 할까?",
-        "summary_ko": "OpenAI가 공식적으로 로보틱스 전담 부문을 설립하며 물리적 AI 분야로의 본격 진출을 선언했다. 이는 테슬라 옵티머스 등 기존 휴머노이드 로봇 플레이어들과의 경쟁 심화를 의미하며, AI 소프트웨어 강자가 하드웨어 로보틱스 생태계에까지 영향력을 확대하는 구조적 변화를 예고한다.",
+        "title_ko": "OpenAI가 로보틱스 부문을 출범했다. 테슬라 투자자들은 걱정해야 할까?",
+        "summary_ko": "OpenAI가 공식적으로 로보틱스 사업부를 신설하며 휴머노이드 로봇 시장에 본격 진출을 선언했다. 이는 테슬라 옵티머스 등 기존 로봇 플레이어들과의 경쟁 구도를 심화시키는 신호로 해석된다.",
         "signal": "Action",
-        "signal_reason": "세계 최고 수준의 AI 모델을 보유한 OpenAI의 로보틱스 진출은 LG전자의 로봇/Physical AI 전략 파트너십 및 독자 역량 구축 방향에 즉각적인 재검토를 요구한다.",
-        "lg_implication": "LG전자는 OpenAI 로보틱스와의 협력 가능성 및 경쟁 포지셔닝을 조기에 검토하고, AI 기반 로봇 두뇌 역량 확보 전략을 가속화할 필요가 있다.",
+        "signal_reason": "세계 최고 수준의 AI 기업인 OpenAI의 로보틱스 직접 진출은 Physical AI 경쟁 판도를 즉각적으로 재편할 수 있어 LG전자의 로봇 전략 재검토가 시급하다.",
+        "lg_implication": "OpenAI의 로보틱스 부문 출범으로 AI-로봇 통합 역량이 핵심 경쟁력으로 부상함에 따라, LG전자는 자체 로봇 플랫폼에 고도화된 AI 파트너십 또는 자체 개발 전략을 조속히 확립해야 한다.",
         "keywords": [
           "OpenAI 로보틱스",
-          "Physical AI",
-          "휴머노이드 경쟁"
+          "휴머노이드 로봇",
+          "Physical AI 경쟁"
         ],
         "score": 4.2
       },
@@ -872,11 +867,11 @@
         "raw_score": 3.0,
         "entity": "softbank",
         "domain": "news.google.com",
-        "title_ko": "소프트뱅크 손정의, 피지컬 AI·로보틱스를 조 달러 규모의 차세대 시장으로 전망",
-        "summary_ko": "소프트뱅크 손정의 회장이 피지컬 AI와 로보틱스를 수조 달러 규모의 차세대 프론티어로 지목하며 대규모 투자 의지를 밝혔다. 이는 소프트뱅크가 ARM 등 AI 인프라 투자를 기반으로 로봇·물리 AI 생태계 주도권 확보에 본격 나서겠다는 신호로 해석된다.",
+        "title_ko": "소프트뱅크 손정의, 피지컬 AI·로보틱스를 조 달러 규모의 프론티어로 전망",
+        "summary_ko": "소프트뱅크 손정의 회장이 피지컬 AI와 로보틱스 분야를 수조 달러 규모의 차세대 핵심 산업으로 지목하며 대규모 투자 의지를 피력했다. 이는 글로벌 빅테크 및 투자자들이 물리적 세계와 AI를 결합한 로봇 산업을 미래 성장 동력으로 본격 인식하고 있음을 시사한다.",
         "signal": "Watch",
-        "signal_reason": "글로벌 대형 투자자의 피지컬 AI·로보틱스 시장 집중 선언은 경쟁 구도 및 투자 흐름에 중기적 영향을 미칠 수 있어 동향 모니터링이 필요하다.",
-        "lg_implication": "LG전자는 가전·서비스 로봇 사업 역량을 보유한 만큼, 소프트뱅크 생태계(ARM 칩·로봇 스타트업 포트폴리오)와의 협력 또는 경쟁 관계를 면밀히 검토해 피지컬 AI 로드맵에 반영할 필요가 있다.",
+        "signal_reason": "글로벌 최대 기술 투자자 중 한 명인 손정의의 피지컬 AI·로보틱스 집중 선언은 해당 분야의 자본 유입 가속화와 경쟁 심화를 예고하며 LG전자의 로봇 전략 방향성 점검이 필요하다.",
+        "lg_implication": "LG전자는 클로이 로봇 등 서비스 로봇 포트폴리오를 보유한 만큼, 소프트뱅크 주도의 피지컬 AI 생태계 확장에 맞춰 AI 로봇 역량 고도화 및 파트너십 전략을 재검토할 필요가 있다.",
         "keywords": [
           "피지컬AI",
           "로보틱스",
@@ -897,17 +892,17 @@
         "raw_score": 2.5,
         "entity": "tesla",
         "domain": "news.google.com",
-        "title_ko": "테슬라의 옵티머스 로봇 야망, 오스틴에서 구체화되다",
-        "summary_ko": "테슬라가 텍사스주 오스틴을 거점으로 인간형 로봇 옵티머스의 상업적 배치 계획을 가시화하고 있다. 테슬라 공장 내 실제 작업 투입을 통해 옵티머스의 실용화 수준을 높이며 휴머노이드 로봇 시장 선점에 박차를 가하고 있다.",
-        "signal": "Watch",
-        "signal_reason": "테슬라 옵티머스의 실제 공장 투입 및 상업화 가속은 휴머노이드 로봇 시장 경쟁 구도를 빠르게 재편할 수 있어 LG의 중기 로봇 전략에 직접적 영향을 미칠 수 있다.",
-        "lg_implication": "LG전자는 클로이(CLOi) 로봇 포트폴리오 고도화 및 휴머노이드 로봇 개발 로드맵 수립 시 테슬라 옵티머스의 산업 현장 적용 사례를 벤치마크하여 차별화 전략을 조기에 수립해야 한다.",
+        "title_ko": "테슬라 옵티머스 로봇 야망, 오스틴에서 구체화",
+        "summary_ko": "테슬라가 텍사스주 오스틴을 거점으로 인간형 로봇 옵티머스의 상용화 및 양산 계획을 본격화하고 있다. 테슬라는 기가팩토리 오스틴에서 옵티머스 로봇을 실제 생산 환경에 투입하며 휴머노이드 로봇 시장 선점을 가속화하고 있다.",
+        "signal": "Action",
+        "signal_reason": "글로벌 최대 전기차 기업 테슬라가 휴머노이드 로봇 양산 체제를 구체화함에 따라 LG전자의 로봇 사업 전략 및 대응 속도 재검토가 시급하다.",
+        "lg_implication": "테슬라 옵티머스의 양산 현실화는 LG전자가 부품 공급(배터리·모터·센서) 파트너십 기회를 모색하는 동시에, 자체 서비스 로봇 포트폴리오의 차별화 전략을 조기에 확립해야 함을 시사한다.",
         "keywords": [
           "테슬라 옵티머스",
           "휴머노이드 로봇",
-          "공장 자동화"
+          "로봇 양산"
         ],
-        "score": 2.8
+        "score": 3.5
       },
       {
         "id": "7cb0f3c0ab08",
@@ -922,17 +917,17 @@
         "raw_score": 1.67,
         "entity": "samsung",
         "domain": "news.google.com",
-        "title_ko": "THEKER, 삼성·LVMH 지원받아 CRV 주도로 유럽 역대 최대 로보틱스 시리즈A 8500만 달러 조달",
-        "summary_ko": "유럽 로보틱스 스타트업 THEKER가 CRV 주도, 삼성 및 LVMH 참여로 유럽 역대 최대 규모인 8500만 달러 시리즈A 투자 유치에 성공했다. 이는 유럽 로보틱스 생태계에 대한 글로벌 전략적 투자자들의 관심이 급증하고 있음을 보여주는 신호탄이다.",
+        "title_ko": "THEKER, 삼성·LVMH 지원 받아 CRV 주도로 8,500만 달러 조달 - 유럽 역대 최대 로보틱스 시리즈 A",
+        "summary_ko": "유럽 로보틱스 스타트업 THEKER가 CRV 주도, 삼성 및 LVMH 참여로 8,500만 달러 규모의 시리즈 A 투자를 유치하며 유럽 역대 최대 로보틱스 초기 투자 기록을 세웠다. 삼성 등 글로벌 대기업들이 유럽 로보틱스 생태계에 적극 투자하면서 경쟁 구도가 급격히 재편되고 있다.",
         "signal": "Watch",
-        "signal_reason": "경쟁사인 삼성이 유럽 유망 로보틱스 스타트업에 전략적 투자자로 참여하며 로보틱스 생태계 선점을 가속화하고 있어 중기적 모니터링이 필요하다.",
-        "lg_implication": "삼성의 THEKER 투자는 유럽 로보틱스 스타트업 생태계에서의 전략적 파트너십 경쟁이 심화되고 있음을 의미하며, LG전자도 유럽 로보틱스 기업에 대한 투자·협력 기회를 적극 검토할 필요가 있다.",
+        "signal_reason": "삼성이 유럽 최대 로보틱스 시리즈 A에 참여하며 로봇 분야 글로벌 투자 경쟁이 가속화되고 있어 LG전자의 중기 로보틱스 전략에 영향을 미칠 수 있다.",
+        "lg_implication": "삼성이 유럽 로보틱스 스타트업에 대규모 투자를 단행한 만큼, LG전자도 유럽 로보틱스 생태계 내 전략적 투자 또는 파트너십 기회를 적극 검토할 필요가 있다.",
         "keywords": [
-          "유럽로보틱스",
-          "시리즈A투자",
-          "삼성전략투자",
+          "로보틱스 투자",
           "THEKER",
-          "로봇생태계"
+          "삼성 로봇",
+          "유럽 스타트업",
+          "시리즈A"
         ],
         "score": 2.0
       },
@@ -950,41 +945,16 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "Vision Labs, 로봇 훈련 고도화를 위해 600만 달러 투자 유치",
-        "summary_ko": "Vision Labs가 로봇 훈련 품질 향상을 목적으로 600만 달러 규모의 자금을 조달했다. 이 회사는 로봇이 더 효과적으로 학습할 수 있도록 지원하는 솔루션을 개발하고 있으며, 로봇 AI 훈련 인프라 분야의 스타트업 투자 흐름이 가속화되고 있음을 보여준다.",
+        "summary_ko": "Vision Labs가 로봇 훈련 개선 기술 개발을 위해 600만 달러의 투자를 유치했다. 이 회사는 로봇이 더 효율적으로 학습할 수 있도록 지원하는 솔루션을 제공하는 것으로 알려져 있다.",
         "signal": "Watch",
-        "signal_reason": "로봇 훈련 데이터 및 학습 인프라 스타트업에 대한 투자가 증가하는 추세로, LG전자의 Physical AI 및 로봇 사업 경쟁력에 중기적 영향을 미칠 수 있는 생태계 변화다.",
-        "lg_implication": "LG전자가 서비스 로봇 및 Physical AI 역량을 강화하는 과정에서 Vision Labs와 같은 로봇 훈련 전문 솔루션과의 협력 또는 내재화 여부를 검토할 필요가 있다.",
+        "signal_reason": "로봇 훈련 데이터 및 학습 효율화 분야의 스타트업 투자 활성화는 LG전자의 로봇 사업 역량 강화와 관련된 중기적 기술 트렌드로 모니터링이 필요하다.",
+        "lg_implication": "LG전자는 가정용·산업용 로봇 개발 가속화를 위해 Vision Labs와 같은 로봇 훈련 플랫폼 기업과의 협업 또는 유사 기술 내재화를 검토할 필요가 있다.",
         "keywords": [
-          "로봇훈련",
-          "Physical AI",
-          "스타트업투자"
+          "로봇 훈련",
+          "투자 유치",
+          "Physical AI"
         ],
         "score": 2.0
-      },
-      {
-        "id": "d33dd58a5235",
-        "title": "Hyundai to send 25,000 Atlas robots to the US - Fox News",
-        "summary": "Hyundai to send 25,000 Atlas robots to the US&nbsp;&nbsp;Fox News",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9Zdk8yczdBaXF5NFhhWFpfdmxZXzRmM0V1NnNwLU82bkwzQ0pqVE13OFptWTBPblFoV2ZDbDlzSnRvU3lKQ3FlTUJZOURhbTBlQlduU2lkbThMck0xbkZvOWlDS3o1cDRqTFhreXprbHfSAXZBVV95cUxOSXlxUThfUDVwN2txZ0Y3YXBTM1BGWTF5WExFU2dsMDF5Nl9DM2xoSS1WYVhKbDY2RzA5NXk3U2xYRjQ2UUZsTWNvTEQ2c3JiMkpGdWZKbEw5alE4VGZLWndfdmlxZW90OUdVUUU4UElCM0RrcWFB?oc=5",
-        "source": "Google News US - humanoid deploy",
-        "region": "US",
-        "pub_date": "Fri, 29 May 2026 07:00:00 GMT",
-        "pub_ts": 1780038000,
-        "tier": "T2",
-        "raw_score": 1.67,
-        "entity": "hyundai",
-        "domain": "news.google.com",
-        "title_ko": "현대자동차, 미국에 아틀라스 로봇 2만 5천 대 공급 예정",
-        "summary_ko": "현대자동차가 인간형 로봇 아틀라스 2만 5천 대를 미국 시장에 배치할 계획을 발표했다. 이는 현대가 보스턴 다이나믹스를 통해 휴머노이드 로봇 시장에서 대규모 상업화를 본격 추진하는 신호탄으로 해석된다.",
-        "signal": "Action",
-        "signal_reason": "경쟁사 현대가 2.5만 대 규모의 휴머노이드 로봇 대량 배치를 통해 시장 선점에 나서고 있어 LG전자의 로봇 사업 전략에 즉각적인 경쟁 압박이 발생한다.",
-        "lg_implication": "현대-보스턴다이나믹스의 대규모 로봇 상업 배치는 LG전자가 자체 휴머노이드/서비스 로봇 로드맵의 속도와 차별화 전략을 재검토해야 할 시급한 필요성을 제기한다.",
-        "keywords": [
-          "휴머노이드로봇",
-          "현대아틀라스",
-          "로봇상업화"
-        ],
-        "score": 2.7
       },
       {
         "id": "852abb77584e",
@@ -999,15 +969,15 @@
         "raw_score": 1.5,
         "entity": "engineai",
         "domain": "news.google.com",
-        "title_ko": "EngineAI, 인간형 로봇 공장 스토리를 홍콩 공개 시장에 상장",
-        "summary_ko": "중국 휴머노이드 로봇 스타트업 EngineAI가 홍콩 증시 상장을 추진하며 공개 자본시장을 통한 대규모 자금 조달에 나서고 있다. 이는 중국 휴머노이드 로봇 기업들의 공격적인 양산 체제 구축과 자본 확보 움직임이 가속화되고 있음을 보여준다.",
+        "title_ko": "EngineAI, 휴머노이드 로봇 공장 스토리를 홍콩 공개 시장에 상장 추진",
+        "summary_ko": "중국 휴머노이드 로봇 스타트업 EngineAI가 홍콩 증시 상장을 통해 공개 자본시장에서 자금을 조달하려는 움직임을 보이고 있다. 이는 중국 로봇 기업들이 대규모 양산 체계를 구축하고 글로벌 시장 공략을 가속화하는 흐름의 일환으로 해석된다.",
         "signal": "Watch",
-        "signal_reason": "중국 휴머노이드 로봇 기업의 IPO를 통한 대규모 자본 조달은 글로벌 경쟁 강도를 높여 LG전자의 로봇 사업 전략에 중기적 영향을 미칠 수 있다.",
-        "lg_implication": "중국 로봇 기업들이 상장을 통해 공격적 양산 투자에 나서는 만큼, LG전자는 차별화된 기술력 확보 및 파트너십 전략 수립을 서둘러야 한다.",
+        "signal_reason": "중국 휴머노이드 로봇 기업의 IPO는 대규모 자본 유입과 양산 경쟁 심화를 예고하며, LG전자의 로봇 사업 포지셔닝에 중기적 영향을 미칠 수 있다.",
+        "lg_implication": "중국 로봇 기업들이 공개시장 자금 조달로 양산 경쟁력을 강화할 경우, LG전자는 차별화된 B2B 서비스 통합 역량 및 제조 노하우 기반의 전략적 포지셔닝을 조기에 확립할 필요가 있다.",
         "keywords": [
-          "휴머노이드 로봇",
           "EngineAI",
-          "홍콩 IPO"
+          "휴머노이드로봇IPO",
+          "홍콩증시상장"
         ],
         "score": 1.8
       },
@@ -1024,19 +994,43 @@
         "raw_score": 1.5,
         "entity": "engineai",
         "domain": "news.google.com",
-        "title_ko": "ENGINEAI의 새 공장, 15분마다 T800 휴머노이드 로봇 1대 생산 주장",
-        "summary_ko": "중국 로봇 기업 ENGINEAI가 신규 공장에서 15분마다 T800 휴머노이드 로봇 1대를 생산할 수 있다고 밝히며 대량 양산 체제에 돌입했다. 이는 휴머노이드 로봇의 제조 속도와 생산 규모가 급격히 확대되고 있음을 보여주는 신호로, 글로벌 로봇 시장의 공급 경쟁이 본격화되고 있음을 시사한다.",
+        "title_ko": "15분마다 T800 휴머노이드 로봇 1대, ENGINEAI의 신규 공장 주장",
+        "summary_ko": "중국 로봇 기업 ENGINEAI가 15분당 T800 휴머노이드 로봇 1대를 생산할 수 있는 신규 공장 가동을 주장했다. 이는 휴머노이드 로봇의 대량 양산 체계가 본격화되고 있음을 보여주는 사례로, 중국 제조업체들의 생산 경쟁력이 급격히 높아지고 있음을 시사한다.",
         "signal": "Watch",
-        "signal_reason": "중국 로봇 기업의 휴머노이드 대량 양산 역량 확보는 글로벌 로봇 시장의 가격 경쟁과 공급망 구도에 중기적 영향을 미칠 수 있어 지속적인 모니터링이 필요하다.",
-        "lg_implication": "LG전자가 휴머노이드 로봇 사업을 추진할 경우, 중국 기업의 고속 양산 능력이 가격 경쟁력 격차로 이어질 수 있어 제조 효율화 및 차별화 전략 수립이 시급하다.",
+        "signal_reason": "중국 휴머노이드 로봇 기업의 대량 양산 능력 확보는 글로벌 로봇 시장 경쟁 구도를 빠르게 재편할 수 있어 중기적 모니터링이 필요하다.",
+        "lg_implication": "LG전자가 서비스 로봇 및 Physical AI 분야에 투자를 확대하는 시점에서, 중국 경쟁사들의 저비용 대량 생산 체계는 하드웨어 원가 경쟁력 측면에서 위협 요인이 될 수 있어 차별화된 소프트웨어·AI 역량 확보가 중요하다.",
         "keywords": [
-          "휴머노이드 로봇",
-          "대량양산",
           "ENGINEAI",
-          "T800",
-          "로봇 제조"
+          "T800 휴머노이드",
+          "대량양산",
+          "중국 로봇"
         ],
         "score": 1.8
+      },
+      {
+        "id": "8b0877479953",
+        "title": "Serve Robotics Launches Laundry Vertical with NoScrubs - American Coin-Op",
+        "summary": "Serve Robotics Launches Laundry Vertical with NoScrubs&nbsp;&nbsp;American Coin-Op",
+        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWWZOblQzX2pmcjFjUTFtTjBiRHVlYUwtZjJ4ZzRISEloSTc2X20wNmVnMVR1YjByc2dfcHZ5NW5Vb3VPQXlHakd2SkRaZWRucXg4X3JHbjB2TlVaMGhaSllXOC03cW1sVGNYY0dBM2ZXMFdoZDFLWFNMR3lsOTlBNHZRSWRJcXdqNXJTWEhB?oc=5",
+        "source": "Google News US - robot company",
+        "region": "US",
+        "pub_date": "Mon, 15 Jun 2026 11:05:01 GMT",
+        "pub_ts": 1781521501,
+        "tier": "T5",
+        "raw_score": 1.33,
+        "entity": null,
+        "domain": "news.google.com",
+        "title_ko": "Serve Robotics, NoScrubs와 함께 세탁 수직 서비스 출시",
+        "summary_ko": "자율주행 배달 로봇 기업 Serve Robotics가 세탁 서비스 스타트업 NoScrubs와 협력하여 로봇 기반 세탁물 수거·배달 서비스를 새롭게 론칭했다. 이는 Serve Robotics가 음식 배달을 넘어 생활 서비스 영역으로 사업을 확장하는 신호탄으로, 로봇 배달의 버티컬 다각화 전략을 보여준다.",
+        "signal": "Watch",
+        "signal_reason": "자율주행 배달 로봇이 세탁 등 생활 서비스 영역으로 확장되는 새로운 응용 트렌드로, LG의 가전·서비스 로봇 사업과의 교차점을 중기적으로 모니터링할 필요가 있다.",
+        "lg_implication": "LG전자는 세탁기·건조기 등 세탁 가전 브랜드 파워와 서비스 로봇 역량을 결합하여 세탁 O2O 서비스 로봇 생태계에 진입할 수 있는 시너지 기회를 검토할 필요가 있다.",
+        "keywords": [
+          "배달 로봇",
+          "세탁 서비스",
+          "버티컬 확장"
+        ],
+        "score": 1.6
       }
     ],
     "CN": [
@@ -1053,15 +1047,15 @@
         "raw_score": 1.95,
         "entity": "ubtech",
         "domain": "pandaily.com",
-        "title_ko": "UBTECH의 U1 휴머노이드 동반자 로봇, 10일 만에 4,000건 사전 예약 임박",
-        "summary_ko": "중국 UBTECH의 풀사이즈 컴패니언 휴머노이드 로봇 U1이 출시 10일 만에 약 4,000건의 사전 예약과 1,000만 위안 이상의 예치금을 기록했다. 이는 산업용이 아닌 가정용·동반자형 휴머노이드 로봇의 소비자 시장 수요가 실질적으로 형성되고 있음을 보여주는 신호다.",
+        "title_ko": "UBTECH의 U1 휴머노이드 컴패니언 로봇, 출시 10일 만에 사전주문 4,000건 돌파",
+        "summary_ko": "중국 로봇 기업 UBTECH의 풀사이즈 컴패니언 휴머노이드 로봇 U1이 출시 10일 만에 약 4,000건의 사전주문과 1,000만 위안 이상의 예약금을 달성했다. 이는 가정용 휴머노이드 로봇 시장에서 소비자 수요가 본격적으로 형성되고 있음을 보여주는 강력한 신호다.",
         "signal": "Watch",
-        "signal_reason": "가정용 컴패니언 휴머노이드 로봇 시장에서 중국 기업이 빠르게 소비자 수요를 검증하고 있어 LG전자의 가정용 로봇 전략 방향에 중기적 영향을 미칠 수 있음.",
-        "lg_implication": "LG전자가 추진 중인 가정용 AI 로봇 및 스마트홈 생태계 전략에서 중국 휴머노이드 로봇의 소비자 시장 선점 가능성을 주시하고, 차별화된 브랜드·서비스 모델 수립이 필요함.",
+        "signal_reason": "중국 기업이 가정용 컴패니언 휴머노이드 로봇의 실질적 소비자 수요를 빠르게 확보하면서 LG전자의 가정용 로봇 사업 방향과 경쟁 구도에 중기적 영향을 미칠 수 있다.",
+        "lg_implication": "LG전자가 추진 중인 가정용 AI 로봇 전략에서 컴패니언 기능과 소비자 접근성을 강화한 제품 포지셔닝이 시급하며, 중국 경쟁사의 시장 선점 속도를 면밀히 모니터링할 필요가 있다.",
         "keywords": [
-          "컴패니언 로봇",
-          "휴머노이드",
-          "소비자 시장"
+          "컴패니언로봇",
+          "UBTECH",
+          "휴머노이드사전주문"
         ],
         "score": 2.2
       },
@@ -1079,10 +1073,10 @@
         "entity": "embodied intelligence",
         "domain": "pandaily.com",
         "title_ko": "AI가 2026년 네 바퀴를 달다: AIVA가 자동차를 구현된 지능 존재로 재정의하는 방법",
-        "summary_ko": "중국 스타트업 Saidou Technology가 하드웨어보다 AI를 우선시하는 'AI 정의 차량(ADV)' 브랜드 AIVA를 출시하며 전통적인 자동차 개발 패러다임의 전환을 선언했다. 이는 차량을 단순 이동 수단이 아닌 AI 기반 구현 지능체로 재정의하는 새로운 접근 방식을 제시한다.",
+        "summary_ko": "중국 스타트업 사이두테크놀로지가 하드웨어보다 인공지능을 우선시하는 'AI 정의 차량(ADV)' 브랜드 AIVA를 출시하며 전통적인 자동차 개발 패러다임의 전환을 선언했다. 이는 차량을 단순한 이동 수단이 아닌 구현된 지능 엔티티로 재정의하는 새로운 접근 방식을 제시한다.",
         "signal": "Watch",
-        "signal_reason": "중국發 AI 정의 차량 개념은 차량용 AI 소프트웨어·인포테인먼트·센서 시장에 중기적 영향을 미칠 수 있어 지속적인 모니터링이 필요하다.",
-        "lg_implication": "LG전자의 VS(Vehicle component Solutions) 사업본부 및 webOS Auto 플랫폼 전략 관점에서, AI 중심 차량 아키텍처로의 전환은 LG의 차량용 디스플레이·인포테인먼트·AI 소프트웨어 통합 솔루션 포지셔닝 기회를 확대할 수 있다.",
+        "signal_reason": "AI 중심 차량 플랫폼 트렌드는 LG전자의 VS사업본부(차량 부품) 및 차량용 인포테인먼트·디스플레이 사업 전략에 중기적 영향을 미칠 수 있다.",
+        "lg_implication": "AI 정의 차량 패러다임 확산 시 LG전자는 차량용 디스플레이·인포테인먼트를 넘어 AI 에이전트와 연동되는 지능형 인터페이스 및 센서 솔루션 공급자로 포지셔닝 전략을 재검토할 필요가 있다.",
         "keywords": [
           "AI정의차량",
           "SDV",
@@ -1104,14 +1098,14 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "중국에서 휴머노이드 로봇의 활용 분야가 여러 부문으로 확대되고 있습니다.",
-        "summary_ko": "중국에서 휴머노이드 로봇의 적용 영역이 제조, 물류, 서비스 등 다양한 산업 분야로 빠르게 확산되고 있다. 중국 정부의 적극적인 지원과 기업들의 투자 확대로 휴머노이드 로봇 상용화가 가속화되는 추세다.",
+        "summary_ko": "중국에서 휴머노이드 로봇의 적용 영역이 제조업, 서비스업 등 다양한 산업 부문으로 빠르게 확산되고 있다. 중국의 로봇 생태계가 급성장하면서 글로벌 휴머노이드 로봇 시장 경쟁이 더욱 심화될 전망이다.",
         "signal": "Watch",
-        "signal_reason": "중국의 휴머노이드 로봇 산업 확장은 글로벌 로봇 시장 경쟁 구도에 중기적으로 중요한 영향을 미칠 수 있어 지속적인 모니터링이 필요하다.",
-        "lg_implication": "중국 휴머노이드 로봇의 다분야 확산은 LG전자가 로봇 사업 전략 수립 시 중국 경쟁사의 기술력 및 시장 점유율 확대를 주요 위협 요인으로 고려해야 함을 시사한다.",
+        "signal_reason": "중국의 휴머노이드 로봇 산업 확장은 중기적으로 LG전자의 로봇 사업 전략 및 글로벌 경쟁 구도에 영향을 미칠 수 있는 중요한 시장 동향이다.",
+        "lg_implication": "중국 휴머노이드 로봇의 다분야 확산은 LG전자가 가정·상업용 로봇 서비스 분야에서 차별화된 포지셔닝과 기술 경쟁력 확보를 서둘러야 함을 시사한다.",
         "keywords": [
           "휴머노이드 로봇",
-          "중국 로봇 산업",
-          "로봇 상용화"
+          "중국 로봇 시장",
+          "산업 확장"
         ],
         "score": 2.2
       },
@@ -1128,15 +1122,15 @@
         "raw_score": 1.87,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "중국 이포트, 휴머노이드 로봇 'R2V1 요봇' 시연",
-        "summary_ko": "중국 로봇 기업 이포트(Efort)가 휴머노이드 로봇 'R2V1 요봇'을 공개 시연하며 중국의 휴머노이드 로봇 개발 경쟁이 심화되고 있다. 중국 업체들이 잇따라 휴머노이드 로봇 신제품을 선보이며 글로벌 시장에서의 존재감을 높이고 있다.",
+        "title_ko": "中 이포트, 휴머노이드 로봇 'R2V1 요봇' 시연",
+        "summary_ko": "중국 로봇 기업 이포트(Efort)가 휴머노이드 로봇 'R2V1 요봇'을 공개 시연하며 중국의 휴머노이드 로봇 개발 경쟁이 가속화되고 있음을 보여주었다. 중국 업체들이 잇따라 휴머노이드 로봇 신제품을 선보이며 글로벌 로봇 시장에서의 입지를 강화하고 있다.",
         "signal": "Watch",
-        "signal_reason": "중국 로봇 기업들의 휴머노이드 로봇 개발 가속화는 글로벌 로봇 시장 경쟁 구도에 중기적 영향을 미칠 수 있어 지속 모니터링이 필요하다.",
-        "lg_implication": "중국 로봇 기업들의 휴머노이드 로봇 양산 경쟁 가속화는 LG전자의 로봇 사업 전략 수립 시 중국발 저가 경쟁 리스크 및 기술 벤치마킹 대상으로 고려해야 한다.",
+        "signal_reason": "중국 로봇 기업들의 휴머노이드 로봇 개발이 빠르게 진전되고 있어 중기적으로 LG전자의 로봇 사업 경쟁 환경에 영향을 미칠 수 있음.",
+        "lg_implication": "LG전자는 중국 휴머노이드 로봇 업체들의 기술 수준과 상용화 속도를 지속 모니터링하여 자사 로봇 사업 전략 및 차별화 포인트를 점검할 필요가 있다.",
         "keywords": [
           "휴머노이드 로봇",
-          "중국 로봇",
-          "이포트"
+          "이포트",
+          "중국 로봇"
         ],
         "score": 2.2
       },
@@ -1153,15 +1147,15 @@
         "raw_score": 1.67,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "사이리스(AITO 모회사) 인형 로봇 공개, 이미 공장에서 문계(問界) 차량 생산 투입",
-        "summary_ko": "중국 전기차 제조사 사이리스(赛力斯)가 자체 개발한 휴머노이드 로봇을 공개하고, 이미 문계(問界) 차량 생산 공장에 실제 투입하여 운영 중이다. 자동차 제조업체가 직접 휴머노이드 로봇을 개발·양산 현장에 적용하는 사례가 중국에서 가시화되고 있다.",
+        "title_ko": "사이리스(AITO 모회사) 휴머노이드 로봇 공개, 이미 공장에서 문계(問界) 차량 생산 투입",
+        "summary_ko": "중국 전기차 제조사 사이리스(赛力斯)가 자체 개발한 휴머노이드 로봇을 공개하고, 해당 로봇이 이미 문계(問界) 차량 생산 공장에 실제 투입되어 운영 중임을 밝혔다. 자동차 제조업체가 직접 휴머노이드 로봇을 개발·생산 현장에 적용하는 중국의 제조업 로봇화 트렌드가 가속화되고 있다.",
         "signal": "Watch",
-        "signal_reason": "자동차 제조사의 휴머노이드 로봇 자체 개발 및 실제 생산라인 투입은 제조업 전반의 로봇 도입 가속화를 시사하며, LG전자의 스마트팩토리 및 로봇 사업 전략에 중기적 영향을 미칠 수 있다.",
-        "lg_implication": "중국 제조업체들이 자체 휴머노이드 로봇을 생산 현장에 직접 적용하는 추세는 LG전자가 스마트팩토리 솔루션 및 협동로봇 전략을 가속화해야 할 필요성을 높인다.",
+        "signal_reason": "중국 자동차 제조사들이 직접 휴머노이드 로봇을 개발해 생산라인에 투입하는 사례가 늘어나며, 제조업 로봇화 경쟁이 심화되는 중기적 산업 트렌드로 모니터링이 필요하다.",
+        "lg_implication": "LG전자의 스마트팩토리 및 로봇 사업 관점에서, 중국 제조기업들의 자체 휴머노이드 로봇 내재화 움직임은 향후 B2B 로봇 시장 경쟁 구도 변화에 영향을 미칠 수 있어 전략적 대응 방향 검토가 필요하다.",
         "keywords": [
           "휴머노이드 로봇",
-          "제조 자동화",
-          "사이리스(赛力斯)"
+          "스마트팩토리",
+          "중국 제조업 자동화"
         ],
         "score": 2.0
       },
@@ -1179,16 +1173,16 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "중국서 사람 똑 닮은 감성형 휴머노이드 '불티'…열흘 새 3,800대 예약",
-        "summary_ko": "중국에서 인간과 유사한 외형과 감성 표현 기능을 갖춘 휴머노이드 로봇이 출시 열흘 만에 3,800대 예약을 달성하며 폭발적인 시장 반응을 얻고 있다. 이는 감성형 휴머노이드 로봇에 대한 소비자 수요가 실재함을 입증하는 사례로, 중국 로봇 산업의 빠른 상용화 속도를 보여준다.",
-        "signal": "Watch",
-        "signal_reason": "중국 감성형 휴머노이드의 급격한 시장 수요 확인은 LG전자의 로봇 사업 방향성 및 포지셔닝 전략에 중기적 영향을 미칠 수 있는 동향이다.",
-        "lg_implication": "LG전자는 가정·생활 밀착형 브랜드 강점을 활용해 감성 인터페이스 기반 휴머노이드 차별화 전략을 검토할 필요가 있으며, 중국 경쟁사의 상용화 속도를 벤치마킹해야 한다.",
+        "summary_ko": "중국에서 인간과 유사한 외형과 감성 표현 능력을 갖춘 휴머노이드 로봇이 출시 열흘 만에 3,800대 예약을 기록하며 폭발적인 시장 반응을 얻고 있다. 감성형 휴머노이드에 대한 소비자 수요가 빠르게 현실화되고 있으며, 중국 로봇 기업들의 상업화 속도가 예상을 앞지르고 있다.",
+        "signal": "Action",
+        "signal_reason": "중국 경쟁사의 감성형 휴머노이드 상업화가 빠르게 진행되며 글로벌 휴머노이드 시장 선점 경쟁이 본격화되고 있어 LG전자의 로봇 전략 가속화가 시급하다.",
+        "lg_implication": "LG전자는 가전·감성 UX 기술 역량을 기반으로 감성형 휴머노이드 차별화 전략을 조속히 구체화하지 않으면 중국 기업에 시장 주도권을 빼앗길 수 있다.",
         "keywords": [
           "감성형 휴머노이드",
           "중국 로봇 시장",
-          "상용화"
+          "상업화 가속"
         ],
-        "score": 1.9
+        "score": 2.6
       },
       {
         "id": "b4e890693cbd",
@@ -1203,15 +1197,15 @@
         "raw_score": 1.6,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "\"애인 대신 로봇?\"…열흘 만에 3800대 팔린 '감성 교감' 휴머노이드",
-        "summary_ko": "중국에서 감성 교감 기능을 탑재한 휴머노이드 로봇이 출시 열흘 만에 3800대 판매되며 폭발적인 시장 반응을 보이고 있다. 단순 기능형 로봇을 넘어 정서적 유대감을 제공하는 소셜/컴패니언 로봇 시장이 중국을 중심으로 빠르게 형성되고 있다.",
+        "title_ko": "'애인 대신 로봇?'…열흘 만에 3800대 팔린 '감성 교감' 휴머노이드",
+        "summary_ko": "중국에서 감성 교감 기능을 탑재한 휴머노이드 로봇이 출시 열흘 만에 3800대 판매되며 소셜 컴패니언 로봇 시장의 폭발적 수요를 입증했다. 단순 기능형을 넘어 감정적 유대감을 제공하는 '반려 로봇' 카테고리가 새로운 소비 트렌드로 부상하고 있다.",
         "signal": "Watch",
-        "signal_reason": "감성 교감형 휴머노이드의 중국 시장 급성장은 LG전자가 검토 중인 가정용 로봇 포지셔닝 전략에 중기적으로 중요한 방향성을 제시한다.",
-        "lg_implication": "LG전자는 가전·스마트홈 생태계와 연계한 감성 교감 기능을 차별화 포인트로 삼아 컴패니언 로봇 시장 진입 전략을 구체화할 필요가 있다.",
+        "signal_reason": "감성 교감형 휴머노이드의 빠른 시장 수용은 LG전자의 홈 로봇 및 AI 에이전트 전략 방향에 중기적으로 중요한 시사점을 제공한다.",
+        "lg_implication": "LG전자는 가전·스마트홈 생태계와 연계하여 감성 AI 인터랙션 기능을 탑재한 홈 컴패니언 로봇 개발 및 포지셔닝 전략을 조기에 검토할 필요가 있다.",
         "keywords": [
           "감성교감 로봇",
-          "컴패니언 휴머노이드",
-          "중국 로봇 시장"
+          "소셜 컴패니언",
+          "휴머노이드 시장"
         ],
         "score": 1.9
       },
@@ -1228,17 +1222,17 @@
         "raw_score": 1.52,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "집 없다, 충전 도와달라…중국 길거리서 QR 구걸 나선 휴머노이드 로봇, 무슨 일?",
-        "summary_ko": "중국에서 휴머노이드 로봇이 길거리에서 QR코드를 들고 충전 비용을 구걸하는 퍼포먼스가 등장해 화제가 되었다. 이는 로봇 기술의 대중화와 함께 사회적 수용성 및 로봇 윤리 문제를 환기시키는 이색 마케팅 또는 실험적 행위로 해석된다.",
-        "signal": "FYI",
-        "signal_reason": "LG 사업에 직접적 영향은 없으나, 중국 내 휴머노이드 로봇의 사회적 노출 및 대중 인식 변화 트렌드를 보여주는 참고 사례임.",
-        "lg_implication": "휴머노이드 로봇의 사회적 수용성과 대중 친밀도 형성 방식이 다양화되고 있어, LG전자의 로봇 제품 브랜딩 및 공공 장소 배치 전략 수립 시 참고할 수 있음.",
+        "title_ko": "\"집 없다, 충전 도와달라\"…중국 길거리서 QR 구걸 나선 휴머노이드 로봇, 무슨 일?",
+        "summary_ko": "중국에서 휴머노이드 로봇이 길거리에서 QR코드를 들고 충전비를 구걸하는 퍼포먼스를 펼치며 화제가 되었다. 이는 로봇의 자율성과 사회적 상호작용 가능성을 시험하는 마케팅·실험적 시도로 해석된다.",
+        "signal": "Watch",
+        "signal_reason": "중국 휴머노이드 로봇의 사회적 상호작용 및 자율 행동 실증 사례로, 로봇의 일상 공간 침투 속도와 대중 수용성 변화를 중기적으로 모니터링할 필요가 있다.",
+        "lg_implication": "LG전자가 개발 중인 가정용·서비스용 휴머노이드 로봇의 사회적 수용성 및 인간-로봇 상호작용(HRI) 설계 방향 수립 시, 중국 시장의 실험적 사례를 참고해 차별화된 신뢰 기반 로봇 경험 전략을 마련할 필요가 있다.",
         "keywords": [
           "휴머노이드로봇",
-          "중국로봇트렌드",
-          "로봇사회수용성"
+          "중국로봇시장",
+          "인간로봇상호작용"
         ],
-        "score": 1.5
+        "score": 1.8
       },
       {
         "id": "8d0b61411aac",
@@ -1254,14 +1248,14 @@
         "entity": "유니트리",
         "domain": "news.google.com",
         "title_ko": "[AI&빅데이터쇼] 유니트리·애지봇·갤봇 총출동...중국 '빅3' 휴머노이드 전략은",
-        "summary_ko": "중국 휴머노이드 로봇 빅3인 유니트리(Unitree), 애지봇(Agibot), 갤봇(Galbot)이 AI&빅데이터쇼에 총출동하여 각사의 전략을 공개했다. 중국 휴머노이드 로봇 기업들이 공격적인 시장 확장과 기술 경쟁력을 과시하며 글로벌 로봇 시장 주도권 확보에 나서고 있다.",
+        "summary_ko": "중국 대표 휴머노이드 로봇 기업인 유니트리(Unitree), 애지봇(AgiBot), 갤봇(Galbot) 3사가 AI&빅데이터쇼에 참가해 각자의 휴머노이드 전략을 공개했다. 중국 빅3의 동시 출전은 중국 휴머노이드 로봇 산업의 글로벌 공세가 본격화되고 있음을 시사한다.",
         "signal": "Watch",
-        "signal_reason": "중국 휴머노이드 빅3의 전략적 행보는 LG전자가 진입을 준비 중인 로봇 시장의 경쟁 구도를 직접적으로 형성하므로 중기적 모니터링이 필요하다.",
-        "lg_implication": "중국 업체들의 빠른 기술 고도화와 가격 경쟁력을 고려할 때, LG전자는 차별화된 가정용·서비스용 휴머노이드 포지셔닝 및 소프트웨어 생태계 구축 전략을 서둘러야 한다.",
+        "signal_reason": "중국 휴머노이드 빅3의 전략 공개는 글로벌 로봇 시장 경쟁 구도 변화를 예고하며, LG전자의 로봇 사업 방향 설정에 중기적 영향을 미칠 수 있다.",
+        "lg_implication": "LG전자는 중국 빅3의 가격 경쟁력 및 기술 고도화 속도를 벤치마킹하여 자사 휴머노이드 로봇의 차별화 포지셔닝 전략을 조기에 수립할 필요가 있다.",
         "keywords": [
-          "휴머노이드로봇",
-          "중국빅3",
-          "유니트리"
+          "중국 휴머노이드",
+          "유니트리",
+          "로봇 경쟁구도"
         ],
         "score": 1.8
       },
@@ -1278,45 +1272,20 @@
         "raw_score": 1.5,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "세리스: '샤오사이' 휴머노이드 로봇 공식 공개! 주가를 끌어올릴 수 있을까?",
-        "summary_ko": "중국 자동차 제조사 세리스(赛力斯)가 자체 개발한 휴머노이드 로봇 '샤오사이(小赛)'를 공식 공개했다. 자동차 업계의 로봇 분야 진출이 확대되는 가운데, 이번 공개가 세리스의 주가 부양으로 이어질지 주목된다.",
+        "title_ko": "사이리스: '샤오사이' 인형 로봇 공식 데뷔! 주가 부양 가능할까?",
+        "summary_ko": "중국 자동차 기업 사이리스(赛力斯)가 자체 개발한 인형 로봇 '샤오사이(小赛)'를 공식 공개했다. 이번 로봇 공개가 주가 부양으로 이어질지 시장의 관심이 집중되고 있다.",
         "signal": "Watch",
-        "signal_reason": "중국 자동차 제조사의 휴머노이드 로봇 시장 진입은 경쟁 구도 확대를 의미하며, 중기적으로 LG전자의 로봇 사업 전략에 영향을 미칠 수 있는 동향이다.",
-        "lg_implication": "자동차·IT 등 이종 산업의 휴머노이드 로봇 시장 진출이 가속화되는 만큼, LG전자는 차별화된 로봇 핵심 기술 및 가전·스마트홈 연계 솔루션 경쟁력 확보를 서둘러야 한다.",
+        "signal_reason": "중국 자동차 기업들이 인형 로봇 시장에 잇따라 진출하며 경쟁 구도가 확대되고 있어 중기적 모니터링이 필요하다.",
+        "lg_implication": "중국 완성차 기업까지 휴머노이드 로봇 시장에 참여하면서 경쟁자 풀이 확대되고 있으며, LG전자는 차별화된 로봇 기술 및 파트너십 전략 수립이 더욱 시급해지고 있다.",
         "keywords": [
-          "휴머노이드 로봇",
-          "세리스",
-          "중국 로봇 시장"
+          "사이리스",
+          "휴머노이드로봇",
+          "중국로봇시장"
         ],
         "score": 1.8
       }
     ],
     "EU": [
-      {
-        "id": "6cd8d419f0b6",
-        "title": "Robotic pet rabbit created that recognizes who hugs it by their voice - EurekAlert!",
-        "summary": "Robotic pet rabbit created that recognizes who hugs it by their voice&nbsp;&nbsp;EurekAlert!",
-        "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE41akhSSFFJV1pSd3l3VDJkT21IdWJPeWU4cUtSMUwwa09Vbkh0UWF3dTM3X1R6WTNxSUhEcUlWNnZNaENNOFNxakp1LU5xbHJLbXBYLXRWOGwxNm1i?oc=5",
-        "source": "Google News EU - robotics",
-        "region": "EU",
-        "pub_date": "Mon, 15 Jun 2026 17:26:21 GMT",
-        "pub_ts": 1781544381,
-        "tier": "T2",
-        "raw_score": 3.33,
-        "entity": "abb",
-        "domain": "news.google.com",
-        "title_ko": "목소리로 안아주는 사람을 인식하는 로봇 반려토끼 개발",
-        "summary_ko": "EU 연구팀이 사용자의 목소리를 인식하여 안아주는 사람이 누구인지 파악하는 로봇 반려동물 토끼를 개발했다. 이 로봇은 음성 인식 기술을 통해 개인화된 상호작용을 제공하며, 감성적 유대감을 강화하는 소셜 로봇 분야의 새로운 가능성을 제시한다.",
-        "signal": "Watch",
-        "signal_reason": "소셜 로봇과 감성 인식 기술의 융합은 LG전자의 가정용 AI 로봇 및 반려 로봇 서비스 방향성과 중기적으로 연관성이 높다.",
-        "lg_implication": "LG전자가 개발 중인 가정용 AI 로봇에 음성 기반 사용자 식별 및 감성 교감 기능을 접목하여 차별화된 반려 로봇 서비스를 구현할 수 있는 기술적 참고 사례로 활용 가능하다.",
-        "keywords": [
-          "소셜로봇",
-          "음성인식",
-          "반려로봇"
-        ],
-        "score": 3.6
-      },
       {
         "id": "916d1ffa483e",
         "title": "ARBOR Technology to Showcase Intel Panther Lake-Powered Edge AI and Physical AI Solutions at Automate - PR Newswire",
@@ -1331,10 +1300,10 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "ARBOR Technology, Automate 전시회에서 인텔 Panther Lake 기반 엣지 AI 및 Physical AI 솔루션 공개 예정",
-        "summary_ko": "ARBOR Technology가 인텔의 차세대 Panther Lake 프로세서를 탑재한 엣지 AI 및 Physical AI 솔루션을 Automate 전시회에서 선보일 예정이다. 이는 산업 자동화 분야에서 AI 연산 능력을 엣지 레벨로 끌어내리는 Physical AI 상용화 흐름을 보여주는 사례이다.",
+        "summary_ko": "ARBOR Technology가 인텔의 차세대 프로세서 Panther Lake를 탑재한 엣지 AI 및 Physical AI 솔루션을 Automate 전시회에서 선보일 예정이다. 이는 산업 자동화 분야에서 엣지 컴퓨팅과 Physical AI의 융합이 가속화되고 있음을 보여주는 사례다.",
         "signal": "Watch",
-        "signal_reason": "인텔 차세대 칩 기반 Physical AI 솔루션의 산업 자동화 적용 사례가 구체화되면서 LG전자의 로봇·엣지 AI 하드웨어 플랫폼 전략에 중기적 영향을 미칠 수 있는 경쟁 동향이다.",
-        "lg_implication": "LG전자는 자체 로봇 및 엣지 AI 제품 개발 시 인텔 Panther Lake 등 차세대 AI 칩 기반 경쟁사 솔루션의 성능·가격 포지셔닝을 면밀히 모니터링하여 차별화 전략을 수립할 필요가 있다.",
+        "signal_reason": "산업 자동화 분야에서 인텔 차세대 플랫폼 기반 Physical AI 솔루션 생태계가 형성되고 있어 LG전자의 로봇/AI 하드웨어 플랫폼 전략에 중기적 영향을 미칠 수 있음.",
+        "lg_implication": "LG전자는 로봇 및 Physical AI 제품 개발 시 인텔 Panther Lake 기반 엣지 AI 플랫폼 채택 여부를 검토하고, 경쟁사의 하드웨어 플랫폼 전략과의 차별화 방안을 모색할 필요가 있음.",
         "keywords": [
           "Physical AI",
           "엣지 AI",
@@ -1358,39 +1327,14 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "ABS와 MOBY 로보틱스, 해저 채굴 분야 MOU 체결",
-        "summary_ko": "미국선급(ABS)과 MOBY 로보틱스가 해저 채굴 분야에서의 협력을 위한 양해각서(MOU)를 체결했다. 이번 협약은 해저 자원 채굴을 위한 로봇 기술의 안전 기준 및 인증 체계 마련을 목적으로 한다.",
+        "summary_ko": "미국선급협회(ABS)와 MOBY 로보틱스가 해저 광물 채굴 분야에서 협력을 위한 양해각서(MOU)를 체결했다. 이번 협약은 심해 자원 탐사 및 채굴에 특화된 수중 로봇 기술 개발과 인증 기준 마련을 목적으로 한다.",
         "signal": "Watch",
-        "signal_reason": "해저 채굴용 수중 로봇 시장이 제도적 기반을 갖추기 시작하며 중장기적으로 Physical AI 및 산업용 로봇 시장 확장에 영향을 미칠 수 있는 동향이다.",
-        "lg_implication": "LG전자의 로봇/Physical AI 전략 관점에서 해저·극한환경용 산업 로봇 시장의 표준화 움직임을 주시하며, 향후 수중 로봇 또는 관련 부품·솔루션 사업 진출 가능성을 검토할 필요가 있다.",
+        "signal_reason": "해저 채굴용 수중 로봇 시장이 기관 간 협력을 통해 본격화되고 있어 중기적으로 LG의 로봇 및 물리 AI 전략과 연계 가능한 산업 동향으로 모니터링이 필요하다.",
+        "lg_implication": "해저 자원 채굴용 특수 로봇 시장 형성 초기 단계로, LG전자가 Physical AI 및 산업용 로봇 포트폴리오 확장 시 극한 환경 특수 로봇 분야 진입 가능성을 검토할 수 있다.",
         "keywords": [
-          "해저채굴",
+          "해저채굴로봇",
           "수중로봇",
-          "산업용로봇"
-        ],
-        "score": 2.0
-      },
-      {
-        "id": "c26ed0be355e",
-        "title": "WaiV Robotics Brings Autonomous Drone Recovery at Sea to U.S. Offshore Operators - Dronelife",
-        "summary": "WaiV Robotics Brings Autonomous Drone Recovery at Sea to U.S. Offshore Operators&nbsp;&nbsp;Dronelife",
-        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORnJhcDZwSUEwa3huMGdCZ0F2YzJjdTIzRTVjVllobzVWNzFDRGE5WGxpNE9tSUlrWnpTME81YUU1WXViRGpWN09lWmd4S0tGeGRYMHpYNHVqcUlJTmozSl9oNlhUQ0xFTW51WllHd2lJQzJLU0Y3VWR3ZEYxQ2xlTHhQT1dWMUkxSGJvU0p2aU5CUzE1QTQ2cHZLMzRLSFZicGRBcEk0ak9oeDhjRWdXSHEzNA?oc=5",
-        "source": "Google News EU - robotics",
-        "region": "EU",
-        "pub_date": "Mon, 15 Jun 2026 17:48:45 GMT",
-        "pub_ts": 1781545725,
-        "tier": "T5",
-        "raw_score": 1.67,
-        "entity": null,
-        "domain": "news.google.com",
-        "title_ko": "WaiV 로보틱스, 미국 해상 운영사에 자율 드론 해상 회수 기술 도입",
-        "summary_ko": "WaiV 로보틱스가 해상에서 드론을 자율적으로 회수하는 기술을 미국 해상 운영사들에게 제공하기 시작했다. 이 기술은 파도와 같은 해상 환경에서도 드론 착륙 및 회수를 자동화하여 해양 산업의 드론 활용도를 높이는 것을 목표로 한다.",
-        "signal": "Watch",
-        "signal_reason": "해상 자율 드론 회수 기술은 물류·산업용 로봇 및 드론 솔루션 시장의 확장을 나타내며, LG의 로봇/Physical AI 전략과 중기적으로 교차될 수 있는 특수환경 자율화 트렌드이다.",
-        "lg_implication": "LG전자가 산업용 로봇 및 자율 솔루션 포트폴리오를 확장할 경우, 극한 환경(해상·야외) 대응 자율 회수 기술은 향후 파트너십 또는 기술 벤치마킹 대상으로 고려할 수 있다.",
-        "keywords": [
-          "자율드론",
-          "해상로보틱스",
-          "드론회수기술"
+          "산업용로봇MOU"
         ],
         "score": 2.0
       },
@@ -1407,17 +1351,15 @@
         "raw_score": 1.6,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "오픈소스 군집 로보틱스: 맞춤형 ESP32 미니봇이 체스 말을 자율 로봇으로 전환",
-        "summary_ko": "ESP32 마이크로컨트롤러를 기반으로 한 오픈소스 군집 로봇 프로젝트가 체스 말 형태의 소형 자율 로봇을 구현하는 데 성공했다. 이 프로젝트는 저비용 하드웨어와 오픈소스 소프트웨어를 활용해 군집 로봇 기술의 대중화 가능성을 보여준다.",
+        "title_ko": "오픈소스 군집 로보틱스: 맞춤형 ESP32 미니봇이 체스 말을 자율 로봇으로 변환",
+        "summary_ko": "ESP32 마이크로컨트롤러를 기반으로 한 오픈소스 군집 로봇 'MiniBots'가 체스 말 형태의 소형 자율 로봇으로 구현되었다. 이 프로젝트는 저비용 하드웨어로 다중 로봇 협업 및 자율 행동을 실험할 수 있는 오픈소스 플랫폼을 제공한다.",
         "signal": "Watch",
-        "signal_reason": "오픈소스 기반 군집 로봇 기술의 접근성 향상은 중기적으로 로봇 산업 전반의 기술 민주화를 가속화할 수 있어 모니터링이 필요하다.",
-        "lg_implication": "LG전자는 가정용·산업용 로봇 개발 시 오픈소스 군집 로봇 생태계 동향을 참고해 멀티 로봇 협업 및 스웜 인텔리전스 기술을 서비스 로봇 플랫폼에 선제적으로 통합하는 전략을 검토할 필요가 있다.",
+        "signal_reason": "오픈소스 군집 로보틱스 플랫폼의 저변 확대는 중기적으로 소형 자율 로봇 기술의 대중화와 산업 적용 가능성을 높이는 트렌드로 모니터링이 필요하다.",
+        "lg_implication": "LG전자는 가정용 및 산업용 서비스 로봇 개발 시 군집 로봇 협업 기술과 저비용 오픈소스 플랫폼 동향을 참고하여 다중 로봇 연동 솔루션 경쟁력을 검토할 필요가 있다.",
         "keywords": [
-          "군집로봇",
-          "오픈소스",
+          "군집로보틱스",
           "ESP32",
-          "스웜로보틱스",
-          "자율로봇"
+          "오픈소스로봇"
         ],
         "score": 1.9
       },
@@ -1434,17 +1376,42 @@
         "raw_score": 1.5,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "영국은 어떻게 로보틱스 혁신을 책임감 있는 대규모 도입으로 전환하는 데 선도할 수 있는가?",
-        "summary_ko": "영국이 로보틱스 혁신을 단순한 기술 개발을 넘어 사회적 책임을 고려한 대규모 실용화로 이끌기 위한 전략적 방향을 모색하고 있다. 책임 있는 로봇 도입을 위한 정책 프레임워크, 규제 환경, 산업-정부 협력 방안이 핵심 논의 주제로 다뤄지고 있다.",
+        "title_ko": "영국은 어떻게 로보틱스 혁신을 책임감 있는 대규모 도입으로 전환하는 데 선도적 역할을 할 수 있는가?",
+        "summary_ko": "영국이 로보틱스 혁신을 단순 기술 개발에 그치지 않고 책임감 있는 방식으로 사회 전반에 대규모 도입하는 방법을 모색하고 있다. 이는 규제 프레임워크, 윤리적 기준, 산업 생태계 구축 등을 포함한 종합적인 전략 수립의 필요성을 강조한다.",
         "signal": "Watch",
-        "signal_reason": "EU/영국의 로봇 책임 도입 관련 규제 및 정책 프레임워크 형성은 LG전자의 유럽 로봇 시장 진출 전략에 중기적으로 영향을 미칠 수 있음.",
-        "lg_implication": "LG전자는 유럽 시장 공략 시 영국의 책임 있는 로봇 도입 기준 및 정책 방향을 선제적으로 파악해 제품·서비스 전략에 반영해야 한다.",
+        "signal_reason": "EU/영국의 로보틱스 책임 도입 정책 방향은 LG전자의 서비스 로봇 유럽 시장 진출 전략에 중기적으로 영향을 미칠 수 있어 모니터링이 필요하다.",
+        "lg_implication": "LG전자는 유럽 시장 내 클로이(CLOi) 등 서비스 로봇 확대를 위해 영국 및 EU의 책임 있는 로보틱스 도입 규제·기준 논의에 선제적으로 대응하고 컴플라이언스 전략을 준비해야 한다.",
         "keywords": [
-          "로보틱스 책임도입",
+          "로보틱스 책임 도입",
           "영국 로봇 정책",
-          "대규모 상용화"
+          "서비스 로봇 규제"
         ],
         "score": 1.8
+      },
+      {
+        "id": "c26ed0be355e",
+        "title": "WaiV Robotics Brings Autonomous Drone Recovery at Sea to U.S. Offshore Operators - Dronelife",
+        "summary": "WaiV Robotics Brings Autonomous Drone Recovery at Sea to U.S. Offshore Operators&nbsp;&nbsp;Dronelife",
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxORnJhcDZwSUEwa3huMGdCZ0F2YzJjdTIzRTVjVllobzVWNzFDRGE5WGxpNE9tSUlrWnpTME81YUU1WXViRGpWN09lWmd4S0tGeGRYMHpYNHVqcUlJTmozSl9oNlhUQ0xFTW51WllHd2lJQzJLU0Y3VWR3ZEYxQ2xlTHhQT1dWMUkxSGJvU0p2aU5CUzE1QTQ2cHZLMzRLSFZicGRBcEk0ak9oeDhjRWdXSHEzNA?oc=5",
+        "source": "Google News EU - robotics",
+        "region": "EU",
+        "pub_date": "Mon, 15 Jun 2026 17:50:57 GMT",
+        "pub_ts": 1781545857,
+        "tier": "T5",
+        "raw_score": 1.5,
+        "entity": null,
+        "domain": "news.google.com",
+        "title_ko": "WaiV Robotics, 미국 해상 운영사에 자율 드론 해상 회수 기술 도입",
+        "summary_ko": "WaiV Robotics가 해상에서 드론을 자율적으로 회수하는 기술을 미국 오프쇼어(해상) 운영사들에 제공하기 시작했다. 이 기술은 거친 해상 환경에서도 드론의 안전한 착륙 및 회수를 가능하게 하여 해상 산업의 자율화를 촉진한다.",
+        "signal": "FYI",
+        "signal_reason": "해상 드론 자율 회수 기술은 LG전자의 현재 핵심 로보틱스 사업 영역과 직접적 연관성이 낮은 특수 산업용 틈새 시장 동향이다.",
+        "lg_implication": "LG전자가 물류·산업용 로봇 포트폴리오 확장을 검토할 경우, 극한 환경 자율 회수 기술은 미래 드론 기반 솔루션 개발 시 참고할 수 있는 기술 레퍼런스로 활용 가능하다.",
+        "keywords": [
+          "자율드론",
+          "해상로봇",
+          "드론회수기술"
+        ],
+        "score": 1.5
       },
       {
         "id": "8c54d29cb73e",
@@ -1459,15 +1426,15 @@
         "raw_score": 1.5,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "Automate 2026을 향한 여정: Vecow, AI 기반 로보틱스 및 엣지 컴퓨팅 솔루션 공개",
-        "summary_ko": "대만 임베디드 컴퓨팅 전문기업 Vecow가 2026 Automate 전시회를 앞두고 AI 기반 로보틱스 및 엣지 컴퓨팅 솔루션을 공개했다. 산업용 자동화 시장을 겨냥한 AI 엣지 하드웨어 플랫폼을 통해 로봇 제어 및 실시간 데이터 처리 역량을 강화하는 방향을 제시했다.",
+        "title_ko": "Automate 2026으로 가는 길: Vecow, AI 기반 로보틱스 및 엣지 컴퓨팅 솔루션 공개",
+        "summary_ko": "Vecow가 Automate 2026을 앞두고 AI 기반 로보틱스 및 엣지 컴퓨팅 솔루션을 선보이며 산업용 자동화 시장 공략을 강화하고 있다. 임베디드 컴퓨팅과 AI를 결합한 로봇 솔루션이 제조·물류 자동화 분야에서 주목받고 있다.",
         "signal": "Watch",
-        "signal_reason": "산업용 로보틱스·엣지 AI 하드웨어 시장의 경쟁 구도가 심화되고 있어 LG전자의 로봇 플랫폼 및 엣지 컴퓨팅 전략에 중기적 영향을 줄 수 있는 동향이다.",
-        "lg_implication": "LG전자가 산업용 로봇 및 스마트팩토리 솔루션을 확대하는 과정에서 Vecow와 같은 엣지 AI 컴퓨팅 전문업체의 동향을 파악하고, 자체 로봇 플랫폼의 엣지 AI 역량 차별화 전략을 검토할 필요가 있다.",
+        "signal_reason": "산업용 AI 엣지 컴퓨팅 및 로보틱스 솔루션 시장의 경쟁 구도 변화를 중기적으로 모니터링할 필요가 있음.",
+        "lg_implication": "LG전자의 산업용 로봇 및 스마트팩토리 사업 확장 시 Vecow와 같은 AI 엣지 컴퓨팅 플랫폼 업체와의 협력 또는 경쟁 관계를 고려해야 한다.",
         "keywords": [
-          "엣지컴퓨팅",
-          "AI로보틱스",
-          "산업자동화"
+          "AI 로보틱스",
+          "엣지 컴퓨팅",
+          "산업 자동화"
         ],
         "score": 1.8
       },
@@ -1484,15 +1451,15 @@
         "raw_score": 1.5,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "나와 나의 외골격: 웨어러블 로보틱스의 부상",
-        "summary_ko": "파이낸셜 타임스가 웨어러블 외골격 로봇의 급성장 트렌드를 조명하며, 산업 현장 및 의료·재활 분야에서의 실용화 사례를 다루었다. EU 지역을 중심으로 웨어러블 로보틱스 시장이 확대되며 기업과 개인 모두의 관심이 높아지고 있다.",
+        "title_ko": "나와 나의 외골격 슈트: 웨어러블 로보틱스의 부상",
+        "summary_ko": "웨어러블 로보틱스(외골격 슈트) 기술이 산업 현장, 의료, 재활 분야에서 빠르게 확산되며 시장이 성장하고 있다. EU 지역을 중심으로 착용형 로봇 기술이 실용화 단계에 접어들며 관련 산업 생태계가 형성되고 있다.",
         "signal": "Watch",
-        "signal_reason": "웨어러블 외골격 로봇은 산업·의료·소비자 영역에 걸쳐 중기적으로 성장하는 시장으로, LG전자의 CLOi 로봇 및 웨어러블 사업 방향과 직결되는 트렌드다.",
-        "lg_implication": "LG전자는 기존 CLOi 수트봇 등 웨어러블 로봇 역량을 바탕으로 EU 시장의 산업용·의료용 외골격 수요 확대에 선제적으로 대응하는 전략을 검토할 필요가 있다.",
+        "signal_reason": "웨어러블 로보틱스는 LG전자의 CLOi 슈트봇 등 기존 외골격 사업과 직접 연관되는 중기적 시장 동향으로 지속 모니터링이 필요하다.",
+        "lg_implication": "LG전자는 CLOi 슈트봇 라인업을 보유한 만큼 EU 시장의 웨어러블 로보틱스 수요 확대에 대응해 산업용·의료용 외골격 제품의 유럽 시장 진출 전략을 구체화할 필요가 있다.",
         "keywords": [
-          "웨어러블 로보틱스",
-          "외골격 로봇",
-          "CLOi 수트봇"
+          "웨어러블로보틱스",
+          "외골격슈트",
+          "착용형로봇"
         ],
         "score": 1.8
       },
@@ -1510,49 +1477,76 @@
         "entity": null,
         "domain": "news.google.com",
         "title_ko": "시즈 | ACE 로보틱스, 엔젤+ 투자 라운드 완료",
-        "summary_ko": "ACE 로보틱스가 엔젤+ 단계의 투자 유치를 완료하며 초기 성장 자금을 확보했다. 해당 소식은 자동차/로보틱스 전문 미디어 Gasgoo를 통해 보도되었다.",
+        "summary_ko": "ACE 로보틱스가 엔젤+ 단계의 투자 유치를 성공적으로 완료했다. 이는 초기 단계 로보틱스 스타트업에 대한 투자 관심이 지속되고 있음을 보여준다.",
         "signal": "FYI",
-        "signal_reason": "초기 단계(엔젤+) 로보틱스 스타트업의 소규모 투자 유치로 LG전자의 현재 전략에 즉각적 영향은 제한적이다.",
-        "lg_implication": "ACE 로보틱스의 성장 방향과 기술 영역을 지속 모니터링하여 향후 파트너십 또는 경쟁 구도 변화에 대비할 필요가 있다.",
+        "signal_reason": "엔젤+ 단계의 초기 스타트업 투자 소식으로 LG전자 사업에 즉각적인 영향은 낮으나 로보틱스 생태계 동향 파악 차원에서 참고할 만하다.",
+        "lg_implication": "로보틱스 분야 초기 투자 생태계의 활성화 흐름을 지속 모니터링하여 잠재적 파트너십 또는 기술 동향 파악에 활용할 수 있다.",
         "keywords": [
-          "ACE 로보틱스",
-          "엔젤+ 투자",
-          "로보틱스 스타트업"
+          "ACE로보틱스",
+          "엔젤투자",
+          "로보틱스스타트업"
         ],
         "score": 1.5
       },
       {
-        "id": "b3fbb121402c",
-        "title": "Kazakh Robotics Team Wins Top Judged Award at U.S. Tech Event - The Times Of Central Asia",
-        "summary": "Kazakh Robotics Team Wins Top Judged Award at U.S. Tech Event&nbsp;&nbsp;The Times Of Central Asia",
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPTDBsWGtoZzlvUE9ncTQ2UURVb1B5OHlvdndYRFcyOENtTW9meVF1cThLZzJKc0pNWGFtTFJsTGVSQ3g0R0pJVEtweXRHMmVRMkNQV1psQm9yWExsaGpKYWRJVWwwaHhIcUoxSURnUEJZaG54SjdKd2FxNUtOX1JBRFdPcl9tSXMw?oc=5",
+        "id": "f89d4b065a43",
+        "title": "Engineering Students Use AI and Robotics To Transform Campus Tours - Cedarville University",
+        "summary": "Engineering Students Use AI and Robotics To Transform Campus Tours&nbsp;&nbsp;Cedarville University",
+        "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOQ2JWTHdVb2tNcWozeWxseTk4UUhqUnI4U3BVdVJpWHRsYkJ4bUhJVE56TEx4eUxzdTMyaWtCYWh3ZTR5bjg5TERxVFBYb20ySFp4YXRKR2tCRk9xWUkzQzh3QmdaZHM1WjR3RjBJemVKUVdXa05zanB6ZTdSSW9zb3RzWWVTMksycmM0cUtKT2pvOWY5aXh5a3NmdnJ0VVNRejdCUW1R0gHaAUFVX3lxTFBISmNWb25JMS1zSXV2WjZRQVJNZjgxa0J1c2xrUWxFdFN1aUIwQXpqNm1saDhwd0ZJSDhxb1VIRkpQRFZGeTgydEJWZGwwZHZMOG56WW9tMFdTS0JYZUZoaWlFdUZpN1E3TlRreFBFMlBXamNaZVo0cDFXUzJZQk5iS1BzMmcxSUdHQ3hFMHdUQy01QzI1ODB1MDJuc2daTTdYVzRzU3ZLaXB5RnJWVlRocUU5R0lIQWZXdU1zenRVa0FyN29sWGNydlg2dHlLSjQyVFV6TkU0N2pR?oc=5",
         "source": "Google News EU - robotics",
         "region": "EU",
-        "pub_date": "Mon, 15 Jun 2026 11:27:35 GMT",
-        "pub_ts": 1781522855,
+        "pub_date": "Mon, 15 Jun 2026 12:43:54 GMT",
+        "pub_ts": 1781527434,
         "tier": "T5",
         "raw_score": 1.5,
         "entity": null,
         "domain": "news.google.com",
-        "title_ko": "카자흐스탄 로보틱스 팀, 미국 기술 행사에서 최고 심사위원상 수상",
-        "summary_ko": "카자흐스탄 로보틱스 팀이 미국에서 개최된 기술 행사에서 최고 심사위원상을 수상하며 중앙아시아 지역의 로보틱스 기술 역량을 입증했다. 이는 신흥 지역에서도 로봇 분야 인재와 기술 개발이 활발히 이루어지고 있음을 보여주는 사례다.",
+        "title_ko": "공대생들, AI와 로봇공학을 활용해 캠퍼스 투어 혁신 - 세다빌 대학교",
+        "summary_ko": "세다빌 대학교 공학과 학생들이 AI와 로봇 기술을 결합하여 캠퍼스 투어를 혁신하는 프로젝트를 진행하였다. 이는 교육 현장에서 AI 로봇이 안내·서비스 역할을 수행하는 실용적 적용 사례로 주목받고 있다.",
         "signal": "FYI",
-        "signal_reason": "LG전자의 핵심 사업과 직접적 연관성은 낮으나 신흥 지역의 로보틱스 생태계 성장 동향으로 참고할 만한 정보다.",
-        "lg_implication": "중앙아시아 등 신흥 시장에서도 로보틱스 인재 풀과 기술 생태계가 성장하고 있어, LG전자의 글로벌 로봇 인재 확보 및 파트너십 전략 수립 시 해당 지역을 고려할 필요가 있다.",
+        "signal_reason": "대학 교육 프로젝트 수준의 사례로 LG 전략에 즉각적 영향은 없으나 서비스 로봇의 교육·안내 분야 확산 트렌드를 보여주는 참고 정보이다.",
+        "lg_implication": "LG전자 서비스 로봇(클로이 등)의 안내·가이드 기능 고도화 및 교육·공공기관 시장 진출 가능성을 검토하는 데 참고할 수 있다.",
         "keywords": [
-          "카자흐스탄",
-          "로보틱스",
-          "신흥시장 기술인재"
+          "서비스 로봇",
+          "AI 안내 로봇",
+          "교육 현장 로봇"
         ],
         "score": 1.5
+      },
+      {
+        "id": "36213f58a1e7",
+        "title": "Amazon to pump €10B into European robotics - TyN Magazine",
+        "summary": "Amazon to pump €10B into European robotics&nbsp;&nbsp;TyN Magazine",
+        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBKUTNZLWh3amhVOERBTW8yOXloVUF5SlpoVEd0UlBYY3JET3o2cmhfLXhnc3A2Q2NvVDNrbm1sRzcxQnpiQmZibmhVV1lfTGlDN0dYcE0wZkI2Q0NUdWVNZktra2VWN3dvRzEzNTFHWmlnVmVCLXc?oc=5",
+        "source": "Google News EU - robotics",
+        "region": "EU",
+        "pub_date": "Mon, 15 Jun 2026 13:25:29 GMT",
+        "pub_ts": 1781529929,
+        "tier": "T5",
+        "raw_score": 1.5,
+        "entity": null,
+        "domain": "news.google.com",
+        "title_ko": "아마존, 유럽 로보틱스에 100억 유로 투자 계획",
+        "summary_ko": "아마존이 유럽 로보틱스 분야에 100억 유로(약 15조원) 규모의 대규모 투자를 단행할 계획을 발표했다. 이는 유럽 내 물류 자동화 및 로봇 인프라 확충을 위한 전략적 행보로 해석된다.",
+        "signal": "Watch",
+        "signal_reason": "글로벌 빅테크의 유럽 로보틱스 시장 대규모 자본 투입은 중기적으로 산업용·물류용 로봇 생태계 재편을 가속화할 수 있어 LG전자의 로봇 사업 방향성에 영향을 미칠 수 있다.",
+        "lg_implication": "아마존의 유럽 로보틱스 투자 확대로 물류·서비스 로봇 시장 경쟁이 심화될 수 있으며, LG전자는 CLOi 등 서비스 로봇 솔루션의 유럽 시장 차별화 전략 및 파트너십 기회를 선제적으로 검토할 필요가 있다.",
+        "keywords": [
+          "아마존",
+          "유럽 로보틱스",
+          "물류 자동화",
+          "대규모 투자",
+          "로봇 생태계"
+        ],
+        "score": 1.8
       }
     ]
   },
   "regional_delta": {
-    "topic": "Foxconn·대만 병원, NVIDIA 에이전틱 AI 및 피지컬 AI 도입 협력",
-    "kr_angle": "삼성·LG 등 국내 제조·의료 AI 플랫폼 경쟁력 대비 관점에서, NVIDIA-Foxconn 연합이 스마트팩토리 및 의료 로봇 생태계를 선점할 경우 국내 기업의 공급망 편입 기회와 기술 종속 리스크를 동시에 주목할 것으로 보임.",
-    "us_angle": "NVIDIA의 Isaac·Holoscan 플랫폼 확장성과 에이전틱 AI 수익화 모델 검증 사례로 부각하며, 대만을 인도-태평양 AI 인프라 허브로 육성하는 지정학적 공급망 재편 전략의 성과로 긍정 평가하는 시각이 지배적임.",
-    "cn_angle": "화웨이·바이두 등 자국 AI 인프라 대안을 강조하며, 미국-대만 기술 동맹 심화가 중국 제조·의료 AI 생태계를 겨냥한 견제라는 프레임으로 해석하고 자국 피지컬 AI 투자 가속화 필요성을 역설하는 논조가 예상됨."
+    "topic": "Foxconn 및 대만 병원의 NVIDIA 에이전틱·피지컬 AI 도입",
+    "kr_angle": "삼성·LG 등 국내 제조·의료 AI 경쟁력과 비교하며 Foxconn의 스마트팩토리 고도화가 한국 전자·로봇 산업에 미칠 위협 요인으로 주목하고, NVIDIA 협력 생태계에서 한국 기업의 포지셔닝 전략 필요성을 강조할 가능성이 높다.",
+    "us_angle": "NVIDIA의 Omniverse·Isaac 플랫폼이 제조와 의료 두 축에서 동시에 채택되며 엔터프라이즈 AI 인프라 표준으로 자리잡고 있음을 부각하고, NVIDIA의 물리적 AI 생태계 확장이 주가·시장 지배력 강화로 이어진다는 낙관적 시각을 제시한다.",
+    "cn_angle": "대만 Foxconn과 NVIDIA의 심화 협력을 미·대만 기술 동맹 강화 사례로 경계하며, 화웨이·바이두 등 자국 AI 칩·로봇 플랫폼의 자립 필요성을 재확인하는 맥락에서 보도하고 미국의 대중 반도체 수출 통제 우회 가능성에 예민하게 반응할 것으로 보인다."
   },
   "weak_signals": [
     {
@@ -1563,21 +1557,21 @@
       "level": "hot"
     },
     {
-      "entity": "boston dynamics",
-      "today_count": 5,
-      "avg_count": 0.1,
-      "spike_pct": 4900,
-      "level": "hot"
-    },
-    {
-      "entity": "figure",
+      "entity": "tesla",
       "today_count": 4,
       "avg_count": 0.1,
       "spike_pct": 3900,
       "level": "hot"
     },
     {
-      "entity": "tesla",
+      "entity": "boston dynamics",
+      "today_count": 3,
+      "avg_count": 0.1,
+      "spike_pct": 2900,
+      "level": "hot"
+    },
+    {
+      "entity": "figure",
       "today_count": 3,
       "avg_count": 0.1,
       "spike_pct": 2900,
@@ -1591,7 +1585,7 @@
       "level": "hot"
     },
     {
-      "entity": "embodied intelligence",
+      "entity": "abb",
       "today_count": 2,
       "avg_count": 0.1,
       "spike_pct": 1900,
@@ -1600,70 +1594,70 @@
   ],
   "brief": {
     "action_required": [
-      "삼성-레인보우로보틱스-쿠팡으로 이어지는 국내 로봇 생태계 연합이 물류 현장 상용화 단계에 진입한 만큼, LG전자는 CLOi 로봇 라인업의 물류·서비스 현장 실증 레퍼런스를 조기 확보하고 대응 생태계 파트너십(e-커머스/3PL 물류사)을 즉시 검토해야 한다.",
-      "NVIDIA의 Isaac GR00T 플랫폼 및 두산·폭스콘과의 협력 확대를 고려해, LG전자 로봇 개발 조직 내 NVIDIA Isaac 플랫폼 기반 시뮬레이션·훈련 환경 도입 타당성을 긴급 검토하고 NVIDIA와의 공식 협력 채널 개설을 추진해야 한다."
+      "NVIDIA Isaac GR00T 레퍼런스 플랫폼이 휴머노이드 로봇 개발 표준으로 자리잡기 전에 LG전자의 로봇 AI 개발 로드맵과의 호환성·협력 가능성을 긴급 검토하고 NVIDIA와의 파트너십 협상 채널을 선제적으로 가동해야 함.",
+      "삼성-레인보우로보틱스-쿠팡 연합이 국내 물류 로봇 상용화 레퍼런스를 선점하고 있으므로, LG전자 CLOi 로봇의 물류·유통 버티컬 고객사(CJ대한통운, 롯데글로벌로지스 등) 대상 긴급 파일럿 확대 방안을 수립해야 함."
     ],
     "regional_delta": {
-      "KR": "삼성-레인보우로보틱스 RB-Y1의 쿠팡 물류센터 상용 투입으로 국내 휴머노이드 로봇이 실증을 넘어 상업적 운용 단계에 진입하며 K-로보틱스 경쟁 구도가 본격화되고 있다.",
-      "US": "OpenAI의 로보틱스 사업부 공식 출범으로 AI 소프트웨어 최강자가 피지컬 AI 시장에 직접 참전, 테슬라 옵티머스와의 경쟁을 포함한 휴머노이드 생태계 재편이 가속화되고 있다.",
-      "CN": "금일 기사 기준 중국 업계의 직접적인 신규 동향은 확인되지 않으나, NVIDIA-Foxconn의 스마트 제조 협력이 아시아 제조 공급망 전반의 AI 로봇 도입 압력을 높이고 있어 중국 경쟁사 동향 모니터링이 필요하다."
+      "KR": "삼성-레인보우로보틱스 RB-Y1의 쿠팡 물류센터 실전 투입으로 국내 상업용 휴머노이드 로봇 시장이 공식 개막되며 삼성 중심의 K-로보틱스 생태계 선점 구도가 가시화됨.",
+      "US": "OpenAI 로보틱스 사업부 신설과 NVIDIA의 Isaac GR00T 플랫폼 공개가 맞물리며 AI 소프트웨어 기반 휴머노이드 로봇 경쟁이 테슬라·피지컬 인텔리전스 등 기존 플레이어를 넘어 빅테크 전면전으로 확대됨.",
+      "CN": "금일 주요 기사에서 중국발 직접 동향은 포착되지 않았으나, 폭스콘의 NVIDIA 기반 스마트 제조 로봇화 가속은 대만-중화권 제조 생태계의 AI 로봇 전환을 촉진하여 중국 로봇 제조 경쟁력과의 간접 충돌 리스크가 증대됨."
     },
     "cvc_insight": [
-      "삼성전자의 레인보우로보틱스 인수가 쿠팡 물류 현장 실증이라는 가시적 성과로 이어진 사례는, LG전자 CVC가 국내 로봇 스타트업 투자 시 '앵커 고객사(anchor customer) 연계 가능성'을 핵심 투자 기준으로 설정해야 함을 시사한다.",
-      "NVIDIA가 두산·폭스콘 등 전통 제조·산업 대기업과 잇따라 Physical AI 파트너십을 체결하는 패턴은, LG전자가 NVIDIA와의 전략적 협력을 선점하지 못할 경우 생태계 내 포지셔닝이 약화될 수 있음을 경고하는 신호다."
+      "NVIDIA가 두산그룹과 Physical AI·AI 팩토리 인프라 협력을 체결한 것은 국내 대기업 중 LG전자가 NVIDIA와의 전략적 로봇 파트너십에서 뒤처질 수 있음을 의미하며, LG CNS·LG전자 통합 차원의 NVIDIA 협력 구조를 조속히 구체화해야 함.",
+      "OpenAI 로보틱스 사업부 출범은 LG전자가 CVC 포트폴리오 내 AI 로봇 소프트웨어 스타트업(엔비디아 Isaac 생태계 기반 또는 LLM 기반 로봇 제어 스타트업)에 대한 전략적 투자를 검토할 적기임을 시사함."
     ],
-    "bottom_line": "오늘의 핵심 메시지는 '로봇 AI 생태계의 진영화'다. NVIDIA-두산·폭스콘, 삼성-레인보우로보틱스-쿠팡, OpenAI 로보틱스 진영이 각각 형성되는 가운데, LG전자는 NVIDIA Isaac 플랫폼 협력과 물류·서비스 앵커 고객 확보를 통해 독자적인 생태계 연합을 구축하지 않으면 전략적 고립 위험이 현실화될 수 있다."
+    "bottom_line": "오늘 하루 NVIDIA의 플랫폼 표준화, OpenAI의 시장 진입, 삼성-레인보우 연합의 상용화 성과가 동시에 가시화되며 로봇 산업의 '플랫폼-생태계-레퍼런스' 경쟁 구도가 급속히 굳어지고 있다. LG전자가 이 판에서 독자 플레이어로 남으려면 NVIDIA와의 협력 구조 확보 및 국내 물류·서비스 버티컬 레퍼런스 선점을 지금 당장 실행에 옮겨야 한다."
   },
   "geopolitical": {
     "KR": {
       "temp": "상승",
-      "policy": "삼성-레인보우-쿠팡 생태계 연합 가시화 및 BCI 융합 로봇으로 기술 고도화 가속",
-      "desc": "레인보우로보틱스 RB-Y1이 쿠팡 물류센터에 실제 투입되며 K-휴머노이드의 상업화 분기점을 맞이했고, 현대모비스-보스턴 다이나믹스 부품 공급망 협력도 본격화 기대를 받고 있다. 엔젤로보틱스의 BCI 연동 웨어러블 휴머노이드 개발 착수와 두산-NVIDIA Physical AI 협력은 한국이 하드웨어 상용화와 차세대 기술 선점을 동시에 추진하고 있음을 보여준다.",
+      "policy": "삼성-레인보우로보틱스-쿠팡 연합이 물류 자동화 상용화를 선도하며 K-로보틱스 밸류체인 구체화",
+      "desc": "레인보우로보틱스 RB-Y1이 쿠팡 물류센터에 실제 투입되며 국내 휴머노이드 로봇의 상업적 검증이 본격화되었고, 현대모비스의 보스턴다이나믹스 부품 공급 기대감 등 대기업 계열사 중심의 로봇 밸류체인이 빠르게 구체화되고 있다. 다만 유안타증권의 현대차 투자의견 하향 등 로봇 테마 랠리 과열 우려가 제기되어 밸류에이션 부담이 잠재 리스크로 부상하고 있다.",
       "items": [
-        "레인보우로보틱스 RB-Y1, 쿠팡 물류창고 상업적 운용 개시 → K-휴머노이드 실증 검증 완료",
-        "현대모비스, 보스턴 다이나믹스향 로봇 부품 공급 가능성으로 목표주가 상향 → 현대차그룹 내 로봇 공급망 통합 가속",
-        "엔젤로보틱스 BCI 연동 웨어러블 휴머노이드 개발 착수 → 뇌-로봇 인터페이스 선도 포지셔닝"
+        "삼성-레인보우로보틱스-쿠팡 물류 자동화 생태계 상용화 가시화",
+        "현대차그룹 내 보스턴다이나믹스 연계 부품 밸류체인(현대모비스) 형성",
+        "엔젤로보틱스 BCI 연동 웨어러블 휴머노이드 개발 착수로 차세대 인터페이스 선점 시도"
       ]
     },
     "US": {
       "temp": "상승",
-      "policy": "NVIDIA Isaac GR00T 생태계 표준 선점 + OpenAI 로보틱스 진출로 소프트웨어 AI 강자의 물리적 AI 영역 확장 본격화",
-      "desc": "NVIDIA가 Isaac GR00T 레퍼런스 플랫폼 공개, OpenMDW 표준 채택, 폭스콘·두산 등 글로벌 파트너십을 통해 휴머노이드 로봇 AI 인프라의 사실상 표준 지위를 구축하고 있다. OpenAI의 로보틱스 부문 출범은 테슬라 옵티머스 등 기존 플레이어와의 경쟁을 심화시키며 미국 내 Physical AI 소프트웨어 패권 경쟁을 촉발하고 있다.",
+      "policy": "NVIDIA의 Isaac GR00T 레퍼런스 플랫폼 공개와 OpenAI 로보틱스 사업부 신설로 AI 빅테크의 휴머노이드 생태계 표준화 경쟁 본격화",
+      "desc": "NVIDIA가 Isaac GR00T 레퍼런스 휴머노이드 플랫폼을 공개하며 로봇 AI 개발 표준화를 주도하려는 전략을 가속화하고 있으며, OpenAI의 로보틱스 사업부 신설로 테슬라 옵티머스와의 경쟁 구도가 심화되고 있다. Teradyne Robotics의 Automate 2026 양산 솔루션 공개 예고는 Physical AI가 산업 현장 실용화 단계에 진입했음을 시사하며, 미국 빅테크·로봇 기업들이 플랫폼 생태계 선점을 위한 투자를 집중하고 있다.",
       "items": [
-        "NVIDIA Isaac GR00T 학술용 레퍼런스 플랫폼 공개 + OpenMDW 표준 채택 → 로봇 AI 생태계 표준 선점 전략",
-        "OpenAI 로보틱스 부문 공식 출범 → AI 소프트웨어 강자의 Physical AI 하드웨어 생태계 진입 선언",
-        "Figure AI 휴머노이드, JCPenney 등 패션 유통 현장 배치 → 리테일·물류 분야 상업적 운용 확산"
+        "NVIDIA Isaac GR00T 레퍼런스 플랫폼으로 휴머노이드 개발 표준화 주도",
+        "OpenAI 로보틱스 사업부 신설로 AI 소프트웨어 강자의 로봇 시장 직접 진출 선언",
+        "Teradyne Robotics Automate 2026에서 Physical AI 양산 솔루션 공개 예고"
       ]
     },
     "CN": {
       "temp": "상승",
-      "policy": "NVIDIA-Unitree 협업으로 중국 로봇 기업이 글로벌 AI 플랫폼과 연계하며 휴머노이드 기술 경쟁력 확보 시도",
-      "desc": "NVIDIA가 중국 기업(Unitree 등)과 파트너십을 맺고 피지컬 AI 휴머노이드 공동 개발에 나서면서, 중국 로봇 기업들이 미국 AI 플랫폼을 활용한 기술 고도화 경로를 확보하는 양상이 포착된다. 다만 지정학적 반도체 수출 규제 환경 속에서 NVIDIA-중국 협업은 제한적 범위 내에서 진행될 가능성이 높으며, 중국은 동시에 자체 Physical AI 생태계 구축을 병행 추진하는 이중 전략을 취하고 있는 것으로 분석된다.",
+      "policy": "BYD·샤오미 등 EV 대기업들이 제조 인프라와 정부 지원을 기반으로 테슬라 대항 휴머노이드 상용화 경쟁에 전면 참전",
+      "desc": "BYD, 샤오미 등 중국 주요 전기차 기업들이 기존 EV 제조 인프라와 정부의 강력한 지원을 활용해 휴머노이드 로봇 상용화를 빠르게 추진하며 테슬라와의 글로벌 경쟁 구도를 형성하고 있다. 또한 NVIDIA가 중국 기업과 파트너십을 맺고 피지컬 AI 휴머노이드 개발에 협력하는 동향은 미국의 대중 기술 규제 속에서도 로봇 분야 협력 채널이 유지되고 있음을 보여주며, 중국의 기술 생태계 편입 전략이 유효함을 시사한다.",
       "items": [
-        "NVIDIA-중국 기업 피지컬 AI 휴머노이드 협업 공식화 → 중국 로봇 기업의 글로벌 AI 플랫폼 연계 가속",
-        "Unitree, Boston Dynamics와 차별화된 전략으로 글로벌 휴머노이드 경쟁 구도 내 독자 포지셔닝 시도",
-        "미국 수출 규제 리스크 속 NVIDIA 의존도 관리 필요 → 자체 로봇 AI 칩·플랫폼 개발 병행 압박 증가"
+        "BYD·샤오미 등 EV 대기업의 휴머노이드 로봇 상용화 경쟁 본격 참전",
+        "NVIDIA-중국 기업 간 피지컬 AI 휴머노이드 파트너십 체결로 기술 협력 채널 유지",
+        "저가형 휴머노이드 양산 경쟁 심화 속 정밀도·신뢰성 기술 격차 극복이 핵심 과제로 부상"
       ]
     }
   },
   "narrative_shifts": [
     {
       "keyword": "Physical AI",
-      "from_frame": "미래 비전·연구 개념",
-      "to_frame": "산업 표준 양산 언어",
-      "desc": "NVIDIA(Isaac GR00T, Cosmos), 야스카와(250억 엔 투자), Teradyne Robotics(Automate 2026 양산 선언), 폭스콘·두산 협력 등 거의 모든 주요 플레이어가 'Physical AI'를 공통 프레이밍으로 채택하며 업계 표준 용어로 정착하고 있다. 단순 기술 비전이 아닌 설비투자·전시회 출품·파트너십 계약의 공식 명분으로 사용되며 상업적 실행 언어로 전환되고 있다."
+      "from_frame": "미래 기술 담론 및 연구 개념",
+      "to_frame": "양산 단계 진입 및 산업 투자 기준",
+      "desc": "Physical AI는 불과 얼마 전까지 NVIDIA가 제시한 비전 수준의 개념어였으나, 야스카와의 250억 엔 설비투자·Teradyne의 양산 준비 완료 시연·폭스콘·두산 협력 발표 등을 통해 실제 자본 배분과 산업 전략의 기준 언어로 자리잡았다. '로봇 자동화'나 'AI 로봇'이라는 기존 표현 대신 Physical AI가 업계 공통 프레임으로 수렴되며, 이 용어를 쓰지 않으면 담론에서 뒤처지는 구조가 형성되고 있다."
     },
     {
       "keyword": "휴머노이드 로봇 상용화",
-      "from_frame": "연구소·파일럿 실증 단계",
-      "to_frame": "실제 노동 현장 배치 단계",
-      "desc": "레인보우로보틱스 RB-Y1의 쿠팡 물류창고 투입, Figure AI 로봇의 JCPenney·Brooks Brothers 배치 등 휴머노이드 로봇이 실험실과 쇼케이스를 벗어나 실제 상업 운용 환경에 진입했다는 서사가 형성되고 있다. 담론의 초점이 '언제 가능한가'에서 '어떤 현장에서 운용 중인가'로 이동하며 상용화 기정사실화 프레이밍이 가속화되고 있다."
+      "from_frame": "기술 시연 및 PoC 단계",
+      "to_frame": "실제 현장 투입 및 생태계 경쟁 단계",
+      "desc": "레인보우로보틱스 RB-Y1의 쿠팡 물류센터 실전 투입, 중국 EV 기업들의 테슬라 대항 상용화 경쟁 선언, OpenAI 로보틱스 사업부 신설 등은 휴머노이드 담론이 '언제 가능할까'에서 '누가 먼저 시장을 선점하는가'로 이동했음을 보여준다. 단, 저가형 로봇의 정밀 작업 한계 지적과 가짜 영상 논란이 동시에 부각되며, 상용화 기대와 기술 현실 간 괴리에 대한 비판적 시각도 담론 내에 공존하기 시작했다."
     },
     {
-      "keyword": "AI 소프트웨어 기업의 로보틱스 진입",
-      "from_frame": "칩·소프트웨어 공급자 역할",
-      "to_frame": "로봇 생태계 플랫폼 지배자 경쟁",
-      "desc": "NVIDIA가 Isaac GR00T 레퍼런스 플랫폼 공개·중국 기업 협력·OpenMDW 표준 채택 등을 통해 단순 GPU 공급을 넘어 로봇 개발 표준을 선점하려는 움직임을 보이고, OpenAI는 로보틱스 전담 부문을 신설하며 소프트웨어 강자가 하드웨어 생태계에 직접 진입하는 구조적 변화가 가시화되고 있다. 이에 따라 업계 담론이 '누가 더 좋은 로봇을 만드는가'에서 '누가 로봇 AI 플랫폼 표준을 장악하는가'로 이동하고 있다."
+      "keyword": "로봇 산업 밸류체인",
+      "from_frame": "완성품 로봇 기업 중심 평가",
+      "to_frame": "부품·플랫폼·생태계 연결망으로 확장 평가",
+      "desc": "현대모비스의 보스턴다이나믹스 부품 공급 기대감에 따른 목표주가 상향, 삼성-레인보우로보틱스-쿠팡으로 이어지는 협력 구조 주목, NVIDIA의 Isaac GR00T 레퍼런스 플랫폼을 통한 표준 생태계 주도 시도 등은 로봇 산업을 단일 기업 역량이 아닌 밸류체인 전체의 연결 구조로 보는 시각이 확산되고 있음을 시사한다. 이에 따라 투자·전략 분석의 단위도 개별 로봇 기업에서 생태계 포지셔닝과 플랫폼 지배력으로 이동하는 프레임 전환이 가속화되고 있다."
     }
   ]
 }
