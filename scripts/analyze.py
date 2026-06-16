@@ -29,28 +29,37 @@ def analyze_batch(articles):
         f"[{i+1}] 제목: {a['title'][:120]}\n요약: {(a.get('summary') or '')[:180]}\n지역: {a['region']}"
         for i, a in enumerate(articles)
     ])
-    prompt = f"""기사 {len(articles)}개 분석. JSON 배열만 반환:
+    n = len(articles)
+    prompt = f"""아래 기사 {n}개를 분석하고 JSON 배열을 반환하세요. 반드시 {n}개 항목 모두 포함.
 
 {items}
 
+반환 형식 (idx는 1부터 {n}까지):
 [
-  {{"idx":1,"title_ko":"한국어 제목(영문/중문만 번역)","summary_ko":"2문장 핵심요약","signal":"Action|Watch|FYI","lg_implication":"LG전자 시사점 1문장","keywords":["kw1","kw2","kw3"]}},
+  {{"idx":1,"title_ko":"영어/중국어 제목은 반드시 한국어로 번역. 한국어 제목은 원문 그대로.","summary_ko":"한국어 2문장 핵심 요약","signal":"Action 또는 Watch 또는 FYI","lg_implication":"LG전자 관점 시사점 1문장","keywords":["키워드1","키워드2","키워드3"]}},
+  {{"idx":2, ...}},
   ...
 ]
 
-signal 기준: Action=LG사업 즉각영향/경쟁위협, Watch=중기모니터링, FYI=참고"""
+signal: Action=LG사업 즉각 영향/경쟁위협, Watch=중기 모니터링, FYI=참고용"""
 
     try:
         msg = client.messages.create(
             model=HAIKU,
-            max_tokens=BATCH_SIZE * 220,
+            max_tokens=n * 350,
             system=SYSTEM_HAIKU,
             messages=[{"role": "user", "content": prompt}]
         )
         text = msg.content[0].text.strip()
         start, end = text.find('['), text.rfind(']') + 1
+        if start == -1 or end == 0:
+            print(f"    ⚠ batch: no JSON array found. Response: {text[:200]}")
+            return {}
         results = json.loads(text[start:end])
-        return {r['idx'] - 1: r for r in results if 1 <= r.get('idx', 0) <= len(articles)}
+        mapped = {r['idx'] - 1: r for r in results if 1 <= r.get('idx', 0) <= n}
+        if len(mapped) < n:
+            print(f"    ⚠ batch: got {len(mapped)}/{n} results")
+        return mapped
     except Exception as e:
         print(f"    ⚠ batch error: {e}")
         return {}
