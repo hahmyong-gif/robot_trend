@@ -24,42 +24,51 @@ BATCH_SIZE = 5  # 기사 배치 크기
 # ── 기사 분석 (Haiku 배치) ────────────────────────────────────
 
 def analyze_batch(articles):
-    """여러 기사를 한 번의 Haiku 호출로 분석"""
+    """여러 기사를 한 번의 Haiku 호출로 분석 (순서 기반 매핑)"""
+    n = len(articles)
     items = "\n\n".join([
-        f"[{i+1}] 제목: {a['title'][:120]}\n요약: {(a.get('summary') or '')[:180]}\n지역: {a['region']}"
+        f"기사{i+1})\n제목: {a['title'][:120]}\n요약: {(a.get('summary') or '')[:180]}"
         for i, a in enumerate(articles)
     ])
-    n = len(articles)
-    prompt = f"""아래 기사 {n}개를 분석하고 JSON 배열을 반환하세요. 반드시 {n}개 항목 모두 포함.
+    prompt = f"""아래 로봇 업계 기사 {n}개를 분석하세요. 입력 순서대로 정확히 {n}개 항목을 JSON 배열로 반환하세요.
 
 {items}
 
-반환 형식 (idx는 1부터 {n}까지):
+반환 형식 (순서 유지, {n}개 모두 포함):
 [
-  {{"idx":1,"title_ko":"영어/중국어 제목은 반드시 한국어로 번역. 한국어 제목은 원문 그대로.","summary_ko":"한국어 2문장 핵심 요약","signal":"Action 또는 Watch 또는 FYI","lg_implication":"LG전자 관점 시사점 1문장","keywords":["키워드1","키워드2","키워드3"]}},
-  {{"idx":2, ...}},
+  {{
+    "title_ko": "영어/중국어 제목은 반드시 한국어로 번역. 한국어 제목은 원문.",
+    "summary_ko": "한국어 2문장 핵심 요약",
+    "signal": "Action 또는 Watch 또는 FYI",
+    "lg_implication": "LG전자 관점 시사점 1문장",
+    "keywords": ["키워드1", "키워드2", "키워드3"]
+  }},
   ...
 ]
 
-signal: Action=LG사업 즉각 영향/경쟁위협, Watch=중기 모니터링, FYI=참고용"""
+signal 기준: Action=LG사업 즉각 영향/경쟁위협, Watch=중기 모니터링, FYI=참고용"""
 
     try:
         msg = client.messages.create(
             model=HAIKU,
-            max_tokens=n * 350,
+            max_tokens=n * 400,
             system=SYSTEM_HAIKU,
             messages=[{"role": "user", "content": prompt}]
         )
         text = msg.content[0].text.strip()
         start, end = text.find('['), text.rfind(']') + 1
         if start == -1 or end == 0:
-            print(f"    ⚠ batch: no JSON array found. Response: {text[:200]}")
+            print(f"    ⚠ batch: no JSON array. Response: {text[:300]}")
             return {}
         results = json.loads(text[start:end])
-        mapped = {r['idx'] - 1: r for r in results if 1 <= r.get('idx', 0) <= n}
+        # 순서 기반 매핑 (idx 없이)
+        mapped = {i: r for i, r in enumerate(results) if i < n}
         if len(mapped) < n:
-            print(f"    ⚠ batch: got {len(mapped)}/{n} results")
+            print(f"    ⚠ batch: got {len(mapped)}/{n} items")
         return mapped
+    except json.JSONDecodeError as e:
+        print(f"    ⚠ batch JSON error: {e}")
+        return {}
     except Exception as e:
         print(f"    ⚠ batch error: {e}")
         return {}
