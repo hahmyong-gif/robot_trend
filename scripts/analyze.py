@@ -318,47 +318,70 @@ if __name__ == '__main__':
                 analyzed.append(article)
                 time.sleep(0.3)
 
-    # ── 아카이브 병합: 오늘 기사가 10개 미만일 때만 보충 ──────────
-    SUPPLEMENT_IF_BELOW = 10
+    # ── 아카이브 디렉터리 준비 ──────────────────────────────────
     archive_dir = os.path.join(DATA_DIR, 'archive')
     os.makedirs(archive_dir, exist_ok=True)
 
-    today_count = len(analyzed)
-    print(f"\n📰 Today's articles: {today_count}")
+    def title_sim(t1, t2):
+        return SequenceMatcher(None, t1, t2).ratio()
 
-    if today_count >= SUPPLEMENT_IF_BELOW:
-        print(f"✅ Enough today's articles ({today_count} ≥ {SUPPLEMENT_IF_BELOW}), skipping archive merge")
+    # ── 어제 이미 본 기사 제목 로드 (fresh/repeat 분류용) ──────────
+    yesterday_date = (datetime.now(timezone.utc).date() - timedelta(days=1)).strftime('%Y-%m-%d')
+    yesterday_path = os.path.join(archive_dir, f'{yesterday_date}.json')
+    yesterday_titles = []
+    if os.path.exists(yesterday_path):
+        try:
+            with open(yesterday_path, encoding='utf-8') as f:
+                yd = json.load(f)
+            yesterday_titles = [a['title'].lower() for a in yd.get('global_top10', [])]
+            print(f"\n📅 Yesterday's top10 titles loaded: {len(yesterday_titles)}")
+        except Exception as e:
+            print(f"  ⚠ yesterday archive: {e}")
+
+    # ── 오늘 기사를 fresh/repeat 로 분류 ─────────────────────────
+    fresh_articles = []
+    repeat_articles = []
+    for a in analyzed:
+        atitle = a['title'].lower()
+        if any(title_sim(atitle, yt) >= 0.65 for yt in yesterday_titles):
+            repeat_articles.append(a)
+        else:
+            fresh_articles.append(a)
+    print(f"   Fresh: {len(fresh_articles)}, Repeat from yesterday: {len(repeat_articles)}")
+
+    # ── 아카이브 보충: fresh 기사가 10개 미만일 때만 ──────────────
+    SUPPLEMENT_IF_BELOW = 10
+    if len(fresh_articles) >= SUPPLEMENT_IF_BELOW:
+        print(f"✅ Enough fresh articles ({len(fresh_articles)} ≥ {SUPPLEMENT_IF_BELOW}), skipping archive merge")
     else:
-        print(f"📚 Supplementing with archive articles (today: {today_count} < {SUPPLEMENT_IF_BELOW})...")
+        print(f"📚 Supplementing with archive articles (fresh: {len(fresh_articles)} < {SUPPLEMENT_IF_BELOW})...")
         archive_arts = load_archive_articles(archive_dir)
         seen_ids = {a['id'] for a in analyzed}
-        today_titles = [a['title'].lower() for a in analyzed]
+        all_today_titles = [a['title'].lower() for a in analyzed]
         archive_added = 0
         cutoff_ts = (datetime.now(timezone.utc) - timedelta(days=21)).timestamp()
-
-        def title_sim(t1, t2):
-            return SequenceMatcher(None, t1, t2).ratio()
-
         for a in archive_arts:
             if a['id'] in seen_ids:
                 continue
             if a.get('pub_ts', 0) and a['pub_ts'] < cutoff_ts:
                 continue
-            # 오늘 기사와 제목이 유사한 기사는 중복으로 판단하고 제외
             atitle = a['title'].lower()
-            if any(title_sim(atitle, t) >= 0.65 for t in today_titles):
+            if any(title_sim(atitle, t) >= 0.65 for t in all_today_titles):
                 continue
             age = a.get('_age_days', 7)
             decay = max(0.4, 1.0 - age * 0.12)
             a['score'] = round(a.get('score', 3.0) * decay, 1)
-            analyzed.append(a)
+            fresh_articles.append(a)
             seen_ids.add(a['id'])
-            today_titles.append(atitle)
+            all_today_titles.append(atitle)
             archive_added += 1
-        print(f"   Added {archive_added} archive articles → total {len(analyzed)} unique")
+        print(f"   Added {archive_added} archive articles")
 
-    # 오늘 기사 우선, 이후 점수순 정렬 → Top 20
-    global_top10 = sorted(analyzed, key=lambda x: x['score'], reverse=True)[:20]
+    # fresh 우선, repeat은 자리 남을 때만 보충 → Top 20
+    fresh_sorted = sorted(fresh_articles, key=lambda x: x['score'], reverse=True)
+    repeat_sorted = sorted(repeat_articles, key=lambda x: x['score'], reverse=True)
+    global_top10 = (fresh_sorted + repeat_sorted)[:20]
+    print(f"   global_top10 pool: {len(global_top10)} (fresh {len(fresh_sorted)} + repeat {len(repeat_sorted)})")
 
     # Weak Signal 탐지
     print("\n📡 Detecting weak signals...")
