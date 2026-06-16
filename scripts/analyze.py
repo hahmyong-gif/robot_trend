@@ -7,6 +7,7 @@ import json
 import os
 import time
 from datetime import datetime, timezone, timedelta
+from difflib import SequenceMatcher
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'data')
 client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
@@ -317,30 +318,46 @@ if __name__ == '__main__':
                 analyzed.append(article)
                 time.sleep(0.3)
 
-    # ── 아카이브 병합: 지난 6일 기사 추가 (재분석 없음) ──────────
+    # ── 아카이브 병합: 오늘 기사가 10개 미만일 때만 보충 ──────────
+    SUPPLEMENT_IF_BELOW = 10
     archive_dir = os.path.join(DATA_DIR, 'archive')
     os.makedirs(archive_dir, exist_ok=True)
-    print("\n📚 Merging archive articles (past 6 days)...")
-    archive_arts = load_archive_articles(archive_dir)
-    seen_ids = {a['id'] for a in analyzed}
-    archive_added = 0
-    cutoff_ts = (datetime.now(timezone.utc) - timedelta(days=21)).timestamp()
-    for a in archive_arts:
-        if a['id'] in seen_ids:
-            continue
-        # 21일 이상 된 기사는 archive에서도 제외
-        if a.get('pub_ts', 0) and a['pub_ts'] < cutoff_ts:
-            continue
-        age = a.get('_age_days', 7)
-        # 날짜당 12% 점수 감쇄, 최소 40% 유지
-        decay = max(0.4, 1.0 - age * 0.12)
-        a['score'] = round(a.get('score', 3.0) * decay, 1)
-        analyzed.append(a)
-        seen_ids.add(a['id'])
-        archive_added += 1
-    print(f"   Added {archive_added} archive articles → total {len(analyzed)} unique")
 
-    # 주간 전체에서 Top 20 (날짜 다양성 확보)
+    today_count = len(analyzed)
+    print(f"\n📰 Today's articles: {today_count}")
+
+    if today_count >= SUPPLEMENT_IF_BELOW:
+        print(f"✅ Enough today's articles ({today_count} ≥ {SUPPLEMENT_IF_BELOW}), skipping archive merge")
+    else:
+        print(f"📚 Supplementing with archive articles (today: {today_count} < {SUPPLEMENT_IF_BELOW})...")
+        archive_arts = load_archive_articles(archive_dir)
+        seen_ids = {a['id'] for a in analyzed}
+        today_titles = [a['title'].lower() for a in analyzed]
+        archive_added = 0
+        cutoff_ts = (datetime.now(timezone.utc) - timedelta(days=21)).timestamp()
+
+        def title_sim(t1, t2):
+            return SequenceMatcher(None, t1, t2).ratio()
+
+        for a in archive_arts:
+            if a['id'] in seen_ids:
+                continue
+            if a.get('pub_ts', 0) and a['pub_ts'] < cutoff_ts:
+                continue
+            # 오늘 기사와 제목이 유사한 기사는 중복으로 판단하고 제외
+            atitle = a['title'].lower()
+            if any(title_sim(atitle, t) >= 0.65 for t in today_titles):
+                continue
+            age = a.get('_age_days', 7)
+            decay = max(0.4, 1.0 - age * 0.12)
+            a['score'] = round(a.get('score', 3.0) * decay, 1)
+            analyzed.append(a)
+            seen_ids.add(a['id'])
+            today_titles.append(atitle)
+            archive_added += 1
+        print(f"   Added {archive_added} archive articles → total {len(analyzed)} unique")
+
+    # 오늘 기사 우선, 이후 점수순 정렬 → Top 20
     global_top10 = sorted(analyzed, key=lambda x: x['score'], reverse=True)[:20]
 
     # Weak Signal 탐지
