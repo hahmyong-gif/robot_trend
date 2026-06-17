@@ -306,6 +306,21 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .arc-btn{font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:2px;border:1px solid var(--rule);background:#fff;color:var(--ink3);cursor:pointer;transition:all .1s}
 .arc-btn:hover,.arc-btn.act{background:var(--ink);color:#fff;border-color:var(--ink)}
 
+/* TECH TAB */
+.tech-card{display:grid;grid-template-columns:28px 1fr;gap:10px;margin-bottom:9px;padding:11px 14px;background:var(--paper2);border-radius:2px;border-left:3px solid var(--rule)}
+.tech-card:hover{border-left-color:var(--ink3)}
+.tech-rank{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink4);line-height:1;padding-top:3px}
+.tech-area-badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.05em;padding:2px 6px;border-radius:1px;margin-right:4px;color:#fff;font-weight:600}
+.tech-src-badge{display:inline-block;font-family:var(--mono);font-size:9px;color:var(--ink3);padding:2px 5px;border:1px solid var(--rule);border-radius:1px;margin-right:4px}
+.tech-title{font-family:var(--serif);font-size:13px;font-weight:700;line-height:1.35;margin:5px 0 3px}
+.tech-title a{color:var(--ink);text-decoration:none}.tech-title a:hover{text-decoration:underline}
+.tech-en{font-size:10px;color:var(--ink3);font-style:italic;line-height:1.3;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.tech-contrib{font-size:11px;color:var(--ink2);line-height:1.55;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tech-meta-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:4px}
+.tech-date{font-family:var(--mono);font-size:9px;color:var(--ink4);margin-top:4px}
+.tech-brief-box{background:var(--paper2);border-left:3px solid var(--ink);padding:11px 16px;margin-bottom:14px;font-size:12px;line-height:1.6}
+.tech-brief-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink4);margin-bottom:5px}
+.tech-watch-box{background:#fffbeb;border-left:3px solid #d97706;padding:10px 14px;margin-bottom:16px;font-size:11px;color:#92400e;line-height:1.6}
 /* LOADING */
 .loading{text-align:center;padding:40px;color:var(--ink4)}
 .loading .ti{font-size:28px;display:block;margin-bottom:8px;opacity:.3;animation:spin 1.5s linear infinite}
@@ -378,6 +393,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
     <button class="snav" data-tab="expo">전시회 <span id="expoThisMonth" style="font-family:var(--mono);font-size:9px;color:var(--red);margin-left:2px"></span></button>
     <div class="snd"></div>
     <button class="snav" data-tab="strategy">전략보고서</button>
+    <div class="snd"></div>
+    <button class="snav" data-tab="tech">기술동향</button>
     <div class="snd"></div>
     <button class="snav" data-tab="pdf"><i class="ti ti-file-type-pdf" style="font-size:12px"></i> PDF</button>
     <div class="snd"></div>
@@ -506,6 +523,15 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
   </div>
 </div>
 
+<!-- 기술동향 -->
+<div class="panel" id="tab-tech">
+  <div class="sec-wrap">
+    <div class="sec-title">기술동향</div>
+    <div class="sec-sub">이번 주 로봇 업계 핵심 기술 Top 10 — ArXiv · Nature · IEEE · 연구기관 자동 수집</div>
+    <div id="techContent"><div class="loading"><i class="ti ti-refresh"></i><div>기술 데이터 로딩 중...</div></div></div>
+  </div>
+</div>
+
 <!-- FILING -->
 <div class="panel" id="tab-filing">
   <div class="filing-toolbar" id="filingToolbar">
@@ -604,6 +630,7 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 // ── STATE ────────────────────────────────────────────────
 let NEWS = null;
 let EXPO = null;
+let TECH = null;
 let BKS = JSON.parse(localStorage.getItem('rid_bks') || '[]');
 let tagId = null;
 let filTags = new Set();   // active hashtag filters (empty = all)
@@ -627,9 +654,10 @@ document.querySelectorAll('.snav').forEach(t => {
 // ── DATA LOAD ────────────────────────────────────────────
 async function loadData() {
   try {
-    const [newsRes, expoRes] = await Promise.all([
+    const [newsRes, expoRes, techRes] = await Promise.all([
       fetch('data/news.json').catch(() => null),
-      fetch('data/exhibitions.json').catch(() => null)
+      fetch('data/exhibitions.json').catch(() => null),
+      fetch('data/tech.json').catch(() => null)
     ]);
     if (newsRes && newsRes.ok) {
       NEWS = await newsRes.json();
@@ -642,6 +670,13 @@ async function loadData() {
       renderExhibitions();
     } else {
       renderExhibitionsFallback();
+    }
+    if (techRes && techRes.ok) {
+      TECH = await techRes.json();
+      renderTech(TECH);
+    } else {
+      document.getElementById('techContent').innerHTML =
+        '<div class="loading" style="color:var(--ink4)">기술 데이터 없음 — 다음 업데이트 시 생성됩니다</div>';
     }
   } catch (e) {
     console.error(e);
@@ -1420,6 +1455,85 @@ function renderBriefContent(brief, data) {
   }
 
   document.getElementById('briefContent').innerHTML = html || '<div style="color:var(--ink4);font-size:12px;padding:8px">브리핑 데이터 없음</div>';
+}
+
+// ── TECH TAB ─────────────────────────────────────────────
+const TECH_AREA_COLORS = {
+  '조작':'#1a6cf5','이동':'#0d9488','인지':'#7c3aed',
+  '학습':'#ea580c','HW':'#475569','제어':'#0e7490','SW':'#e11d48','기타':'#94a3b8'
+};
+const TECH_SRC_SHORT = {
+  'ArXiv cs.RO':'cs.RO','ArXiv cs.AI':'cs.AI','ArXiv cs.LG':'cs.LG',
+  'ArXiv cs.CV':'cs.CV','ArXiv eess.SY':'eess.SY',
+  'Nature Robotics':'Nature','Science Robotics':'Science',
+  'IEEE RA-L':'RA-L','IEEE T-RO':'T-RO','Frontiers Robotics':'Frontiers',
+  'Google DeepMind':'DeepMind','BAIR Blog':'BAIR','OpenAI Research':'OpenAI',
+  'MIT News Robotics':'MIT','CMU RI News':'CMU RI'
+};
+
+function fmtTechDate(pub_ts) {
+  if (!pub_ts) return '';
+  const d = new Date(pub_ts * 1000);
+  return d.toLocaleDateString('ko-KR', {month:'long', day:'numeric'});
+}
+
+function renderTech(data) {
+  const el = document.getElementById('techContent');
+  if (!el || !data) return;
+
+  const top10 = data.top10 || [];
+  if (!top10.length) {
+    el.innerHTML = '<div class="loading" style="color:var(--ink4)">기술 데이터 없음</div>';
+    return;
+  }
+
+  let html = '';
+
+  if (data.tech_brief) {
+    html += `<div class="tech-brief-box">
+      <div class="tech-brief-lbl">이번 주 기술 트렌드</div>
+      <div>${data.tech_brief}</div>
+    </div>`;
+  }
+  if (data.lg_tech_watch) {
+    html += `<div class="tech-watch-box">
+      <strong style="font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase">LG 기술 Watch</strong>
+      <div style="margin-top:4px">${data.lg_tech_watch}</div>
+    </div>`;
+  }
+
+  top10.forEach((p, i) => {
+    const area = p.tech_area || '기타';
+    const areaColor = TECH_AREA_COLORS[area] || '#94a3b8';
+    const srcShort = TECH_SRC_SHORT[p.source] || p.source || '';
+    const titleKo = p.title_ko || p.title;
+    const titleEn = (p.title_ko && p.title_ko !== p.title) ? p.title : '';
+    const rankStr = String(i + 1).padStart(2, '0');
+    const dateStr = fmtTechDate(p.pub_ts);
+
+    html += `<div class="tech-card">
+      <div class="tech-rank">${rankStr}</div>
+      <div>
+        <div class="tech-meta-row">
+          <span class="tech-area-badge" style="background:${areaColor}">${area}</span>
+          <span class="tech-src-badge">${srcShort}</span>
+          ${p.arxiv_id ? `<span class="tech-src-badge" style="color:var(--blue);border-color:var(--blue)">arXiv:${p.arxiv_id}</span>` : ''}
+        </div>
+        <div class="tech-title">${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">${titleKo}</a>` : titleKo}</div>
+        ${titleEn ? `<div class="tech-en">${titleEn}</div>` : ''}
+        ${p.contribution ? `<div class="tech-contrib">${p.contribution}</div>` : ''}
+        ${dateStr ? `<div class="tech-date">${dateStr}</div>` : ''}
+      </div>
+    </div>`;
+  });
+
+  const scanned = data.total_scanned || 0;
+  const genDate = data.date || '';
+  html += `<div style="font-family:var(--mono);font-size:9px;color:var(--ink4);text-align:right;padding-top:10px;border-top:1px solid var(--rule)">
+    ${scanned}편 수집 · Top 10 선정 · ${genDate}
+  </div>`;
+
+  el.innerHTML = html;
 }
 
 // ── EXHIBITIONS ──────────────────────────────────────────
