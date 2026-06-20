@@ -1005,15 +1005,19 @@ function autoTagsFromObj(article, dateStr) {
   const wk = getWeekKey(dateStr || new Date().toISOString().slice(0,10));
   if (wk) tags.push('#' + wk);
 
-  // Entity → canonical + #경쟁사
+  // Entity → T1 companies get individual tag; non-T1 competitors → #경쟁사 only
   if (article.entity) {
     const ct = canonicalTag(article.entity);
-    if (!tags.includes(ct)) tags.push(ct);
-    if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
+    const isCompetitor = COMPETITOR_TAGS.has(ct);
+    const isT1 = T1_ENTITY_TAGS.has(ct);
+    if (!isCompetitor || isT1) {
+      if (!tags.includes(ct)) tags.push(ct);
+    }
+    if (isCompetitor && !tags.includes('#경쟁사')) tags.push('#경쟁사');
   }
 
-  // Keywords → topicTag (중복·유사어 통합, 최대 3개)
-  (article.keywords || []).slice(0, 4).forEach(k => {
+  // Keywords → topicTag (중복·유사어 통합, 최대 2개)
+  (article.keywords || []).slice(0, 2).forEach(k => {
     const ct = topicTag(k.trim());
     if (!tags.includes(ct)) tags.push(ct);
     if (COMPETITOR_TAGS.has(ct) && !tags.includes('#경쟁사')) tags.push('#경쟁사');
@@ -1965,6 +1969,10 @@ const ENTITY_CANONICAL = {
   'fanuc':'#Fanuc','kuka':'#KUKA','yaskawa':'#Yaskawa',
   'galbot':'#Galbot','clonerobotics':'#CloneRobotics','clone robotics':'#CloneRobotics',
   'menteeRobotics':'#MenteeRobotics','mentee robotics':'#MenteeRobotics',
+  'meta':'#MetaAI','metaai':'#MetaAI','meta ai':'#MetaAI','metarobotics':'#MetaAI','meta robotics':'#MetaAI',
+  'microsoft':'#Microsoft','microsoftrobotics':'#Microsoft','microsoft robotics':'#Microsoft',
+  'amazon':'#AmazonRobotics','amazonrobotics':'#AmazonRobotics','amazon robotics':'#AmazonRobotics',
+  'apple':'#Apple','applerobot':'#Apple','apple robot':'#Apple',
 };
 
 const COMPETITOR_TAGS = new Set([
@@ -1975,6 +1983,15 @@ const COMPETITOR_TAGS = new Set([
   '#GeminiRobotics','#MaumAI','#EmbodiedIntelligence','#LeRobot',
   '#RainbowRobotics','#DoosanRobotics','#CloneRobotics','#MenteeRobotics',
   '#Tesla','#Samsung','#Hyundai','#ABBRobotics','#Fanuc','#KUKA','#Yaskawa',
+  '#MetaAI','#Microsoft','#AmazonRobotics','#Apple',
+]);
+
+// T1 tier companies that get individual filing tags (others in COMPETITOR_TAGS → #경쟁사 only)
+const T1_ENTITY_TAGS = new Set([
+  '#NVIDIA','#FigureAI','#BostonDynamics','#PhysicalIntelligence','#1XTechnologies',
+  '#Apptronik','#AgilityRobotics','#Tesla','#SanctuaryAI','#OpenAI','#DeepMind',
+  '#GeminiRobotics','#MetaAI','#Microsoft','#AmazonRobotics','#Apple',
+  '#SoftBank','#SoftBankRobotics',
 ]);
 
 function canonicalTag(raw) {

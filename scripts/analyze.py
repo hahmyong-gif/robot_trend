@@ -214,7 +214,7 @@ def generate_synthesis(articles):
     try:
         msg = client.messages.create(
             model=SONNET,
-            max_tokens=1800,
+            max_tokens=2400,
             system=SYSTEM_SONNET,
             messages=[{"role": "user", "content": f"""로봇 업계 뉴스로 전략 인사이트 3종 생성.
 핵심 관점: 빅테크(NVIDIA/Google/Meta/Microsoft/Amazon/Tesla)의 로봇 전략 + 기술 트렌드 변화
@@ -231,6 +231,9 @@ JSON만 반환:
   }},
   "narrative_shifts": [
     {{"keyword":"주제어","from_frame":"이전 업계 프레임","to_frame":"현재 빅테크/기술 주도 프레임","desc":"기술 트렌드 관점 변화 2문장"}},
+    {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}},
+    {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}},
+    {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}},
     {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}},
     {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}}
   ],
