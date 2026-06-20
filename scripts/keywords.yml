@@ -16,9 +16,14 @@ tiers:
       - OpenAI
       - Google DeepMind
       - DeepMind
+      - Gemini Robotics
+      - Meta AI
+      - Meta Robotics
+      - Microsoft Robotics
+      - Amazon Robotics
+      - Apple Robot
       - Softbank Robotics
       - SoftBank
-      - Gemini Robotics
 
   T2:
     weight: 2.0
@@ -284,6 +289,18 @@ sources:
       url: https://news.google.com/rss/search?q=Unitree+OR+Agibot+OR+%22Fourier+Intelligence%22+OR+Galbot+humanoid&hl=en-US&gl=US&ceid=US:en
       region: global
       tier_bias: T3
+    - name: Google News - Meta Microsoft Amazon Robot
+      url: https://news.google.com/rss/search?q=Meta+OR+Microsoft+OR+Amazon+robot+humanoid+AI+strategy&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
+    - name: Google News - Big Tech Robot Strategy
+      url: https://news.google.com/rss/search?q=%22big+tech%22+robot+OR+%22AI+robot%22+Google+OR+Meta+OR+Microsoft+OR+Amazon&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
+    - name: Google News - Apple Robot Home
+      url: https://news.google.com/rss/search?q=Apple+robot+OR+%22home+robot%22+OR+%22personal+robot%22+Apple&hl=en-US&gl=US&ceid=US:en
+      region: global
+      tier_bias: T1
     - name: Robotics & Automation News
       url: https://roboticsandautomationnews.com/feed/
       region: global

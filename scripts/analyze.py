@@ -17,7 +17,11 @@ HAIKU  = "claude-haiku-4-5-20251001"  # 기사 분석용 (저비용)
 SONNET = "claude-sonnet-4-6"           # 전략 브리프용
 
 SYSTEM_HAIKU  = "LG전자 로봇팀 분석가. JSON만 반환. 다른 텍스트 없음."
-SYSTEM_SONNET = "LG Electronics 로봇/Physical AI 전략팀 수석 분석가. JSON만 반환. 다른 텍스트 없음."
+SYSTEM_SONNET = """LG Electronics 로봇/Physical AI 전략팀 수석 분석가.
+핵심 관점: ① 글로벌 빅테크(NVIDIA·Google·Meta·Microsoft·Amazon·Apple·Tesla)의 로봇 전략 방향
+          ② 최신 기술 트렌드(VLA·Embodied AI·월드모델·하드웨어 혁신)의 산업 파급효과
+          ③ LG전자가 이 흐름에서 취해야 할 전략 포지션
+JSON만 반환. 다른 텍스트 없음."""
 
 BATCH_SIZE = 5  # 기사 배치 크기
 
@@ -132,16 +136,17 @@ def generate_brief(articles):
             max_tokens=1200,
             system=SYSTEM_SONNET,
             messages=[{"role": "user", "content": f"""LG전자 로봇 전략팀 Intelligence Brief 작성.
+핵심 관점: 빅테크(NVIDIA/Google/Meta/Microsoft/Amazon/Tesla)의 로봇 전략 + 최신 기술 트렌드 + LG전자 대응
 
 주요 기사:
 {lines}
 
 JSON만 반환:
 {{
-  "action_required": ["즉각대응 1문장", "즉각대응 2문장"],
-  "regional_delta": {{"KR":"한국동향1문장","US":"미국동향1문장","CN":"중국동향1문장"}},
-  "cvc_insight": ["CVC인사이트1문장","CVC인사이트2문장"],
-  "bottom_line": "가장 중요한 전략 메시지 1~2문장"
+  "action_required": ["빅테크/경쟁사 동향 기반 즉각대응 1문장", "기술 트렌드 대응 방향 1문장"],
+  "regional_delta": {{"KR":"한국 로봇 산업 동향 1문장","US":"미국 빅테크 로봇 전략 1문장","CN":"중국 로봇 기업 동향 1문장"}},
+  "cvc_insight": ["빅테크 파트너십/기술 투자 기회 1문장","LG가 주목할 기술 확보 방향 1문장"],
+  "bottom_line": "빅테크 로봇 경쟁 흐름에서 LG전자의 핵심 전략 메시지 1~2문장"
 }}"""}]
         )
         text = msg.content[0].text.strip()
@@ -177,6 +182,7 @@ def generate_synthesis(articles):
             max_tokens=1800,
             system=SYSTEM_SONNET,
             messages=[{"role": "user", "content": f"""로봇 업계 뉴스로 전략 인사이트 3종 생성.
+핵심 관점: 빅테크(NVIDIA/Google/Meta/Microsoft/Amazon/Tesla)의 로봇 전략 + 기술 트렌드 변화
 
 뉴스:
 {lines}
@@ -184,20 +190,20 @@ def generate_synthesis(articles):
 JSON만 반환:
 {{
   "geopolitical": {{
-    "KR": {{"temp":"상승|유지|하락","policy":"핵심동향1줄","desc":"2문장","items":["항목1","항목2"]}},
-    "US": {{"temp":"상승|유지|하락","policy":"핵심동향1줄","desc":"2문장","items":["항목1","항목2"]}},
-    "CN": {{"temp":"상승|유지|하락","policy":"핵심동향1줄","desc":"2문장","items":["항목1","항목2"]}}
+    "KR": {{"temp":"상승|유지|하락","policy":"한국 로봇 산업 핵심 동향 1줄","desc":"한국 기업/정부 로봇 전략 방향 2문장","items":["구체 항목1","구체 항목2"]}},
+    "US": {{"temp":"상승|유지|하락","policy":"미국 빅테크 로봇 전략 1줄","desc":"NVIDIA/Google/Meta/MS/Amazon 등 빅테크 로봇 방향 2문장","items":["구체 항목1","구체 항목2"]}},
+    "CN": {{"temp":"상승|유지|하락","policy":"중국 로봇 기업 전략 1줄","desc":"Unitree/Agibot 등 중국 로봇 생태계 동향 2문장","items":["구체 항목1","구체 항목2"]}}
   }},
   "narrative_shifts": [
-    {{"keyword":"주제어","from_frame":"이전프레임","to_frame":"현재프레임","desc":"2문장"}},
+    {{"keyword":"주제어","from_frame":"이전 업계 프레임","to_frame":"현재 빅테크/기술 주도 프레임","desc":"기술 트렌드 관점 변화 2문장"}},
     {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}},
     {{"keyword":"...","from_frame":"...","to_frame":"...","desc":"..."}}
   ],
   "regional_delta": {{
     "topic":"{top_title[:60]}",
-    "kr_angle":"한국관점1~2문장",
-    "us_angle":"미국관점1~2문장",
-    "cn_angle":"중국관점1~2문장"
+    "kr_angle":"한국 관점 1~2문장",
+    "us_angle":"미국 빅테크 관점 1~2문장",
+    "cn_angle":"중국 관점 1~2문장"
   }}
 }}"""}]
         )
@@ -333,14 +339,21 @@ if __name__ == '__main__':
         except Exception as e:
             print(f"  ⚠ yesterday archive: {e}")
 
+    # 48시간 초과 기사는 어제 top10 비교 없이 바로 repeat 처리
+    now_ts = datetime.now(timezone.utc).timestamp()
+    cutoff_48h = now_ts - 48 * 3600
+
     fresh, repeat = [], []
     for a in analyzed:
         atitle = a['title'].lower()
-        if any(title_sim(atitle, yt) >= 0.65 for yt in yesterday_titles):
-            repeat.append(a)
+        pub_ts = a.get('pub_ts', 0)
+        if pub_ts and pub_ts < cutoff_48h:
+            repeat.append(a)  # 48시간 이상: 항상 repeat
+        elif any(title_sim(atitle, yt) >= 0.65 for yt in yesterday_titles):
+            repeat.append(a)  # 어제 top10과 유사: repeat
         else:
             fresh.append(a)
-    print(f"   Fresh: {len(fresh)}, Repeat: {len(repeat)}")
+    print(f"   Fresh(48h내): {len(fresh)}, Repeat(구기사/중복): {len(repeat)}")
 
     # ── 4. 아카이브 보충 (fresh < 10일 때만) ─────────────────
     SUPPLEMENT_IF_BELOW = 10
