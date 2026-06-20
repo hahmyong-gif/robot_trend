@@ -16,12 +16,47 @@ client = anthropic.Anthropic(api_key=os.environ['ANTHROPIC_API_KEY'])
 HAIKU  = "claude-haiku-4-5-20251001"  # 기사 분석용 (저비용)
 SONNET = "claude-sonnet-4-6"           # 전략 브리프용
 
-SYSTEM_HAIKU  = "LG전자 로봇팀 분석가. JSON만 반환. 다른 텍스트 없음."
-SYSTEM_SONNET = """LG Electronics 로봇/Physical AI 전략팀 수석 분석가.
+# 로봇 기술 용어 번역 기준 (Haiku/Sonnet 공통 적용)
+ROBOT_GLOSSARY = """
+【로봇 전문용어 번역 기준 — 반드시 준수】
+- embodied AI / embodiment / embodied → 구현형 AI / 구현체 (절대 '인형' 사용 금지)
+- physical AI → 피지컬 AI
+- manipulation → 조작 (물체 조작)
+- locomotion → 이동 / 보행
+- dexterous / dexterity → 정교한 / 정밀 조작
+- sim-to-real → sim-to-real 또는 시뮬-실제 전환
+- imitation learning → 모방 학습
+- behavior cloning → 행동 복제
+- reinforcement learning → 강화 학습
+- policy (ML 맥락) → 정책 또는 폴리시
+- foundation model → 파운데이션 모델
+- world model → 월드 모델
+- end-effector → 엔드이펙터
+- gripper → 그리퍼
+- actuator → 액추에이터
+- torque → 토크
+- proprioception → 자기수용감각
+- haptic → 햅틱
+- teleoperation → 원격 조작
+- whole-body control → 전신 제어
+- loco-manipulation → 이동 조작
+- VLA / vision-language-action → VLA
+- diffusion policy → 확산 정책
+- zero-shot / few-shot → 제로샷 / 퓨샷
+- deployment → 도입 또는 배포
+- humanoid → 휴머노이드
+- bimanual → 양손 조작
+- contact-rich → 접촉 집약적
+- GR00T, Isaac Lab, Isaac Sim, Helix, LeRobot 등 고유명사 → 원문 유지
+"""
+
+SYSTEM_HAIKU  = f"LG전자 로봇팀 분석가. JSON만 반환. 다른 텍스트 없음.\n{ROBOT_GLOSSARY}"
+SYSTEM_SONNET = f"""LG Electronics 로봇/Physical AI 전략팀 수석 분석가.
 핵심 관점: ① 글로벌 빅테크(NVIDIA·Google·Meta·Microsoft·Amazon·Apple·Tesla)의 로봇 전략 방향
           ② 최신 기술 트렌드(VLA·Embodied AI·월드모델·하드웨어 혁신)의 산업 파급효과
           ③ LG전자가 이 흐름에서 취해야 할 전략 포지션
-JSON만 반환. 다른 텍스트 없음."""
+JSON만 반환. 다른 텍스트 없음.
+{ROBOT_GLOSSARY}"""
 
 BATCH_SIZE = 5  # 기사 배치 크기
 
