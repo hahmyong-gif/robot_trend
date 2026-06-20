@@ -33,6 +33,39 @@ def similarity(a, b):
     """두 문자열 유사도 (0~1)"""
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
+# ── 지역별 콘텐츠 신호 (소스 지역과 기사 내용이 맞지 않으면 global로 재분류) ──
+REGIONAL_CONTENT_SIGNALS = {
+    'KR': {
+        'lg', 'lg전자', 'samsung', '삼성', 'hyundai', '현대', 'kaist', '카이스트',
+        'kist', 'etri', 'rainbow robotics', '레인보우', 'doosan', '두산', 'hanwha', '한화',
+        'posco', 'postech', 'sk robot', 'naver robot', 'kakao robot',
+        '국내', '한국', 'korea', 'korean', 'k-robot', 'k-휴머노이드',
+        '산업부', '과기부', '정부', '서울', '경기', '인천', 'kia robot', '기아 로봇',
+        '한국로봇', '한국 로봇', '국내 로봇', '로봇 정책 한국',
+    },
+    'CN': {
+        'unitree', '宇树', 'agibot', '智元', 'fourier', '傅利叶', 'ubtech', 'xiaomi', '小米',
+        'deeprobotics', 'galbot', 'kepler', 'leju', 'noetix', 'engineai',
+        '中国', 'china', 'chinese', '中文', '北京', '上海', '深圳', 'shenzhen',
+        'alibaba robot', 'tencent robot', 'baidu robot', 'dji', '大疆',
+        '工信部', 'china robot', 'china humanoid', 'chinese robot',
+    },
+    'US': {
+        'figure', 'boston dynamics', 'agility robotics', '1x technologies', 'apptronik',
+        'physical intelligence', 'sanctuary ai', 'skild', 'dextrous robotics',
+        'tesla', 'optimus', 'openai', 'google deepmind', 'nvidia', 'meta ai',
+        'microsoft robot', 'amazon robotics', 'apple robot', 'covariant', 'intrinsic',
+        'mit robot', 'stanford robot', 'cmu robot', 'berkeley robot',
+        'us robot', 'american robot', 'silicon valley',
+    },
+    'EU': {
+        'anybotics', 'shadow robot', 'franka', 'universal robots', 'abb', 'kuka',
+        'staubli', 'comau', 'pal robotics', 'aldebaran', 'eu robot',
+        'europe robot', 'european robot', 'germany robot', 'german robot',
+        'swiss robot', 'uk robot', 'france robot', 'italy robot',
+    },
+}
+
 # 로봇 전용 엔티티 (이 이름만 나와도 로봇 기사로 판단)
 PURE_ROBOT_ENTITIES = {
     'figure ai', 'figure robot', 'boston dynamics', 'physical intelligence',
@@ -160,17 +193,17 @@ def get_tier(title, summary):
     return 'T5'
 
 def recency_score(pub_date_str):
-    """최신성 점수 (0.5~1.0)"""
+    """최신성 점수 — 48시간 초과 기사는 급격히 감쇄하여 오래된 기사가 상위에 오르지 않도록 함"""
     try:
         import email.utils
         pub_dt = datetime(*email.utils.parsedate(pub_date_str)[:6], tzinfo=timezone.utc)
-        now = datetime.now(timezone.utc)
-        hours_ago = (now - pub_dt).total_seconds() / 3600
+        hours_ago = (datetime.now(timezone.utc) - pub_dt).total_seconds() / 3600
         if hours_ago <= 6:   return 1.0
         if hours_ago <= 12:  return 0.9
         if hours_ago <= 24:  return 0.8
-        if hours_ago <= 48:  return 0.65
-        return 0.5
+        if hours_ago <= 48:  return 0.55
+        if hours_ago <= 72:  return 0.15   # 3일: 사실상 하위권
+        return 0.05                         # 3일 초과: 거의 제외
     except:
         return 0.7
 
@@ -225,7 +258,7 @@ def extract_main_entity(title, summary):
     return None
 
 # ── FETCH ────────────────────────────────────────────────
-MAX_ARTICLE_AGE_DAYS = 21  # 21일 이상 된 기사 제외
+MAX_ARTICLE_AGE_DAYS = 7  # 7일 이상 된 기사 제외 (was 21)
 
 def fetch_source(source):
     """단일 RSS 소스 수집"""
@@ -263,13 +296,21 @@ def fetch_source(source):
 
             raw_score = round(relevance * tier_weight * recency * 10 / 3, 2)
 
+            # 지역 소스이지만 해당 국가 내용이 없으면 global로 재분류
+            assigned_region = source['region']
+            if assigned_region in REGIONAL_CONTENT_SIGNALS:
+                text_lower = f"{title} {summary}".lower()
+                signals = REGIONAL_CONTENT_SIGNALS[assigned_region]
+                if not any(sig in text_lower for sig in signals):
+                    assigned_region = 'global'
+
             articles.append({
                 'id': article_id(title, url),
                 'title': title,
                 'summary': summary,
                 'url': url,
                 'source': source['name'],
-                'region': source['region'],
+                'region': assigned_region,
                 'pub_date': pub_date,
                 'pub_ts': round(pub_ts),
                 'tier': tier,
