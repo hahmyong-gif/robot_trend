@@ -34,6 +34,8 @@ def similarity(a, b):
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
 # ── 지역별 콘텐츠 신호 (소스 지역과 기사 내용이 맞지 않으면 global로 재분류) ──
+# KR/CN만 적용: 한국 언론의 중국 기사, 중국 언론의 한국 기사를 각 지역탭에서 제외
+# US/EU는 필터 없음 — 해당 국가 언론의 시각 자체가 지역성을 가짐
 REGIONAL_CONTENT_SIGNALS = {
     'KR': {
         'lg', 'lg전자', 'samsung', '삼성', 'hyundai', '현대', 'kaist', '카이스트',
@@ -49,20 +51,6 @@ REGIONAL_CONTENT_SIGNALS = {
         '中国', 'china', 'chinese', '中文', '北京', '上海', '深圳', 'shenzhen',
         'alibaba robot', 'tencent robot', 'baidu robot', 'dji', '大疆',
         '工信部', 'china robot', 'china humanoid', 'chinese robot',
-    },
-    'US': {
-        'figure', 'boston dynamics', 'agility robotics', '1x technologies', 'apptronik',
-        'physical intelligence', 'sanctuary ai', 'skild', 'dextrous robotics',
-        'tesla', 'optimus', 'openai', 'google deepmind', 'nvidia', 'meta ai',
-        'microsoft robot', 'amazon robotics', 'apple robot', 'covariant', 'intrinsic',
-        'mit robot', 'stanford robot', 'cmu robot', 'berkeley robot',
-        'us robot', 'american robot', 'silicon valley',
-    },
-    'EU': {
-        'anybotics', 'shadow robot', 'franka', 'universal robots', 'abb', 'kuka',
-        'staubli', 'comau', 'pal robotics', 'aldebaran', 'eu robot',
-        'europe robot', 'european robot', 'germany robot', 'german robot',
-        'swiss robot', 'uk robot', 'france robot', 'italy robot',
     },
 }
 
