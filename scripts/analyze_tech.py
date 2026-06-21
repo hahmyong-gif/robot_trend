@@ -17,34 +17,62 @@ SONNET = "claude-sonnet-4-6"
 
 ROBOT_GLOSSARY = """
 【로봇 전문용어 번역 기준 — 반드시 준수】
+
+[구현·지능]
 - embodied AI / embodiment / embodied → 구현형 AI / 구현체 (절대 '인형' 사용 금지)
 - physical AI → 피지컬 AI
-- manipulation → 조작 (물체 조작)
-- locomotion → 이동 / 보행
-- dexterous / dexterity → 정교한 / 정밀 조작
-- sim-to-real → sim-to-real 또는 시뮬-실제 전환
+- generalist robot / general-purpose robot → 범용 로봇 (절대 '일반론자 로봇' 사용 금지)
+- foundation model → 파운데이션 모델
+- world model → 월드 모델
+- VLA / vision-language-action → VLA
+- diffusion policy → 확산 정책
+- policy (ML 맥락) → 정책 또는 폴리시
+- action chunking → 액션 청킹
+- in-context learning → 인-컨텍스트 학습
+- pre-training / pretraining → 사전 학습
+- fine-tuning / finetuning → 파인튜닝
+- transfer learning → 전이 학습
+- reward function → 보상 함수
+- sparse reward → 희소 보상
+
+[학습·훈련]
 - imitation learning → 모방 학습
 - behavior cloning → 행동 복제
 - reinforcement learning → 강화 학습
-- policy (ML 맥락) → 정책 또는 폴리시
-- foundation model → 파운데이션 모델
-- world model → 월드 모델
+- sim-to-real → sim-to-real 또는 시뮬-실제 전환
+- demonstration / demo data → 시연 / 시연 데이터 (절대 '데모' 단독 사용 금지)
+- zero-shot / few-shot → 제로샷 / 퓨샷
+- teleoperation → 원격 조작
+
+[하드웨어·제어]
+- manipulation → 조작 (물체 조작)
+- locomotion → 이동 / 보행
+- dexterous / dexterity → 정교한 / 정밀 조작
+- grasp / grasping → 파지 (절대 '잡기' 또는 '그래스프' 사용 금지)
+- bimanual → 양손 조작
+- contact-rich → 접촉 집약적
+- whole-body control → 전신 제어
+- loco-manipulation → 이동 조작
+- motion planning → 동작 계획 (절대 '움직임 계획' 사용 금지)
 - end-effector → 엔드이펙터
 - gripper → 그리퍼
 - actuator → 액추에이터
 - torque → 토크
+- degree of freedom / DOF → 자유도
+- payload → 가반하중 (절대 '탑재물' 사용 금지)
+- compliance / compliant → 컴플라이언스 / 유연 제어 (절대 '준수' 사용 금지)
 - proprioception → 자기수용감각
 - haptic → 햅틱
-- teleoperation → 원격 조작
-- whole-body control → 전신 제어
-- loco-manipulation → 이동 조작
-- VLA / vision-language-action → VLA
-- diffusion policy → 확산 정책
-- zero-shot / few-shot → 제로샷 / 퓨샷
+- soft robot → 소프트 로봇
+- human-robot interaction / HRI → 인간-로봇 상호작용
+
+[시스템·플랫폼]
+- deployment → 도입 또는 배포
 - humanoid → 휴머노이드
-- bimanual → 양손 조작
-- contact-rich → 접촉 집약적
-- GR00T, Isaac Lab, Isaac Sim, Helix, LeRobot 등 고유명사 → 원문 유지
+
+[고유명사 — 원문 유지]
+- 모델/플랫폼: GR00T, Isaac Lab, Isaac Sim, Isaac Gym, Cosmos, Helix, LeRobot
+- 로봇 제품명: Optimus, Digit, Apollo, Atlas, Spot, Neo, G1, H1, GR-1, GR-2, Figure 01, Figure 02, Astribot
 """
 
 SYSTEM_H = f"LG전자 로봇 R&D 전략팀. JSON 배열만 반환. 다른 텍스트 없음.\n{ROBOT_GLOSSARY}"
