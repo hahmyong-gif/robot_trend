@@ -1,39 +1,6 @@
 {
-  "fetched_at": "2026-06-20T23:21:22.751304+00:00",
+  "fetched_at": "2026-06-21T04:16:16.807737+00:00",
   "papers": [
-    {
-      "id": "f08001738347",
-      "title": "PhysDrift: Bridging the Embodiment Gap in Humanoid Co-Speech Motion Generation",
-      "summary": "arXiv:2606.19935v1 Announce Type: new Abstract: Humanoid robots require co-speech motions that are not only expressive and speech-aligned, but also physically executable under embodiment constraints. Existing co-speech generation pipelines are predominantly human-centric: motions are first generated in human-body representations such as SMPL-X and subsequently retargeted to humanoid robots. In this work, we identify a fundamental embodiment gap in this paradigm, where the mismatch between human motion manifolds and humanoid embodiment constraints disrupts embodiment consistency during motion t",
-      "url": "https://arxiv.org/abs/2606.19935",
-      "source": "ArXiv cs.AI",
-      "source_type": "arxiv",
-      "pub_date": "Sat, 20 Jun 2026 00:00:00 -0400",
-      "pub_ts": 1781913600,
-      "arxiv_id": "2606.19935"
-    },
-    {
-      "id": "9f4cc96e79b4",
-      "title": "Advancing DialNav through Automatic Embodied Dialog Augmentation",
-      "summary": "arXiv:2606.19948v1 Announce Type: new Abstract: For embodied agents capable of physical interaction, the capability to create and understand dialog is crucial to ensure both safety and effectiveness. While DialNav~\\cite{han2025dialnav} provides a framework for holistic evaluation of the dialog--execution loop in photorealistic indoor navigation, its performance remains limited by a critical scarcity of training data (2K episodes). To address this, we propose an automatic generation pipeline, and construct the \\textbf{RAINbow} dataset, a large-scale training dataset with 238K episodes for DialN",
-      "url": "https://arxiv.org/abs/2606.19948",
-      "source": "ArXiv cs.AI",
-      "source_type": "arxiv",
-      "pub_date": "Sat, 20 Jun 2026 00:00:00 -0400",
-      "pub_ts": 1781913600,
-      "arxiv_id": "2606.19948"
-    },
-    {
-      "id": "e524b644edf5",
-      "title": "ENPIRE: Agentic Robot Policy Self-Improvement in the Real World",
-      "summary": "arXiv:2606.19980v1 Announce Type: new Abstract: Achieving dexterous robotic manipulation in the real world heavily relies on human supervision and algorithm engineering, which becomes a central bottleneck in the pursuit of general physical intelligence. Although emerging coding agents can generate code to automate algorithm search, their successes remain largely confined in digital environments. We conjecture that the missing abstraction to automate robotics research is a repeatable feedback loop for real-world policy improvement: reset the scene, execute a policy, verify the outcome, and refi",
-      "url": "https://arxiv.org/abs/2606.19980",
-      "source": "ArXiv cs.AI",
-      "source_type": "arxiv",
-      "pub_date": "Sat, 20 Jun 2026 00:00:00 -0400",
-      "pub_ts": 1781913600,
-      "arxiv_id": "2606.19980"
-    },
     {
       "id": "8def31ad8039",
       "title": "From ball to rover: Transformable palm-sized rover SORA-Q for autonomous lunar exploration",
@@ -42,7 +9,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": null
     },
     {
@@ -53,7 +20,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": null
     },
     {
@@ -64,7 +31,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": null
     },
     {
@@ -75,7 +42,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": null
     },
     {
@@ -86,7 +53,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": null
     },
     {
@@ -97,7 +64,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": null
     },
     {
@@ -152,7 +119,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-19T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18907"
     },
     {
@@ -163,7 +130,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18242"
     },
     {
@@ -174,7 +141,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18458"
     },
     {
@@ -185,7 +152,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18159"
     },
     {
@@ -196,7 +163,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18579"
     },
     {
@@ -207,7 +174,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.17601"
     },
     {
@@ -218,7 +185,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18172"
     },
     {
@@ -229,7 +196,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18891"
     },
     {
@@ -240,7 +207,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18824"
     },
     {
@@ -251,7 +218,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-12T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18334"
     },
     {
@@ -262,7 +229,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-11T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.17939"
     },
     {
@@ -273,7 +240,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.17070"
     },
     {
@@ -284,7 +251,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18511"
     },
     {
@@ -295,7 +262,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-08T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18210"
     },
     {
@@ -306,7 +273,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-05T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18104"
     },
     {
@@ -317,7 +284,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-04T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18815"
     },
     {
@@ -328,7 +295,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-03T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18429"
     },
     {
@@ -339,7 +306,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-01T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.17916"
     },
     {
@@ -350,7 +317,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-05-29T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18119"
     },
     {
@@ -361,7 +328,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-05-29T00:00:00Z",
-      "pub_ts": 1781997677,
+      "pub_ts": 1782015365,
       "arxiv_id": "2026.18197"
     },
     {
