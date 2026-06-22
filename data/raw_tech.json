@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-06-21T23:28:25.382171+00:00",
+  "fetched_at": "2026-06-22T23:30:52.607556+00:00",
   "papers": [
     {
       "id": "8def31ad8039",
@@ -9,7 +9,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": null
     },
     {
@@ -20,7 +20,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": null
     },
     {
@@ -31,7 +31,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": null
     },
     {
@@ -42,7 +42,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": null
     },
     {
@@ -53,7 +53,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": null
     },
     {
@@ -64,51 +64,183 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": null
     },
     {
-      "id": "551561bf35e8",
-      "title": "Strategizing at Speed: A Learned Model Predictive Game for Multi-Agent Drone Racing",
-      "summary": "Autonomous drone racing pushes the boundaries of high-speed motion planning and multi-agent strategic decision-making. Success in this domain requires drones not only to navigate at their limits but also to anticipate and counteract competitors' actions. In this letter, we study a fundamental question that arises in this domain: how deeply should an agent strategize before taking an action? To this end, we compare two planning paradigms: the Model Predictive Game (MPG), which finds interaction-aware strategies at the expense of longer computation times, and contouring Model Predictive Control ",
-      "url": "http://ieeexplore.ieee.org/document/11554393",
+      "id": "dada10752fd0",
+      "title": "Module-Level 3D Motion Perception and Closed-Loop Control of an SMA-Driven Origami Robotic Module for Versatile Robotic Systems",
+      "summary": "Origami robotic modules offer compactness, compliance, and reconfigurability, but their system-level capabilities are often limited by the lack of reliable self-perception and closed-loop 3D motion control at the module level. This work presents a compact and lightweight shape memory alloy (SMA)-driven origami robotic module that achieves self-sensing and closed-loop three-dimensional motion control. The module integrates a foldable origami skeleton with four symmetrically arranged SMA spring actuators for omnidirectional bending and axial contraction. Embedded Hall-effect sensors enable intri",
+      "url": "http://ieeexplore.ieee.org/document/11560936",
       "source": "IEEE RA-L",
       "source_type": "journal",
-      "pub_date": "MON, 08 JUN 2026 09:18:51 -0400",
-      "pub_ts": 1780910331,
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
       "arxiv_id": null
     },
     {
-      "id": "b01accf2a1a9",
-      "title": "Prescribed Performance-Based Data-Driven Adaptive Admittance Control for Physical Human-Robot Interaction",
-      "summary": "It has been a critical challenge to provide reliable performance constraints while ensuring safe stability for robotic systems, particularly in relatively complex human-robot interaction tasks. To overcome the limitation in traditional controllers where control accuracy is highly dependent on the dynamic model, a novel neural network-based data-driven sliding mode controller (NNDSMC) is proposed. It optimizes control strategies in real time by constructing a dynamic data model while considering interaction forces. On this basis, a data-driven prescribed performance control (DPPMC) method is pr",
-      "url": "http://ieeexplore.ieee.org/document/11554379",
+      "id": "0a094802531e",
+      "title": "IAOM: An Intention-Aware Optimization Model With GNN-Based Policy Learning for Dynamic Multi-Robot Cooperative Task Allocation",
+      "summary": "This paper studies dynamic multi-robot cooperative task allocation in multi-stage scout-rescue missions with unknown and evolving task demands. We propose IAOM, an Intention-Aware Optimization Model that encodes each robotś decision state–target task, role, and planner-derived ETA–as an intention vector and organizes robots and tasks into an execution-aware intention graph capturing residual demand and active commitments. A GAT-PPO policy is learned on this graph and coupled to a hybrid A* based motion layer, so that allocation, coalition formation, and congestion handling are optimized within",
+      "url": "http://ieeexplore.ieee.org/document/11560910",
       "source": "IEEE RA-L",
       "source_type": "journal",
-      "pub_date": "MON, 08 JUN 2026 09:18:51 -0400",
-      "pub_ts": 1780910331,
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
       "arxiv_id": null
     },
     {
-      "id": "46d1d3fa2562",
-      "title": "E${^{2}}$Depth: Efficient Self-Supervised Surround-View Depth Estimation With Explicit Geometric Enhancement",
-      "summary": "Surround-view depth estimation is critical for robotic perception and autonomous driving. Existing methods rely on implicit cross-view feature learning, which incurs a high computational cost. In this letter, we propose E${^{2}}$Depth, an efficient self-supervised surround-view depth estimation framework that explicitly leverages geometric and signal priors at each pipeline stage. First, hierarchical volumetric fusion is performed to align multi-level features across cameras with controlled memory consumption. Second, wavelet-domain edge enhancement is introduced to recover sharper depth bound",
-      "url": "http://ieeexplore.ieee.org/document/11554417",
+      "id": "6dce9773d451",
+      "title": "Real-to-Sim-to-Real: Learning Agile and Robust Recovery Skills With Terrain Imagination via Adversarial Imitation",
+      "summary": "Legged animals can self-right and stand up from arbitrary postures across diverse environments. Empowering robots with animal-like recovery capabilities expands their real-world applications. However, existing recovery controllers that rely on predefined trajectories are limited to flat terrain, whereas current learning-based policies often produce overly aggressive or sluggish control outputs, leading to poor hardware performance. To bridge the gap, this letter proposes a novel real-to-sim-to-real learning framework that enables quadruped robots to acquire both agile and robust recovery skill",
+      "url": "http://ieeexplore.ieee.org/document/11560923",
       "source": "IEEE RA-L",
       "source_type": "journal",
-      "pub_date": "MON, 08 JUN 2026 09:18:51 -0400",
-      "pub_ts": 1780910331,
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
       "arxiv_id": null
     },
     {
-      "id": "97bcade4cc80",
-      "title": "Collective Intelligent Reinforcement Learning for Biomimetic Clapping Trajectory Optimization",
-      "summary": "The foreflippers of sea lions enable highly efficient and agile locomotion through a unique clapping propulsion mechanism. Nonetheless, identifying the optimal kinematics for these movements constitutes a significant challenge, owing to the highly nonlinear and dynamic fluid-structure interactions. To address this, we present a collective intelligent reinforcement learning method for generating clapping trajectories of a bionic foreflipper. The approach begins by modeling biological motions using periodic triaxial motions based on closed Bézier curves, enabling the representation of essential ",
-      "url": "http://ieeexplore.ieee.org/document/11554402",
+      "id": "9f3246840d75",
+      "title": "Insect-Scale Magnetic Wheel-Based Climbing Robot With Micro Ultrasonic Motors and 3D Printed Planetary Gears",
+      "summary": "Miniaturization of climbing robots is of interest for accessing narrow and complex structures that are inaccessible to conventional robots. This paper presents the design, fabrication, and experimental validation of an insect-scale climbing robot with magnetic wheels. The robot integrates two key technologies: a micro ultrasonic motor, which is one of the smallest electricity-driven motors, and a micro planetary gear train with a gear ratio of 64, fabricated using a micro-stereolithography 3D printer. The combination of these technologies enables the miniaturization of climbing robots. With a ",
+      "url": "http://ieeexplore.ieee.org/document/11560937",
       "source": "IEEE RA-L",
       "source_type": "journal",
-      "pub_date": "MON, 08 JUN 2026 09:18:51 -0400",
-      "pub_ts": 1780910331,
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "3c88457178fd",
+      "title": "Asking for Information by Evaluating the Communication and Coordination Trade-Off in Multi-Agent POMDPs",
+      "summary": "This letter concerns decentralized multi-agent systems in which individual agents operate under partial observability and uncertainty, but with the option of invoking inter-agent communication. When information exchange is infeasible or prohibitively expensive —owing to bandwidth limits, energy constraints, or the demands of clandestine operation— one is prevented from continually maintaining a joint belief over the underlying system state. In such cases, the decision of when to request information from others is key. In revisiting the prior work addressing this decision head-on, we see conser",
+      "url": "http://ieeexplore.ieee.org/document/11560930",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "1e513ed62500",
+      "title": "Velocity-Form Data-Enabled Predictive Control of Soft Robots Under Unknown External Payloads",
+      "summary": "Data-driven control methods such as data-enabled predictive control (DeePC) have shown strong potential for efficient control of soft robots without explicit parametric models. However, in object manipulation tasks, unknown external payloads and disturbances can significantly alter the system dynamics and behavior, leading to offset errors and degraded control performance. In this letter, we present a novel velocity-form DeePC framework that achieves robust and optimal control of soft robots under unknown payloads. The proposed framework leverages input/output data in an incremental representa",
+      "url": "http://ieeexplore.ieee.org/document/11560943",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "690f5793c7f6",
+      "title": "CIRNet: Compact Iterative Refinement Network for Real-Time Stereo Matching",
+      "summary": "Stereo matching is crucial for 3D perception in autonomous driving and generalist robotics. Recent advancements transitioned from cost volume method to iterative refinement approach, offering superior details and spatial consistency. However, iterative methods remain constrained by expensive matching encoding and numerous refinement iterations, limiting latency-sensitive practical application. To unleash the accuracy superiority of iterative paradigms in real-time systems, we present Compact Iterative Refinement Network (CIRNet). Specifically, we design Compact Correlation Encoding (CCE) to al",
+      "url": "http://ieeexplore.ieee.org/document/11560925",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "fd4402593058",
+      "title": "Collision-Free Humanoid Traversal in Cluttered Indoor Scenes",
+      "summary": "We study the problem of collision-free humanoid traversal in cluttered indoor scenes, such as hurdling over objects scattered on the floor, crouching under low-hanging obstacles, or squeezing through narrow passages. To achieve this goal, the humanoid needs to map its perception of surrounding obstacles with diverse spatial layouts and geometries to the corresponding traversal skills. However, the lack of an effective representation that captures humanoid–obstacle relationships during collision avoidance makes directly learning such mappings difficult. We therefore propose Humanoid Potential F",
+      "url": "http://ieeexplore.ieee.org/document/11563633",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "MON, 15 JUN 2026 10:16:42 -0400",
+      "pub_ts": 1781518602,
+      "arxiv_id": null
+    },
+    {
+      "id": "c63305f48768",
+      "title": "Grasping on Time: A Time-Controlled Dynamic Grasp Planning With Limited Jerk and Online Adaptation for Moving Objects",
+      "summary": "Grasping moving objects with minimal response time while limiting jerk is essential for many industrial and service robotics applications, and is considerably more challenging than grasping static targets. Existing approaches, such as sample-based methods, are not well-suited to this task because the stochastic nature of their solutions often produces jerky or oscillatory motions. This work introduces a method for grasping objects in motion on a conveyor belt by formulating a lightweight quadratic programming problem that explicitly controls the robot's arrival time at the target pose while co",
+      "url": "http://ieeexplore.ieee.org/document/11560928",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "632543f126c8",
+      "title": "CSR: Infinite-Horizon Real-Time Policies With Massive Cached State Representations",
+      "summary": "Deploying massive large language models (LLMs) as continuous cognitive engines for robotics is bottlenecked by the time-to-first-token (TTFT) latency required to process extensive state histories. Existing solutions like RAG or sliding windows compromise global context or incur prohibitive re-computation costs. We formalize the optimal task structure for minimizing latency and theoretically prove that prefix stability, incremental extensibility, and asynchronous state reconciliation are necessary conditions for real-time performance. Building on these proofs, we introduce the Cached State Repr",
+      "url": "http://ieeexplore.ieee.org/document/11568517",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "TUE, 16 JUN 2026 09:16:44 -0400",
+      "pub_ts": 1781601404,
+      "arxiv_id": null
+    },
+    {
+      "id": "9102ed27a3c0",
+      "title": "Latent Gaussian Splatting for 4D Panoptic Occupancy Tracking",
+      "summary": "Capturing 4D spatiotemporal scene structure is crucial for the safe and reliable operation of robots in dynamic environments. However, existing approaches typically address only part of the problem: they either provide coarse geometric tracking via bounding boxes or detailed 3D occupancy estimates that lack explicit temporal association and instance-level reasoning. In this work, we present Latent Gaussian Splatting (LaGS) for 4D Panoptic Occupancy Tracking (4D-POT). We revisit the underlying representation and model 3D features as a sparse set of feature-bearing Gaussians. These act as dynami",
+      "url": "http://ieeexplore.ieee.org/document/11568514",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "TUE, 16 JUN 2026 09:16:44 -0400",
+      "pub_ts": 1781601404,
+      "arxiv_id": null
+    },
+    {
+      "id": "d571b7942b1e",
+      "title": "vS-Graphs: Tightly Coupling Visual SLAM and 3D Scene Graphs Exploiting Hierarchical Scene Understanding",
+      "summary": "Current Visual Simultaneous Localization and Mapping (VSLAM) systems often struggle to create maps that are both semantically rich and easy to interpret. While incorporating semantic scene knowledge helps build richer maps with contextual associations among mapped objects, representing them in structured formats such as scene graphs has not been widely addressed, leading to complex map comprehension and limited scalability. This paper introduces vS-Graphs, a novel real-time VSLAM framework that integrates vision-based scene understanding with map reconstruction and comprehensible graph-based r",
+      "url": "http://ieeexplore.ieee.org/document/11563614",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "MON, 15 JUN 2026 10:16:51 -0400",
+      "pub_ts": 1781518611,
+      "arxiv_id": null
+    },
+    {
+      "id": "bdc99ccae7fe",
+      "title": "Breaking Time: A Fully Gaussian Framework for Distributed and Continuous-Time SLAM",
+      "summary": "Continuous-time SLAM provides a principled framework for fusing heterogeneous sensors while estimating smooth trajectories, and is particularly well-suited for handling heterogeneous, asynchronous sensor streams with non-uniform readout patterns, such as rolling shutter cameras, LiDAR scanners, radar sweeps, or event-based sensors. In this work, we introduce G-solver, a fully Gaussian and distributed framework that combines Gaussian Belief Propagation (GBP) with Gaussian Process (GP) motion priors for continuous-time trajectory estimation. Our GP model provides a probabilistic representation o",
+      "url": "http://ieeexplore.ieee.org/document/11560907",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "5d7a5e3481a2",
+      "title": "Learning From Success and Failure: Acquiring Adaptive Dialogue Strategies for Social Robots",
+      "summary": "Traditional dialogue systems for social robots require both dialogue strategies and user attribute recognition, each demanding specialized expertise. However, data collection is costly in real-world deployments, and the resulting datasets often include many failure cases. In this study, we aim to automate the acquisition of dialogue strategies by leveraging both successful and failed interactions using a vision-language model (VLM) and a large language model (LLM). We propose an architecture in which user attributes, recognized by the VLM, along with dialogue history, are fed into the LLM to g",
+      "url": "http://ieeexplore.ieee.org/document/11568518",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "TUE, 16 JUN 2026 09:16:44 -0400",
+      "pub_ts": 1781601404,
+      "arxiv_id": null
+    },
+    {
+      "id": "fb54d203e489",
+      "title": "Token Expand-Merge: Training-Free Token Compression for Vision-Language-Action Models",
+      "summary": "Vision-Language-Action (VLA) models pretrained on large-scale multimodal datasets have emerged as powerful foundations for robotic perception and control. However, their massive scale, often billions of parameters, poses significant challenges for real-time deployment, as inference becomes computationally expensive and latency-sensitive in dynamic environments. To address this, we propose Token Expand-and-Merge-VLA (TEAM-VLA), a training-free token compression framework that accelerates VLA inference while preserving task performance. TEAM-VLA introduces a dynamic token expansion mechanism tha",
+      "url": "http://ieeexplore.ieee.org/document/11560913",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "FRI, 12 JUN 2026 09:17:20 -0400",
+      "pub_ts": 1781255840,
+      "arxiv_id": null
+    },
+    {
+      "id": "597bbfd61551",
+      "title": "Pixel2Catch: Multi-Agent Sim-to-Real Transfer for Agile Manipulation With a Single RGB Camera",
+      "summary": "To catch a thrown object, a robot must be able to perceive the object’s motion and generate control actions in a timely manner. Rather than explicitly estimating the object’s 3D position, this work focuses on a novel approach that recognizes object motion using pixel-level visual information extracted from consecutive RGB frames. Such visual cues capture changes in the object’s position and scale, allowing the policy to reason about the object’s motion. Furthermore, to achieve stable learning in a high-DoF system composed of a robot arm equipped with a multi-fingered hand, we design a heteroge",
+      "url": "http://ieeexplore.ieee.org/document/11563623",
+      "source": "IEEE RA-L",
+      "source_type": "journal",
+      "pub_date": "MON, 15 JUN 2026 10:17:01 -0400",
+      "pub_ts": 1781518621,
       "arxiv_id": null
     },
     {
@@ -119,7 +251,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-19T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18907"
     },
     {
@@ -130,7 +262,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18242"
     },
     {
@@ -141,7 +273,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18458"
     },
     {
@@ -152,7 +284,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18159"
     },
     {
@@ -163,7 +295,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18579"
     },
     {
@@ -174,7 +306,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.17601"
     },
     {
@@ -185,7 +317,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18172"
     },
     {
@@ -196,7 +328,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18891"
     },
     {
@@ -207,7 +339,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18824"
     },
     {
@@ -218,7 +350,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-12T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18334"
     },
     {
@@ -229,7 +361,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-11T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.17939"
     },
     {
@@ -240,7 +372,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.17070"
     },
     {
@@ -251,7 +383,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18511"
     },
     {
@@ -262,7 +394,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-08T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18210"
     },
     {
@@ -273,7 +405,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-05T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18104"
     },
     {
@@ -284,7 +416,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-04T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18815"
     },
     {
@@ -295,7 +427,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-03T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18429"
     },
     {
@@ -306,7 +438,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-01T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.17916"
     },
     {
@@ -317,7 +449,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-05-29T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18119"
     },
     {
@@ -328,7 +460,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-05-29T00:00:00Z",
-      "pub_ts": 1782084501,
+      "pub_ts": 1782171048,
       "arxiv_id": "2026.18197"
     },
     {
