@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-06-22T23:30:52.607556+00:00",
+  "fetched_at": "2026-06-23T23:18:32.783194+00:00",
   "papers": [
     {
       "id": "8def31ad8039",
@@ -9,7 +9,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": null
     },
     {
@@ -20,7 +20,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": null
     },
     {
@@ -31,7 +31,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": null
     },
     {
@@ -42,7 +42,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": null
     },
     {
@@ -53,7 +53,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": null
     },
     {
@@ -64,7 +64,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": null
     },
     {
@@ -244,6 +244,28 @@
       "arxiv_id": null
     },
     {
+      "id": "00423652635e",
+      "title": "Editorial: Intelligent micro- and nanorobotic systems for enhanced medical procedures",
+      "summary": "",
+      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1880258",
+      "source": "Frontiers Robotics",
+      "source_type": "journal",
+      "pub_date": "2026-06-23T00:00:00Z",
+      "pub_ts": 1782256708,
+      "arxiv_id": "2026.18802"
+    },
+    {
+      "id": "98ac08637a58",
+      "title": "Self-moving multi-sensor AI-based robotic technology for road crack inspection",
+      "summary": "Human inspectors conducting road inspections face both heavy physical demands and subjective judgment, which can affect the accuracy of road surface evaluations. This study introduces Mobi-A4Net, an affordable robotic-AI system for automatic road crack detection and assessment, addressing limitations of costly automated systems and lack of integration with existing technologies. The system focuses on an unmanned ground vehicle (UGV) platform for detailed inspection work. The Mobile Adaptive Attention Aggregation Network forms the core of the system, implementing a compact deep-learning model w",
+      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1811691",
+      "source": "Frontiers Robotics",
+      "source_type": "journal",
+      "pub_date": "2026-06-23T00:00:00Z",
+      "pub_ts": 1782256708,
+      "arxiv_id": "2026.18116"
+    },
+    {
       "id": "7ef1a071c077",
       "title": "Editorial: Robotic applications for a sustainable future",
       "summary": "",
@@ -251,19 +273,30 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-19T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18907"
     },
     {
-      "id": "e3356bd447ca",
-      "title": "Dynamic variance-aware federated tuning for efficient autonomous vehicle perception under non-IID settings",
-      "summary": "IntroductionFederated learning enables multiple autonomous vehicles (AVs) to collaboratively train machine learning models while preserving data privacy. However, performance degrades significantly under non-independent and identically distributed (non-IID) data conditions commonly encountered in real-world driving scenarios. Existing aggregation methods, particularly Federated Averaging (FedAvg), struggle to effectively handle client update divergence, leading to inefficient communication, unstable convergence, and increased privacy risks.MethodsTo address these challenges, we propose a Dynam",
-      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1824246",
+      "id": "0943194f7dd4",
+      "title": "Politeness cannot make up for robots’ errors",
+      "summary": "We investigated the impact of robot politeness and error-prone behavior on user perceptions through two user studies involving non-humanoid robots. Politeness was operationalized at two levels based on Lakoff’s, (1973) politeness rules—one condition implemented all three of Lakoff’s rules, demonstrating the highest level of politeness, while the other omitted them, resulting in a behavior that was strict but not impolite. The correctness was manipulated by comparing an error-free robot behavior to a behavior that included intentional errors. The studies were conducted using two different tasks",
+      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1760163",
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782171048,
-      "arxiv_id": "2026.18242"
+      "pub_ts": 1782256708,
+      "arxiv_id": "2026.17601"
+    },
+    {
+      "id": "311e95ccf4e5",
+      "title": "Passive wheels on legged robots: a survey",
+      "summary": "In recent years, highly dynamic robots have seen a significant rise in both consumer and research applications. Much of the focus on legged robots stems from their ability to adapt to a world built for humans, but energy inefficiency and battery capacity remain significant challenges to widespread adoption. Wheel-legged hybrid locomotion is an increasingly popular solution, as robots combine the energy efficiency and speed of wheels with the versatility and adaptability of legs. Most of the literature focuses on the actuated or active-wheel variant because it is simpler to control. However, re",
+      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1857985",
+      "source": "Frontiers Robotics",
+      "source_type": "journal",
+      "pub_date": "2026-06-17T00:00:00Z",
+      "pub_ts": 1782256708,
+      "arxiv_id": "2026.18579"
     },
     {
       "id": "c3a05a2d0e9c",
@@ -273,7 +306,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18458"
     },
     {
@@ -284,41 +317,19 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18159"
     },
     {
-      "id": "311e95ccf4e5",
-      "title": "Passive wheels on legged robots: a survey",
-      "summary": "In recent years, highly dynamic robots have seen a significant rise in both consumer and research applications. Much of the focus on legged robots stems from their ability to adapt to a world built for humans, but energy inefficiency and battery capacity remain significant challenges to widespread adoption. Wheel-legged hybrid locomotion is an increasingly popular solution, as robots combine the energy efficiency and speed of wheels with the versatility and adaptability of legs. Most of the literature focuses on the actuated or active-wheel variant because it is simpler to control. However, re",
-      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1857985",
+      "id": "e3356bd447ca",
+      "title": "Dynamic variance-aware federated tuning for efficient autonomous vehicle perception under non-IID settings",
+      "summary": "IntroductionFederated learning enables multiple autonomous vehicles (AVs) to collaboratively train machine learning models while preserving data privacy. However, performance degrades significantly under non-independent and identically distributed (non-IID) data conditions commonly encountered in real-world driving scenarios. Existing aggregation methods, particularly Federated Averaging (FedAvg), struggle to effectively handle client update divergence, leading to inefficient communication, unstable convergence, and increased privacy risks.MethodsTo address these challenges, we propose a Dynam",
+      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1824246",
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782171048,
-      "arxiv_id": "2026.18579"
-    },
-    {
-      "id": "0943194f7dd4",
-      "title": "Politeness cannot make up for robots’ errors",
-      "summary": "We investigated the impact of robot politeness and error-prone behavior on user perceptions through two user studies involving non-humanoid robots. Politeness was operationalized at two levels based on Lakoff’s, (1973) politeness rules—one condition implemented all three of Lakoff’s rules, demonstrating the highest level of politeness, while the other omitted them, resulting in a behavior that was strict but not impolite. The correctness was manipulated by comparing an error-free robot behavior to a behavior that included intentional errors. The studies were conducted using two different tasks",
-      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1760163",
-      "source": "Frontiers Robotics",
-      "source_type": "journal",
-      "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782171048,
-      "arxiv_id": "2026.17601"
-    },
-    {
-      "id": "2b8336714422",
-      "title": "MPM-based simulation and bounded-error compression of material points for magnetic tactile sensors",
-      "summary": "Tactile sensing provides critical contact feedback for precision robotic micro-assembly, particularly in visually occluded environments common in 3C (Computer, Communication, and Consumer Electronics) manufacturing. Magnetic tactile sensors are especially promising due to their high sensitivity, fast response, and compact structure. However, the lack of effective physics-based simulation tools remains a key bottleneck for applying magnetic tactile sensing in reinforcement learning–based assembly policy training. To address this limitation, we propose a unified framework that integrates physics",
-      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1817251",
-      "source": "Frontiers Robotics",
-      "source_type": "journal",
-      "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782171048,
-      "arxiv_id": "2026.18172"
+      "pub_ts": 1782256708,
+      "arxiv_id": "2026.18242"
     },
     {
       "id": "0bdb7cd5396a",
@@ -328,8 +339,19 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18891"
+    },
+    {
+      "id": "2b8336714422",
+      "title": "MPM-based simulation and bounded-error compression of material points for magnetic tactile sensors",
+      "summary": "Tactile sensing provides critical contact feedback for precision robotic micro-assembly, particularly in visually occluded environments common in 3C (Computer, Communication, and Consumer Electronics) manufacturing. Magnetic tactile sensors are especially promising due to their high sensitivity, fast response, and compact structure. However, the lack of effective physics-based simulation tools remains a key bottleneck for applying magnetic tactile sensing in reinforcement learning–based assembly policy training. To address this limitation, we propose a unified framework that integrates physics",
+      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1817251",
+      "source": "Frontiers Robotics",
+      "source_type": "journal",
+      "pub_date": "2026-06-15T00:00:00Z",
+      "pub_ts": 1782256708,
+      "arxiv_id": "2026.18172"
     },
     {
       "id": "19ad3305a7fe",
@@ -339,7 +361,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18824"
     },
     {
@@ -350,7 +372,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-12T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18334"
     },
     {
@@ -361,7 +383,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-11T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.17939"
     },
     {
@@ -372,7 +394,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.17070"
     },
     {
@@ -383,7 +405,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18511"
     },
     {
@@ -394,7 +416,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-08T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18210"
     },
     {
@@ -405,7 +427,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-05T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18104"
     },
     {
@@ -416,7 +438,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-04T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18815"
     },
     {
@@ -427,7 +449,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-03T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.18429"
     },
     {
@@ -438,30 +460,19 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-01T00:00:00Z",
-      "pub_ts": 1782171048,
+      "pub_ts": 1782256708,
       "arxiv_id": "2026.17916"
     },
     {
-      "id": "0dc5b7e788c7",
-      "title": "Qualia as control-theoretic constructs for autonomous agents: event phase space as an action-oriented semantic safety layer",
-      "summary": "Autonomous systems face a fundamental complexity barrier in open-world environments: decomposing scenes into discrete entities and searching over combinatorial action spaces leads to prohibitive computational costs, yet biological agents navigate equivalent environments in real time through holistic situational assessments — states that the phenomenological tradition terms qualia. This paper argues the gap is architectural and introduces three contributions. First, we propose that qualia are operationally indicated by assessment structures characterized by geometric coherence on a manifold, mu",
-      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1811996",
-      "source": "Frontiers Robotics",
-      "source_type": "journal",
-      "pub_date": "2026-05-29T00:00:00Z",
-      "pub_ts": 1782171048,
-      "arxiv_id": "2026.18119"
-    },
-    {
-      "id": "c1a40d24da01",
-      "title": "Workspace and trajectory-based experimental validation of a 3-armed 6-DOF parallel robot for femoral fracture surgery",
-      "summary": "Femur fractures remain a significant occurrence in the general population, requiring immediate medical care (typically surgery) followed by extensive recovery time. Femur fracture reduction, defined as the process of realigning femur bone fragments, is currently performed manually, a task that is physically demanding and associated with high malalignment rates. Our surgical system Robossis, a 3-armed, 6-DOF parallel robot, is aimed at addressing these issues by exerting the necessary forces to eliminate the physical demand while facilitating proper fracture reduction. The new Robossis V2 syste",
-      "url": "https://www.frontiersin.org/articles/10.3389/frobt.2026.1819716",
-      "source": "Frontiers Robotics",
-      "source_type": "journal",
-      "pub_date": "2026-05-29T00:00:00Z",
-      "pub_ts": 1782171048,
-      "arxiv_id": "2026.18197"
+      "id": "def5893580e0",
+      "title": "New chip could help tiny robots traverse complex environments",
+      "summary": "Researchers combined an efficient algorithm with dedicated hardware to rapidly generate 3D maps for navigation using minimal memory and power.",
+      "url": "https://news.mit.edu/2026/new-chip-could-help-tiny-robots-traverse-complex-environments-0623",
+      "source": "MIT News Robotics",
+      "source_type": "blog",
+      "pub_date": "Tue, 23 Jun 2026 00:00:00 -0400",
+      "pub_ts": 1782172800,
+      "arxiv_id": null
     },
     {
       "id": "ea43d1fdde0a",
