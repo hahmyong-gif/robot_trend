@@ -1,17 +1,6 @@
 {
-  "fetched_at": "2026-06-27T23:15:39.553197+00:00",
+  "fetched_at": "2026-06-28T23:16:48.727550+00:00",
   "papers": [
-    {
-      "id": "58b8f13205ec",
-      "title": "Do Safety Guardrails Need to Reason? LeanGuard: A Fast and Light Approach for Robust Moderation",
-      "summary": "arXiv:2606.26686v1 Announce Type: new Abstract: In order to screen a prompt or a response, the recent guardrail methods generate a chain-of-thought (CoT) before they issue a verdict. This design follows a common belief that step-by-step reasoning improves a decision. However, CoT also makes the guard heavy and slow, because the model must generate many tokens before it decides. This may not match how guardrails are actually deployed. A guardrail sometimes should not be heavy and slow, and it often runs on-device, for example on an embodied robot. In this paper, we pose a question whether a saf",
-      "url": "https://arxiv.org/abs/2606.26686",
-      "source": "ArXiv cs.AI",
-      "source_type": "arxiv",
-      "pub_date": "Sat, 27 Jun 2026 00:00:00 -0400",
-      "pub_ts": 1782518400,
-      "arxiv_id": "2606.26686"
-    },
     {
       "id": "8def31ad8039",
       "title": "From ball to rover: Transformable palm-sized rover SORA-Q for autonomous lunar exploration",
@@ -20,7 +9,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -31,7 +20,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -42,7 +31,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -53,7 +42,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -64,7 +53,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -75,7 +64,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -86,7 +75,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -97,7 +86,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -108,7 +97,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -119,7 +108,7 @@
       "source": "Science Robotics",
       "source_type": "journal",
       "pub_date": "",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": null
     },
     {
@@ -251,7 +240,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-26T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.17914"
     },
     {
@@ -262,7 +251,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-26T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18423"
     },
     {
@@ -273,7 +262,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-24T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.17818"
     },
     {
@@ -284,7 +273,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-23T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18116"
     },
     {
@@ -295,7 +284,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-23T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18802"
     },
     {
@@ -306,7 +295,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-19T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18907"
     },
     {
@@ -317,7 +306,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18242"
     },
     {
@@ -328,7 +317,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18458"
     },
     {
@@ -339,7 +328,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.17601"
     },
     {
@@ -350,7 +339,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18159"
     },
     {
@@ -361,7 +350,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-17T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18579"
     },
     {
@@ -372,7 +361,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18824"
     },
     {
@@ -383,7 +372,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18891"
     },
     {
@@ -394,7 +383,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-15T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18172"
     },
     {
@@ -405,7 +394,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-12T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18334"
     },
     {
@@ -416,7 +405,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-11T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.17939"
     },
     {
@@ -427,7 +416,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.17070"
     },
     {
@@ -438,7 +427,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-10T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18511"
     },
     {
@@ -449,7 +438,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-08T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18210"
     },
     {
@@ -460,7 +449,7 @@
       "source": "Frontiers Robotics",
       "source_type": "journal",
       "pub_date": "2026-06-05T00:00:00Z",
-      "pub_ts": 1782602134,
+      "pub_ts": 1782688603,
       "arxiv_id": "2026.18104"
     },
     {
