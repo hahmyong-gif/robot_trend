@@ -1,15 +1,15 @@
 name: 🤖 Robot Intelligence Daily
 
-on:
-  schedule:
-    - cron: '0 22 * * *'   # 매일 KST 07:00
-  workflow_dispatch:
-    inputs:
-      run_exhibitions:
-        description: '전시회 데이터도 갱신'
-        required: false
-        default: 'false'
-        type: boolean
+# on:
+#   schedule:
+#     - cron: '0 22 * * *'   # 매일 KST 07:00
+#   workflow_dispatch:
+#     inputs:
+#       run_exhibitions:
+#         description: '전시회 데이터도 갱신'
+#         required: false
+#         default: 'false'
+#         type: boolean
 
 jobs:
   daily-update:
